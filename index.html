@@ -55,7 +55,7 @@ code { background:var(--surface-1); border:1px solid var(--border); border-radiu
 <h1>S0 capability boundary — S2 exploration dashboard</h1>
 <p class="sub">Frozen AUTO3 Mixed <code>model_8000.pt</code> (Object-only) · scene hand_table_v1 · 2026-11-16 ·
 branch <code>jd/mixed-s0-s2</code> · one deterministic placement per cell</p>
-<div class="tiles"><div class="tile"><div class="n">1092</div><div class="k">boundary probes</div></div><div class="tile"><div class="n">330</div><div class="k">closed-loop CPU runs</div></div><div class="tile"><div class="n">762</div><div class="k">GPU batch probes</div></div><div class="tile"><div class="n">3</div><div class="k">objects</div></div><div class="tile"><div class="n">14</div><div class="k">skills probed</div></div><div class="tile"><div class="n">20</div><div class="k">campaigns</div></div></div>
+<div class="tiles"><div class="tile"><div class="n">1156</div><div class="k">boundary probes</div></div><div class="tile"><div class="n">394</div><div class="k">closed-loop CPU runs</div></div><div class="tile"><div class="n">762</div><div class="k">GPU batch probes</div></div><div class="tile"><div class="n">3</div><div class="k">objects</div></div><div class="tile"><div class="n">15</div><div class="k">skills probed</div></div><div class="tile"><div class="n">20</div><div class="k">campaigns</div></div></div>
 
 <h2>Gained abilities — side-by-side</h2>
 <p>Each pair runs the same checkpoint. The left side is the naive command at the boundary; the right side is
@@ -124,7 +124,7 @@ dropped the tool; green includes runs that only wobbled after the verb during pl
 <p><b>Two execution routes, one frozen policy.</b> Everything runs the same checkpoint
 (<code>29bcf9eb…</code>) with the S1 hand-table collision patch:</p>
 <ul>
-<li><b>CPU closed-loop route</b> (330 runs): one <code>s1/harness</code> EpisodeRunner per subprocess —
+<li><b>CPU closed-loop route</b> (394 runs): one <code>s1/harness</code> EpisodeRunner per subprocess —
 the deploy observation proxy, runtime gates (reference held until lift confirms), drop detection,
 <code>align_actual</code>, fixtures. 12 parallel workers, ~25 min for all campaigns.</li>
 <li><b>GPU open-loop route</b> (762 probes): each probe's task program is compiled offline into a
@@ -134,12 +134,41 @@ as one CUDA env per probe through the stock WH120 eval path (<code>s2/harness/gp
 </ul>
 <p><b>Pipeline:</b> campaign grids (<code>campaigns.py</code> / <code>campaigns_gpu.py</code>) → probes →
 per-run metrics (<code>metrics.py</code>: tracking error, in-hand twist, slip, phase outcomes) →
-<code>analyze.py</code> → <b>Capability Atlas</b> (<code>s2/atlas/</code>, 1092 route-tagged cells) →
+<code>analyze.py</code> → <b>Capability Atlas</b> (<code>s2/atlas/</code>, 1156 route-tagged cells) →
 distilled skill cards (<code>s2/skills/</code>) and primitives with bimanual-role envelopes
 (<code>s2/primitives/</code>). Full narrative: <code>s2/reports/REPORT.md</code>.</p>
 <p class="sub">Known confound: the CPU route observes the hammer's visual mesh, the GPU route the training
 mesh.stl; the screw/bulb protocol reversals rule it out as the main mechanism of the coupling finding.</p>
 </div>
+<h2>Unseen objects — the hard boundary, and moving it</h2>
+<div class="card">
+<p>Five AUTHORED objects outside the v21 training inventory (16 cm plate, 10 mm pen, 25 mm marble,
+8 mm L-key, mug with handle), registered through the normal recipe path and grasped with the system's
+pooled (size-normalised) rules — the sanctioned unseen-object fallback.</p>
+<p><b>U-PICK: 0/36.</b> Every pick fails, for geometric-affordance reasons visible in the renders: the plate
+and L-key are too flat for a top approach (no reachable edge), the pen is pinned under the fingers, the
+marble sits below the close envelope, the mug body is too wide. The one near-miss (mug lying, yaw 120°)
+grasps then drops.</p>
+<p><b>U-REPAIR (environment + parameter repairs): failure modes MOVE along the boundary.</b> A 4 cm block
+overhang (plate/pen/L-key) or a walled pocket (marble) converts no_lift into real holds of 2–4 s that decay
+by slip (57–124 mm) — contact affordance restored, hold quality still out-of-distribution. Slow close /
+flipped side / tilt alone repair nothing; the mug stays unusable in every variant.</p>
+<p><b>U-REPAIR2 (reduce post-grasp demands): first usable recipe.</b> Overhang + slow close + LOW lift
+(7 cm) + immediate put-down completes for the plate — a genuine rim grasp and short relocation, with a
+messy final placement. Pen/L-key/marble still drop mid-transfer even at reduced demands.</p>
+<table><caption>best outcome per repair stage (failure modes move along the boundary)</caption><thead><tr><th>object</th><th>pooled grasp, table</th><th>+ env / param repair</th><th>+ low lift, quick place</th></tr></thead><tbody><tr><th>plate160</th><td>no lift</td><td>holds 4.2s, drops</td><td>COMPLETES (messy place)</td></tr><tr><th>pen10</th><td>no lift</td><td>holds 5.3s, drops</td><td>holds 5.3s, drops</td></tr><tr><th>lkey50</th><td>no lift</td><td>holds 3.8s, drops</td><td>holds 3.8s, drops</td></tr><tr><th>ball25</th><td>no lift</td><td>holds 3.9s, drops</td><td>holds 3.9s, drops</td></tr><tr><th>mug80</th><td>holds 0.2s, drops</td><td>holds 0.0s, drops</td><td>—</td></tr></tbody></table>
+<figure><video controls preload="metadata" src="unseen_plate_repair.mp4"></video>
+<figcaption>Unseen 16 cm plate: flat on the table the pooled grasp finds no edge (left); resting on a block
+with the rim overhanging, S0 takes a real rim grasp and relocates it — the environment repair moves the
+boundary (right). Place quality remains poor.</figcaption></figure>
+<p><b>Takeaway for "making unseen objects usable":</b> S0's finger behaviour is conditioned on the object's
+surface observation; on out-of-distribution geometry the close is systematically weaker than on trained
+objects, so (1) plan environment changes that convert the geometry into a reachable-edge problem,
+(2) spend the hold budget immediately (short, low transfers), (3) treat anything longer as outside the
+envelope until S0 is retrained with coverage. Rule-transfer worked as designed (pooled rules aimed sensible
+grasps everywhere) — the boundary is the policy's hold, not the planner's aim.</p>
+</div>
+
 <h2>Appendix — Dex-SuperMimic (sister project, same machine/stack)</h2>
 <div class="card">
 <p>SuperMimic reproduction on Wuji Hand 2 (in-hand cube reorientation + pen spin), built on the same
