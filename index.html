@@ -169,28 +169,6 @@ envelope until S0 is retrained with coverage. Rule-transfer worked as designed (
 grasps everywhere) — the boundary is the policy's hold, not the planner's aim.</p>
 </div>
 
-<h2>Appendix — Dex-SuperMimic (sister project, same machine/stack)</h2>
-<div class="card">
-<p>SuperMimic reproduction on Wuji Hand 2 (in-hand cube reorientation + pen spin), built on the same
-mjlab + MuJoCo-Warp stack — this is the training job sharing the RTX 5090 with the S2 batches.</p>
-<figure><video controls preload="metadata" src="supermimic_wm_policy.mp4"></video>
-<figcaption>SuperMimic world-model baseline policy (pen spin): imagination = a learned neural world model,
-not MuJoCo at all.</figcaption></figure>
-<figure><video controls preload="metadata" src="supermimic_diffsim_standalone.mp4"></video>
-<figcaption>DiffSim standalone policy rollout: imagination = differentiable MuJoCo-Warp (frozen-witness
-collision-adjoint branch).</figcaption></figure>
-<figure><video controls preload="metadata" src="supermimic_diffsim_onpolicy_live.mp4"></video>
-<figcaption>DiffSim on-policy — live rollout snapshot from the training run in progress.</figcaption></figure>
-<p><b>Do SuperMimic and the DiffSim share MuJoCo physics/collision settings?</b>
-Real-simulator rollouts: identical in both (one mjlab env: pen spin at timestep 0.005, implicitfast,
-iterations 10 / ls 20, impratio 2.0; cube reorient at timestep 0.01; mesh fingertip collisions).
-Imagination differs by design: SuperMimic's is a neural world model (no MuJoCo), while the DiffSim's is
-differentiable MuJoCo-Warp on the env's EXACT model (sphere_tips=False everywhere current) — same forward
-physics, with gradient-only approximations (frozen contact-witness positions; adjoint-vs-finite-difference
-cosine ≈0.99 in grad_compare_samesim). Earlier DiffSim runs (pre frozen-witness) used a sphere-tip surrogate
-that DID change fingertip collision geometry in imagination.</p>
-</div>
-
 <p class="sub">Charts: status palette (validated, both modes); failure cells carry a glyph (× drop, · no-lift)
 and every chart has a table view, so meaning never rides on color alone.</p>
 <script>
