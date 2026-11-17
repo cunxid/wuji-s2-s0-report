@@ -26,6 +26,28 @@ a { color:var(--series-1); }
 <p class="sub">What code decides where we probe, how a probe runs, and how a result becomes knowledge.
 Source of truth: <code>s2/harness/</code> on branch <code>jd/mixed-s0-s2</code> of the training repo.</p>
 
+<h2>The SR verb API — what the planner calls, and what it must know first</h2>
+<div class="card">
+<p>SR's contract (full version: <code>s2/SR_API.md</code>): see a scene &rarr; decompose into a task card
+&rarr; emit verb calls. Ten verbs; each row lists the Atlas knowledge SR must query BEFORE emitting the call
+— these queries define exactly what the boundary campaigns probe.</p>
+<table>
+<tr><th>verb</th><th>state change</th><th>SR must know (per object, per hold)</th></tr>
+<tr><td><code>acquire(obj, overrides?)</code></td><td>rest &rarr; holding(h0)</td><td>pick band per resting face; pose tolerance (≈2–3 cm/10°); lift-rate envelope; protocol (gated vs open-loop)</td></tr>
+<tr><td><code>regrip(hold)</code></td><td>h&#x2097; &rarr; h&#x2c7c; (only hold-changing verb)</td><td>which recorded holds transfer (verified routes only); ≈−30° in-palm twist cost</td></tr>
+<tr><td><code>transport(Δx, speed)</code></td><td>translate held object</td><td>per-DIRECTION speed envelope; 10–35 mm tracking sag</td></tr>
+<tr><td><code>spin_in_hand(θ, speed)</code></td><td>object +Z rotation (only learned in-hand DOF)</td><td>signed angle range per hold; ≤10° stop-overshoot; compose long spins from envelope interior</td></tr>
+<tr><td><code>wrist_reorient(axis, θ)</code></td><td>whole-hold rotation</td><td>axis×angle envelope (narrowest of all; pour-sized tilts = known gap)</td></tr>
+<tr><td><code>hold(t)</code></td><td>maintain (bimanual HOLDER role)</td><td>tilt bands; slip rate over 20 s</td></tr>
+<tr><td><code>align_actual(pt, tgt)</code></td><td>closed-loop re-anchor</td><td>mandatory before contact: S0 holds 0.5–2 cm off reference</td></tr>
+<tr><td><code>approach_until_stop / strike</code></td><td>guarded / ballistic contact</td><td>press sheds some holds (bulb default); strike validated via action_at criteria</td></tr>
+<tr><td><code>place / release / retreat</code></td><td>holding &rarr; supported</td><td>effect scatter (1–3 cm + drag + kept θ) feeds the NEXT acquire's tolerance; elevated support ≤8 cm</td></tr>
+</table>
+<p class="sub">Sequencing rule: effects(A) ⊆ preconditions(B), checked numerically; re-observe across every
+place/release. Reference generation: session-warm compile 167–324 ms; streamed first chunk 24 ms
+(<code>sr_api.py</code>), so the verb call → S0 executing gap is ~25 ms.</p>
+</div>
+
 <h2>The default skill vocabulary</h2>
 <div class="card">
 <p>Every probe is a task program built from parametric templates in <code>api.py</code> — the same verb
