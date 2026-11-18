@@ -43,7 +43,9 @@ details.sec[open] > summary { margin-bottom:10px; }
 a { color:var(--series-1); }
 table { border-collapse:collapse; font-size:12.5px; margin-top:6px; } caption { text-align:left; color:var(--muted); padding:2px 0; }
 td,th { border:1px solid var(--grid); padding:3px 9px; font-variant-numeric:tabular-nums; }
-figure { margin:0; } video { width:100%; max-width:860px; border-radius:8px; border:1px solid var(--border); }
+figure { margin:0; }
+.scene-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; max-width:1200px; }
+.scene-grid video { max-width:100%; } video { width:100%; max-width:860px; border-radius:8px; border:1px solid var(--border); }
 .chip { display:inline-block; font-size:12px; border:1px solid var(--border); border-radius:10px;
   padding:1px 8px; margin:2px 3px 2px 0; color:var(--ink2); }
 .chip.ok { border-color:var(--st-good); } .chip.bad { border-color:var(--st-crit); color:var(--st-crit); }
@@ -63,7 +65,23 @@ code { background:var(--surface-1); border:1px solid var(--border); border-radiu
 branch <code>jd/mixed-s0-s2</code> · one deterministic placement per cell</p>
 <p><a href="experiment.html"><b>Experiment writeup — closed-loop programs: 60% → 85% → 88% on 48 pre-registered scenes &rarr;</b></a><br>
 <a href="system.html">System — the flow: scene &rarr; sub-task &rarr; tool calls &rarr; retry (self-contained menu) &rarr;</a> · <a href="method.html">Method — what decides where we probe &rarr;</a></p>
-<div class="tiles"><div class="tile"><div class="n">2533</div><div class="k">boundary probes</div></div><div class="tile"><div class="n">1043</div><div class="k">closed-loop CPU runs</div></div><div class="tile"><div class="n">1490</div><div class="k">GPU batch probes</div></div><div class="tile"><div class="n">8</div><div class="k">objects (3 trained + 5 unseen)</div></div><div class="tile"><div class="n">31</div><div class="k">skills probed</div></div><div class="tile"><div class="n">22</div><div class="k">campaigns</div></div></div>
+<div class="tiles"><div class="tile"><div class="n">2537</div><div class="k">boundary probes</div></div><div class="tile"><div class="n">1047</div><div class="k">closed-loop CPU runs</div></div><div class="tile"><div class="n">1490</div><div class="k">GPU batch probes</div></div><div class="tile"><div class="n">8</div><div class="k">objects (3 trained + 5 unseen)</div></div><div class="tile"><div class="n">31</div><div class="k">skills probed</div></div><div class="tile"><div class="n">22</div><div class="k">campaigns</div></div></div>
+
+<h2 style="margin-top:26px">A real task in four real scenes — screw the lightbulb in</h2>
+<p>The same frozen S0 + the final closed-loop task card, dropped into four everyday settings with
+non-task distractor objects (mugs, books, a toolbox, jars — all collidable; the compiled reference must
+clear them). No per-scene tuning. Thin blue line = the generated object reference; sphere = the current
+target. Scored by the task's own criteria.</p>
+<div class="scene-grid">
+<figure><video controls preload="none" poster="scene_desk_lamp_poster.jpg" src="scene_desk_lamp.mp4"></video>
+<figcaption><span style="color:var(--st-good)">✓ PASS 8/8</span> · desk lamp — pick, regrip base-down, seat on the lamp base, screw in</figcaption></figure>
+<figure><video controls preload="none" poster="scene_workbench_poster.jpg" src="scene_workbench.mp4"></video>
+<figcaption><span style="color:var(--st-good)">✓ PASS 8/8</span> · workshop bench — toolbox, spray can and parts tray in the way</figcaption></figure>
+<figure><video controls preload="none" poster="scene_bedside_poster.jpg" src="scene_bedside.mp4"></video>
+<figcaption><span style="color:var(--st-crit)">✗ 7/8</span> · bedside lamp — screws in, but the bulb rolls off the narrow column at put-down (honest residual)</figcaption></figure>
+<figure><video controls preload="none" poster="scene_pantry_poster.jpg" src="scene_pantry.mp4"></video>
+<figcaption><span style="color:var(--st-good)">✓ PASS 8/8</span> · pantry shelf — socket up on the shelf lip, jars behind</figcaption></figure>
+</div>
 
 <details class="sec"><summary>Gained abilities — side-by-side</summary>
 <p>Each pair runs the same checkpoint. The left side is the naive command at the boundary; the right side is
@@ -193,7 +211,7 @@ dropped the tool; green includes runs that only wobbled after the verb during pl
 <p><b>Two execution routes, one frozen policy.</b> Everything runs the same checkpoint
 (<code>29bcf9eb…</code>) with the S1 hand-table collision patch:</p>
 <ul>
-<li><b>CPU closed-loop route</b> (1043 runs): one <code>s1/harness</code> EpisodeRunner per subprocess —
+<li><b>CPU closed-loop route</b> (1047 runs): one <code>s1/harness</code> EpisodeRunner per subprocess —
 the deploy observation proxy, runtime gates (reference held until lift confirms), drop detection,
 <code>align_actual</code>, fixtures. 12 parallel workers, ~25 min for all campaigns.</li>
 <li><b>GPU open-loop route</b> (1490 probes): each probe's task program is compiled offline into a
@@ -203,7 +221,7 @@ as one CUDA env per probe through the stock WH120 eval path (<code>s2/harness/gp
 </ul>
 <p><b>Pipeline:</b> campaign grids (<code>campaigns.py</code> / <code>campaigns_gpu.py</code>) → probes →
 per-run metrics (<code>metrics.py</code>: tracking error, in-hand twist, slip, phase outcomes) →
-<code>analyze.py</code> → <b>Capability Atlas</b> (<code>s2/atlas/</code>, 2533 route-tagged cells) →
+<code>analyze.py</code> → <b>Capability Atlas</b> (<code>s2/atlas/</code>, 2537 route-tagged cells) →
 distilled skill cards (<code>s2/skills/</code>) and primitives with bimanual-role envelopes
 (<code>s2/primitives/</code>). Full narrative: <code>s2/reports/REPORT.md</code>.</p>
 <p class="sub">Known confound: the CPU route observes the hammer's visual mesh, the GPU route the training
