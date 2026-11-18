@@ -62,7 +62,7 @@ code { background:var(--surface-1); border:1px solid var(--border); border-radiu
 <div style="float:right"><button class="theme" onclick="location.href=location.pathname+'?v='+Date.now()" title="reload bypassing the browser cache">&#8635; force refresh</button> <button class="theme" onclick="const r=document.documentElement; r.dataset.theme=r.dataset.theme==='dark'?'light':'dark'">light / dark</button></div>
 <h1>S0 capability boundary — S2 exploration dashboard</h1>
 <p class="sub">Frozen AUTO3 Mixed <code>model_8000.pt</code> (Object-only) · scene hand_table_v1 · 2026-11-16 ·
-branch <code>jd/mixed-s0-s2</code> · one deterministic placement per cell · build 11-18 14:05</p>
+branch <code>jd/mixed-s0-s2</code> · one deterministic placement per cell · build 11-18 14:06</p>
 <p><a href="experiment.html"><b>Experiment writeup — closed-loop programs: 60% → 85% → 88% on 48 pre-registered scenes &rarr;</b></a><br>
 <a href="system.html">System — the flow: scene &rarr; sub-task &rarr; tool calls &rarr; retry (self-contained menu) &rarr;</a> · <a href="method.html">Method — what decides where we probe &rarr;</a></p>
 <div class="tiles"><div class="tile"><div class="n">2542</div><div class="k">boundary probes</div></div><div class="tile"><div class="n">1052</div><div class="k">closed-loop CPU runs</div></div><div class="tile"><div class="n">1490</div><div class="k">GPU batch probes</div></div><div class="tile"><div class="n">36</div><div class="k">objects (3 trained + authored)</div></div><div class="tile"><div class="n">31</div><div class="k">skills probed</div></div><div class="tile"><div class="n">87</div><div class="k">campaigns</div></div></div>
@@ -81,9 +81,10 @@ training data. Thin blue line = generated object reference; sphere = current tar
 <figure><video controls preload="none" poster="real_gym_dumbbell_poster.jpg" src="real_gym_dumbbell.mp4"></video>
 <figcaption><span style="color:var(--st-good)">✓ PASS</span> · <b>home gym</b> — put the dumbbell on the mat: an object S0 never saw, placed with closed-loop alignment</figcaption></figure>
 </div>
-<p class="sub">An earlier 4-scene bulb-only study (incl. one honest failure) moved to the Realistic-tasks
-section. Rendering: simulator replay with styled materials and composited depth-of-field room backdrops —
-the physics and outcomes are the real runs.</p>
+<p class="sub">Earlier bulb-only 4-scene study (3/4 pass; the bedside bulb rolls off its narrow column —
+an honest failure): <a href="scene_desk_lamp.mp4">desk lamp</a> · <a href="scene_workbench.mp4">workbench</a> ·
+<a href="scene_bedside.mp4">bedside ✗</a> · <a href="scene_pantry.mp4">pantry</a>. Rendering: simulator replay
+with styled materials and composited depth-of-field room backdrops — the physics and outcomes are the real runs.</p>
 
 <details class="sec"><summary>Gained abilities — side-by-side</summary>
 <p>Each pair runs the same checkpoint. The left side is the naive command at the boundary; the right side is
