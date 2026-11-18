@@ -83,7 +83,26 @@ far-pose handover drop — none are aim/precision failures, which the closed-loo
 quick place, shelf fetch, elevated place, in-hand reorientation hold), each over its own scene grid with
 metric-level success checks (standing axis, placement error, sustained face-down orientation).</p></div>
 
-<h2>6 · Limitations</h2>
+<h2>6 · Harness-effectiveness benchmarks</h2>
+<div class="card">
+<p><b>Reference-generation interface</b> (<code>s0_interface.py</code>, all 36 objects): first streamed chunk
+p50 <b>18 ms</b> / p95 19 ms; full warm compile p50 139 ms / p95 150 ms; per-object session warmup ≈0.2 s.
+The S2→S0 call-to-execution gap is ~20 ms with compilation running ~100× faster than execution.</p>
+<p><b>Atlas predictive accuracy</b> (45 pre-registered probes at INTERPOLATED, never-probed parameters;
+predicted from the 3 nearest cells before running): naive lookup <b>33/45 (73%)</b>; route-aware lookup
+(gated evidence preferred) <b>36/45 (80%)</b>. Per skill (naive): hold 4/4, pick 21/27, carry 4/7, spin 4/7.
+The error structure is pessimistic — 10 of 12 misses predicted infeasible for runs that succeeded (open-loop
+failure cells leaking into gated queries; the route-aware variant fixes most). The Atlas rarely green-lights
+a failure (2/45 optimistic errors).</p>
+<p><b>Boundary determinism</b> (5 × 2 mm-jitter replication at 4 edge cells): bulb band edges and the screw
+arc edge are deterministic (5/5 each side); the cyl65 lying pick is genuinely fuzzy (1/5) — error bars where
+they matter, determinism where it holds.</p>
+<p><b>Throughput</b>: 12 parallel gated CPU episodes ≈ 17 runs/min (213-run campaign in 12.4 min);
+vectorized GPU route ≈ 3,500 env-steps/s (~50 open-loop probes/min at typical horizons); parallel reference
+precompile ≈ 600 refs in under 2 min.</p>
+</div>
+
+<h2>7 · Limitations</h2>
 <div class="card"><p>One deterministic rollout per scene (no stochastic replication — the simulator is
 deterministic and edge cells were separately shown to be sharp under 2 mm jitter); a single object instance
 per task; simulation only (the screwdriver task is known to succeed on the real robot with the ORIGINAL
