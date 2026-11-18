@@ -75,7 +75,15 @@ Atlas-adaptive planner attains by choosing parameters (e.g. in-hand turn directi
 boundaries), hold-loss during aggressive segments at band-edge grasps (the no_drop cells), and one
 far-pose handover drop — none are aim/precision failures, which the closed-loop steps eliminated.</p></div>
 
-<h2>5 · Limitations</h2>
+<h2>5 · Extended task suite — new tasks composed from validated primitives</h2>
+<div class="card">
+<table><thead><tr><th>task (object)</th><th>scenes</th><th>success</th><th>failing scenes</th></tr></thead>
+<tbody><tr><td>face_down_hold</td><td>5</td><td><b>4/5</b></td><td>y150(drop,face_not_held_down,drop)</td></tr><tr><td>place_on_block</td><td>5</td><td><b>3/5</b></td><td>y0_bC(grasp_timeout,no_lift,off_target,below_support), yn90_bA(drop,off_target,below_support)</td></tr><tr><td>relocate_plate</td><td>5</td><td><b>0/5</b></td><td>tA(off_target), tA_y45(off_target), tB(off_target), tB_y45(failed,off_target), tC(off_target)</td></tr><tr><td>shelf_fetch</td><td>5</td><td><b>4/5</b></td><td>y150_tA(grasp_timeout,no_lift,off_target)</td></tr><tr><td>stand_upright</td><td>5</td><td><b>4/5</b></td><td>bottle50x125:y0(not_standing)</td></tr></tbody></table>
+<p class="sub">Tasks authored directly from Atlas-validated primitives (composed stand-up, overhang pick +
+quick place, shelf fetch, elevated place, in-hand reorientation hold), each over its own scene grid with
+metric-level success checks (standing axis, placement error, sustained face-down orientation).</p></div>
+
+<h2>6 · Limitations</h2>
 <div class="card"><p>One deterministic rollout per scene (no stochastic replication — the simulator is
 deterministic and edge cells were separately shown to be sharp under 2 mm jitter); a single object instance
 per task; simulation only (the screwdriver task is known to succeed on the real robot with the ORIGINAL
