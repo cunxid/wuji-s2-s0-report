@@ -45,7 +45,16 @@ table { border-collapse:collapse; font-size:12.5px; margin-top:6px; } caption { 
 td,th { border:1px solid var(--grid); padding:3px 9px; font-variant-numeric:tabular-nums; }
 figure { margin:0; }
 .scene-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; max-width:1200px; }
-.scene-grid video { max-width:100%; } video { width:100%; max-width:860px; border-radius:8px; border:1px solid var(--border); }
+.scene-grid video { max-width:100%; }
+.fig2 { display:flex; align-items:stretch; gap:6px; max-width:1280px; margin:10px 0 4px; }
+.f2block { flex:1; background:var(--surface-1); border:1.5px solid var(--border); border-radius:12px;
+  overflow:hidden; display:flex; flex-direction:column; min-width:0; }
+.f2block img { width:100%; height:130px; object-fit:cover; border-bottom:1px solid var(--border); }
+.f2t { font-size:11.8px; line-height:1.45; color:var(--ink2); padding:8px 10px; }
+.f2t b { color:var(--ink); font-size:12.5px; }
+.f2arrow { align-self:center; font-size:26px; color:var(--series-1); font-weight:700; }
+.f2loop { max-width:1280px; border:1.5px dashed var(--series-2); border-radius:12px; padding:9px 14px;
+  font-size:12.5px; color:var(--ink2); margin:0 0 18px; } video { width:100%; max-width:860px; border-radius:8px; border:1px solid var(--border); }
 .chip { display:inline-block; font-size:12px; border:1px solid var(--border); border-radius:10px;
   padding:1px 8px; margin:2px 3px 2px 0; color:var(--ink2); }
 .chip.ok { border-color:var(--st-good); } .chip.bad { border-color:var(--st-crit); color:var(--st-crit); }
@@ -62,7 +71,7 @@ code { background:var(--surface-1); border:1px solid var(--border); border-radiu
 <div style="float:right"><button class="theme" onclick="location.href=location.pathname+'?v='+Date.now()" title="reload bypassing the browser cache">&#8635; force refresh</button> <button class="theme" onclick="const r=document.documentElement; r.dataset.theme=r.dataset.theme==='dark'?'light':'dark'">light / dark</button></div>
 <h1>S0 capability boundary — S2 exploration dashboard</h1>
 <p class="sub">Frozen AUTO3 Mixed <code>model_8000.pt</code> (Object-only) · scene hand_table_v1 · 2026-11-16 ·
-branch <code>jd/mixed-s0-s2</code> · one deterministic placement per cell · build 11-18 14:06</p>
+branch <code>jd/mixed-s0-s2</code> · one deterministic placement per cell · build 11-18 15:09</p>
 <p><a href="experiment.html"><b>Experiment writeup — closed-loop programs: 60% → 85% → 88% on 48 pre-registered scenes &rarr;</b></a><br>
 <a href="system.html">System — the flow: scene &rarr; sub-task &rarr; tool calls &rarr; retry (self-contained menu) &rarr;</a> · <a href="method.html">Method — what decides where we probe &rarr;</a></p>
 <div class="tiles"><div class="tile"><div class="n">2542</div><div class="k">boundary probes</div></div><div class="tile"><div class="n">1052</div><div class="k">closed-loop CPU runs</div></div><div class="tile"><div class="n">1490</div><div class="k">GPU batch probes</div></div><div class="tile"><div class="n">36</div><div class="k">objects (3 trained + authored)</div></div><div class="tile"><div class="n">31</div><div class="k">skills probed</div></div><div class="tile"><div class="n">87</div><div class="k">campaigns</div></div></div>
@@ -81,6 +90,36 @@ training data. Thin blue line = generated object reference; sphere = current tar
 <figure><video controls preload="none" poster="real_gym_dumbbell_poster.jpg" src="real_gym_dumbbell.mp4"></video>
 <figcaption><span style="color:var(--st-good)">✓ PASS</span> · <b>home gym</b> — put the dumbbell on the mat: an object S0 never saw, placed with closed-loop alignment</figcaption></figure>
 </div>
+<h2 style="margin-top:30px">Figure 2 — the S2 → S0 system</h2>
+<div class="fig2">
+  <div class="f2block"><img src="fig2_scene.jpg" alt="scene"><div class="f2t"><b>① Scene</b><br>
+    object pose (settled) + fixtures & distractors; pose tolerance checked against the next acquire
+    (≈2–3 cm / 10°)</div></div>
+  <div class="f2arrow">→</div>
+  <div class="f2block"><img src="fig2_atlas.jpg" alt="atlas"><div class="f2t"><b>② S2 planner</b><br>
+    task card → verb chain; every step pre-checked in the <b>Capability Atlas</b>
+    (object × hold × verb × params; 2,500+ cells; 80% predictive accuracy); repairs inserted
+    (regrip, env change, composition)</div></div>
+  <div class="f2arrow">→</div>
+  <div class="f2block"><img src="fig2_ref.jpg" alt="reference"><div class="f2t"><b>③ Reference generator</b><br>
+    program → 50 Hz wrist+object reference, STREAMED: first chunk <b>18 ms</b>, compile ~100× faster
+    than execution (<code>s0_interface.py</code>)</div></div>
+  <div class="f2arrow">→</div>
+  <div class="f2block"><img src="fig2_s0.jpg" alt="s0"><div class="f2t"><b>④ Frozen S0</b><br>
+    gated closed-loop episode: reference held until lift confirms; <code>align_actual</code> /
+    <code>keep_point</code> re-anchor on the measured object; fingers are S0's only output</div></div>
+  <div class="f2arrow">→</div>
+  <div class="f2block"><div class="f2t" style="padding-top:14px"><b>⑤ Outcome</b><br>
+    task-level criteria (action_at) + metrics (tracking, slip, in-hand twist) + failure stage
+    <div style="margin-top:8px">
+    <span class="chip ok">✓ lifted</span> <span class="chip ok">✓ driving_at_screw</span>
+    <span class="chip ok">✓ put_down</span> <span class="chip bad">✗ drop (verb)</span></div></div></div>
+</div>
+<div class="f2loop">↺ failure feeds back, keyed by stage: <b>prefix</b> → slow close / other yaw / flipped /
+overhang / gate &nbsp;·&nbsp; <b>verb</b> → envelope-interior composition / verified regrip / reduced demands
+&nbsp;·&nbsp; <b>tail</b> → re-observe, re-place &nbsp;—&nbsp; every rung campaign-validated
+(<a href="system.html">full menu</a>)</div>
+
 <p class="sub">Earlier bulb-only 4-scene study (3/4 pass; the bedside bulb rolls off its narrow column —
 an honest failure): <a href="scene_desk_lamp.mp4">desk lamp</a> · <a href="scene_workbench.mp4">workbench</a> ·
 <a href="scene_bedside.mp4">bedside ✗</a> · <a href="scene_pantry.mp4">pantry</a>. Rendering: simulator replay
