@@ -1,0 +1,134 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>The framework</title>
+<style>
+.viz-root { color-scheme: light;
+  --surface-1:#fcfcfb; --page:#f9f9f7; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+  --grid:#e1e0d9; --border:rgba(11,11,11,.10); --series-1:#2a78d6; }
+@media (prefers-color-scheme: dark) { :root:where(:not([data-theme="light"])) .viz-root { color-scheme: dark;
+  --surface-1:#1a1a19; --page:#0d0d0d; --ink:#f0efec; --ink2:#c3c2b7; --grid:#2c2c2a;
+  --border:rgba(255,255,255,.10); --series-1:#3987e5; } }
+body { margin:0; font-family:system-ui,-apple-system,"Segoe UI",sans-serif; }
+.viz-root { background:var(--page); color:var(--ink); min-height:100vh; padding:24px 32px 64px; }
+h1 { font-size:22px; margin:0 0 4px; } h2 { font-size:17px; margin:30px 0 8px; }
+p, li { color:var(--ink2); font-size:14px; line-height:1.55; max-width:88ch; }
+.card { background:var(--surface-1); border:1px solid var(--border); border-radius:10px; padding:16px 18px; margin:12px 0; }
+code { background:var(--surface-1); border:1px solid var(--border); border-radius:4px; padding:1px 5px; font-size:12.5px; }
+table { border-collapse:collapse; font-size:13px; margin:8px 0; }
+td,th { border:1px solid var(--grid); padding:5px 10px; vertical-align:top; text-align:left; }
+th { color:var(--ink); } td { color:var(--ink2); }
+a { color:var(--series-1); }
+.sub { color:var(--muted); font-size:13px; }
+
+pre{background:var(--surface-1);border:1px solid var(--border);border-radius:8px;padding:12px;font-size:12px;overflow-x:auto;color:var(--ink2)}
+h1{font-size:22px} h2{font-size:17px;margin-top:28px} table{margin:10px 0} th,td{padding:5px 11px}</style></head>
+<body class="viz-root">
+<p><a href="index.html">&larr; dashboard</a> · <a href="system.html">system</a> · <a href="method.html">method</a> · <a href="experiment.html">experiment</a></p>
+<h1>s2.framework — an S0-boundary-aware manipulation framework</h1>
+<p>A framework that <strong>understands the capability boundary of a frozen dexterous tracking policy (S0)</strong>
+and uses that knowledge to plan and execute everyday tool tasks — without retraining S0.</p>
+<p>S0 is fixed (AUTO3 Mixed <code>model_8000.pt</code>, Object-only). The S2 layer above it sees a scene,
+decomposes the task, and calls S0 through skill functions; each skill turns S2's parameters into a
+50 Hz reference trajectory that the frozen policy tracks.</p>
+<h2>Positioning vs ASPIRE and GaP</h2>
+<p>The two reference systems contribute complementary ideas; neither alone fits a frozen-policy,
+boundary-limited setting. This framework takes the useful half of each and adds the missing piece.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>ASPIRE (NVIDIA)</th>
+<th>GaP / Graph-as-Policy</th>
+<th><strong>this framework</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>core</td>
+<td>autonomous skill discovery + reusable memory</td>
+<td>typed execution graphs, static verification</td>
+<td>both, over a frozen S0</td>
+</tr>
+<tr>
+<td>what we borrow</td>
+<td>probing campaigns accumulate a persistent <strong>Capability Atlas</strong>; discovered fixes become reusable skill parameters</td>
+<td>tasks are <strong>graphs of typed Skill nodes</strong>, validated before execution, with explicit fallbacks</td>
+<td>—</td>
+</tr>
+<tr>
+<td>the missing piece both lack</td>
+<td>—</td>
+<td>—</td>
+<td>an explicit <strong>S0 capability-boundary model</strong>: per (object, hold, verb, params) feasibility with route tags, envelopes, effect scatter, and a stage-keyed repair ladder</td>
+</tr>
+</tbody>
+</table>
+<p>In one line: <strong>ASPIRE discovers knowledge, GaP structures invocation, and our Atlas boundary model
+is the connective tissue that lets the graph be validated and repaired against what S0 can actually do.</strong></p>
+<h2>The S0 wrappers are pure functions</h2>
+<p>Each skill in <code>skills.py</code> is a pure function — S2 passes parameters, gets a typed <code>Skill</code> whose
+steps compile (via <code>s0.py</code>) to a reference trajectory. No hidden state; calling twice yields
+identical steps (locked by the test suite).</p>
+<pre><code class="language-python">from framework import S0, Graph, Node, acquire, spin_composed, place_release, scenes
+
+g = Graph(&quot;rotate the hammer face-down and set it down&quot;, &quot;hammerS_local_mocap&quot;,
+          [Node(acquire()),
+           Node(spin_composed(360, step_deg=90)),   # envelope-interior composition
+           Node(place_release())])
+
+scene = scenes.scene(&quot;hammerS_local_mocap&quot;, scenes.rest_pose(&quot;hammerS_local_mocap&quot;))
+scene[&quot;_yaw_deg&quot;] = 0
+issues = g.validate(scene)          # GaP-style static check against the Atlas (empty == ok)
+
+s0 = S0()
+ref   = s0.generate(&quot;hammerS_local_mocap&quot;, g.to_program(), scene)   # full reference, ~0.2 s warm
+first = next(s0.generate_stream(&quot;hammerS_local_mocap&quot;, g.to_program(), scene))  # 18 ms first chunk
+result = g.execute(s0, scene, &quot;run-1&quot;)   # gated episode; stage-keyed fallback on failure
+</code></pre>
+<h2>Modules (each is the single source for its concern)</h2>
+<table>
+<thead>
+<tr>
+<th>module</th>
+<th>role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>skills.py</code></td>
+<td>the S0 wrappers: parameters → typed <code>Skill</code> (program fragment). <code>acquire · regrip · hold · transport · spin · spin_composed · rotate_to · wrist_reorient · move_to · align · guarded_press · place_release · present · stand_upright</code></td>
+</tr>
+<tr>
+<td><code>scenes.py</code></td>
+<td>scene dicts: rest poses, yaw placement, fixtures/distractors</td>
+</tr>
+<tr>
+<td><code>atlas.py</code></td>
+<td>the boundary model: <code>predict</code> (route-aware kNN, 80% on the held-out benchmark), <code>envelope</code> (merged ranges), <code>REPAIR_LADDER</code></td>
+</tr>
+<tr>
+<td><code>s0.py</code></td>
+<td>execution interface: warm sessions, streamed reference generation, gated episode execution</td>
+</tr>
+<tr>
+<td><code>outcomes.py</code></td>
+<td>grading: per-run <code>compute</code>, <code>success</code> rules, <code>stage</code> classification, <code>check_pass</code>/<code>task_criteria</code></td>
+</tr>
+<tr>
+<td><code>graph.py</code></td>
+<td>typed task graphs: <code>validate → to_program → execute → stage-keyed fallback</code></td>
+</tr>
+</tbody>
+</table>
+<h2>No redundant implementations</h2>
+<p>The exploration tooling in <code>../harness/</code> now <strong>delegates</strong> to this framework rather than duplicating
+it: <code>harness/metrics.py</code> → <code>outcomes.compute</code>; <code>harness/analyze.py</code> <code>success</code>/<code>spin_achieved</code> →
+<code>outcomes</code>; <code>harness/make_dashboard.py</code> <code>_stage</code> → <code>outcomes.stage</code>; <code>harness/sr_api.py</code> &amp;
+<code>harness/s0_interface.py</code> → <code>s0</code> + <code>atlas</code>; <code>harness/api.py</code> scene helpers → <code>scenes</code>. One behaviour,
+one place to change it; guarded by <code>tests/test_framework.py</code> (21 tests).</p>
+<h2>Tests</h2>
+<pre><code class="language-bash">pixi run python -m pytest s2/framework/tests -q      # 21 passing
+</code></pre>
+<h2>Evidence</h2>
+<p>The Atlas is filled by the probing campaigns in <code>../harness/campaigns*.py</code> (2,500+ cells, 36 objects);
+the write-up, benchmarks, and videos are at https://cunxid.github.io/wuji-s2-s0-report/ and in
+<code>../SR_API.md</code> (verb contracts) / <code>../SYSTEM.md</code> (the loop) / <code>../reports/REPORT.md</code> (findings).</p></body></html>
