@@ -71,11 +71,11 @@ code { background:var(--surface-1); border:1px solid var(--border); border-radiu
 <div style="float:right"><button class="theme" onclick="location.href=location.pathname+'?v='+Date.now()" title="reload bypassing the browser cache">&#8635; force refresh</button> <button class="theme" onclick="const r=document.documentElement; r.dataset.theme=r.dataset.theme==='dark'?'light':'dark'">light / dark</button></div>
 <h1>S0 capability boundary — S2 exploration dashboard</h1>
 <p class="sub">Frozen AUTO3 Mixed <code>model_8000.pt</code> (Object-only) · scene hand_table_v1 · 2026-11-16 ·
-branch <code>jd/mixed-s0-s2</code> · one deterministic placement per cell · build 11-18 22:51</p>
+branch <code>jd/mixed-s0-s2</code> · one deterministic placement per cell · build 11-18 22:56</p>
 <p><a href="framework.html"><b>The framework — S0-boundary-aware manipulation (ASPIRE memory + GaP graphs + our Atlas) →</b></a></p>
 <p><a href="experiment.html"><b>Experiment writeup — closed-loop programs: 60% → 85% → 88% on 48 pre-registered scenes &rarr;</b></a><br>
 <a href="system.html">System — the flow: scene &rarr; sub-task &rarr; tool calls &rarr; retry (self-contained menu) &rarr;</a> · <a href="method.html">Method — what decides where we probe &rarr;</a></p>
-<div class="tiles"><div class="tile"><div class="n">2544</div><div class="k">boundary probes</div></div><div class="tile"><div class="n">1054</div><div class="k">closed-loop CPU runs</div></div><div class="tile"><div class="n">1490</div><div class="k">GPU batch probes</div></div><div class="tile"><div class="n">36</div><div class="k">objects (3 trained + authored)</div></div><div class="tile"><div class="n">34</div><div class="k">skills probed</div></div><div class="tile"><div class="n">88</div><div class="k">campaigns</div></div></div>
+<div class="tiles"><div class="tile"><div class="n">2545</div><div class="k">boundary probes</div></div><div class="tile"><div class="n">1055</div><div class="k">closed-loop CPU runs</div></div><div class="tile"><div class="n">1490</div><div class="k">GPU batch probes</div></div><div class="tile"><div class="n">36</div><div class="k">objects (3 trained + authored)</div></div><div class="tile"><div class="n">34</div><div class="k">skills probed</div></div><div class="tile"><div class="n">88</div><div class="k">campaigns</div></div></div>
 
 <h2 style="margin-top:26px">Four real tasks, four real scenes, four different objects</h2>
 <p>One frozen S0 + its closed-loop task cards, staged in everyday settings with collidable distractor
@@ -254,7 +254,7 @@ dropped the tool; green includes runs that only wobbled after the verb during pl
 <p><b>Two execution routes, one frozen policy.</b> Everything runs the same checkpoint
 (<code>29bcf9eb…</code>) with the S1 hand-table collision patch:</p>
 <ul>
-<li><b>CPU closed-loop route</b> (1054 runs): one <code>s1/harness</code> EpisodeRunner per subprocess —
+<li><b>CPU closed-loop route</b> (1055 runs): one <code>s1/harness</code> EpisodeRunner per subprocess —
 the deploy observation proxy, runtime gates (reference held until lift confirms), drop detection,
 <code>align_actual</code>, fixtures. 12 parallel workers, ~25 min for all campaigns.</li>
 <li><b>GPU open-loop route</b> (1490 probes): each probe's task program is compiled offline into a
@@ -264,7 +264,7 @@ as one CUDA env per probe through the stock WH120 eval path (<code>s2/harness/gp
 </ul>
 <p><b>Pipeline:</b> campaign grids (<code>campaigns.py</code> / <code>campaigns_gpu.py</code>) → probes →
 per-run metrics (<code>metrics.py</code>: tracking error, in-hand twist, slip, phase outcomes) →
-<code>analyze.py</code> → <b>Capability Atlas</b> (<code>s2/atlas/</code>, 2544 route-tagged cells) →
+<code>analyze.py</code> → <b>Capability Atlas</b> (<code>s2/atlas/</code>, 2545 route-tagged cells) →
 distilled skill cards (<code>s2/skills/</code>) and primitives with bimanual-role envelopes
 (<code>s2/primitives/</code>). Full narrative: <code>s2/reports/REPORT.md</code>.</p>
 <p class="sub">Known confound: the CPU route observes the hammer's visual mesh, the GPU route the training
