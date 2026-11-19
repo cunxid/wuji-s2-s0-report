@@ -1,0 +1,68 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>HandsOn benchmark: closed-loop S0 on an arm-mounted hand</title>
+<style>
+.viz-root { color-scheme: light;
+  --surface-1:#fcfcfb; --page:#f9f9f7; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+  --grid:#e1e0d9; --border:rgba(11,11,11,.10); --series-1:#2a78d6; }
+@media (prefers-color-scheme: dark) { :root:where(:not([data-theme="light"])) .viz-root { color-scheme: dark;
+  --surface-1:#1a1a19; --page:#0d0d0d; --ink:#f0efec; --ink2:#c3c2b7; --grid:#2c2c2a;
+  --border:rgba(255,255,255,.10); --series-1:#3987e5; } }
+body { margin:0; font-family:system-ui,-apple-system,"Segoe UI",sans-serif; }
+.viz-root { background:var(--page); color:var(--ink); min-height:100vh; padding:24px 32px 64px; }
+h1 { font-size:22px; margin:0 0 4px; } h2 { font-size:17px; margin:30px 0 8px; }
+p, li { color:var(--ink2); font-size:14px; line-height:1.55; max-width:88ch; }
+.card { background:var(--surface-1); border:1px solid var(--border); border-radius:10px; padding:16px 18px; margin:12px 0; }
+code { background:var(--surface-1); border:1px solid var(--border); border-radius:4px; padding:1px 5px; font-size:12.5px; }
+table { border-collapse:collapse; font-size:13px; margin:8px 0; }
+td,th { border:1px solid var(--grid); padding:5px 10px; vertical-align:top; text-align:left; }
+th { color:var(--ink); } td { color:var(--ink2); }
+a { color:var(--series-1); }
+.sub { color:var(--muted); font-size:13px; }
+
+img{max-width:100%;border:1px solid var(--border);border-radius:8px;margin:6px 0}
+video{max-width:100%;border:1px solid var(--border);border-radius:8px;margin:6px 0}
+.step{font-size:12.5px;color:var(--ink2)}
+.meter{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.meter div{background:var(--surface-1);border:1px solid var(--border);border-radius:8px;padding:8px 14px;font-size:12.5px;color:var(--ink2)}
+.meter b{display:block;font-size:17px;color:var(--ink)}</style></head>
+<body class="viz-root">
+<p><a href="index.html">&larr; dashboard</a> · <a href="experiment.html">experiments</a> · <a href="framework.html">framework</a></p>
+<h1>Transfer test: closed-loop S0 inside the HandsOn benchmark</h1>
+<p>Can the frozen S0 tracking policy operate a <b>different embodiment</b> — the HandsOn benchmark's
+overhead 7-DOF ROKAE arm + Wuji Hand 2 — in HandsOn's own MuJoCo physics, on its t08 hammer-nail task?
+We co-simulate: HandsOn's scene is the physics world; an mjlab environment acts purely as S0's
+observation/action engine. Every 50&nbsp;Hz tick the real hand+hammer state is mirrored into S0's engine,
+the frozen policy runs, its 20 finger targets drive the hand, and its streamed wrist reference drives the
+arm through an online damped-least-squares IK.</p>
+
+<h2>The run</h2>
+<p class="step">The right arm pre-positions to the clip's initial wrist pose, then tracks S0's streamed
+reference through approach &rarr; grasp &rarr; lift. Watch the hand descend onto the hammer handle, the
+fingers close, and the lift come up <b>empty</b> — the hammer stays on the table.</p>
+<video controls preload="metadata" poster="handson_cosim_poster.png" src="handson_cosim_hammer.mp4" style="max-width:720px"></video>
+
+<div class="meter">
+<div><b>2&ndash;10&nbsp;mm</b>arm tracking error vs S0's wrist reference</div>
+<div><b>4&deg;</b>palm orientation error at the grasp instant</div>
+<div><b>at the handle</b>fingertips close on the YCB handle (offset-corrected)</div>
+<div><b>not captured</b>hammer pressed down ~2&nbsp;cm, never lifted</div>
+</div>
+
+<h2>The grasp instant, up close</h2>
+<p class="step">The handle passes through the closing grip, but it sits at the fingertips instead of seated
+against the palm &mdash; the clamp presses instead of wrapping. Pushing the palm lower to seat it is
+geometrically impossible here: the table blocks it, so an overhead arm with downward fingers can only
+reach a thin lying handle from the top.</p>
+<img src="handson_grasp_closeup.png" alt="grasp close-up: handle at the fingertips" style="max-width:720px">
+
+<h2>What this shows</h2>
+<p class="step">Everything <i>kinematic</i> transfers: the frozen policy runs live against a foreign
+simulator's state, the arm substitutes for S0's floating wrist to millimetre tracking, and S0 executes its
+full grasp program at the right place and orientation. What does <b>not</b> transfer is the contact-rich
+capture itself &mdash; S0's grasp strategy assumes a free-floating wrist that can approach a table-lying
+handle from an unconstrained angle, which an overhead arm cannot replicate. The same wall held across
+~20 open-loop variants before this closed-loop run, isolating the boundary to the <b>embodiment</b>
+(floating wrist vs arm-mounted hand), not to perception, IK, physics, or policy inference.</p>
+<p class="sub">Co-simulation code: <code>handson_bridge/cosim.py</code> (branch jd/mixed-s0-s2). Benchmark:
+HandsOn (TsinghuaC3I), t08 hammer-nail, wuji2 embodiment, MuJoCo backend.</p>
+</body></html>
