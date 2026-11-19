@@ -1,0 +1,76 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>References</title>
+<style>
+.viz-root { color-scheme: light;
+  --surface-1:#fcfcfb; --page:#f9f9f7; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+  --grid:#e1e0d9; --border:rgba(11,11,11,.10); --series-1:#2a78d6; }
+@media (prefers-color-scheme: dark) { :root:where(:not([data-theme="light"])) .viz-root { color-scheme: dark;
+  --surface-1:#1a1a19; --page:#0d0d0d; --ink:#f0efec; --ink2:#c3c2b7; --grid:#2c2c2a;
+  --border:rgba(255,255,255,.10); --series-1:#3987e5; } }
+body { margin:0; font-family:system-ui,-apple-system,"Segoe UI",sans-serif; }
+.viz-root { background:var(--page); color:var(--ink); min-height:100vh; padding:24px 32px 64px; }
+h1 { font-size:22px; margin:0 0 4px; } h2 { font-size:17px; margin:30px 0 8px; }
+p, li { color:var(--ink2); font-size:14px; line-height:1.55; max-width:88ch; }
+.card { background:var(--surface-1); border:1px solid var(--border); border-radius:10px; padding:16px 18px; margin:12px 0; }
+code { background:var(--surface-1); border:1px solid var(--border); border-radius:4px; padding:1px 5px; font-size:12.5px; }
+table { border-collapse:collapse; font-size:13px; margin:8px 0; }
+td,th { border:1px solid var(--grid); padding:5px 10px; vertical-align:top; text-align:left; }
+th { color:var(--ink); } td { color:var(--ink2); }
+a { color:var(--series-1); }
+.sub { color:var(--muted); font-size:13px; }
+ h1{font-size:22px} h2{font-size:16px;margin-top:26px} li{margin:6px 0}</style></head>
+<body class="viz-root">
+<p><a href="index.html">&larr; dashboard</a> · <a href="experiment.html">experiment</a> · <a href="framework.html">framework</a></p>
+<h1>References</h1>
+<p>Bibliography for the S2 / S0-boundary-aware manipulation report. Machine-readable form:
+<a href="references.bib"><code>references.bib</code></a>.</p>
+<p><strong>Provenance.</strong> The four 2026 frameworks postdate this author model's training cutoff; their citations were
+confirmed against the <strong>live arXiv API on 2026-11-19</strong> — IDs, titles, authors, and project/code URLs
+(HTTP 200). (A first web-fetch pass wrongly flagged the 2026 papers as fabricated because that helper's
+training predates 2026; the authoritative arXiv API confirms all are genuinely registered.) arXiv DOIs
+follow <code>10.48550/arXiv.&lt;id&gt;</code>.</p>
+<h2>Frameworks this work positions against</h2>
+<ul>
+<li><strong>ASPIRE</strong> — Lu, Wu, Kou, … Zhu, Fan, Wang (NVIDIA GEAR), <em>ASPIRE: Agentic Skills Discovery for Robotics</em>,
+  arXiv:2607.00272, 2026. An LLM coding agent writes/repairs code-as-policy programs over a frozen primitive
+  API and accumulates a reusable skill library. <strong>We borrow its accumulated-memory idea</strong> — probing campaigns
+  fill a persistent Capability Atlas. research.nvidia.com/labs/gear/aspire · github.com/NVlabs/ASPIRE.</li>
+<li><strong>GaP (Graph-as-Policy)</strong> — Chen et al. (UC Berkeley; Goldberg, Sastry, …), <em>GaP: A Graph-as-Policy
+  Multi-Agent Self-Learning Harness for Variational Automation Tasks</em>, arXiv:2607.05369, CoRL 2026
+  (Spotlight). LLM-composed computation graphs as policies. <strong>We borrow its typed-graph execution</strong> —
+  <code>framework/graph.py</code> validates a Skill-node graph against the Atlas before running. graph-robots.github.io/gap.</li>
+<li><strong>AGP (Agent as Policy)</strong> — Jia, Lin, Zhang, Zhang, Liu, Jiang, <em>Agent as Policy for Robotic Manipulation</em>,
+  arXiv:2609.12541, 2026. LLM robot agent with online visual feedback and runtime replanning — related to our
+  <strong>stage-keyed retry ladder</strong>.</li>
+<li><strong>SuperMimic</strong> — Liao, Shao, Long, Zakka, Horowitz, Abbeel, Sreenath (UC Berkeley), <em>SuperMimic: Scaling
+  Humanoid Whole-Body Control with One Differentiable World Model</em>, arXiv:2610.28480, CoRL 2026 (Oral).
+  Differentiable-world-model RL for <strong>humanoid whole-body control</strong> (transfers to Unitree G1). The sister
+  project on this machine (<code>Dex-Supermimic</code>) <em>adapts</em> this approach to a dexterous hand. supermimic.github.io.</li>
+</ul>
+<h2>Foundational methods</h2>
+<ul>
+<li><strong>Code as Policies</strong> — Liang, Huang, Xia, Xu, Hausman, Ichter, Florence, Zeng (Google), <em>Language Model
+  Programs for Embodied Control</em>, ICRA 2023, arXiv:2209.07753. The lineage for "LLM emits a program the robot
+  executes," which our Skill/program layer follows in a frozen-policy setting. code-as-policies.github.io.</li>
+<li><strong>Voyager</strong> — Wang, Xie, Jiang, Mandlekar, Xiao, Zhu, Fan, Anandkumar, <em>An Open-Ended Embodied Agent with
+  Large Language Models</em>, arXiv:2305.16291, 2023. The lineage for a growing, reusable skill library (our Atlas
+  is the boundary-model analog). voyager.minedojo.org · github.com/MineDojo/Voyager.</li>
+<li><strong>MuJoCo</strong> — Todorov, Erez, Tassa, <em>A physics engine for model-based control</em>, IROS 2012.</li>
+</ul>
+<h2>Simulation &amp; tooling</h2>
+<ul>
+<li><strong>MuJoCo Warp</strong> — GPU-accelerated differentiable MuJoCo. github.com/google-deepmind/mujoco_warp. The GPU
+  probing route batches on it.</li>
+<li><strong>mjlab</strong> — Manager-based RL environment framework on MuJoCo Warp. github.com/mujocolab/mjlab. S0's
+  environment (<code>ManagerBasedRlEnv</code>) is built on it.</li>
+</ul>
+<h2>This work's own artifacts (in-repo)</h2>
+<ul>
+<li><strong>S0 — AUTO3 Mixed whole-hand tracking policy</strong>, checkpoint <code>model_8000.pt</code> (sha256 <code>29bcf9eb…acfc60</code>,
+  training commit <code>47de9ef</code>), Hugging Face <code>liang12121/wuji-tracking-policy</code>, built on mjlab + MuJoCo Warp.
+  The frozen policy whose boundary this framework maps.</li>
+<li><strong>This report</strong> — https://cunxid.github.io/wuji-s2-s0-report/ · code in <code>s2/framework/</code>, boundary evidence
+  in <code>s2/atlas/</code> and <code>s2/reports/REPORT.md</code>, verb contracts in <code>s2/SR_API.md</code>.</li>
+</ul>
+<p class="sub">BibTeX: <code>s2/references.bib</code>. 2026 citations verified against the live arXiv API 2026-11-19.</p>
+</body></html>
