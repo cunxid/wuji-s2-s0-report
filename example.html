@@ -100,6 +100,14 @@ mode — S0 decides the fingers.)</p>
 <p class="step">The blue object path and orange wrist path in the world frame: up off the table, held and
 turned, then down at the offset target. This is the geometry the skills generated from three parameter calls.</p>
 
+<div class="arrow">↓ play back the generated reference (no physics yet)</div>
+<h2>③½ The generated reference trajectory, animated</h2>
+<p class="step">This is the reference itself — the hammer mesh posed at <code>object_pose_w</code> each
+frame, the <b>orange sphere</b> at the wrist (palm) target <code>wrist_pose_w</code>, the aqua link between
+them, and the faint planned path. No hand, no S0, no physics: purely what the three skill calls generated
+for S0 to track. Lift → −90° in-hand turn → place at the offset target.</p>
+<video controls preload="metadata" poster="example_reference_poster.jpg" src="example_reference.mp4" style="max-width:640px"></video>
+
 <div class="arrow">↓ the frozen S0 executes the reference (gated closed-loop)</div>
 <h2>④ Video: the generated reference, and S0 tracking it</h2>
 <p class="step">Same run as the plots above. The <b>faint blue line</b> is the full generated object
