@@ -77,6 +77,16 @@ is re-measured each scene); re-check recalled lessons — their loop never re-va
 errors persisted like skills. V25 targets unchanged: strike recalibration · spin ≥55° · cyl50/screw carry
 retention · bimanual block-present.</p></div>
 
+<div class="phase"><h2>The full loop (Figure 2) — act, adapt, learn</h2>
+<p class="step">The failure scaffolding now closes all the way: boundary cells carry <b>measured gap
+evidence</b> (the exact pre-contact offsets and yaws where S0 failed), and S2 converts that into
+training data — V21-format reference clips whose approach <i>starts at a failed offset and converges
+to the nominal grasp</i>, plus a recipe. Validated end-to-end on box60: 4 gap-targeted clips generated
+from atlas evidence; they load in the harness (clip_db + a live episode) and the S0 trainer accepts
+the recipe (RSL-RL PPO iteration losses logged). A real capability run = mix the augment recipe into
+the V21 train set (hours; not launched).</p>
+<img src="fig2_loop.png" alt="Figure 2: the act/adapt/learn loop — failures become evidence, evidence becomes data, data becomes a better S0"></div>
+
 <div class="phase"><h2>Phase 3 — Skill extraction</h2>
 <p class="step"><b>Atlas-gated verbs</b> — each S2 verb ships machine-readable preconditions from validated
 cells (requests outside them return <code>ATLAS_UNSUPPORTED</code>) · <b>choreography library</b> — the
