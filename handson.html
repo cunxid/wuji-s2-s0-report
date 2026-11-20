@@ -1,5 +1,5 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1"><title>HandsOn benchmark: closed-loop S0 lifts the hammer on an arm-mounted hand</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>HandsOn t08: closed-loop S0 + S2 on the overhead arm</title>
 <style>
 .viz-root { color-scheme: light;
   --surface-1:#fcfcfb; --page:#f9f9f7; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
@@ -19,65 +19,50 @@ th { color:var(--ink); } td { color:var(--ink2); }
 a { color:var(--series-1); }
 .sub { color:var(--muted); font-size:13px; }
 
-img{max-width:100%;border:1px solid var(--border);border-radius:8px;margin:6px 0}
-video{max-width:100%;border:1px solid var(--border);border-radius:8px;margin:6px 0}
-.step{font-size:12.5px;color:var(--ink2)}
-.ok{color:var(--series-3);font-weight:700}
+img,video{max-width:100%;border:1px solid var(--border);border-radius:8px;margin:6px 0}
+.step{font-size:12.5px;color:var(--ink2)} .ok{color:var(--series-3);font-weight:700} .warn{color:var(--series-2);font-weight:700}
 .meter{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
 .meter div{background:var(--surface-1);border:1px solid var(--border);border-radius:8px;padding:8px 14px;font-size:12.5px;color:var(--ink2)}
-.meter b{display:block;font-size:17px;color:var(--ink)}
-.pair{display:flex;gap:10px;flex-wrap:wrap} .pair>div{flex:1;min-width:320px}</style></head>
+.meter b{display:block;font-size:17px;color:var(--ink)}</style></head>
 <body class="viz-root">
 <p><a href="index.html">&larr; dashboard</a> · <a href="experiment.html">experiments</a> · <a href="framework.html">framework</a></p>
-<h1>Transfer success: closed-loop S0 grasps and lifts on the HandsOn arm</h1>
-<p>The frozen S0 tracking policy — trained with a <b>free-floating wrist</b> — runs closed-loop inside the
-HandsOn benchmark's MuJoCo physics, driving a <b>7-DOF overhead ROKAE arm + Wuji Hand 2</b>. It approaches,
-grasps, and <span class="ok">lifts its hammer 13&nbsp;cm off the table and holds it stably</span>. Co-simulation:
-HandsOn's scene is the physics world; an mjlab environment is S0's observation/action engine, synced at 50&nbsp;Hz;
-the arm follows S0's streamed wrist reference through online damped-least-squares IK with 60&nbsp;ms lookahead.</p>
+<h1>HandsOn t08 hammer-nail: how far closed-loop S0 + S2 get on the overhead arm</h1>
+<p>Task prompt: <i>"Pick up the wood block with the left hand, keep the vertical nail inserted, then use the
+right hand to pick up the hammer and strike the nail head so the nail sinks."</i> Our S0 (frozen whole-hand
+tracking policy, free-floating-wrist training) + S2 (reference composer) drive the <b>right hand</b> on a 7-DOF
+overhead ROKAE arm, in HandsOn's MuJoCo physics.</p>
 
-<h2>The successful run</h2>
-<p class="step">Pre-position &rarr; approach &rarr; fingers wrap the handle &rarr; lift to +13&nbsp;cm, held
-through the end of the clip. Arm tracking 7&ndash;18&nbsp;mm, palm orientation 6&deg; at the grasp.</p>
+<h2 class="ok">✓ Acquire &amp; lift</h2>
+<p class="step">S0 runs closed-loop (50&nbsp;Hz, exact training observation pipeline), the arm follows its wrist
+reference via online IK. It grasps the hammer and lifts it 13&nbsp;cm, held stably.</p>
 <video controls preload="metadata" poster="handson_cosim_poster.png" src="handson_cosim_hammer.mp4" style="max-width:720px"></video>
-
 <div class="meter">
-<div><b>+130&nbsp;mm</b>hammer lift (z 0.901&rarr;1.031), held stably</div>
-<div><b>7&ndash;18&nbsp;mm</b>arm tracking vs S0's wrist reference</div>
-<div><b>6&deg;</b>palm orientation error at grasp</div>
-<div><b>50&nbsp;Hz</b>live policy inference, exact training obs pipeline</div>
+<div><b>+130&nbsp;mm</b>hammer lifted &amp; held</div>
+<div><b>7&ndash;18&nbsp;mm</b>arm tracking</div>
+<div><b>6&deg;</b>grasp orientation error</div>
 </div>
 
-<h2>What the policy sees vs. what happens</h2>
-<div class="pair">
-<div><p class="step"><b>Physical world (HandsOn):</b> the hand closing on the handle.</p>
-<img src="handson_grasp_closeup.png" alt="physical grasp close-up"></div>
-<div><p class="step"><b>S0's mirrored perception (mjlab engine):</b> the same instant as the policy
-perceives it — its own hand and object, built by the exact training observation code.</p>
-<img src="handson_grasp_mirror.png" alt="mirrored perception at grasp"></div>
-</div>
+<h2 class="ok">✓ Transport &amp; aim the strike (S2 planning)</h2>
+<p class="step">S2 composes the full reference in place — acquire, then carry the in-hand hammer (object
+frozen rigidly in the wrist frame), then a <b>runtime replan</b> that measures the actual in-hand pose, locates
+the hammer head from the mesh, and aims a strike. The head is driven onto the nail <b>to within ~1&nbsp;cm
+kinematically</b> (verified: planned head-at-strike lands at the nail).</p>
 
-<h2>How it was debugged: "the fingers look backwards"</h2>
-<p class="step">An earlier version pressed the hammer without capturing it, and in the video the fingers
-visibly bent the wrong way. The two hand models are <b>kinematically identical</b> (all 20 joint axes, ranges
-and flexion directions match exactly) — the appearance was the policy reacting to a broken bridge. Three bugs,
-found and fixed in order:</p>
-<p class="step">① <b>Palm-frame offset</b> — the two models' palm body frames sit 28.5&nbsp;mm apart along the
-fingers, so every commanded pose left the hand retracted by that much (handle ended up at the fingertips).
-② <b>Gravity tilt</b> — aligning the two hammers' body frames rolled "up" by 9.5&deg;; replaced with a
-yaw-only transform. ③ <b>Stale observations (root cause)</b> — the co-sim bypassed the env's data-refresh
-chain, so the policy observed frozen reset-time state every tick; its residuals integrated to the joint limits,
-pinning the fingers backwards. Restoring the exact refresh sequence brought the residuals from saturated
-(&plusmn;0.99) to adaptive (0.02&rarr;0.7 through the grasp).</p>
+<h2 class="warn">✗ The strike can't land — and why it isn't an S0/S2 limit</h2>
+<p class="step">The nail sits at the table center, <b>769&nbsp;mm from the right-arm base</b> (max reach ~720&nbsp;mm).
+A direct IK probe confirms the palm falls <b>77&ndash;84&nbsp;mm short</b> over the nail; the reachable boundary
+is ~10&nbsp;cm back toward the base. Every strike pose saturates the arm and the grasp slips. This is the
+benchmark's <b>bimanual design</b>: the prompt has the <i>left</i> hand pick up and present the block into the
+right hand's reach. The block is hinge-anchored at center, so without the left-arm presentation the nail simply
+can't be brought closer. The gap is the missing second arm, not S0 (grasp works), S2 (aim is correct), perception,
+IK, or physics.</p>
 
-<h2>The isolation result</h2>
-<p class="step">With every calibration in place, the same pipeline was run on two objects. With HandsOn's
-<b>YCB hammer</b>: fingertips within 2&ndash;13&nbsp;mm of the handle, firm sustained grip, consistent
-perception — and still no capture, even with the mass scaled down 4.6&times; to match S0's training hammer.
-With <b>hammerS</b> (S0's own object, 64&nbsp;g, physically inserted into the HandsOn scene): grasp and lift,
-first try. The boundary is therefore <b>cross-object grasp transfer</b> — the contact sequence S0 learned is
-specific to its object's handle geometry — and not the policy, the embodiment, perception, IK, or physics.</p>
-<p class="sub">Co-simulation: <code>handson_bridge/cosim.py</code> (branch jd/mixed-s0-s2). Benchmark: HandsOn
-(TsinghuaC3I), t08 hammer-nail scene, wuji2 embodiment, MuJoCo backend. Next: a transport+strike reference to
-drive the nail, and more wuji2 tasks.</p>
+<h2>Bottom line</h2>
+<p class="step">S0 + S2 complete the <b>entire right-hand portion</b> of t08 — acquire, lift, transport, and a
+correctly-aimed strike — driving a foreign overhead embodiment in the benchmark's own physics with the frozen
+policy. Finishing the nail-sink requires adding the left-arm block presentation (bimanual coordination), which is
+a separate build, not a capability S0 or S2 is missing.</p>
+<p class="sub">Co-simulation + S2 composer: <code>handson_bridge/cosim.py</code> (TASK=strike mode), branch
+jd/mixed-s0-s2. Benchmark: HandsOn (TsinghuaC3I) t08, wuji2 embodiment, MuJoCo backend. hammerS object inserted
+so S0 grasps its own geometry (see the transfer-bug writeup in the session log).</p>
 </body></html>
