@@ -53,19 +53,29 @@ co-sim engine parity (place_hammerS <b>3/3 seeds</b> under V25) · bimanual depl
 <tr><td><b>budget</b></td><td>≈2,400 episodes ≈ 1–2 nights at 4 workers (20&nbsp;s/episode)</td><td>pre-registered grid; counts fixed before results; isolated per-variant scenes (no cross-talk)</td></tr>
 </table></div>
 
-<div class="phase"><h2>Phase 2 — Practicing: search ladder + failure scaffolding</h2>
-<p class="step">Ladder, cheapest rung first: <b>yaw re-sweep → clip×ψ grid → measured-calibration
-rounds → grip gates → task replans</b>. Commit at n≥3 seeds. V25 targets: strike recalibration ·
-spin recovery (29°→≥55°) · cyl50/screw carry-retention (add per-finger contact telemetry) ·
-bimanual: left-arm block-present (official t08), then dual carry.</p>
-<p class="step"><b>Scaffolding — what happens when a call fails.</b> Every verb returns a typed
-FailureCode. The scaffold then runs automatically: collect evidence (failure-tick render, tracking +
-contact traces, pre-contact offset, native-ceiling check) → classify (transfer gap / policy limit /
-plan error) → route to the matching ladder rung. Unknown failures enter a <b>research loop</b>:
-snapshot-replay only the failing stage, one-variable ablations (engine A/B, mode, grip gate),
-pre-registered. Exhausted retries become boundary cells with the evidence bundle attached — nothing
-is silently dropped, and a boundary is re-probed only when some rung actually changes.</p>
-<img src="v25_plan_scaffold.png" alt="failure scaffolding: diagnose, classify, route, research, boundary"></div>
+<div class="phase"><h2>Phase 2 — Practicing: the online actor</h2>
+<p class="step">The failure scaffolding serves one goal: a robust <b>online actor</b>. Before S2 calls a
+verb it ranks candidate calls (clip × ψ × engine × grip gate) by a capability prior from the atlas —
+validated multi-seed cells first, then native probe cells, then offline IK-sweep feasibility — and runs a
+pre-check: feasibility, plus one cheap re-probe for any cell that is stale or from a different scene/engine.
+Never a blind call.</p>
+<p class="step">On failure: typed FailureCode → auto-evidence (failure-tick render, tracking + contact
+traces, pre-contact offset, native-ceiling check) → classify (transfer gap / policy limit / plan error) →
+<b>retry only with a measured change</b> (CORRECT, grip gate — never repeat an unchanged call), or
+<b>switch</b> to the next-ranked candidate, or <b>escalate</b> to the practice ladder
+(yaw re-sweep → clip×ψ grid → calibration rounds → grip gates → task replans). Exhausted retries become
+boundary cells with the evidence bundle; every outcome is written back to the atlas the prior reads.</p>
+<img src="v25_plan_actor.png" alt="online actor: select by atlas prior, pre-check, execute, grade; on fail diagnose then retry/switch/escalate; all outcomes write back">
+<p class="step"><b>Borrowed, not improvised.</b>
+<a href="https://github.com/NVlabs/ASPIRE">ASPIRE</a>-style: skill cells carry <i>trigger + evidence</i>
+(seeds, success rate, provenance); typed errors; feasibility pre-checks; "a failed attempt is not a blocked
+task — correct or switch, never repeat unchanged"; promotion only after independent reproduction.
+<a href="https://arxiv.org/abs/2610.18792">SEAR</a> (Self-Evolving Agentic Robotics): harvest-gate — only
+externally-graded, multi-seed routines enter the prior (their self-built judges were wrong on 91% of
+rollouts); <i>routines transfer, solutions don't</i> (grip gates/choke/drop-aim are kept; per-object CORRECT
+is re-measured each scene); re-check recalled lessons — their loop never re-validated saved lessons, so
+errors persisted like skills. V25 targets unchanged: strike recalibration · spin ≥55° · cyl50/screw carry
+retention · bimanual block-present.</p></div>
 
 <div class="phase"><h2>Phase 3 — Skill extraction</h2>
 <p class="step"><b>Atlas-gated verbs</b> — each S2 verb ships machine-readable preconditions from validated
