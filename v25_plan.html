@@ -53,17 +53,19 @@ co-sim engine parity (place_hammerS <b>3/3 seeds</b> under V25) · bimanual depl
 <tr><td><b>budget</b></td><td>≈2,400 episodes ≈ 1–2 nights at 4 workers (20&nbsp;s/episode)</td><td>pre-registered grid; counts fixed before results; isolated per-variant scenes (no cross-talk)</td></tr>
 </table></div>
 
-<div class="phase"><h2>Phase 2 — Practicing: the simulation-search ladder (ASPIRE)</h2>
-<p class="step">Every failed cell enters the validated ladder, cheapest rung first:
-<b>① kinematic yaw re-sweep → ② clip×ψ episode grid → ③ measured-calibration rounds (pre-contact
-fingertip-vs-object offset, accumulated) → ④ grip gates (firm / choke / splay) → ⑤ task replans
-(measured drop-aim, strike IK-search)</b>. Commit only at n≥3 seeds; everything else becomes an explicit
-boundary cell with a failure mode.</p>
-<p class="step"><b>V25-specific practice targets</b> (from the A/B): recalibrate the strike choke/swing under
-V25's in-hand pose (m8000-tuned parameters miss) · recover in-hand spin (29° → ≥55°) · the carry-retention
-study for cyl50x100/screw (V25 captures where m8000 cannot, then drops — add per-finger contact telemetry
-to the episode engine and search the carry profile) · <b>bimanual practice</b>: left-arm block-present on the
-HandsOn two-arm scene to complete official t08, then dual shared-object carry between the two arms.</p></div>
+<div class="phase"><h2>Phase 2 — Practicing: search ladder + failure scaffolding</h2>
+<p class="step">Ladder, cheapest rung first: <b>yaw re-sweep → clip×ψ grid → measured-calibration
+rounds → grip gates → task replans</b>. Commit at n≥3 seeds. V25 targets: strike recalibration ·
+spin recovery (29°→≥55°) · cyl50/screw carry-retention (add per-finger contact telemetry) ·
+bimanual: left-arm block-present (official t08), then dual carry.</p>
+<p class="step"><b>Scaffolding — what happens when a call fails.</b> Every verb returns a typed
+FailureCode. The scaffold then runs automatically: collect evidence (failure-tick render, tracking +
+contact traces, pre-contact offset, native-ceiling check) → classify (transfer gap / policy limit /
+plan error) → route to the matching ladder rung. Unknown failures enter a <b>research loop</b>:
+snapshot-replay only the failing stage, one-variable ablations (engine A/B, mode, grip gate),
+pre-registered. Exhausted retries become boundary cells with the evidence bundle attached — nothing
+is silently dropped, and a boundary is re-probed only when some rung actually changes.</p>
+<img src="v25_plan_scaffold.png" alt="failure scaffolding: diagnose, classify, route, research, boundary"></div>
 
 <div class="phase"><h2>Phase 3 — Skill extraction</h2>
 <p class="step"><b>Atlas-gated verbs</b> — each S2 verb ships machine-readable preconditions from validated
