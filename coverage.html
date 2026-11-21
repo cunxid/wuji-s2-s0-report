@@ -54,5 +54,40 @@ task was attempted with the actor's retry budget; the rest carry explicit reason
 <tr><td class="na">e05 fold cloth</td><td>deformables — outside the rigid-object stack</td></tr>
 <tr><td class="na">c_tool_interactions · ycb_tasks</td><td>composite YCB scenes: cross-object grasp transfer (the measured wall from day one)</td></tr>
 </table>
+
+<h2>Appendix — every task, both benchmarks, fail or success</h2>
+<table>
+<tr><th>#</th><th>HandsOn scene</th><th>DexJoCo env</th><th>hands</th><th>outcome</th><th>detail</th></tr>
+<tr><td>1</td><td>t08_hammer_nail</td><td>hammer_nail</td><td>single</td><td class="ok">PASS</td><td>nail 11.3mm peak (choke + deterministic swing + refine)</td></tr>
+<tr><td>2</td><td>t08_hammer_nail (official)</td><td>—</td><td>bimanual</td><td class="ok">PASS</td><td>nail 11.3mm + block lifted 40.5mm (scripted left)</td></tr>
+<tr><td>3</td><td>monitor_mouse</td><td>click_mouse</td><td>single</td><td class="ok">PASS</td><td>click 12.5mm; double-click 2 presses</td></tr>
+<tr><td>4</td><td>ball_to_bowl (ported objects)</td><td>—</td><td>single</td><td class="ok">PASS</td><td>8 objects in bowl (hammerS·box60·box40·screw·cyl50·sph60·tbar110·slab80)</td></tr>
+<tr><td>5</td><td>ball_to_bowl (native balls)</td><td>—</td><td>single</td><td class="bd">FAIL</td><td>ball25-class capture (cross-object)</td></tr>
+<tr><td>6</td><td>bucket_pick (ported box60)</td><td>pick_bucket</td><td>single</td><td class="ok">PASS</td><td>in bucket (drop-height lever)</td></tr>
+<tr><td>7</td><td>plant (pour-gesture analog)</td><td>water_plant</td><td>single</td><td class="ok">PASS</td><td>cyl30 vessel 118.9° held over bowl (no fluid sim)</td></tr>
+<tr><td>8</td><td>c07_ycb_pour (analog)</td><td>—</td><td>single</td><td class="ok">PASS</td><td>same pour class, V21 vessel</td></tr>
+<tr><td>9</td><td>d03_bimanual_handoff (ported box60)</td><td>—</td><td>bimanual</td><td class="ok">PASS</td><td>right→left handoff, held by LEFT at z 1.08</td></tr>
+<tr><td>10</td><td>t43_squeeze_scissors</td><td>—</td><td>single</td><td class="ok">PASS</td><td>hinge 130 mrad (generalized press)</td></tr>
+<tr><td>11</td><td>t25_place_cup_on_plate</td><td>—</td><td>single</td><td class="bd">BOUNDARY</td><td>V25 cup carry retention (held ~0.25)</td></tr>
+<tr><td>12</td><td>orient_rubiks_cube (box60 analog)</td><td>—</td><td>single</td><td class="bd">BOUNDARY</td><td>cube-class spin 17–21° (&lt;45°)</td></tr>
+<tr><td>13</td><td>t09_insert_peg (rod15 analog)</td><td>—</td><td>single</td><td class="bd">BOUNDARY</td><td>thin-rod grip (held 0.03)</td></tr>
+<tr><td>14</td><td>glass_v2</td><td>fold_glasses</td><td>single</td><td class="bd">BOUNDARY</td><td>fold 27→83 mrad, springs back (&lt;250)</td></tr>
+<tr><td>15</td><td>table_tongs</td><td>pinch_tongs</td><td>single</td><td class="bd">BOUNDARY</td><td>spawned 1.2m away; relocated press misses arm face</td></tr>
+<tr><td>16</td><td>ipad</td><td>bimanual_unlock_ipad</td><td>single/both</td><td class="bd">BOUNDARY</td><td>left-side tilted screen; right cross-body stalls 150mm</td></tr>
+<tr><td>17</td><td>microwave_cook / t12</td><td>bimanual_microwave_cook</td><td>single/both</td><td class="bd">BOUNDARY</td><td>start-button occluded (109–154mm); door/load unattempted</td></tr>
+<tr><td>18</td><td>bimanual_hanoi (disc analog)</td><td>bimanual_hanoi</td><td>single/both</td><td class="bd">FAIL</td><td>flat-disc capture class (carry/aim machinery ready)</td></tr>
+<tr><td>19</td><td>d04_clear_hanoi_obstacles</td><td>—</td><td>single</td><td class="bd">FAIL</td><td>same disc capture class</td></tr>
+<tr><td>20</td><td>b02_nut_bolt_assembly</td><td>—</td><td>single</td><td class="na">NOT ATTEMPTED</td><td>threading beyond composer class</td></tr>
+<tr><td>21</td><td>d01_bimanual_nut_bolt_assembly</td><td>—</td><td>bimanual</td><td class="na">NOT ATTEMPTED</td><td>threading beyond composer class</td></tr>
+<tr><td>22</td><td>bimanual_assembly</td><td>bimanual_assembly</td><td>bimanual</td><td class="na">NOT ATTEMPTED</td><td>multi-part assembly chain</td></tr>
+<tr><td>23</td><td>bimanual_photograph</td><td>bimanual_photograph</td><td>bimanual</td><td class="na">NOT ATTEMPTED</td><td>two-hand tool hold</td></tr>
+<tr><td>24</td><td>e05_fold_cloth_wipe_table</td><td>—</td><td>single</td><td class="na">NOT ATTEMPTED</td><td>deformable</td></tr>
+<tr><td>25</td><td>c_tool_interactions</td><td>—</td><td>single</td><td class="na">NOT ATTEMPTED</td><td>composite YCB tool scene (cross-object wall)</td></tr>
+<tr><td>26</td><td>ycb_tasks</td><td>—</td><td>single</td><td class="na">NOT ATTEMPTED</td><td>composite YCB scene (cross-object wall)</td></tr>
+</table>
+<p class="muted">Every DexJoCo env maps to its HandsOn twin scene (same arenas, robot include swapped) —
+the 11 DexJoCo envs are covered by the rows above. S2's own goal proposals and feasibility
+predictions for all these scenes: <a href="planner.html">planner.html</a>.</p>
+
 <p class="muted">Boards: <a href="ten_tasks.html">15-task harness-necessity board</a> · <a href="tianji.html">Tianji campaign</a> · <a href="framework.html">framework flowcharts</a></p>
 </body></html>
