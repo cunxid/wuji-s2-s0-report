@@ -57,6 +57,16 @@ task was attempted with the actor's retry budget; the rest carry explicit reason
 
 
 <h2>Environment fidelity audit</h2>
+<p><b>Robot setup — stated plainly.</b> HandsOn's qualified configuration is the ROKAE AR5
+overhead rig (catalog: <code>arm rokae_ar5</code>, <code>physics physx</code>). Our ROKAE-era
+results used that shipped robot include unmodified; all <b>Tianji results are on a self-mounted
+desktop variant</b> — the arm description comes from the benchmark's own external catalog
+(installed via their importer, marked "not qualified" by them), but the MuJoCo mount (pedestal,
+base at x=−0.66, ±0.13) is ours. The wuji2 hand is the benchmark's, verbatim, except the
+requested −0.1 rad finger-extension floor (Tianji includes only). Control is necessarily ours
+(frozen S0 + bridge) — that is the system under test. <b>DexJoCo's own Panda embodiment was never
+used</b>: its tasks run in their HandsOn twin scenes on our rig; scenes and criteria preserved,
+robot not DexJoCo's.</p>
 <p>Per request, every result is labeled by how close its env is to the shipped benchmark arena.
 <b>Exact (robot include swap only — the benchmark's own parameterization):</b> t08 strike criteria
 (with the documented hammerS object-swap), scissors, glasses, tongs(spawn), ipad, microwave, mouse(base),
