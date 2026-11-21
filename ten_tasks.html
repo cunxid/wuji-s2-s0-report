@@ -1,5 +1,5 @@
 <!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>10 tasks that need the harness</title>
+<title>Task board — 15 tasks that need the harness</title>
 <style>
 body{font:15px/1.55 -apple-system,"Segoe UI",sans-serif;color:#0b0b0b;background:#fcfcfb;max-width:1100px;margin:24px auto;padding:0 16px}
 h1{font-size:22px} h2{font-size:17px;margin-top:26px} .muted{color:#898781}
@@ -8,13 +8,28 @@ video{width:31.5%;margin:0 1% 8px 0;border-radius:6px;background:#000}
 p{max-width:950px}
 </style></head><body>
 <p class="muted"><a href="index.html">← dashboard</a></p>
-<h1>10 HandsOn/DexJoCo tasks that are impossible without the harness</h1>
+<h1>Task board: 15 HandsOn/DexJoCo tasks that are impossible without the harness</h1>
 <p><b>The control:</b> every task also ran as a no-harness baseline — the same scene, same spawn,
 same grader, with S0 tracking its native clip through the same bridge, but no S2 composition,
 no replanning, no retries. A native clip only ever picks the object up and sets it back down:
-it contains no bowl, nail, button, spin, pour, bucket or marker. Baseline: <b>0/10</b>.
-Harness (Tianji M6-CCS + wuji2, extension-floored hand): <b>10/10</b>, ≤3 attempts each.</p>
+it contains no bowl, nail, button, spin, pour, bucket or marker. Baseline: <b>0/15</b>.
+Harness (Tianji M6-CCS + wuji2, extension-floored hand): <b>15/15</b>, ≤3 attempts each — including
+the first <b>BIMANUAL</b> task: the official t08 criterion (nail ≥6mm AND wood block lifted ≥30mm;
+the right arm strikes, the scripted left arm lifts the block).</p>
 <img src="ten_board.png" alt="10-task board: harness 10/10, baseline 0/10">
+<h2>Bimanual: the official t08 + the new single-hand rows</h2>
+<video src="ten_strike_official.mp4" controls muted></video>
+<video src="ten_sph60.mp4" controls muted></video>
+<video src="ten_tbar110.mp4" controls muted></video>
+<video src="ten_slab80.mp4" controls muted></video>
+<video src="ten_box40.mp4" controls muted></video>
+<p class="muted"><b>official t08</b>: nail 11.3mm + block lifted 40.5mm — the left grasp was cracked by a
+standalone physics probe (8 trials at ~3s each found palm 85mm above block base, 45mm behind center,
+moderate curl → 76mm probe lift), then three integration fixes: freeze the right reference at its end,
+a frame-correct clear-away so the arms never share the corridor, and a joint-space seed posture that
+keeps the left IK out of the vertical-start branch trap. · plus four new objects placed (sph60,
+tbar110, slab80, box40 — two needed ψ switches).</p>
+
 <h2>The four new composed tasks</h2>
 <video src="ten_spinplace.mp4" controls muted></video>
 <video src="ten_bucket.mp4" controls muted></video>
