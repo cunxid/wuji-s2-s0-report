@@ -1,0 +1,54 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Benchmark coverage — HandsOn + DexJoCo full pass</title>
+<style>
+body{font:15px/1.55 -apple-system,"Segoe UI",sans-serif;color:#0b0b0b;background:#fcfcfb;max-width:1150px;margin:24px auto;padding:0 16px}
+h1{font-size:22px} h2{font-size:17px;margin-top:26px} .muted{color:#898781}
+table{border-collapse:collapse;font-size:13px;margin:12px 0;width:100%}
+td,th{border:1px solid #e1e0d9;padding:5px 8px;text-align:left;vertical-align:top}
+th{background:#f3f2ee} .ok{color:#1baf7a;font-weight:700} .bd{color:#eb6834;font-weight:600} .na{color:#898781}
+video{width:31.5%;margin:0 1% 8px 0;border-radius:6px;background:#000}
+code{background:#f1f0ec;padding:1px 4px;border-radius:4px;font-size:12px}
+</style></head><body>
+<p class="muted"><a href="index.html">← dashboard</a></p>
+<h1>Full pass: every HandsOn + DexJoCo task</h1>
+<p>One pass over the complete task lists of both benchmarks (23 HandsOn arenas, 11 DexJoCo envs →
+22 unified tasks) on Tianji M6-CCS + wuji2 (extension-floored hand, scene rev tj5). Every tractable
+task was attempted with the actor's retry budget; the rest carry explicit reasons. <b>8 PASS
+(2 bimanual) · 3 attempted boundaries · 11 out of composer scope.</b></p>
+
+<h2>PASS — 8 tasks</h2>
+<table>
+<tr><th>task</th><th>benchmark</th><th>hands</th><th>result</th></tr>
+<tr><td>t08 hammer_nail (nail ≥6mm)</td><td>HandsOn + DexJoCo</td><td>single</td><td class="ok">nail 11.3mm peak</td></tr>
+<tr><td><b>t08 OFFICIAL</b> (nail + block ≥30mm)</td><td>HandsOn</td><td><b>bimanual</b></td><td class="ok">nail 11.3mm + block lifted 40.5mm (scripted left)</td></tr>
+<tr><td>monitor_mouse / click_mouse</td><td>HandsOn + DexJoCo</td><td>single</td><td class="ok">click 12.5mm; double-click 2 presses</td></tr>
+<tr><td>ball_to_bowl (pick object → bowl)</td><td>HandsOn</td><td>single</td><td class="ok">8 objects placed (hammerS·box60·box40·screw·cyl50·sph60·tbar110·slab80)</td></tr>
+<tr><td>bucket_pick / pick_bucket</td><td>HandsOn + DexJoCo</td><td>single</td><td class="ok">box60 dropped in the bucket</td></tr>
+<tr><td>plant / water_plant (pour gesture)</td><td>HandsOn + DexJoCo</td><td>single</td><td class="ok">cyl30 vessel tilted 118.9° over the bowl, held (no fluid particles — gesture criterion)</td></tr>
+<tr><td>c07_ycb_pour (analog)</td><td>HandsOn</td><td>single</td><td class="ok">same mechanism, V21 vessel (the scene's YCB cup is the known cross-object wall)</td></tr>
+<tr><td><b>d03_bimanual_handoff</b></td><td>HandsOn</td><td><b>bimanual</b></td><td class="ok">right picks box60 → releases into the left palm-up cup → left closes, holds at z 1.08 (88mm from palm)</td></tr>
+</table>
+<video src="ten_strike_official.mp4" controls muted></video>
+<video src="pass_handoff.mp4" controls muted></video>
+
+<h2>Attempted boundaries — 3 (evidence in the atlas)</h2>
+<table>
+<tr><th>task</th><th>what happened</th></tr>
+<tr><td>t25_place_cup_on_plate</td><td class="bd">V25 captures the cup but grip retention drops it mid-carry (held ~0.25); same slip killed the cup pour. Needs grip-retention work or training data.</td></tr>
+<tr><td>orient_rubiks_cube (spin-box60 analog)</td><td class="bd">in-hand spin of a cube-class box reaches only 17–21° (vs 65–95° for the hammer) — flat faces give the finger gait no purchase.</td></tr>
+<tr><td>t09_insert_peg (rod15 → marker)</td><td class="bd">thin rod captured but dropped at held 0.03 — thin-rod grip class (same family as pen10).</td></tr>
+</table>
+
+<h2>Out of current composer scope — 11 (why)</h2>
+<table>
+<tr><th>tasks</th><th>reason</th></tr>
+<tr><td class="na">b02 / d01 nut-bolt assembly</td><td>threading: sub-mm screw alignment + rotation chains</td></tr>
+<tr><td class="na">bimanual_assembly · bimanual_hanoi · d04</td><td>multi-object precision stacking/sequencing chains</td></tr>
+<tr><td class="na">bimanual_photograph · ipad unlock</td><td>two-hand tool holds / touchscreen swipe</td></tr>
+<tr><td class="na">microwave_cook / t12</td><td>articulated door (its start-button alone is our press class — candidate next)</td></tr>
+<tr><td class="na">t43 scissors · table/pinch tongs · glasses fold</td><td>articulated-tool actuation</td></tr>
+<tr><td class="na">e05 fold cloth</td><td>deformables — outside the rigid-object stack</td></tr>
+<tr><td class="na">c_tool_interactions · ycb_tasks</td><td>composite YCB scenes: cross-object grasp transfer (the measured wall from day one)</td></tr>
+</table>
+<p class="muted">Boards: <a href="ten_tasks.html">15-task harness-necessity board</a> · <a href="tianji.html">Tianji campaign</a> · <a href="framework.html">framework flowcharts</a></p>
+</body></html>
