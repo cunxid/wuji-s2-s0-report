@@ -13,8 +13,7 @@ code{background:#f1f0ec;padding:1px 4px;border-radius:4px;font-size:12px}
 <h1>Full pass: every HandsOn + DexJoCo task</h1>
 <p>One pass over the complete task lists of both benchmarks (23 HandsOn arenas, 11 DexJoCo envs →
 22 unified tasks) on Tianji M6-CCS + wuji2 (extension-floored hand, scene rev tj5). Every tractable
-task was attempted with the actor's retry budget; the rest carry explicit reasons. <b>8 PASS
-(2 bimanual) · 3 attempted boundaries · 11 out of composer scope.</b></p>
+task was attempted with the actor's retry budget; the rest carry explicit reasons. <b>9 PASS (2 bimanual) · 8 attempted boundaries (measured evidence) · 5 out of composer scope.</b></p>
 
 <h2>PASS — 8 tasks</h2>
 <table>
@@ -26,27 +25,32 @@ task was attempted with the actor's retry budget; the rest carry explicit reason
 <tr><td>bucket_pick / pick_bucket</td><td>HandsOn + DexJoCo</td><td>single</td><td class="ok">box60 dropped in the bucket</td></tr>
 <tr><td>plant / water_plant (pour gesture)</td><td>HandsOn + DexJoCo</td><td>single</td><td class="ok">cyl30 vessel tilted 118.9° over the bowl, held (no fluid particles — gesture criterion)</td></tr>
 <tr><td>c07_ycb_pour (analog)</td><td>HandsOn</td><td>single</td><td class="ok">same mechanism, V21 vessel (the scene's YCB cup is the known cross-object wall)</td></tr>
+<tr><td>t43_squeeze_scissors</td><td>HandsOn</td><td>single</td><td class="ok">hinge squeezed 130 mrad (generalized press: PRESS_BODY/JOINT, deeper stroke retry)</td></tr>
 <tr><td><b>d03_bimanual_handoff</b></td><td>HandsOn</td><td><b>bimanual</b></td><td class="ok">right picks box60 → releases into the left palm-up cup → left closes, holds at z 1.08 (88mm from palm)</td></tr>
 </table>
 <video src="ten_strike_official.mp4" controls muted></video>
 <video src="pass_handoff.mp4" controls muted></video>
 
-<h2>Attempted boundaries — 3 (evidence in the atlas)</h2>
+<h2>Attempted boundaries — 8 (measured evidence)</h2>
 <table>
 <tr><th>task</th><th>what happened</th></tr>
-<tr><td>t25_place_cup_on_plate</td><td class="bd">V25 captures the cup but grip retention drops it mid-carry (held ~0.25); same slip killed the cup pour. Needs grip-retention work or training data.</td></tr>
-<tr><td>orient_rubiks_cube (spin-box60 analog)</td><td class="bd">in-hand spin of a cube-class box reaches only 17–21° (vs 65–95° for the hammer) — flat faces give the finger gait no purchase.</td></tr>
-<tr><td>t09_insert_peg (rod15 → marker)</td><td class="bd">thin rod captured but dropped at held 0.03 — thin-rod grip class (same family as pen10).</td></tr>
+<tr><td>t25_place_cup_on_plate</td><td class="bd">V25 captures the cup but grip retention drops it mid-carry (held ~0.25); same slip killed the cup pour.</td></tr>
+<tr><td>orient_rubiks_cube (spin-box60 analog)</td><td class="bd">cube-class in-hand spin reaches 17–21° (hammer: 65–95°) — flat faces give the gait no purchase.</td></tr>
+<tr><td>t09_insert_peg (rod15 → marker)</td><td class="bd">thin rod captured, dropped at held 0.03 — thin-rod grip class.</td></tr>
+<tr><td>glass_v2 / fold_glasses</td><td class="bd">generalized press+swipe folds the temple 27→83 mrad (finger ON the hinge arm, 14–18mm touch) but it springs back below the 250 mrad fold criterion.</td></tr>
+<tr><td>table/pinch tongs</td><td class="bd">original spawn 1.2m out of reach; relocated s2 variant reachable (touch 140mm) but the press misses the arm face — tool pose control needed.</td></tr>
+<tr><td>ipad button (unlock analog)</td><td class="bd">tilted screen on the LEFT side of the table: right-arm cross-body press stalls 150mm out — a left-hand press-class candidate.</td></tr>
+<tr><td>t12 / microwave start button</td><td class="bd">horizontal press into the front face stalls 109–154mm from the button — the microwave body occludes the approach at this mount.</td></tr>
+<tr><td>bimanual_hanoi / d04 (disc move analog)</td><td class="bd">flat disc100x15 capture fails (plate-class top grasp) — the carry/aim machinery is ready; capture is the gap.</td></tr>
 </table>
 
-<h2>Out of current composer scope — 11 (why)</h2>
+<h2>Out of current composer scope — 5 (why)</h2>
 <table>
 <tr><th>tasks</th><th>reason</th></tr>
 <tr><td class="na">b02 / d01 nut-bolt assembly</td><td>threading: sub-mm screw alignment + rotation chains</td></tr>
-<tr><td class="na">bimanual_assembly · bimanual_hanoi · d04</td><td>multi-object precision stacking/sequencing chains</td></tr>
+<tr><td class="na">bimanual_assembly</td><td>multi-part precision assembly chains</td></tr>
 <tr><td class="na">bimanual_photograph · ipad unlock</td><td>two-hand tool holds / touchscreen swipe</td></tr>
-<tr><td class="na">microwave_cook / t12</td><td>articulated door (its start-button alone is our press class — candidate next)</td></tr>
-<tr><td class="na">t43 scissors · table/pinch tongs · glasses fold</td><td>articulated-tool actuation</td></tr>
+
 <tr><td class="na">e05 fold cloth</td><td>deformables — outside the rigid-object stack</td></tr>
 <tr><td class="na">c_tool_interactions · ycb_tasks</td><td>composite YCB scenes: cross-object grasp transfer (the measured wall from day one)</td></tr>
 </table>
