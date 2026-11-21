@@ -13,7 +13,7 @@ code{background:#f1f0ec;padding:1px 4px;border-radius:4px;font-size:12px}
 <h1>Full pass: every HandsOn + DexJoCo task</h1>
 <p>One pass over the complete task lists of both benchmarks (23 HandsOn arenas, 11 DexJoCo envs →
 22 unified tasks) on Tianji M6-CCS + wuji2 (extension-floored hand, scene rev tj5). Every tractable
-task was attempted with the actor's retry budget; the rest carry explicit reasons. <b>9 PASS (2 bimanual) · 8 attempted boundaries (measured evidence) · 5 out of composer scope.</b></p>
+task was attempted with the actor's retry budget; the rest carry explicit reasons. <b>10 PASS (2 bimanual) · 7 attempted boundaries (measured evidence) · 5 out of composer scope.</b></p>
 
 <h2>PASS — 8 tasks</h2>
 <table>
@@ -26,6 +26,7 @@ task was attempted with the actor's retry budget; the rest carry explicit reason
 <tr><td>plant / water_plant (pour gesture)</td><td>HandsOn + DexJoCo</td><td>single</td><td class="ok">cyl30 vessel tilted 118.9° over the bowl, held (no fluid particles — gesture criterion)</td></tr>
 <tr><td>c07_ycb_pour (analog)</td><td>HandsOn</td><td>single</td><td class="ok">same mechanism, V21 vessel (the scene's YCB cup is the known cross-object wall)</td></tr>
 <tr><td>t43_squeeze_scissors</td><td>HandsOn</td><td>single</td><td class="ok">hinge squeezed 130 mrad (generalized press: PRESS_BODY/JOINT, deeper stroke retry)</td></tr>
+<tr><td>glass_v2 / fold_glasses</td><td>HandsOn + DexJoCo</td><td>single</td><td class="ok">temple folded 321 mrad (double 10cm press-swipe; exact scene, robot-swap only)</td></tr>
 <tr><td><b>d03_bimanual_handoff</b></td><td>HandsOn</td><td><b>bimanual</b></td><td class="ok">right picks box60 → releases into the left palm-up cup → left closes, holds at z 1.08 (88mm from palm)</td></tr>
 </table>
 <video src="ten_strike_official.mp4" controls muted></video>
@@ -37,9 +38,8 @@ task was attempted with the actor's retry budget; the rest carry explicit reason
 <tr><td>t25_place_cup_on_plate</td><td class="bd">V25 captures the cup but grip retention drops it mid-carry (held ~0.25); same slip killed the cup pour.</td></tr>
 <tr><td>orient_rubiks_cube (spin-box60 analog)</td><td class="bd">cube-class in-hand spin reaches 17–21° (hammer: 65–95°) — flat faces give the gait no purchase.</td></tr>
 <tr><td>t09_insert_peg (rod15 → marker)</td><td class="bd">thin rod captured, dropped at held 0.03 — thin-rod grip class.</td></tr>
-<tr><td>glass_v2 / fold_glasses</td><td class="bd">generalized press+swipe folds the temple 27→83 mrad (finger ON the hinge arm, 14–18mm touch) but it springs back below the 250 mrad fold criterion.</td></tr>
 <tr><td>table/pinch tongs</td><td class="bd">original spawn 1.2m out of reach; relocated s2 variant reachable (touch 140mm) but the press misses the arm face — tool pose control needed.</td></tr>
-<tr><td>ipad button (unlock analog)</td><td class="bd">tilted screen on the LEFT side of the table: right-arm cross-body press stalls 150mm out — a left-hand press-class candidate.</td></tr>
+<tr><td>ipad button (unlock analog)</td><td class="bd">tilted screen, LEFT side: right arm stalls 150mm cross-body; the NEW left-hand press reaches 67mm from the button (wrist-angle IK on the stand is the residual gap).</td></tr>
 <tr><td>t12 / microwave start button</td><td class="bd">horizontal press into the front face stalls 109–154mm from the button — the microwave body occludes the approach at this mount.</td></tr>
 <tr><td>bimanual_hanoi / d04 (disc move analog)</td><td class="bd">flat disc100x15 capture fails (plate-class top grasp) — the carry/aim machinery is ready; capture is the gap.</td></tr>
 </table>
@@ -55,6 +55,20 @@ task was attempted with the actor's retry budget; the rest carry explicit reason
 <tr><td class="na">c_tool_interactions · ycb_tasks</td><td>composite YCB scenes: cross-object grasp transfer (the measured wall from day one)</td></tr>
 </table>
 
+
+<h2>Environment fidelity audit</h2>
+<p>Per request, every result is labeled by how close its env is to the shipped benchmark arena.
+<b>Exact (robot include swap only — the benchmark's own parameterization):</b> t08 strike criteria
+(with the documented hammerS object-swap), scissors, glasses, tongs(spawn), ipad, microwave, mouse(base),
+hanoi, all press/actuate scenes. <b>Inert tracked object added</b> (cosim alignment requirement; parked
+far from the task): actuate/lpress scenes. <b>Object-swap ports</b> (V21 object injected because
+cross-object grasp transfer is the measured wall): t08 hammerS, bucket box60, handoff box60, analog
+rows. <b>Scene-relocated (<code>*_s2</code>)</b> — and WHY, measured: the original
+<code>ball_to_bowl</code> bowl sits at (0.14, 0.04) = <b>0.90 m from the shipped ROKAE base (reach
+≈0.74 m)</b> and 0.81 m from the Tianji shoulder; the original mouse at (0.6, 0.0) is <b>1.26 m</b>
+out; the tongs settle <b>on the floor at (0.49, 0.11, 0.02)</b>. These are DexJoCo legacy placements
+for +x-mounted Pandas — unreachable by construction for the shipped arms — so the s2 variants are
+the minimal relocation making those tasks physically posable, and results on them are labeled as such.</p>
 <h2>Appendix — every task, both benchmarks, fail or success</h2>
 <table>
 <tr><th>#</th><th>HandsOn scene</th><th>DexJoCo env</th><th>hands</th><th>outcome</th><th>detail</th></tr>
@@ -71,9 +85,9 @@ task was attempted with the actor's retry budget; the rest carry explicit reason
 <tr><td>11</td><td>t25_place_cup_on_plate</td><td>—</td><td>single</td><td class="bd">BOUNDARY</td><td>V25 cup carry retention (held ~0.25)</td></tr>
 <tr><td>12</td><td>orient_rubiks_cube (box60 analog)</td><td>—</td><td>single</td><td class="bd">BOUNDARY</td><td>cube-class spin 17–21° (&lt;45°)</td></tr>
 <tr><td>13</td><td>t09_insert_peg (rod15 analog)</td><td>—</td><td>single</td><td class="bd">BOUNDARY</td><td>thin-rod grip (held 0.03)</td></tr>
-<tr><td>14</td><td>glass_v2</td><td>fold_glasses</td><td>single</td><td class="bd">BOUNDARY</td><td>fold 27→83 mrad, springs back (&lt;250)</td></tr>
+<tr><td>14</td><td>glass_v2</td><td>fold_glasses</td><td>single</td><td class="ok">PASS</td><td>temple folded 321 mrad (press + double swipe); exact scene</td></tr>
 <tr><td>15</td><td>table_tongs</td><td>pinch_tongs</td><td>single</td><td class="bd">BOUNDARY</td><td>spawned 1.2m away; relocated press misses arm face</td></tr>
-<tr><td>16</td><td>ipad</td><td>bimanual_unlock_ipad</td><td>single/both</td><td class="bd">BOUNDARY</td><td>left-side tilted screen; right cross-body stalls 150mm</td></tr>
+<tr><td>16</td><td>ipad</td><td>bimanual_unlock_ipad</td><td>single/both</td><td class="bd">BOUNDARY</td><td>right cross-body 150mm; new LEFT-hand press best 67mm (exact scene)</td></tr>
 <tr><td>17</td><td>microwave_cook / t12</td><td>bimanual_microwave_cook</td><td>single/both</td><td class="bd">BOUNDARY</td><td>start-button occluded (109–154mm); door/load unattempted</td></tr>
 <tr><td>18</td><td>bimanual_hanoi (disc analog)</td><td>bimanual_hanoi</td><td>single/both</td><td class="bd">FAIL</td><td>flat-disc capture class (carry/aim machinery ready)</td></tr>
 <tr><td>19</td><td>d04_clear_hanoi_obstacles</td><td>—</td><td>single</td><td class="bd">FAIL</td><td>same disc capture class</td></tr>
