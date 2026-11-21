@@ -81,10 +81,14 @@ retention · bimanual block-present.</p></div>
 <p class="step">The failure scaffolding now closes all the way: boundary cells carry <b>measured gap
 evidence</b> (the exact pre-contact offsets and yaws where S0 failed), and S2 converts that into
 training data — V21-format reference clips whose approach <i>starts at a failed offset and converges
-to the nominal grasp</i>, plus a recipe. Validated end-to-end on box60: 4 gap-targeted clips generated
-from atlas evidence; they load in the harness (clip_db + a live episode) and the S0 trainer accepts
-the recipe (RSL-RL PPO iteration losses logged). A real capability run = mix the augment recipe into
-the V21 train set (hours; not launched).</p>
+to the nominal grasp</i>, plus a recipe. Executed end-to-end on box60: 4 gap-targeted clips generated
+from atlas evidence; SuperMimic (Dyna-style BPTT through a learned world model) fine-tuned
+model_39999 on them (1500 it ≈ 19 min; full 40k-iter recipe ≈ 8.5 h on this GPU). Verdict from a
+controlled A/B: weight-level fine-tuning on one object is capability-neutral on target and
+catastrophically forgets off-target (screw/hammerS lost) — the full 5041-clip mix is required (OSS).
+The validated win is <b>reference-level</b>: the offset-converging generated clip lets the FROZEN
+policy capture from the measured failure state (10–12&nbsp;mm in bowl) — now an actor route
+(regenerate reference on repeated capture-miss).</p>
 <img src="fig2_loop.png" alt="Figure 2: the act/adapt/learn loop — failures become evidence, evidence becomes data, data becomes a better S0"></div>
 
 <div class="phase"><h2>Phase 3 — Skill extraction</h2>
