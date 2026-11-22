@@ -14,8 +14,8 @@ S0's tracking envelope exhaustively, executes on <b>HandsOn + DexJoCo under thei
 and criteria</b> on the Tianji + wuji2 bimanual rig, remembers which parameters succeed, and
 re-observes after every segment to continue / retry / replan. This page is the honest record.</p>
 
-<div class="kpi"><div class="big">6/36</div>tasks PASS (official-else-grader)</div>
-<div class="kpi"><div class="big">1</div>official HandsOn predicate PASS (t24, all terms)</div>
+<div class="kpi"><div class="big">7/36</div>tasks PASS (official-else-grader)</div>
+<div class="kpi"><div class="big">2</div>official HandsOn predicates PASS (t08 bimanual + t24, all terms)</div>
 <div class="kpi"><div class="big">succeed=true</div>DexJoCo's own code on our hammer rollout</div>
 <div class="kpi"><div class="big">167</div>envelope probe episodes</div>
 <div class="kpi"><div class="big">~460</div>episodes run tonight</div>
@@ -59,9 +59,10 @@ official-else-grader it was 4/36. The page now shows S2's judgment as chips only
 the fingertip pinch ~1.3mm/tick whenever the wrist translates (retention ceiling 1.4–2s);
 fourteen mitigations measured, none sufficient. Sphere and thin-cylinder capture classes are
 untrackable across the whole probe grid. This is the clearest training-data target for S0.</li>
-<li><span class="bad">Official bimanual terms don't forgive</span> — official t08 requires the
-wood block lifted 30mm by the second hand; our left-arm lift machine broke at real-time and is
-still flagged. The depth term passes (16mm ≥ 6); the row stays FAIL until the lift requalifies.</li>
+<li><span class="good">Official bimanual t08 requalified</span> — the left pinch cams out on a ~1s
+physics deadline (the same grip-creep family); lifting at the pre-fix physics rate with a chasing
+squeeze lands 73.15mm (bar 30): valid_hit + depth + wood_lift + no_assist all green, twice,
+deterministically.</li>
 <li><span class="bad">Seven shipped arenas contain no task objects</span> (deformables and two
 composites — assets are runtime-injected by HandsOn's IsaacLab stack, which also means HandsOn's
 production physics is PhysX: engine parity from MuJoCo is impossible, so "original" means their
