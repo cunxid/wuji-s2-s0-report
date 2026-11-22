@@ -14,8 +14,8 @@ S0's tracking envelope exhaustively, executes on <b>HandsOn + DexJoCo under thei
 and criteria</b> on the Tianji + wuji2 bimanual rig, remembers which parameters succeed, and
 re-observes after every segment to continue / retry / replan. This page is the honest record.</p>
 
-<div class="kpi"><div class="big">8/36</div>tasks PASS (official-else-grader)</div>
-<div class="kpi"><div class="big">3</div>official HandsOn predicates PASS (t08 bimanual, t24, t26 — all terms)</div>
+<div class="kpi"><div class="big">9/36</div>tasks PASS (official-else-grader)</div>
+<div class="kpi"><div class="big">4</div>official HandsOn predicates PASS (t08 bimanual, t14 move+click, t24, t26 — all terms)</div>
 <div class="kpi"><div class="big">succeed=true</div>DexJoCo's own code on our hammer rollout</div>
 <div class="kpi"><div class="big">167</div>envelope probe episodes</div>
 <div class="kpi"><div class="big">~460</div>episodes run tonight</div>
@@ -67,6 +67,11 @@ deterministically.</li>
 composites — assets are runtime-injected by HandsOn's IsaacLab stack, which also means HandsOn's
 production physics is PhysX: engine parity from MuJoCo is impossible, so "original" means their
 merged scene MJCFs, stepping contract, budgets, predicates, and camera spec — all adopted).</li>
+<li><span class="good">The loop composes</span> — official t14 ("move AND click the mouse")
+passes as a genuine two-segment S2 plan: a perception-aimed 9cm push (the fist moved the mouse
+488mm), S0 stops, scene state carries to the next segment, and the click re-aims at the moved
+mouse via the plan-time free-body snapshot — 9.8mm travel, every official term green. This is
+the stop → observe → continue loop doing real composition.</li>
 </ul>
 
 <h2>Where everything lives</h2>
