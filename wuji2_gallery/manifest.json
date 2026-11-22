@@ -1,0 +1,149 @@
+{
+ "b02_nut_bolt_assembly": {
+  "file": "arena_arm_hand_b02_nut_bolt_assembly_rokae_wuji2.xml",
+  "label": "original shipped file"
+ },
+ "b320_bimanual_benchmark": {
+  "file": "arena_arm_hand_b320_bimanual_benchmark_rokae_wuji2.xml",
+  "label": "original shipped file"
+ },
+ "ball_to_bowl": {
+  "file": "arena_arm_hand_ball_to_bowl_rokae_wuji2.xml",
+  "label": "original shipped file"
+ },
+ "bimanual_assembly": {
+  "file": "arena_arm_hand_bimanual_assembly_rokae_wuji2.xml",
+  "label": "original shipped file"
+ },
+ "bimanual_hanoi": {
+  "file": "arena_arm_hand_bimanual_hanoi_rokae_wuji2.xml",
+  "label": "original shipped file"
+ },
+ "bimanual_photograph": {
+  "file": "arena_arm_hand_bimanual_photograph_rokae_wuji2.xml",
+  "label": "original shipped file"
+ },
+ "bucket_pick": {
+  "file": "arena_arm_hand_bucket_pick_rokae_wuji2.xml",
+  "label": "original shipped file"
+ },
+ "c07_ycb_pour": {
+  "error": "ValueError: XML Error: unknown default childclass\nElement 'body', line 0\n"
+ },
+ "c_tool_interactions": {
+  "file": "arena_arm_hand_c_tool_interactions_rokae_wuji2.xml",
+  "label": "original shipped file"
+ },
+ "d01_bimanual_nut_bolt_assembly": {
+  "file": "arena_arm_hand_d01_bimanual_nut_bolt_assembly_rokae_wuji2.xml",
+  "label": "original shipped file"
+ },
+ "d03_bimanual_handoff": {
+  "file": "arena_arm_hand_d03_bimanual_handoff_rokae_wuji2.xml",
+  "label": "original shipped file"
+ },
+ "d04_clear_hanoi_obstacles": {
+  "file": "arena_arm_hand_d04_clear_hanoi_obstacles_rokae_wuji2.xml",
+  "label": "original shipped file"
+ },
+ "d_long_horizon": {
+  "file": "arena_arm_hand_d_long_horizon_rokae_wuji2.xml",
+  "label": "texfix variant (jpg->png, content-identical)"
+ },
+ "e01_fold_garment": {
+  "file": "arena_arm_hand_e01_fold_garment_rokae_wuji2.xml",
+  "label": "original shipped file"
+ },
+ "e02_tie_rope_knot": {
+  "file": "arena_arm_hand_e02_tie_rope_knot_rokae_wuji2.xml",
+  "label": "original shipped file"
+ },
+ "e03_untie_random_rope_knot": {
+  "file": "arena_arm_hand_e03_untie_random_rope_knot_rokae_wuji2.xml",
+  "label": "original shipped file"
+ },
+ "e04_cats_cradle_cycle": {
+  "file": "arena_arm_hand_e04_cats_cradle_cycle_rokae_wuji2.xml",
+  "label": "original shipped file"
+ },
+ "e05_fold_cloth_wipe_table": {
+  "file": "arena_arm_hand_e05_fold_cloth_wipe_table_rokae_wuji2.xml",
+  "label": "original shipped file"
+ },
+ "g01_deformable_asset_inspection": {
+  "file": "arena_arm_hand_g01_deformable_asset_inspection_rokae_wuji2.xml",
+  "label": "original shipped file"
+ },
+ "glass_v2": {
+  "file": "arena_arm_hand_glass_v2_rokae_wuji2.xml",
+  "label": "original shipped file"
+ },
+ "h01_chinese_chess": {
+  "file": "arena_arm_hand_h01_chinese_chess_rokae_wuji2.xml",
+  "label": "original shipped file"
+ },
+ "hammer_nail": {
+  "file": "arena_arm_hand_hammer_nail_rokae_wuji2.xml",
+  "label": "original shipped file"
+ },
+ "hl015_cable_route": {
+  "file": "arena_arm_hand_hl015_cable_route_rokae_wuji2.xml",
+  "label": "original shipped file"
+ },
+ "ipad": {
+  "file": "arena_arm_hand_ipad_rokae_wuji2.xml",
+  "label": "original shipped file"
+ },
+ "lw_native_articulation": {
+  "file": "arena_arm_hand_lw_native_articulation_rokae_wuji2.xml",
+  "label": "original shipped file"
+ },
+ "microwave_cook": {
+  "file": "arena_arm_hand_microwave_cook_rokae_wuji2.xml",
+  "label": "original shipped file"
+ },
+ "monitor_mouse": {
+  "file": "arena_arm_hand_monitor_mouse_rokae_wuji2.xml",
+  "label": "original shipped file"
+ },
+ "orient_rubiks_cube": {
+  "file": "arena_arm_hand_orient_rubiks_cube_rokae_wuji2.xml",
+  "label": "original shipped file"
+ },
+ "plant": {
+  "file": "arena_arm_hand_plant_rokae_wuji2.xml",
+  "label": "original shipped file"
+ },
+ "t06_fit_device_cover": {
+  "file": "arena_arm_hand_t06_fit_device_cover_rokae_wuji2.xml",
+  "label": "original shipped file"
+ },
+ "t08_hammer_nail": {
+  "file": "arena_arm_hand_t08_hammer_nail_rokae_wuji2.xml",
+  "label": "original shipped file"
+ },
+ "t09_insert_peg": {
+  "file": "arena_arm_hand_t09_insert_peg_rokae_wuji2.xml",
+  "label": "original shipped file"
+ },
+ "t12_load_and_start_microwave": {
+  "file": "arena_arm_hand_t12_load_and_start_microwave_rokae_wuji2.xml",
+  "label": "original shipped file"
+ },
+ "t25_place_cup_on_plate": {
+  "file": "arena_arm_hand_t25_place_cup_on_plate_rokae_wuji2.xml",
+  "label": "original shipped file"
+ },
+ "t43_squeeze_scissors": {
+  "file": "arena_arm_hand_t43_squeeze_scissors_rokae_wuji2.xml",
+  "label": "original shipped file"
+ },
+ "table_tongs": {
+  "file": "arena_arm_hand_table_tongs_rokae_wuji2.xml",
+  "label": "original shipped file"
+ },
+ "ycb_tasks": {
+  "file": "arena_arm_hand_ycb_tasks_rokae_wuji2.xml",
+  "label": "original shipped file"
+ }
+}
