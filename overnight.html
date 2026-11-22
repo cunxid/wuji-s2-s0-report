@@ -74,6 +74,18 @@ mouse via the plan-time free-body snapshot — 9.8mm travel, every official term
 the stop → observe → continue loop doing real composition.</li>
 </ul>
 
+<h2>Official-engine certification (benchmark's own MuJoCo 3.4.0)</h2>
+<p>Episodes re-executed under DexJoCo's pinned <code>mujoco==3.4.0</code> (their venv, same
+arena/start-state/stepping/PD): <span class="good">place certified</span> (12.7mm vs 1.2mm under
+3.8), <span class="good">bucket certified</span> (71.9mm, inside the 90mm bar), and the
+<span class="good">strike certified via DexJoCo's own env</span> (state replay,
+<code>succeed: true</code>, nail 51mm ≥ their 40mm bar). Finding: open-loop CONTROL replay of
+long contact-rich grip episodes is version-sensitive (the choked hammer grip survives 3.8 but
+cams out under 3.4 on the identical stream) — mirroring the PhysX result and motivating
+physics-backend validity tags on capability-atlas cells. The HandsOn-NATIVE deployment
+(IsaacLab/PhysX, their cameras/encoder) runs end-to-end:
+<a href="native_t08_run5_main.mp4">native t08 video</a> — nail 19.2mm (their 6mm depth bar)
+with the full official conjunction still being tuned.</p>
 <h2>Where everything lives</h2>
 <ul>
 <li><a href="evaluation.html">evaluation.html</a> — all 36 rows: physics rollout beside the
