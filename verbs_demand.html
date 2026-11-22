@@ -5,7 +5,7 @@ h1{font-size:22px}h2{font-size:17px;margin-top:28px}.na{color:#898781;font-size:
 table{border-collapse:collapse;font-size:12.5px;width:100%;margin:8px 0}td,th{border:1px solid #e1e0d9;padding:5px 8px;text-align:left;vertical-align:top}
 th{background:#f3f2ee}code{background:#f1f0ec;padding:1px 4px;border-radius:4px;font-size:12px}
 .big{font-size:20px;font-weight:700}.kpi{display:inline-block;border:1px solid #e1e0d9;border-radius:8px;padding:10px 18px;margin:4px 10px 4px 0}</style></head><body>
-<p class="na"><a href="index.html">← dashboard</a> · rendered from <code>verb_study/</code> by <code>verb_demand_report.py</code> · 2026-11-22 13:25</p>
+<p class="na"><a href="index.html">← dashboard</a> · rendered from <code>verb_study/</code> by <code>verb_demand_report.py</code> · 2026-11-22 13:56</p>
 <h1>What verbs do 229 manipulation tasks actually demand?</h1>
 <p>Every task from <b>Meta-World v3, RLBench, BEHAVIOR-100</b> plus the local
 <b>HandsOn/DexJoCo</b> arenas and V21 clip families, decomposed into verb sequences and checked
@@ -18,7 +18,106 @@ if every step maps to a registered mechanism.</p>
 <p class=na>One real episode per registered verb (an object thrown in where the verb needs one):
 the scene + typed call S2 issues, the 50 Hz reference the fixed wrapper compiles, and the
 benchmark-physics outcome — success or not.</p>
-<div style='margin:6px 0'><img src='verb_thumbs/place.png' style='width:100%;border:1px solid #e1e0d9;border-radius:8px'></div><div style='margin:6px 0'><img src='verb_thumbs/strike.png' style='width:100%;border:1px solid #e1e0d9;border-radius:8px'></div><div style='margin:6px 0'><img src='verb_thumbs/press.png' style='width:100%;border:1px solid #e1e0d9;border-radius:8px'></div><div style='margin:6px 0'><img src='verb_thumbs/spin.png' style='width:100%;border:1px solid #e1e0d9;border-radius:8px'></div><div style='margin:6px 0'><img src='verb_thumbs/spinplace.png' style='width:100%;border:1px solid #e1e0d9;border-radius:8px'></div><div style='margin:6px 0'><img src='verb_thumbs/pour.png' style='width:100%;border:1px solid #e1e0d9;border-radius:8px'></div><div style='margin:6px 0'><img src='verb_thumbs/handoff.png' style='width:100%;border:1px solid #e1e0d9;border-radius:8px'></div><div style='margin:6px 0'><img src='verb_thumbs/lpress.png' style='width:100%;border:1px solid #e1e0d9;border-radius:8px'></div><div style='margin:6px 0'><img src='verb_thumbs/hold.png' style='width:100%;border:1px solid #e1e0d9;border-radius:8px'></div><div style='margin:6px 0'><img src='verb_thumbs/push.png' style='width:100%;border:1px solid #e1e0d9;border-radius:8px'></div><div style='margin:6px 0'><img src='verb_thumbs/probe.png' style='width:100%;border:1px solid #e1e0d9;border-radius:8px'></div>
+
+<div style='border:1px solid #e1e0d9;border-radius:10px;padding:10px;margin:10px 0;background:#fff'>
+<div style='display:flex;justify-content:space-between;align-items:baseline'>
+ <b>verb: <code>place</code></b>
+ <b style='color:#1baf7a'>PASS</b></div>
+<div class=na style='font-family:monospace;margin:2px 0 6px'>place(...) </div>
+<div style='display:flex;gap:8px'>
+ <div style='flex:1'><div class=na style='font-size:10px;letter-spacing:.05em'>① INPUT → ③ S0 TRACKING (benchmark physics)</div><video controls muted loop preload='none' src='verb_thumbs/place_rollout.mp4' style='width:100%;border-radius:6px;background:#000'></video></div>
+ <div style='flex:1'><div class=na style='font-size:10px;letter-spacing:.05em'>② GENERATED REFERENCE (animated, wrapper → S0)</div><video controls muted loop preload='none' src='verb_thumbs/place_reference.mp4' style='width:100%;border-radius:6px;background:#fff'></video></div>
+</div></div>
+<div style='border:1px solid #e1e0d9;border-radius:10px;padding:10px;margin:10px 0;background:#fff'>
+<div style='display:flex;justify-content:space-between;align-items:baseline'>
+ <b>verb: <code>strike</code></b>
+ <b style='color:#1baf7a'>PASS</b></div>
+<div class=na style='font-family:monospace;margin:2px 0 6px'>strike(...) CHOKE=0.045 STRIKE_TSCALE=0.35 SQUEEZE=0.5</div>
+<div style='display:flex;gap:8px'>
+ <div style='flex:1'><div class=na style='font-size:10px;letter-spacing:.05em'>① INPUT → ③ S0 TRACKING (benchmark physics)</div><video controls muted loop preload='none' src='verb_thumbs/strike_rollout.mp4' style='width:100%;border-radius:6px;background:#000'></video></div>
+ <div style='flex:1'><div class=na style='font-size:10px;letter-spacing:.05em'>② GENERATED REFERENCE (animated, wrapper → S0)</div><video controls muted loop preload='none' src='verb_thumbs/strike_reference.mp4' style='width:100%;border-radius:6px;background:#fff'></video></div>
+</div></div>
+<div style='border:1px solid #e1e0d9;border-radius:10px;padding:10px;margin:10px 0;background:#fff'>
+<div style='display:flex;justify-content:space-between;align-items:baseline'>
+ <b>verb: <code>press</code></b>
+ <b style='color:#1baf7a'>PASS</b></div>
+<div class=na style='font-family:monospace;margin:2px 0 6px'>press(...) PRESS_DEPTH=0.012 ORI_W=0.4</div>
+<div style='display:flex;gap:8px'>
+ <div style='flex:1'><div class=na style='font-size:10px;letter-spacing:.05em'>① INPUT → ③ S0 TRACKING (benchmark physics)</div><video controls muted loop preload='none' src='verb_thumbs/press_rollout.mp4' style='width:100%;border-radius:6px;background:#000'></video></div>
+ <div style='flex:1'><div class=na style='font-size:10px;letter-spacing:.05em'>② GENERATED REFERENCE (animated, wrapper → S0)</div><video controls muted loop preload='none' src='verb_thumbs/press_reference.mp4' style='width:100%;border-radius:6px;background:#fff'></video></div>
+</div></div>
+<div style='border:1px solid #e1e0d9;border-radius:10px;padding:10px;margin:10px 0;background:#fff'>
+<div style='display:flex;justify-content:space-between;align-items:baseline'>
+ <b>verb: <code>spin</code></b>
+ <b style='color:#1baf7a'>PASS</b></div>
+<div class=na style='font-family:monospace;margin:2px 0 6px'>spin(...) SPIN_DEG=-170 SPIN_T=120</div>
+<div style='display:flex;gap:8px'>
+ <div style='flex:1'><div class=na style='font-size:10px;letter-spacing:.05em'>① INPUT → ③ S0 TRACKING (benchmark physics)</div><video controls muted loop preload='none' src='verb_thumbs/spin_rollout.mp4' style='width:100%;border-radius:6px;background:#000'></video></div>
+ <div style='flex:1'><div class=na style='font-size:10px;letter-spacing:.05em'>② GENERATED REFERENCE (animated, wrapper → S0)</div><video controls muted loop preload='none' src='verb_thumbs/spin_reference.mp4' style='width:100%;border-radius:6px;background:#fff'></video></div>
+</div></div>
+<div style='border:1px solid #e1e0d9;border-radius:10px;padding:10px;margin:10px 0;background:#fff'>
+<div style='display:flex;justify-content:space-between;align-items:baseline'>
+ <b>verb: <code>spinplace</code></b>
+ <b style='color:#eb6834'>SPIN_SHORT</b></div>
+<div class=na style='font-family:monospace;margin:2px 0 6px'>spinplace(...) </div>
+<div style='display:flex;gap:8px'>
+ <div style='flex:1'><div class=na style='font-size:10px;letter-spacing:.05em'>① INPUT → ③ S0 TRACKING (benchmark physics)</div><video controls muted loop preload='none' src='verb_thumbs/spinplace_rollout.mp4' style='width:100%;border-radius:6px;background:#000'></video></div>
+ <div style='flex:1'><div class=na style='font-size:10px;letter-spacing:.05em'>② GENERATED REFERENCE (animated, wrapper → S0)</div><video controls muted loop preload='none' src='verb_thumbs/spinplace_reference.mp4' style='width:100%;border-radius:6px;background:#fff'></video></div>
+</div></div>
+<div style='border:1px solid #e1e0d9;border-radius:10px;padding:10px;margin:10px 0;background:#fff'>
+<div style='display:flex;justify-content:space-between;align-items:baseline'>
+ <b>verb: <code>pour</code></b>
+ <b style='color:#1baf7a'>PASS</b></div>
+<div class=na style='font-family:monospace;margin:2px 0 6px'>pour(...) </div>
+<div style='display:flex;gap:8px'>
+ <div style='flex:1'><div class=na style='font-size:10px;letter-spacing:.05em'>① INPUT → ③ S0 TRACKING (benchmark physics)</div><video controls muted loop preload='none' src='verb_thumbs/pour_rollout.mp4' style='width:100%;border-radius:6px;background:#000'></video></div>
+ <div style='flex:1'><div class=na style='font-size:10px;letter-spacing:.05em'>② GENERATED REFERENCE (animated, wrapper → S0)</div><video controls muted loop preload='none' src='verb_thumbs/pour_reference.mp4' style='width:100%;border-radius:6px;background:#fff'></video></div>
+</div></div>
+<div style='border:1px solid #e1e0d9;border-radius:10px;padding:10px;margin:10px 0;background:#fff'>
+<div style='display:flex;justify-content:space-between;align-items:baseline'>
+ <b>verb: <code>handoff</code></b>
+ <b style='color:#1baf7a'>PASS</b></div>
+<div class=na style='font-family:monospace;margin:2px 0 6px'>handoff(...) HANDOFF_AT=-0.28,0.0,1.10</div>
+<div style='display:flex;gap:8px'>
+ <div style='flex:1'><div class=na style='font-size:10px;letter-spacing:.05em'>① INPUT → ③ S0 TRACKING (benchmark physics)</div><video controls muted loop preload='none' src='verb_thumbs/handoff_rollout.mp4' style='width:100%;border-radius:6px;background:#000'></video></div>
+ <div style='flex:1'><div class=na style='font-size:10px;letter-spacing:.05em'>② GENERATED REFERENCE (animated, wrapper → S0)</div><video controls muted loop preload='none' src='verb_thumbs/handoff_reference.mp4' style='width:100%;border-radius:6px;background:#fff'></video></div>
+</div></div>
+<div style='border:1px solid #e1e0d9;border-radius:10px;padding:10px;margin:10px 0;background:#fff'>
+<div style='display:flex;justify-content:space-between;align-items:baseline'>
+ <b>verb: <code>lpress</code></b>
+ <b style='color:#eb6834'>PRESS_MISSED</b></div>
+<div class=na style='font-family:monospace;margin:2px 0 6px'>lpress(...) </div>
+<div style='display:flex;gap:8px'>
+ <div style='flex:1'><div class=na style='font-size:10px;letter-spacing:.05em'>① INPUT → ③ S0 TRACKING (benchmark physics)</div><video controls muted loop preload='none' src='verb_thumbs/lpress_rollout.mp4' style='width:100%;border-radius:6px;background:#000'></video></div>
+ <div style='flex:1'><div class=na style='font-size:10px;letter-spacing:.05em'>② GENERATED REFERENCE (animated, wrapper → S0)</div><video controls muted loop preload='none' src='verb_thumbs/lpress_reference.mp4' style='width:100%;border-radius:6px;background:#fff'></video></div>
+</div></div>
+<div style='border:1px solid #e1e0d9;border-radius:10px;padding:10px;margin:10px 0;background:#fff'>
+<div style='display:flex;justify-content:space-between;align-items:baseline'>
+ <b>verb: <code>hold</code></b>
+ <b style='color:#1baf7a'>PASS</b></div>
+<div class=na style='font-family:monospace;margin:2px 0 6px'>hold(...) HOLD_Z=0.18</div>
+<div style='display:flex;gap:8px'>
+ <div style='flex:1'><div class=na style='font-size:10px;letter-spacing:.05em'>① INPUT → ③ S0 TRACKING (benchmark physics)</div><video controls muted loop preload='none' src='verb_thumbs/hold_rollout.mp4' style='width:100%;border-radius:6px;background:#000'></video></div>
+ <div style='flex:1'><div class=na style='font-size:10px;letter-spacing:.05em'>② GENERATED REFERENCE (animated, wrapper → S0)</div><video controls muted loop preload='none' src='verb_thumbs/hold_reference.mp4' style='width:100%;border-radius:6px;background:#fff'></video></div>
+</div></div>
+<div style='border:1px solid #e1e0d9;border-radius:10px;padding:10px;margin:10px 0;background:#fff'>
+<div style='display:flex;justify-content:space-between;align-items:baseline'>
+ <b>verb: <code>push</code></b>
+ <b style='color:#1baf7a'>PASS</b></div>
+<div class=na style='font-family:monospace;margin:2px 0 6px'>push(...) ORI_W=0.4 PUSH_TO=-0.12,-0.45 PUSH_OVER=-0.02</div>
+<div style='display:flex;gap:8px'>
+ <div style='flex:1'><div class=na style='font-size:10px;letter-spacing:.05em'>① INPUT → ③ S0 TRACKING (benchmark physics)</div><video controls muted loop preload='none' src='verb_thumbs/push_rollout.mp4' style='width:100%;border-radius:6px;background:#000'></video></div>
+ <div style='flex:1'><div class=na style='font-size:10px;letter-spacing:.05em'>② GENERATED REFERENCE (animated, wrapper → S0)</div><video controls muted loop preload='none' src='verb_thumbs/push_reference.mp4' style='width:100%;border-radius:6px;background:#fff'></video></div>
+</div></div>
+<div style='border:1px solid #e1e0d9;border-radius:10px;padding:10px;margin:10px 0;background:#fff'>
+<div style='display:flex;justify-content:space-between;align-items:baseline'>
+ <b>verb: <code>probe</code></b>
+ <b style='color:#1baf7a'>PASS</b></div>
+<div class=na style='font-family:monospace;margin:2px 0 6px'>probe(...) PROBE_KIND=line PROBE_T=80</div>
+<div style='display:flex;gap:8px'>
+ <div style='flex:1'><div class=na style='font-size:10px;letter-spacing:.05em'>① INPUT → ③ S0 TRACKING (benchmark physics)</div><video controls muted loop preload='none' src='verb_thumbs/probe_rollout.mp4' style='width:100%;border-radius:6px;background:#000'></video></div>
+ <div style='flex:1'><div class=na style='font-size:10px;letter-spacing:.05em'>② GENERATED REFERENCE (animated, wrapper → S0)</div><video controls muted loop preload='none' src='verb_thumbs/probe_reference.mp4' style='width:100%;border-radius:6px;background:#fff'></video></div>
+</div></div>
 <h2>Verbs ranked by demand</h2>
 <table><tr><th>verb</th><th>demand<br>(#tasks)</th><th>covered</th><th>our mechanism</th><th>difficulty</th><th>implementation sketch</th></tr>
 <tr><td><b>acquire</b></td><td>160</td><td style='color:#1baf7a'><b>yes</b></td><td>implicit: native pick clips inside place/strike/spin/pour composers</td><td style='color:#1baf7a'>done</td><td class=na>native pick clip splice (every composer's first segment)</td></tr><tr><td><b>move</b></td><td>124</td><td style='color:#1baf7a'><b>yes</b></td><td>implicit: carry segments inside composers</td><td style='color:#1baf7a'>done</td><td class=na>carry reference segments</td></tr><tr><td><b>place</b></td><td>71</td><td style='color:#1baf7a'><b>yes</b></td><td>place (receptacle or PLACE_TARGET marker)</td><td style='color:#1baf7a'>done</td><td class=na>place verb</td></tr><tr><td><b>open-articulated</b></td><td>29</td><td style='color:#eb6834'><b>no</b></td><td>—</td><td style='color:#d99114'>medium</td><td class=na>grasp handle, rewrite wrist reference as an arc about the hinge/slide axis read from the model; press hinge grader already measures joint travel</td></tr><tr><td><b>insert</b></td><td>23</td><td style='color:#eb6834'><b>no</b></td><td>—</td><td style='color:#d99114'>medium</td><td class=na>place at marker + guarded compliant descent (lower AKP) + spiral/wiggle search dial; grade insertion depth along hole axis</td></tr><tr><td><b>close-articulated</b></td><td>19</td><td style='color:#d99114'><b>partial</b></td><td>press hinge mode (glasses_fold PASS); push-shut doors/drawers plausible, latching untested</td><td style='color:#1baf7a'>easy</td><td class=na>extend press hinge mode (glasses_fold already PASSES) with horizontal-axis presets for drawers/doors; grade joint angle</td></tr><tr><td><b>pull</b></td><td>17</td><td style='color:#eb6834'><b>no</b></td><td>—</td><td style='color:#1baf7a'>easy</td><td class=na>mirror of push: hook/pinch object edge or handle, retreat wrist along -axis with SQUEEZE; grade displacement along axis</td></tr><tr><td><b>press</b></td><td>13</td><td style='color:#1baf7a'><b>yes</b></td><td>press / lpress (any axis, buttons+hinges)</td><td style='color:#1baf7a'>done</td><td class=na>press verb</td></tr><tr><td><b>turn-knob</b></td><td>13</td><td style='color:#eb6834'><b>no</b></td><td>—</td><td style='color:#d99114'>medium</td><td class=na>pinch grasp fixture + wrist roll retargeted to the external fixed axis (spin composer on fixture axis); regrasp cycles for >90deg</td></tr><tr><td><b>push</b></td><td>11</td><td style='color:#d99114'><b>partial</b></td><td>press horizontal PRESS_AXIS + PRESS_SWIPE nudges; no object-displacement grader</td><td style='color:#1baf7a'>easy</td><td class=na>new composer: approach object flank with closed hand, drag wrist along a surface line to target; reuse press swipe machinery + add object-displacement-to-marker grader</td></tr><tr><td><b>screw</b></td><td>10</td><td style='color:#eb6834'><b>no</b></td><td>—</td><td style='color:#d99114'>medium</td><td class=na>chain turn-knob cycles with per-cycle regrasp + axial feed; V21 screw/bulb spin clips (screw_ap*/bulb_ap0045-0720) are ready-made in-hand rotation references</td></tr><tr><td><b>bimanual-hold</b></td><td>8</td><td style='color:#d99114'><b>partial</b></td><td>scripted left-arm assist dials (LIFT_AT/LIFT_Z/L_YAW in strike-official)</td><td style='color:#eb6834'>hard</td><td class=na>today a scripted left driver; true coordinated force closure needs a second policy instance + shared object reference across hands</td></tr><tr><td><b>pour</b></td><td>6</td><td style='color:#1baf7a'><b>yes</b></td><td>pour</td><td style='color:#1baf7a'>done</td><td class=na>pour verb</td></tr><tr><td><b>wipe</b></td><td>6</td><td style='color:#d99114'><b>partial</b></td><td>press PRESS_N x PRESS_SWIPE = fingertip strokes; tool-held wipe missing</td><td style='color:#1baf7a'>easy</td><td class=na>PRESS_N x PRESS_SWIPE already strokes; add swept-area grader; tool-held wipe = carry + surface-following swipe (easy-medium)</td></tr><tr><td><b>handoff</b></td><td>5</td><td style='color:#1baf7a'><b>yes</b></td><td>handoff (right->left)</td><td style='color:#1baf7a'>done</td><td class=na>handoff verb</td></tr><tr><td><b>stack</b></td><td>5</td><td style='color:#d99114'><b>partial</b></td><td>place PLACE_TARGET+DROP_DZ reaches on-top drop; no stacked-stability grader</td><td style='color:#1baf7a'>easy</td><td class=na>place with PLACE_TARGET = base-object top + DROP_DZ; add settle-stability grader (object at rest on base after 60 ticks)</td></tr><tr><td><b>reorient</b></td><td>5</td><td style='color:#d99114'><b>partial</b></td><td>V21 wrist_x/y + yaw reference clips exist; no registered verb exposes them</td><td style='color:#1baf7a'>easy</td><td class=na>register flip verb that splices existing V21 wrist_x/y and yaw clips mid-hold; grade object quat vs goal</td></tr><tr><td><b>squeeze</b></td><td>5</td><td style='color:#d99114'><b>partial</b></td><td>SQUEEZE grip-floor dial exists; no tool-actuation grader (scissors/trigger)</td><td style='color:#1baf7a'>easy</td><td class=na>promote SQUEEZE to an actuation verb: grasp tool, ramp grip cycles; grade tool joint travel (scissors/tongs/trigger)</td></tr><tr><td><b>hang</b></td><td>5</td><td style='color:#eb6834'><b>no</b></td><td>—</td><td style='color:#d99114'>medium</td><td class=na>place variant with lateral hook-approach vector + hung grader (supported above ground, not resting); needs approach-path contact strategy</td></tr><tr><td><b>fold</b></td><td>5</td><td style='color:#eb6834'><b>no</b></td><td>—</td><td style='color:#eb6834'>hard</td><td class=na>deformables: no object-pose reference stream exists; needs cloth-state representation, new references and graders</td></tr><tr><td><b>strike</b></td><td>4</td><td style='color:#1baf7a'><b>yes</b></td><td>strike</td><td style='color:#1baf7a'>done</td><td class=na>strike verb</td></tr><tr><td><b>cut</b></td><td>3</td><td style='color:#eb6834'><b>no</b></td><td>—</td><td style='color:#eb6834'>hard</td><td class=na>held knife + force-controlled press-draw on a deformable target; MuJoCo deformable fidelity gap dominates</td></tr><tr><td><b>reach</b></td><td>2</td><td style='color:#1baf7a'><b>yes</b></td><td>press (fingertip-touch grader <=18mm)</td><td style='color:#1baf7a'>done</td><td class=na>already a press grader</td></tr><tr><td><b>rotate-in-hand</b></td><td>2</td><td style='color:#1baf7a'><b>yes</b></td><td>spin (object-z axis only)</td><td style='color:#1baf7a'>done</td><td class=na>spin verb (add non-z axes by splicing V21 wrist clips)</td></tr><tr><td><b>zip</b></td><td>2</td><td style='color:#eb6834'><b>no</b></td><td>—</td><td style='color:#eb6834'>hard</td><td class=na>deformable + mm-precision pinch-drag along a curved path</td></tr><tr><td><b>swipe</b></td><td>1</td><td style='color:#1baf7a'><b>yes</b></td><td>press PRESS_SWIPE</td><td style='color:#1baf7a'>done</td><td class=na>PRESS_SWIPE dial</td></tr><tr><td><b>sweep</b></td><td>1</td><td style='color:#eb6834'><b>no</b></td><td>—</td><td style='color:#d99114'>medium</td><td class=na>tool-held push: keep broom/spatula tip in surface contact while wrist drags a line; tool-tip contact maintenance is new</td></tr><tr><td><b>scoop</b></td><td>1</td><td style='color:#eb6834'><b>no</b></td><td>—</td><td style='color:#d99114'>medium</td><td class=na>tool pitch-under + lift choreography (wedge tool under object, then raise); contact-rich under-object engagement</td></tr><tr><td><b>spray</b></td><td>1</td><td style='color:#eb6834'><b>no</b></td><td>—</td><td style='color:#d99114'>medium</td><td class=na>acquire bottle + per-finger trigger squeeze cycles while wrist aims; needs single-finger actuation on a held tool</td></tr><tr><td><b>hold</b></td><td>0</td><td style='color:#1baf7a'><b>yes</b></td><td>implicit: SQUEEZE grip-floor dial</td><td style='color:#1baf7a'>done</td><td class=na>SQUEEZE grip floor</td></tr><tr><td><b>release</b></td><td>0</td><td style='color:#1baf7a'><b>yes</b></td><td>implicit: place release phase</td><td style='color:#1baf7a'>done</td><td class=na>place release phase</td></tr><tr><td><b>toss</b></td><td>0</td><td style='color:#eb6834'><b>no</b></td><td>—</td><td style='color:#d99114'>medium</td><td class=na>carry + timed release with shaped wrist velocity at release tick; ballistic landing grader; needs per-mass release calibration</td></tr><tr><td><b>shake</b></td><td>0</td><td style='color:#eb6834'><b>no</b></td><td>—</td><td style='color:#1baf7a'>easy</td><td class=na>spin-style composer with sinusoidal wrist reference while held (SQUEEZE floor); grade oscillation count/amplitude</td></tr><tr><td><b>stir</b></td><td>0</td><td style='color:#eb6834'><b>no</b></td><td>—</td><td style='color:#1baf7a'>easy</td><td class=na>hold tool, circular wrist-orbit reference inside container bounds; grade orbit cycles</td></tr></table>
