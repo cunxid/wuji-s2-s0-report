@@ -3,8 +3,9 @@
 <style>body{font:14px/1.5 -apple-system,sans-serif;max-width:1180px;margin:24px auto;padding:0 14px;color:#0b0b0b;background:#fcfcfb}
 h1{font-size:21px}h2{font-size:17px;margin-top:30px}a{color:#2056a8}table{border-collapse:collapse;width:100%;font-size:12.5px}
 td,th{border:1px solid #e1e0d9;padding:4px 7px}th{background:#f3f2ee;position:sticky;top:0}
-.pass{color:#1baf7a;font-weight:700}.fail{color:#eb6834}.na{color:#999}</style></head><body>
+.pass{color:#1baf7a;font-weight:700}.fail{color:#eb6834}.na{color:#999}.notice{font-size:13.5px;margin:12px 0;padding:10px 13px;background:#fff4f1;border:1px solid #f0b8a8;border-left:5px solid #d8343c;border-radius:8px;color:#4a150e}</style></head><body>
 <h1>Agent-in-the-loop timing — staged pipeline (lead) + 60-task with/without study</h1>
+<div class="notice"><b>Correction, 2026-11-23 — pass counts on this site are under audit.</b> A step-by-step trace of the runs found two problems. (1) The <b>"official predicate" label was not justified</b>: the scoring helper passed fixed values for predicate terms it could not measure (peg insertion depth and axis, cup upright and height above the plate, hammer strike kinematics, mouse on the pad), and several rows used a substitute object or a marker position instead of the task's own object and target. All 9 "official" labels are withdrawn. (2) <b>Some passes came from an uncontrolled mechanism</b>: in cup-on-plate the cup fell out of the hand mid-carry and was pushed to the target; in move-and-click the mouse was knocked by an arm in IK recovery following a junk reference; the reported hammer–nail depth was reached during the left-hand lift, not the strike. Every passing row (15 evaluation, 7 in-hand) is being re-audited for mechanism, scene and scoring; corrected numbers will replace this notice. Details: <a href="breakdowns.html">agent breakdowns</a>.</div>
 
 <h2>1 · Full pipeline, every stage executed and timed</h2>
 <p>One fully-staged end-to-end run per passing task (the 13 PASS rows of the 60-task study

@@ -35,6 +35,8 @@ canvas:active{cursor:grabbing}
 .legend{font-size:11.5px;color:#777;margin-top:4px}
 .legend b{font-weight:600}
 .outcome{font-size:13px;margin-top:8px;padding:7px 10px;background:#f6fbf7;border:1px solid #d8eede;border-radius:8px}
+.audit{font-size:13px;margin-top:8px;padding:8px 11px;background:#fff4f1;border:1px solid #f0b8a8;border-left:4px solid #d8343c;border-radius:8px;color:#5a1a12}
+.notice{font-size:13.5px;margin:12px 0;padding:10px 13px;background:#fff4f1;border:1px solid #f0b8a8;border-left:5px solid #d8343c;border-radius:8px;color:#4a150e}
 .hint{color:#999;font-size:11.5px}
 </style></head><body>
 <h1>Agent breakdowns — what was called, step by step</h1>
@@ -52,6 +54,11 @@ freeze the wrist by design — the fingers rotate the object, so the object path
 while the wrist stays put; the red strip under each plot is |wrist−object| over time, so rigid
 holds read flat and slip or reorientation shows as drift.</p>
 <div class="nav"><a href="index.html">← Main</a><a href="skills.html">🛠 Skills</a><a href="harness.html">🔩 Harness</a><a href="timing.html">⏱ Timing</a></div>
+<div class="notice"><b>Correction, 2026-11-23.</b> Tracing these runs step by step showed that three
+of the five did not succeed the way this site had described, and that the "official predicate"
+label used across the site was not justified: the scoring helper filled in predicate terms it
+could not measure with passing values. The affected cases carry a red audit note below. All
+passing rows are being re-audited; see the notice on the <a href="index.html">main page</a>.</div>
 <div id="cases"><p class="hint">loading traces…</p></div>
 <script>
 const TASKS = ['t08_hammer_nail','t25_place_cup_on_plate','t14_move_and_click_mouse',
@@ -193,6 +200,7 @@ async function load(){
       <div class="legend"><b style="color:#2056a8">—</b> achieved wrist &nbsp;
             <b style="color:#b9b9b9">┄</b> commanded reference &nbsp;
             <b style="color:#e8842a">—</b> object &nbsp; ● events &nbsp; <b style="color:#8a63c9">┄</b> aux series (left wrist / scene objects)</div>
+          ${d.audit_note?`<div class="audit">${esc(d.audit_note)}</div>`:''}
           <div class="outcome">${d.outcome_html || esc((d.outcome&&d.outcome.headline) ? d.outcome.headline : 'outcome: '+JSON.stringify(d.outcome||{}))}</div>
         </div>
       </div>`;
