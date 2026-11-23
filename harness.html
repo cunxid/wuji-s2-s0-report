@@ -1,0 +1,75 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Inside the harness — atlas intake, perception, planning gates</title>
+<style>
+body{font:15px/1.6 -apple-system,"Segoe UI",sans-serif;color:#0b0b0b;background:#fcfcfb;max-width:1000px;margin:24px auto;padding:0 16px}
+h1{font-size:22px}h2{font-size:17px;margin-top:28px;border-bottom:1px solid #e1e0d9;padding-bottom:4px}
+a{color:#2056a8}code{background:#f1f0ec;padding:1px 5px;border-radius:4px;font-size:12.5px}
+.flow{background:#fff;border:1px solid #e1e0d9;border-radius:10px;padding:12px 16px;font:12.5px/1.7 monospace;white-space:pre;overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13px}td,th{border:1px solid #e1e0d9;padding:5px 8px}th{background:#f3f2ee}
+.na{color:#898781;font-size:12.5px}.nav a{display:inline-block;border:1px solid #d7d6cf;border-radius:8px;padding:6px 12px;background:#fff;text-decoration:none;font-weight:600;margin-right:8px;font-size:13.5px}
+</style></head><body>
+<h1>Inside the harness</h1>
+<p>How the agent layer actually consumes the <b>capability atlas</b>, the <b>RGB-D perception stack</b>,
+and the <b>motion-planning gates</b> around every skill call — with tonight's live numbers.</p>
+<div class="nav"><a href="index.html">← Main</a><a href="skills.html">🛠 Skills</a><a href="capability.html">📊 Capability</a><a href="timing.html">⏱ Timing</a></div>
+
+<h2>The data flow</h2>
+<div class="flow">RGB-D (head + front cams)                        CAPABILITY ATLAS (4,225 cells tonight)
+  │ render_views → deproject                       │ capture basins (ψ + CORRECT per object)
+  │ height_map (1.5 cm grid)                       │ speed/curvature envelopes (24 objects, v2 rig)
+  │ segment_objects (SAM if present,               │ task-scene envelopes (50 HandsOn scenes)
+  │   else depth-plane — disclosed per run)        │ typed failures + repair outcomes
+  │ estimate_pose (ICP on segment cloud)           │
+  ▼                                                ▼
+S2 PLAN: pick hold/basin from atlas → compile verb(params, mesh, scene)
+  │  • yaw-sweep kinematic IK search (per-frame DLS on a scratch model)
+  │  • depth-scan corridors: carry gets a per-sample z-floor from the MEASURED
+  │    height map; marker drops descend to the measured surface (PLAN_SETDOWN)
+  │  • IK path gate (new): joint accel + singularity + limit margins along the
+  │    whole 50 Hz path; infeasible → typed rejection or retime suggestion
+  ▼
+EXECUTE on frozen S0 (50 Hz reference; physics arbitrates)
+  │  gates: lift-confirm · slip-pause · drop-abort
+  │  mid-episode replans from MEASURED state: strike swing (in-hand pose),
+  │  press re-aim (button pose), @precontact offset logging
+  ▼
+JUDGE (between segments and after): re-observe via perception, typed verdict,
+  decide continue / retry-with-measured-CORRECT / replan — every outcome
+  writes an atlas cell back (atlas_io.commit)</div>
+
+<h2>1 · How plans take in the atlas</h2>
+<table>
+<tr><th>atlas product</th><th>how the plan consumes it</th><th>live example (tonight)</th></tr>
+<tr><td>capture basins<br><code>v2_capture_basins.json</code></td><td>acquire pins ψ (spawn-yaw) + measured CORRECT before any skill — the yaw sweep ties at ~0 on the shipped mount, so basin search + offset retry is mandatory</td><td>box60 ψ=-90 (bucket/bowl/pour passes); rod15x150 ψ=-120 → t09 peg official pass; bulb: 0 basins = typed capture gap</td></tr>
+<tr><td>object envelopes<br><code>envelope_v2.json</code> (24 objects)</td><td>speed/primitive selection from the envelope <i>interior</i>; CARRY_MIN_T reflection stretches too-fast carries</td><td>cyl30x80 pour lead tested and rejected (0/11 at 0.05 m/s) — walls stop plans before episodes</td></tr>
+<tr><td>task-scene envelopes<br><code>envelope_tasks.json</code> (50 scenes)</td><td>per-task carry feasibility inside the real clutter, behind a qualified grasp prefix</td><td>44/50 scenes: lift+arc tracked; lateral lines untrackable across scenes (consistent rig boundary)</td></tr>
+<tr><td>typed failures + repairs</td><td>actor routing: CAPTURE_MISSED+offset→CORRECT; GRASP_SLIP→basin switch; saturation→chunking/retime</td><td>t25: free-fall scatter diagnosed → measured-surface setdown → 27.7 mm official</td></tr>
+<tr><td>writeback</td><td>every episode (task, probe, or retry) commits a cell: (object, skill, params+scene_rev, outcome, measured metrics)</td><td>4,225 cells: 2,041 probe · 1,185 task-scene · 349 place · 143 spin · …</td></tr>
+</table>
+
+<h2>2 · How the harness uses segmentation &amp; depth (beyond the skill call)</h2>
+<table>
+<tr><th>stage</th><th>mechanism</th><th>where it decided something real</th></tr>
+<tr><td>object pose for acquire</td><td><code>segment_objects</code> (SAM-3 when weights present, depth-plane fallback — the run discloses which) → <code>estimate_pose</code> ICP against the object mesh</td><td>precontact offsets measured per attempt (<code>@precontact</code>), feeding the CORRECT repair that converted bowl/bucket/cup grasps</td></tr>
+<tr><td>collision-free carry</td><td>deprojected depth → height map → the carry corridor gets a per-sample z-floor + lateral detour (<code>PLAN_SCAN</code>, perceived source by default — not simulator state)</td><td>clutter never fouls composed carries in the 44 tracked task scenes</td></tr>
+<tr><td>precision drops</td><td>marker drops descend to the <b>measured</b> surface height instead of a fixed free-fall</td><td>t25 cup-on-plate: 80–130 mm scatter → 27.7 mm official pass</td></tr>
+<tr><td>re-observation between segments</td><td>after place/release or before a strike, the pipeline re-renders, re-segments, re-fits pose; the judge compares perceived vs commanded</td><td>strike authorizes the swing from the measured in-hand pose (REPLAN tick); t14 verifies mouse displacement before the click segment</td></tr>
+</table>
+
+<h2>3 · Motion-planning gates around every skill call</h2>
+<p>A reference is only handed to S0 after passing, in order: <b>(i)</b> the yaw-sweep kinematic
+IK search (endpoint feasibility over candidate spawn yaws, warm-started damped-least-squares on a
+scratch model); <b>(ii)</b> the depth corridor check (swept path vs measured height map);
+<b>(iii)</b> the <b>IK path gate</b>: full-path 50 Hz IK with joint-velocity/acceleration bounds,
+manipulability (singularity proximity) and joint-limit margins — references that would demand
+accel spikes or pass near singular configs are rejected with a typed reason or returned with a
+minimal retime factor. A rejection is itself a boundary datum and is written to the atlas.
+The gate's calibration study (thresholds fitted on winning vs failing references, with its
+pre-execution failure-prediction rate) publishes here when the run completes.</p>
+
+<p class="na">Everything above is measured machinery, not aspiration: file pointers —
+<code>s2/perception/observe.py</code> · <code>s2/dexharness/sweep.py</code> ·
+<code>s2/dexharness/ik_gate.py</code> · <code>s2/dexharness/actor.py</code> ·
+<code>handson_bridge/cosim.py</code> (PLAN_SCAN, REPLAN, gates) ·
+<code>s2/atlas/dexharness_campaign.json</code>.</p>
+</body></html>
