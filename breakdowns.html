@@ -29,7 +29,7 @@ canvas:active{cursor:grabbing}
 <h1>Agent breakdowns — exactly what was called, step by step</h1>
 <p class="sub">Five tasks <b>re-run fresh on the current harness</b> (shipped tianji2 rig, all of
 tonight's fixes), each traced end to end: every pipeline call, the measured reasoning behind it,
-and the resulting trajectory. <span class="hint">Drag the plot to orbit · wheel to zoom ·
+and the resulting trajectory. <span class="hint">In-hand spin cases freeze the wrist BY DESIGN — the fingers rotate the object, so the object path orbits the grip while the wrist path stays put; the red strip below each plot shows |wrist−object| so rigid holds (flat) separate from slip or reorientation (drift). Drag the plot to orbit · wheel to zoom ·
 shift-drag to pan · scrub the timeline · click a step to jump to its moment.</span></p>
 <div class="nav"><a href="index.html">← Main</a><a href="skills.html">🛠 Skills</a><a href="harness.html">🔩 Harness</a><a href="timing.html">⏱ Timing</a></div>
 <div id="cases"><p class="hint">loading traces…</p></div>
@@ -53,8 +53,9 @@ function viewer(cv, traj){
   }
   const all = paths.flatMap(p => p.pts);
   if (!all.length) { ctx.font='14px sans-serif'; ctx.fillText('no trajectory in trace', 20, 30); return {set(){},}; }
-  const mn=[1/0,1/0,1/0], mx=[-1/0,-1/0,-1/0];
-  for (const q of all) for (let i=0;i<3;i++){ mn[i]=Math.min(mn[i],q[i]); mx[i]=Math.max(mx[i],q[i]); }
+  const mn=[0,0,0], mx=[0,0,0];
+  for (let i=0;i<3;i++){ const vs=all.map(q=>q[i]).sort((a,b)=>a-b);
+    mn[i]=vs[Math.floor(vs.length*0.01)]; mx[i]=vs[Math.ceil(vs.length*0.99)-1]; }
   const c=[(mn[0]+mx[0])/2,(mn[1]+mx[1])/2,(mn[2]+mx[2])/2];
   const span=Math.max(mx[0]-mn[0],mx[1]-mn[1],mx[2]-mn[2],0.15);
   function draw(){
@@ -132,7 +133,8 @@ async function load(){
         <div>
           <canvas></canvas>
           <input class="scrub" type="range" min="0" max="1000" value="0">
-          <div class="legend"><b style="color:#2056a8">—</b> achieved wrist &nbsp;
+          <canvas class="drift" style="height:64px"></canvas>
+      <div class="legend"><b style="color:#2056a8">—</b> achieved wrist &nbsp;
             <b style="color:#b9b9b9">┄</b> commanded reference &nbsp;
             <b style="color:#e8842a">—</b> object &nbsp; ● events &nbsp; <b style="color:#8a63c9">┄</b> aux series (left wrist / scene objects)</div>
           <div class="outcome">${d.outcome_html || ((d.outcome&&d.outcome.headline) ? d.outcome.headline : 'outcome: '+JSON.stringify(d.outcome||{}))}</div>
@@ -140,6 +142,24 @@ async function load(){
       </div>`;
     root.appendChild(el);
     const v=viewer(el.querySelector('canvas'), d.trajectory||{});
+    (function(){ // grip-consistency strip: |wrist-object| over time; held window shaded
+      const tr=d.trajectory||{}, w=tr.wrist||[], o=tr.object||[];
+      const cv2=el.querySelector('canvas.drift'); if(!cv2||!w.length||!o.length) { if(cv2) cv2.remove(); return; }
+      const n=Math.min(w.length,o.length);
+      const dist=Array.from({length:n},(_,i)=>{
+        const a=w[Math.floor(i*(w.length-1)/(n-1))], b=o[Math.floor(i*(o.length-1)/(n-1))];
+        return Math.hypot(a[0]-b[0],a[1]-b[1],a[2]-b[2]);});
+      const ctx=cv2.getContext('2d'); const W=cv2.width=cv2.clientWidth*2, H=cv2.height=128;
+      const dmn=Math.min(...dist), dmx=Math.max(...dist), pad=(dmx-dmn)||0.01;
+      if (tr.held_window){ const [a,b]=tr.held_window;
+        ctx.fillStyle='#eef7f0'; ctx.fillRect(W*a/n,0,W*(b-a)/n,H); }
+      ctx.strokeStyle='#d8343c'; ctx.lineWidth=2.5; ctx.beginPath();
+      dist.forEach((v2,i)=>{const x=W*i/(n-1), y=H-8-(H-20)*(v2-dmn)/pad; i?ctx.lineTo(x,y):ctx.moveTo(x,y);});
+      ctx.stroke();
+      ctx.fillStyle='#777'; ctx.font='18px monospace';
+      ctx.fillText(`|wrist−object|  ${ (dmn*1000).toFixed(0)}–${(dmx*1000).toFixed(0)}mm` +
+        (tr.held_window?`  (shaded = held: flat ⇒ rigid grip; drift ⇒ measured slip or in-hand reorientation)`:''), 8, 20);
+    })();
     const scrub=el.querySelector('.scrub');
     scrub.addEventListener('input',()=>v.set(scrub.value/1000));
     el.querySelectorAll('.step').forEach(se=>se.addEventListener('click',()=>{

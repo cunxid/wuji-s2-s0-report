@@ -96,7 +96,7 @@ reference.</p>
 
 
 <h2>In-hand rotation suite — 10 real-world tasks</h2>
-<p>Ten realistic rotation tasks over the S0 training-dataset objects, each in a semantically
+<p>Ten rotation tasks over the S0 training-dataset objects in semantically dressed scenes — graded on <b>in-hand rotation only</b> (≥55° while held); tool-on-target engagement (tip-down screwdriving, lid-on-jar) is a separate, harder contract — the first engaged version is being built and will be shown with its own measured criteria, each in a semantically
 dressed scene (socket fixture, wood block + nail, jar, paint pot, cutting board, saucer, bolt,
 pipe, tray) on the shipped rig: calibrated acquire → <b>in-hand</b> spin/flip (S0 finger
 dexterity, wrist frozen) → graded ≥55° achieved while still held at the end.
@@ -106,7 +106,7 @@ the basin table and every attempt are in the capability atlas.</p>
 <div class="cmp">
 <div class="cell"><div class="lab">screw · z-axis · 4 attempts</div>
 <video muted loop autoplay playsinline src="ih_drive_screwdriver.mp4"></video>
-<div><b>Drive a screw: turn the screwdriver one half-turn</b><br><span class="pass">PASS</span> · 131° achieved · grip 0.56<br><span class="na">scene: wood block with nail (t08-style, static) at (-0.08,-0.58)</span></div></div>
+<div><b>Rotate the screwdriver one half-turn in-hand</b><br><span class="na">⚠ grades in-hand rotation only — tip-down screw engagement is NOT verified here (engaged version in progress below)</span><br><span class="pass">PASS</span> · 131° achieved · grip 0.56<br><span class="na">scene: wood block with nail (t08-style, static) at (-0.08,-0.58)</span></div></div>
 <div class="cell"><div class="lab">bar120x20 · y-axis · 4 attempts</div>
 <video muted loop autoplay playsinline src="ih_flip_paintbrush.mp4"></video>
 <div><b>Flip the paintbrush bristles-down to start painting</b><br><span class="pass">PASS</span> · 78° achieved · grip 0.62<br><span class="na">scene: paint pot (existing bowl) + paint can with blue paint top at (-0.10,-0.63)</span></div></div>
@@ -118,22 +118,22 @@ the basin table and every attempt are in the capability atlas.</p>
 <div><b>Lay the water cup down on its side (tip it over in-hand)</b><br><span class="pass">PASS</span> · 88° achieved · grip 0.54<br><span class="na">scene: saucer (V21 disc100x15 mesh, static) beside the cup at (-0.14,-0.62)</span></div></div>
 <div class="cell"><div class="lab">screw · z-axis · 9 attempts</div>
 <video muted loop autoplay playsinline src="ih_unscrew_jar_lid.mp4"></video>
-<div><b>Unscrew a stuck jar lid: one long continuous twist</b><br><span class="pass">PASS</span> · 131° achieved · grip 0.56<br><span class="na">scene: open glass jar (cylinder shell + thread rim) at (-0.10,-0.62)</span></div></div>
+<div><b>Long continuous in-hand twist (jar-lid motion)</b><br><span class="na">⚠ grades in-hand rotation only; lid-on-jar engagement is NOT verified</span><br><span class="pass">PASS</span> · 131° achieved · grip 0.56<br><span class="na">scene: open glass jar (cylinder shell + thread rim) at (-0.10,-0.62)</span></div></div>
 <div class="cell"><div class="lab">box60 · z-axis · 13 attempts</div>
 <video muted loop autoplay playsinline src="ih_turn_butter_block.mp4"></video>
 <div><b>Rotate the butter block to align it for cutting</b><br><span class="pass">PASS</span> · 113° achieved · grip 0.83<br><span class="na">scene: cutting board (20x14x1cm thin box) directly under the butter spawn</span></div></div>
 <div class="cell"><div class="lab">lbar100x60 · z-axis · 13 attempts</div>
 <video muted loop autoplay playsinline src="ih_turn_allen_key.mp4"></video>
-<div><b>Tighten with the allen key: one wrench turn in-hand</b><br><span class="fail">SPIN_SHORT</span> · 33° achieved · grip 0.44<br><span class="na">scene: hex bolt-head prism (3 crossed boxes) at (-0.10,-0.58)</span></div></div>
+<div><b>Rotate the allen key in-hand (wrench-like motion)</b><br><span class="na">⚠ grades in-hand rotation only; bolt engagement is NOT verified</span><br><span class="fail">SPIN_SHORT</span> · 33° achieved · grip 0.44<br><span class="na">scene: hex bolt-head prism (3 crossed boxes) at (-0.10,-0.58)</span></div></div>
 <div class="cell"><div class="lab">tbar110 · z-axis · 10 attempts</div>
 <video muted loop autoplay playsinline src="ih_thread_tee_fitting.mp4"></video>
-<div><b>Thread the pipe tee fitting a quarter turn</b><br><span class="pass">PASS</span> · 174° achieved · grip 0.73<br><span class="na">scene: standing pipe stub (steel cylinder) at (-0.10,-0.62)</span></div></div>
+<div><b>Rotate the tee fitting in-hand (thread-like motion)</b><br><span class="na">⚠ grades in-hand rotation only; pipe-thread engagement is NOT verified</span><br><span class="pass">PASS</span> · 174° achieved · grip 0.73<br><span class="na">scene: standing pipe stub (steel cylinder) at (-0.10,-0.62)</span></div></div>
 <div class="cell"><div class="lab">box40 · y-axis · 10 attempts</div>
 <video muted loop autoplay playsinline src="ih_roll_dice_show_face.mp4"></video>
 <div><b>Turn the die in the fingers to show the opposite face</b><br><span class="fail">GRASP_SLIP</span> · 6° achieved · grip 0.03<br><span class="na">scene: flat dice tray (V21 plate160 mesh, static) at (-0.08,-0.60)</span></div></div>
 <div class="cell"><div class="lab">dengpao48h138 · z-axis · 7 attempts</div>
 <video muted loop autoplay playsinline src="ih_screw_in_light_bulb.mp4"></video>
-<div><b>Screw a light bulb into its socket (thread it clockwise)</b><br><span class="fail">GRASP_SLIP</span> · 5° achieved · grip 0.00<br><span class="na">scene: lamp-socket fixture (standing cylinder + open top ring) at (-0.10,-0.60)</span></div></div>
+<div><b>Rotate the bulb as if threading (capture never achieved)</b><br><span class="na">⚠ grades in-hand rotation only; no socket engagement is verified</span><br><span class="fail">GRASP_SLIP</span> · 5° achieved · grip 0.00<br><span class="na">scene: lamp-socket fixture (standing cylinder + open top ring) at (-0.10,-0.60)</span></div></div>
 </div>
 <p class="na">The five walls are measured, not assumed: the allen key rotates ~35° in-grip then escapes (99° reachable but not held — passable by the ratchet re-grip below); butter and tee CONVERTED once the reference-buffer ceiling was removed: gentle multi-chunk drives reach 113° and 174° held (single episodes, suite grader); the die's only capture basin is lift-only and every flip rips
 it from the fingertip grip; the bulb has NO capture basin on this rig (full 12-yaw sweep + 4
