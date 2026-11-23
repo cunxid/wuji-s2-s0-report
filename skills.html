@@ -30,6 +30,10 @@ segments use p(t)=p₀+(p₁-p₀)·(0.5-0.5cos(πt)) at 50&nbsp;Hz — identica
 the start, the red dot the end; the side strip plots the time profile. These are references, not
 rollouts: whether S0 can track a given parameter set is exactly what the capability atlas measures.</p>
 <script>
+const ENV_EDGES={line:{n:12,vmax:0.5},lift:{n:9,vmax:0.417},zigzag:{n:11,vmax:0.2},arc:{n:9,vmax:112.5},yaw:{n:8,vmax:120.0}};
+function envCheck(kind,speed,unit){const e=ENV_EDGES[kind];if(!e)return'';
+ return speed<=e.vmax?` · ✅ within the measured envelope (${e.n} objects tracked ≤${e.vmax}${unit})`
+ :` · ⚠ OUTSIDE every measured envelope (fastest tracked: ${e.vmax}${unit} on the shipped rig)`;}
 const HZ=50, ANCHOR=[-0.32,-0.45,0.95], BOWL=[-0.26,-0.30,0.92];
 function ease(t){return 0.5-0.5*Math.cos(Math.PI*t);}
 function seg(pts,n,f){for(let k=0;k<n;k++)pts.push(f(k/Math.max(1,n-1)));}
@@ -40,16 +44,16 @@ const GENS={
   params:{axis:['x','y','z'],len_m:0.25,T_ticks:120},
   gen:(p)=>{const ax={x:[1,0,0],y:[0,1,0],z:[0,0,1]}[p.axis];const a=ANCHOR,b=a.map((v,i)=>v+ax[i]*+p.len_m);
    const pts=[];seg(pts,25,t=>a);seg(pts,+p.T_ticks,t=>lin(a,b,ease(t)));seg(pts,30,t=>b);
-   return{pts,profile:pts.map(q=>q[2]),stats:`peak speed ≈ ${(1.571*+p.len_m/(+p.T_ticks/HZ)).toFixed(2)} m/s · ${((25+ +p.T_ticks+30)/HZ).toFixed(1)} s`}}},
+   const _v=1.571*+p.len_m/(+p.T_ticks/HZ);return{pts,profile:pts.map(q=>q[2]),stats:`peak speed ≈ ${_v.toFixed(2)} m/s · ${((25+ +p.T_ticks+30)/HZ).toFixed(1)} s`+envCheck('line',_v,' m/s')}}},
  arc:{title:'arc (curved carry)',desc:'carry along a circular arc about a world axis',
   params:{axis:['z','x'],deg:90,radius_m:0.2,T_ticks:150},
   gen:(p)=>{const c=[...ANCHOR];const r=+p.radius_m,th=+p.deg*Math.PI/180;const pts=[];
    seg(pts,25,t=>[c[0]+r,c[1],c[2]]);
    seg(pts,+p.T_ticks,t=>{const a=ease(t)*th;return p.axis==='z'?[c[0]+r*Math.cos(a),c[1]+r*Math.sin(a),c[2]]:[c[0]+r*Math.cos(a),c[1],c[2]+r*Math.sin(a)];});
-   return{pts,profile:pts.map((q,i)=>i),stats:`arc ${p.deg}° r=${p.radius_m} m · tangential ≈ ${(1.571*r*th/(+p.T_ticks/HZ)).toFixed(2)} m/s`}}},
+   const _w=1.571*+p.deg/(+p.T_ticks/HZ);return{pts,profile:pts.map((q,i)=>i),stats:`arc ${p.deg}° r=${p.radius_m} m · peak ${Math.abs(_w).toFixed(0)}°/s`+envCheck('arc',Math.abs(_w),'°/s')}}},
  lift:{title:'lift',desc:'vertical raise of the held object',params:{dz_m:0.2,T_ticks:100},
   gen:(p)=>{const a=ANCHOR,b=[a[0],a[1],a[2]+ +p.dz_m];const pts=[];seg(pts,25,t=>a);seg(pts,+p.T_ticks,t=>lin(a,b,ease(t)));seg(pts,30,t=>b);
-   return{pts,profile:pts.map(q=>q[2]),stats:`peak ${(1.571*+p.dz_m/(+p.T_ticks/HZ)).toFixed(2)} m/s`}}},
+   const _v=1.571*+p.dz_m/(+p.T_ticks/HZ);return{pts,profile:pts.map(q=>q[2]),stats:`peak ${_v.toFixed(2)} m/s`+envCheck('lift',_v,' m/s')}}},
  spin:{title:'spin_in_hand / flip',desc:'wrist frozen; the OBJECT reference rotates about its own axis — S0’s fingers perform it',
   params:{axis:['z','x','y'],deg:-170,T_ticks:120},
   gen:(p)=>{const pts=[];const th=+p.deg*Math.PI/180;const prof=[];
