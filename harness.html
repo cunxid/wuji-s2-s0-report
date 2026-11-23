@@ -77,8 +77,7 @@ the same episode passes better (15.4&nbsp;mm vs 13.0) and its authored plan now 
 with 0 out-of-workspace frames; tracked arenas proven bit-identical to full float precision. A per-family view also
 separates the allen-key escape (21&nbsp;mm/49° sustained hold error vs ≤0.1&nbsp;mm for winning
 spins). Honestly reported blind spots: pure grasp-slips and semantic failures are kinematically
-clean — the gate cannot see them, the atlas can. Retime demo under a tight accel budget:
-t25 ×1.68, t09 ×1.07. API: <code>ik_gate.check_reference(arena, poses_50hz, arm)</code>.</p>
+clean — the gate cannot see them, the atlas can. Retime demo under a tight accel budget: t25 ×1.68, t09 ×1.07. The gate also works FORWARD as a planner: its swept-clearance table (4 candidate approaches, zero episodes) solved the t19 lying-cup approach graze — stock approach −12.9&nbsp;mm penetration, gate-selected offset +29.6&nbsp;mm clearance → the first 5/5 lifted acquires of that cup; and it measured that spawn-yaw CANNOT change the hand-vs-object approach (the clip anchors rigidly to the object) — the measured-offset CORRECT is the approach lever. API: <code>ik_gate.check_reference(arena, poses_50hz, arm)</code>.</p>
 
 
 <h2>4 · The agent between skills — measured closed loop</h2>
@@ -100,6 +99,20 @@ DUMP/INIT_STATE; authorize-then-recommit for in-hand segments, recommit fidelity
 the elevated-fragment held-detector and the bowl-occupancy depth probe — both measured with
 their error bars. Closed-loop overhead: +1.6&nbsp;s (place, pure perception) to +25&nbsp;s
 (protocols with re-execution or real retries).</p>
+
+
+<h2>5 · Walls → curriculum (the measured retraining targets)</h2>
+<p>Every remaining failure is a measured boundary with its evidence in the atlas — exactly the
+curriculum the boundary→retraining thesis calls for:</p>
+<table>
+<tr><th>wall</th><th>measured structure</th><th>evidence</th></tr>
+<tr><td>allen-key in-hand rotation</td><td>two walls: ~33° face-lock; tracks to 64–67.5° then ejects before hold — held-at-end and ≥55° mutually exclusive over 11 profiles (chunking/plateau/pace swept)</td><td>round3.json; ratchet composition reaches 69° held across 2 grasps</td></tr>
+<tr><td>lying-cup carry retention (t19)</td><td>acquire SOLVED (gate-planned clearance); all 5 lifted carries drop 190–455&nbsp;mm short across spin/squeeze/pace; release-dwell axis = uprighting axis (ready lever once carry holds)</td><td>round3.json gate table + 6 episodes</td></tr>
+<tr><td>thin-vessel retention (cyl30x80 pour)</td><td>held ≤0.04 in every variant incl. 653–1087-frame slow pours (now runnable via REF_PAD); probe 0/11 to 0.05&nbsp;m/s</td><td>refpad_round.json, envelope_v2</td></tr>
+<tr><td>thin-stock release (t22 screw pass)</td><td>right-side acquire+carry 5/5; the screw flicks +0.16&nbsp;m along opening fingers at every catch timing — needs a pinch-to-pinch release no verb provides</td><td>maximize_r2, refpad_round (183&nbsp;mm vs 120 bar)</td></tr>
+<tr><td>small-cube capture (box40) · bulb capture</td><td>box40: sole lift-only basin, flips rip it out 2.5–5.7°; bulb: zero basins upright or lying (16+ quals + CORRECT retries)</td><td>envelope_v2 GRASP_LIMITED records</td></tr>
+<tr><td>stack impact momentum (t44)</td><td>stack FORMS; pair skids 72–84&nbsp;mm at contact across gentle/slow/drop variants (retreat exonerated by bit-identical slide test) — pass/fail call deferred to the user's criterion decision</td><td>maximize_r2, 19 episodes, video</td></tr>
+</table>
 
 <p class="na">Everything above is measured machinery, not aspiration: file pointers —
 <code>s2/perception/observe.py</code> · <code>s2/dexharness/sweep.py</code> ·
