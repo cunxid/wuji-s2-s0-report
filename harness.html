@@ -78,6 +78,27 @@ spins). Honestly reported blind spots: pure grasp-slips and semantic failures ar
 clean — the gate cannot see them, the atlas can. Retime demo under a tight accel budget:
 t25 ×1.68, t09 ×1.07. API: <code>ik_gate.check_reference(arena, poses_50hz, arm)</code>.</p>
 
+
+<h2>4 · The agent between skills — measured closed loop</h2>
+<p>After every verb segment the pipeline <b>re-observes with the real perception stack</b>
+(median 1.8&nbsp;s per boundary), judges from perception only (ground truth recorded for honesty,
+never used to decide), and routes: continue · one measured-correction retry in the validated
+12–80&nbsp;mm band · typed abort. Demonstrated with disclosed scripted perturbations, same scene,
+open vs closed loop:</p>
+<table>
+<tr><th>perturbation</th><th>open loop</th><th>closed loop (agent between skills)</th></tr>
+<tr><td>strike: 42&nbsp;mm mid-reach bump</td><td>FAIL — 0.0&nbsp;mm nail</td><td><b>RESCUED</b>: gate catches the dropped hammer from perception → re-acquires from the measured state → authorizes → 5.6&nbsp;mm shallow → typed route (CHOKE) → <b>11.7&nbsp;mm PASS</b> (74&nbsp;s vs 20&nbsp;s)</td></tr>
+<tr><td>place: post-release bump out of the bowl</td><td><b>FALSE SUCCESS</b> — episode claims in-bowl; the object is 130&nbsp;mm out</td><td>caught by the bowl-occupancy depth probe → in-band re-grasp → retry-verify catches the short drop too → <b>truthful typed abort</b> instead of a false pass</td></tr>
+<tr><td>pour: 30&nbsp;mm mid-reach bump</td><td>fails silently (0°, vessel dropped)</td><td>caught pre-tilt (held-detector) → retry fails physically → typed NOT_HELD abort; the tilt commit is never wasted</td></tr>
+<tr><td>t14: cable-snag drags the mouse back</td><td>passes by luck (the press itself shoves the mouse over the bar, 10–16&nbsp;mm margin)</td><td>catches the short move from perception, re-pushes to the commanded displacement, clicks — <b>guaranteed PASS</b>; also caught an official-invisible 194&nbsp;mm overshoot in the nominal run, unscripted</td></tr>
+</table>
+<p class="na">Protocols disclosed in <code>s2/s2loop/segment_loop.json</code> (state-carry via
+DUMP/INIT_STATE; authorize-then-recommit for in-hand segments, recommit fidelity audited at
+0.0&nbsp;mm). Perception primitives that made the judge work where ICP class-matching fails:
+the elevated-fragment held-detector and the bowl-occupancy depth probe — both measured with
+their error bars. Closed-loop overhead: +1.6&nbsp;s (place, pure perception) to +25&nbsp;s
+(protocols with re-execution or real retries).</p>
+
 <p class="na">Everything above is measured machinery, not aspiration: file pointers —
 <code>s2/perception/observe.py</code> · <code>s2/dexharness/sweep.py</code> ·
 <code>s2/dexharness/ik_gate.py</code> · <code>s2/dexharness/actor.py</code> ·
