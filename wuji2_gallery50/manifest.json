@@ -9,7 +9,8 @@
   "alias_of": null,
   "prompts_note": "legacy task \u2014 not in the shipped language bank (bank covers the 66 paper tasks)",
   "rendered": true,
-  "scene": "b02_nut_bolt_assembly_wuji2_scene_isaac.xml"
+  "scene": "b02_nut_bolt_assembly_wuji2_scene_isaac.xml",
+  "media": "b02_nut_bolt_assembly.gif"
  },
  "b320_towel_corner_synchronized_spread": {
   "arena": "arena_arm_hand_c_tool_interactions_rokae_wuji2.xml",
@@ -18,7 +19,9 @@
   ],
   "alias_of": "t05_fill_cup",
   "rendered": true,
-  "scene": "b320_towel_corner_synchronized_spread_wuji2_scene_isaac.xml"
+  "scene": "b320_towel_corner_synchronized_spread_wuji2_scene_isaac.xml",
+  "media": "b320_towel_corner_synchronized_spread.gif",
+  "runtime_authored": "task objects are runtime-authored in their Isaac pipeline \u2014 not present in the prepared MJCF"
  },
  "bench320_hl015_bimanual_cable_route_dual_plug": {
   "arena": "arena_arm_hand_hl015_cable_route_rokae_wuji2.xml",
@@ -27,7 +30,8 @@
   ],
   "alias_of": "t02_connect_charger_and_cable",
   "rendered": true,
-  "scene": "bench320_hl015_bimanual_cable_route_dual_plug_wuji2_scene_isaac.xml"
+  "scene": "bench320_hl015_bimanual_cable_route_dual_plug_wuji2_scene_isaac.xml",
+  "media": "bench320_hl015_bimanual_cable_route_dual_plug.gif"
  },
  "bench320_hs014_bottle_stabilized_cap_opening": {
   "arena": "arena_arm_hand_ycb_tasks_rokae_wuji2.xml",
@@ -38,7 +42,9 @@
   ],
   "alias_of": "t26_place_fruit_in_bucket",
   "rendered": true,
-  "scene": "bench320_hs014_bottle_stabilized_cap_opening_wuji2_scene_isaac.xml"
+  "scene": "bench320_hs014_bottle_stabilized_cap_opening_wuji2_scene_isaac.xml",
+  "media": "bench320_hs014_bottle_stabilized_cap_opening.gif",
+  "runtime_authored": "task objects are runtime-authored in their Isaac pipeline \u2014 not present in the prepared MJCF"
  },
  "bimanual_assembly": {
   "arena": "arena_arm_hand_bimanual_assembly_rokae_wuji2.xml",
@@ -46,7 +52,8 @@
   "alias_of": null,
   "prompts_note": "legacy task \u2014 not in the shipped language bank (bank covers the 66 paper tasks)",
   "rendered": true,
-  "scene": "bimanual_assembly_wuji2_scene_isaac.xml"
+  "scene": "bimanual_assembly_wuji2_scene_isaac.xml",
+  "media": "bimanual_assembly.gif"
  },
  "bimanual_hanoi": {
   "arena": "arena_arm_hand_bimanual_hanoi_rokae_wuji2.xml",
@@ -54,7 +61,8 @@
   "alias_of": null,
   "prompts_note": "legacy task \u2014 not in the shipped language bank (bank covers the 66 paper tasks)",
   "rendered": true,
-  "scene": "bimanual_hanoi_wuji2_scene_isaac.xml"
+  "scene": "bimanual_hanoi_wuji2_scene_isaac.xml",
+  "media": "bimanual_hanoi.gif"
  },
  "bimanual_microwave_cook": {
   "arena": "arena_arm_hand_microwave_cook_rokae_wuji2.xml",
@@ -63,7 +71,8 @@
   ],
   "alias_of": "t12_load_and_start_microwave",
   "rendered": true,
-  "scene": "bimanual_microwave_cook_wuji2_scene_isaac.xml"
+  "scene": "bimanual_microwave_cook_wuji2_scene_isaac.xml",
+  "media": "bimanual_microwave_cook.gif"
  },
  "bimanual_photograph": {
   "arena": "arena_arm_hand_bimanual_photograph_rokae_wuji2.xml",
@@ -72,7 +81,8 @@
   ],
   "alias_of": "t23_photograph_logo",
   "rendered": true,
-  "scene": "bimanual_photograph_wuji2_scene_isaac.xml"
+  "scene": "bimanual_photograph_wuji2_scene_isaac.xml",
+  "media": "bimanual_photograph.gif"
  },
  "bimanual_unlock_ipad": {
   "arena": "arena_arm_hand_ipad_rokae_wuji2.xml",
@@ -80,7 +90,8 @@
   "alias_of": null,
   "prompts_note": "legacy task \u2014 not in the shipped language bank (bank covers the 66 paper tasks)",
   "rendered": true,
-  "scene": "bimanual_unlock_ipad_wuji2_scene_isaac.xml"
+  "scene": "bimanual_unlock_ipad_wuji2_scene_isaac.xml",
+  "media": "bimanual_unlock_ipad.gif"
  },
  "c07_pitcher_pour_cup": {
   "arena": "arena_arm_hand_c07_ycb_pour_rokae_wuji2.xml",
@@ -88,7 +99,8 @@
   "alias_of": null,
   "prompts_note": "legacy task \u2014 not in the shipped language bank (bank covers the 66 paper tasks)",
   "rendered": true,
-  "scene": "c07_pitcher_pour_cup_wuji2_scene_isaac.xml"
+  "scene": "c07_pitcher_pour_cup_wuji2_scene_isaac.xml",
+  "media": "c07_pitcher_pour_cup.gif"
  },
  "c08_tongs_ice_cubes": {
   "arena": "arena_arm_hand_c_tool_interactions_rokae_wuji2.xml",
@@ -97,7 +109,8 @@
   ],
   "alias_of": "t37_scrub_bottle",
   "rendered": true,
-  "scene": "c08_tongs_ice_cubes_wuji2_scene_isaac.xml"
+  "scene": "c08_tongs_ice_cubes_wuji2_scene_isaac.xml",
+  "media": "c08_tongs_ice_cubes.gif"
  },
  "c09_staple_paper_sheets": {
   "arena": "arena_arm_hand_c_tool_interactions_rokae_wuji2.xml",
@@ -106,7 +119,8 @@
   ],
   "alias_of": "t37_scrub_bottle",
   "rendered": true,
-  "scene": "c09_staple_paper_sheets_wuji2_scene_isaac.xml"
+  "scene": "c09_staple_paper_sheets_wuji2_scene_isaac.xml",
+  "media": "c09_staple_paper_sheets.gif"
  },
  "c11_xylophone_sequence": {
   "arena": "arena_arm_hand_c_tool_interactions_rokae_wuji2.xml",
@@ -115,7 +129,8 @@
   ],
   "alias_of": "t37_scrub_bottle",
   "rendered": true,
-  "scene": "c11_xylophone_sequence_wuji2_scene_isaac.xml"
+  "scene": "c11_xylophone_sequence_wuji2_scene_isaac.xml",
+  "media": "c11_xylophone_sequence.gif"
  },
  "click_mouse": {
   "arena": "arena_arm_hand_monitor_mouse_rokae_wuji2.xml",
@@ -124,7 +139,9 @@
   ],
   "alias_of": "t14_move_and_click_mouse",
   "rendered": true,
-  "scene": "t14_move_and_click_mouse_wuji2_scene_isaac.xml"
+  "scene": "t14_move_and_click_mouse_wuji2_scene_isaac.xml",
+  "media": "click_mouse.gif",
+  "display_relocation": "objects ['link_3'] moved onto the tabletop FOR DISPLAY (shipped authoring places them off-table at floor height)"
  },
  "eval_comb01_cover_pitcher_and_box": {
   "arena": "arena_arm_hand_ycb_tasks_rokae_wuji2.xml",
@@ -133,7 +150,8 @@
   ],
   "alias_of": null,
   "rendered": true,
-  "scene": "eval_comb01_cover_pitcher_and_box_wuji2_scene_isaac.xml"
+  "scene": "eval_comb01_cover_pitcher_and_box_wuji2_scene_isaac.xml",
+  "media": "eval_comb01_cover_pitcher_and_box.gif"
  },
  "eval_comb02_open_laptop_and_click_mouse": {
   "arena": "arena_arm_hand_monitor_mouse_rokae_wuji2.xml",
@@ -144,7 +162,8 @@
   ],
   "alias_of": null,
   "rendered": true,
-  "scene": "eval_comb02_open_laptop_and_click_mouse_wuji2_scene_isaac.xml"
+  "scene": "eval_comb02_open_laptop_and_click_mouse_wuji2_scene_isaac.xml",
+  "media": "eval_comb02_open_laptop_and_click_mouse.gif"
  },
  "fold_glasses": {
   "arena": "arena_arm_hand_glass_v2_rokae_wuji2.xml",
@@ -152,7 +171,8 @@
   "alias_of": null,
   "prompts_note": "legacy task \u2014 not in the shipped language bank (bank covers the 66 paper tasks)",
   "rendered": true,
-  "scene": "fold_glasses_wuji2_scene_isaac.xml"
+  "scene": "fold_glasses_wuji2_scene_isaac.xml",
+  "media": "fold_glasses.gif"
  },
  "hammer_nail": {
   "arena": "arena_arm_hand_hammer_nail_rokae_wuji2.xml",
@@ -161,7 +181,8 @@
   ],
   "alias_of": "t08_hammer_nail",
   "rendered": true,
-  "scene": "t08_hammer_nail_wuji2_scene_isaac.xml"
+  "scene": "t08_hammer_nail_wuji2_scene_isaac.xml",
+  "media": "hammer_nail.gif"
  },
  "p003_bimanual_folding_ruler_shape_configuration": {
   "arena": "arena_arm_hand_c_tool_interactions_rokae_wuji2.xml",
@@ -170,7 +191,9 @@
   ],
   "alias_of": "t37_scrub_bottle",
   "rendered": true,
-  "scene": "p003_bimanual_folding_ruler_shape_configuration_wuji2_scene_isaac.xml"
+  "scene": "p003_bimanual_folding_ruler_shape_configuration_wuji2_scene_isaac.xml",
+  "media": "p003_bimanual_folding_ruler_shape_configuration.gif",
+  "runtime_authored": "task objects are runtime-authored in their Isaac pipeline \u2014 not present in the prepared MJCF"
  },
  "p006_side_release_buckle_align_press": {
   "arena": "arena_arm_hand_c_tool_interactions_rokae_wuji2.xml",
@@ -179,7 +202,9 @@
   ],
   "alias_of": "t37_scrub_bottle",
   "rendered": true,
-  "scene": "p006_side_release_buckle_align_press_wuji2_scene_isaac.xml"
+  "scene": "p006_side_release_buckle_align_press_wuji2_scene_isaac.xml",
+  "media": "p006_side_release_buckle_align_press.gif",
+  "runtime_authored": "task objects are runtime-authored in their Isaac pipeline \u2014 not present in the prepared MJCF"
  },
  "pick_bucket": {
   "arena": "arena_arm_hand_bucket_pick_rokae_wuji2.xml",
@@ -190,7 +215,8 @@
   ],
   "alias_of": "t26_place_fruit_in_bucket",
   "rendered": true,
-  "scene": "pick_bucket_wuji2_scene_isaac.xml"
+  "scene": "pick_bucket_wuji2_scene_isaac.xml",
+  "media": "pick_bucket.gif"
  },
  "pinch_tongs": {
   "arena": "arena_arm_hand_table_tongs_rokae_wuji2.xml",
@@ -198,7 +224,9 @@
   "alias_of": null,
   "prompts_note": "legacy task \u2014 not in the shipped language bank (bank covers the 66 paper tasks)",
   "rendered": true,
-  "scene": "pinch_tongs_wuji2_scene_isaac.xml"
+  "scene": "pinch_tongs_wuji2_scene_isaac.xml",
+  "media": "pinch_tongs.gif",
+  "display_relocation": "objects ['link_1'] moved onto the tabletop FOR DISPLAY (shipped authoring places them off-table at floor height)"
  },
  "t02_connect_charger_and_cable": {
   "arena": "arena_arm_hand_c_tool_interactions_rokae_wuji2.xml",
@@ -207,7 +235,8 @@
   ],
   "alias_of": null,
   "rendered": true,
-  "scene": "t02_connect_charger_and_cable_wuji2_scene_isaac.xml"
+  "scene": "t02_connect_charger_and_cable_wuji2_scene_isaac.xml",
+  "media": "t02_connect_charger_and_cable.gif"
  },
  "t03_cover_box": {
   "arena": "arena_arm_hand_ycb_tasks_rokae_wuji2.xml",
@@ -216,7 +245,8 @@
   ],
   "alias_of": null,
   "rendered": true,
-  "scene": "t03_cover_box_wuji2_scene_isaac.xml"
+  "scene": "t03_cover_box_wuji2_scene_isaac.xml",
+  "media": "t03_cover_box.gif"
  },
  "t04_cover_pitcher": {
   "arena": "arena_arm_hand_ycb_tasks_rokae_wuji2.xml",
@@ -225,7 +255,8 @@
   ],
   "alias_of": null,
   "rendered": true,
-  "scene": "t04_cover_pitcher_wuji2_scene_isaac.xml"
+  "scene": "t04_cover_pitcher_wuji2_scene_isaac.xml",
+  "media": "t04_cover_pitcher.gif"
  },
  "t08_hammer_nail": {
   "arena": "arena_arm_hand_t08_hammer_nail_rokae_wuji2.xml",
@@ -234,7 +265,8 @@
   ],
   "alias_of": null,
   "rendered": true,
-  "scene": "t08_hammer_nail_wuji2_scene_isaac.xml"
+  "scene": "t08_hammer_nail_wuji2_scene_isaac.xml",
+  "media": "t08_hammer_nail.gif"
  },
  "t09_insert_peg": {
   "arena": "arena_arm_hand_t09_insert_peg_rokae_wuji2.xml",
@@ -243,7 +275,8 @@
   ],
   "alias_of": null,
   "rendered": true,
-  "scene": "t09_insert_peg_wuji2_scene_isaac.xml"
+  "scene": "t09_insert_peg_wuji2_scene_isaac.xml",
+  "media": "t09_insert_peg.gif"
  },
  "t11_line_up_blocks": {
   "arena": "arena_arm_hand_c_tool_interactions_rokae_wuji2.xml",
@@ -252,7 +285,8 @@
   ],
   "alias_of": null,
   "rendered": true,
-  "scene": "t11_line_up_blocks_wuji2_scene_isaac.xml"
+  "scene": "t11_line_up_blocks_wuji2_scene_isaac.xml",
+  "media": "t11_line_up_blocks.gif"
  },
  "t13_load_cans": {
   "arena": "arena_arm_hand_c_tool_interactions_rokae_wuji2.xml",
@@ -261,7 +295,9 @@
   ],
   "alias_of": null,
   "rendered": true,
-  "scene": "t13_load_cans_wuji2_scene_isaac.xml"
+  "scene": "t13_load_cans_wuji2_scene_isaac.xml",
+  "media": "t13_load_cans.gif",
+  "runtime_authored": "task objects are runtime-authored in their Isaac pipeline \u2014 not present in the prepared MJCF"
  },
  "t14_move_and_click_mouse": {
   "arena": "arena_arm_hand_monitor_mouse_rokae_wuji2.xml",
@@ -270,7 +306,8 @@
   ],
   "alias_of": null,
   "rendered": true,
-  "scene": "t14_move_and_click_mouse_wuji2_scene_isaac.xml"
+  "scene": "t14_move_and_click_mouse_wuji2_scene_isaac.xml",
+  "media": "t14_move_and_click_mouse.gif"
  },
  "t16_open_laptop": {
   "arena": "arena_arm_hand_c_tool_interactions_rokae_wuji2.xml",
@@ -281,7 +318,9 @@
   ],
   "alias_of": null,
   "rendered": true,
-  "scene": "t16_open_laptop_wuji2_scene_isaac.xml"
+  "scene": "t16_open_laptop_wuji2_scene_isaac.xml",
+  "media": "t16_open_laptop.gif",
+  "runtime_authored": "task objects are runtime-authored in their Isaac pipeline \u2014 not present in the prepared MJCF"
  },
  "t17_open_latched_door": {
   "arena": "arena_arm_hand_c_tool_interactions_rokae_wuji2.xml",
@@ -290,7 +329,9 @@
   ],
   "alias_of": null,
   "rendered": true,
-  "scene": "t17_open_latched_door_wuji2_scene_isaac.xml"
+  "scene": "t17_open_latched_door_wuji2_scene_isaac.xml",
+  "media": "t17_open_latched_door.gif",
+  "runtime_authored": "task objects are runtime-authored in their Isaac pipeline \u2014 not present in the prepared MJCF"
  },
  "t19_orient_cup_upright": {
   "arena": "arena_arm_hand_ycb_tasks_rokae_wuji2.xml",
@@ -299,7 +340,8 @@
   ],
   "alias_of": null,
   "rendered": true,
-  "scene": "t19_orient_cup_upright_wuji2_scene_isaac.xml"
+  "scene": "t19_orient_cup_upright_wuji2_scene_isaac.xml",
+  "media": "t19_orient_cup_upright.gif"
  },
  "t22_pass_screwdriver": {
   "arena": "arena_arm_hand_c_tool_interactions_rokae_wuji2.xml",
@@ -308,7 +350,9 @@
   ],
   "alias_of": null,
   "rendered": true,
-  "scene": "t22_pass_screwdriver_wuji2_scene_isaac.xml"
+  "scene": "t22_pass_screwdriver_wuji2_scene_isaac.xml",
+  "media": "t22_pass_screwdriver.gif",
+  "runtime_authored": "task objects are runtime-authored in their Isaac pipeline \u2014 not present in the prepared MJCF"
  },
  "t23_photograph_logo": {
   "arena": "arena_arm_hand_bimanual_photograph_rokae_wuji2.xml",
@@ -317,7 +361,8 @@
   ],
   "alias_of": null,
   "rendered": true,
-  "scene": "t23_photograph_logo_wuji2_scene_isaac.xml"
+  "scene": "t23_photograph_logo_wuji2_scene_isaac.xml",
+  "media": "t23_photograph_logo.gif"
  },
  "t24_place_ball_in_bowl": {
   "arena": "arena_arm_hand_ball_to_bowl_rokae_wuji2.xml",
@@ -328,7 +373,8 @@
   ],
   "alias_of": null,
   "rendered": true,
-  "scene": "t24_place_ball_in_bowl_wuji2_scene_isaac.xml"
+  "scene": "t24_place_ball_in_bowl_wuji2_scene_isaac.xml",
+  "media": "t24_place_ball_in_bowl.gif"
  },
  "t25_place_cup_on_plate": {
   "arena": "arena_arm_hand_t25_place_cup_on_plate_rokae_wuji2.xml",
@@ -337,7 +383,8 @@
   ],
   "alias_of": null,
   "rendered": true,
-  "scene": "t25_place_cup_on_plate_wuji2_scene_isaac.xml"
+  "scene": "t25_place_cup_on_plate_wuji2_scene_isaac.xml",
+  "media": "t25_place_cup_on_plate.gif"
  },
  "t26_place_fruit_in_bucket": {
   "arena": "arena_arm_hand_ycb_tasks_rokae_wuji2.xml",
@@ -348,7 +395,8 @@
   ],
   "alias_of": null,
   "rendered": true,
-  "scene": "t26_place_fruit_in_bucket_wuji2_scene_isaac.xml"
+  "scene": "t26_place_fruit_in_bucket_wuji2_scene_isaac.xml",
+  "media": "t26_place_fruit_in_bucket.gif"
  },
  "t34_roll_ball_through_gate": {
   "arena": "arena_arm_hand_ycb_tasks_rokae_wuji2.xml",
@@ -357,7 +405,8 @@
   ],
   "alias_of": null,
   "rendered": true,
-  "scene": "t34_roll_ball_through_gate_wuji2_scene_isaac.xml"
+  "scene": "t34_roll_ball_through_gate_wuji2_scene_isaac.xml",
+  "media": "t34_roll_ball_through_gate.gif"
  },
  "t36_scoop_marbles": {
   "arena": "arena_arm_hand_ycb_tasks_rokae_wuji2.xml",
@@ -366,7 +415,8 @@
   ],
   "alias_of": null,
   "rendered": true,
-  "scene": "t36_scoop_marbles_wuji2_scene_isaac.xml"
+  "scene": "t36_scoop_marbles_wuji2_scene_isaac.xml",
+  "media": "t36_scoop_marbles.gif"
  },
  "t37_scrub_bottle": {
   "arena": "arena_arm_hand_c_tool_interactions_rokae_wuji2.xml",
@@ -375,7 +425,9 @@
   ],
   "alias_of": null,
   "rendered": true,
-  "scene": "t37_scrub_bottle_wuji2_scene_isaac.xml"
+  "scene": "t37_scrub_bottle_wuji2_scene_isaac.xml",
+  "media": "t37_scrub_bottle.gif",
+  "runtime_authored": "task objects are runtime-authored in their Isaac pipeline \u2014 not present in the prepared MJCF"
  },
  "t40_slide_knife_blade": {
   "arena": "arena_arm_hand_c_tool_interactions_rokae_wuji2.xml",
@@ -385,7 +437,9 @@
   ],
   "alias_of": null,
   "rendered": true,
-  "scene": "t40_slide_knife_blade_wuji2_scene_isaac.xml"
+  "scene": "t40_slide_knife_blade_wuji2_scene_isaac.xml",
+  "media": "t40_slide_knife_blade.gif",
+  "runtime_authored": "task objects are runtime-authored in their Isaac pipeline \u2014 not present in the prepared MJCF"
  },
  "t44_stack_blocks": {
   "arena": "arena_arm_hand_ycb_tasks_rokae_wuji2.xml",
@@ -394,7 +448,8 @@
   ],
   "alias_of": null,
   "rendered": true,
-  "scene": "t44_stack_blocks_wuji2_scene_isaac.xml"
+  "scene": "t44_stack_blocks_wuji2_scene_isaac.xml",
+  "media": "t44_stack_blocks.gif"
  },
  "t46_store_charger": {
   "arena": "arena_arm_hand_c_tool_interactions_rokae_wuji2.xml",
@@ -403,7 +458,9 @@
   ],
   "alias_of": null,
   "rendered": true,
-  "scene": "t46_store_charger_wuji2_scene_isaac.xml"
+  "scene": "t46_store_charger_wuji2_scene_isaac.xml",
+  "media": "t46_store_charger.gif",
+  "runtime_authored": "task objects are runtime-authored in their Isaac pipeline \u2014 not present in the prepared MJCF"
  },
  "t48_unfold_fan": {
   "arena": "arena_arm_hand_c_tool_interactions_rokae_wuji2.xml",
@@ -414,7 +471,9 @@
   ],
   "alias_of": null,
   "rendered": true,
-  "scene": "t48_unfold_fan_wuji2_scene_isaac.xml"
+  "scene": "t48_unfold_fan_wuji2_scene_isaac.xml",
+  "media": "t48_unfold_fan.gif",
+  "runtime_authored": "task objects are runtime-authored in their Isaac pipeline \u2014 not present in the prepared MJCF"
  },
  "t50_water_plant": {
   "arena": "arena_arm_hand_plant_rokae_wuji2.xml",
@@ -423,7 +482,8 @@
   ],
   "alias_of": null,
   "rendered": true,
-  "scene": "t50_water_plant_wuji2_scene_isaac.xml"
+  "scene": "t50_water_plant_wuji2_scene_isaac.xml",
+  "media": "t50_water_plant.gif"
  },
  "user_make_pizza_long_horizon": {
   "arena": "arena_arm_hand_c_tool_interactions_rokae_wuji2.xml",
@@ -432,7 +492,9 @@
   ],
   "alias_of": "t37_scrub_bottle",
   "rendered": true,
-  "scene": "user_make_pizza_long_horizon_wuji2_scene_isaac.xml"
+  "scene": "user_make_pizza_long_horizon_wuji2_scene_isaac.xml",
+  "media": "user_make_pizza_long_horizon.gif",
+  "runtime_authored": "task objects are runtime-authored in their Isaac pipeline \u2014 not present in the prepared MJCF"
  },
  "water_plant": {
   "arena": "arena_arm_hand_plant_rokae_wuji2.xml",
@@ -441,7 +503,8 @@
   ],
   "alias_of": "t50_water_plant",
   "rendered": true,
-  "scene": "t50_water_plant_wuji2_scene_isaac.xml"
+  "scene": "t50_water_plant_wuji2_scene_isaac.xml",
+  "media": "water_plant.gif"
  },
  "z01_pipette": {
   "arena": "arena_arm_hand_ycb_tasks_rokae_wuji2.xml",
@@ -452,7 +515,8 @@
   ],
   "alias_of": "t26_place_fruit_in_bucket",
   "rendered": true,
-  "scene": "z01_pipette_wuji2_scene_isaac.xml"
+  "scene": "z01_pipette_wuji2_scene_isaac.xml",
+  "media": "z01_pipette.gif"
  },
  "z02_bottle_cap": {
   "arena": "arena_arm_hand_ycb_tasks_rokae_wuji2.xml",
@@ -463,6 +527,7 @@
   ],
   "alias_of": "t26_place_fruit_in_bucket",
   "rendered": true,
-  "scene": "z02_bottle_cap_wuji2_scene_isaac.xml"
+  "scene": "z02_bottle_cap_wuji2_scene_isaac.xml",
+  "media": "z02_bottle_cap.gif"
  }
 }
