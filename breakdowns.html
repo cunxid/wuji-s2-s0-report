@@ -1,0 +1,149 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Agent breakdowns — step by step, on the current harness</title>
+<style>
+body{font:15px/1.55 -apple-system,"Segoe UI",sans-serif;color:#0b0b0b;background:#fcfcfb;max-width:1180px;margin:22px auto;padding:0 16px}
+h1{font-size:22px;margin-bottom:2px}.sub{color:#555;margin-top:0;font-size:14px}
+a{color:#2056a8}code{background:#f1f0ec;padding:1px 5px;border-radius:4px;font-size:12px}
+.nav a{display:inline-block;border:1px solid #d7d6cf;border-radius:8px;padding:6px 12px;background:#fff;text-decoration:none;font-weight:600;margin-right:8px;font-size:13.5px}
+.case{border:1px solid #e1e0d9;border-radius:12px;background:#fff;margin:18px 0;padding:14px 16px}
+.case h2{font-size:17px;margin:0 0 2px;border:none;padding:0}
+.case .meta{color:#777;font-size:12.5px;margin-bottom:10px}
+.cols{display:grid;grid-template-columns:minmax(330px,43%) 1fr;gap:14px}
+.steps{max-height:470px;overflow-y:auto;padding-right:6px}
+.step{border:1px solid #eceae4;border-radius:9px;padding:8px 10px;margin-bottom:7px;cursor:pointer}
+.step:hover{border-color:#2056a8}
+.step.active{border-color:#2056a8;background:#f4f8ff}
+.badge{display:inline-block;font:10.5px/1.5 monospace;letter-spacing:.04em;border-radius:4px;padding:0 6px;color:#fff;margin-right:6px;vertical-align:1px}
+.b-perceive{background:#8a63c9}.b-plan{background:#2b6cb0}.b-gate{background:#b7791f}.b-execute{background:#1baf7a}.b-judge{background:#d8343c}.b-route{background:#555}
+.step .call{font:12px monospace;color:#1a1a1a;word-break:break-all;margin:3px 0}
+.step .why{font-size:12.5px;color:#555}
+.step .ws{float:right;font:11px monospace;color:#999}
+canvas{width:100%;height:380px;border:1px solid #eee;border-radius:8px;background:#fafaf8;cursor:grab;touch-action:none}
+canvas:active{cursor:grabbing}
+.scrub{width:100%;margin-top:6px}
+.legend{font-size:11.5px;color:#777;margin-top:4px}
+.legend b{font-weight:600}
+.outcome{font-size:13px;margin-top:8px;padding:7px 10px;background:#f6fbf7;border:1px solid #d8eede;border-radius:8px}
+.hint{color:#999;font-size:11.5px}
+</style></head><body>
+<h1>Agent breakdowns — exactly what was called, step by step</h1>
+<p class="sub">Five tasks <b>re-run fresh on the current harness</b> (shipped tianji2 rig, all of
+tonight's fixes), each traced end to end: every pipeline call, the measured reasoning behind it,
+and the resulting trajectory. <span class="hint">Drag the plot to orbit · wheel to zoom ·
+shift-drag to pan · scrub the timeline · click a step to jump to its moment.</span></p>
+<div class="nav"><a href="index.html">← Main</a><a href="skills.html">🛠 Skills</a><a href="harness.html">🔩 Harness</a><a href="timing.html">⏱ Timing</a></div>
+<div id="cases"><p class="hint">loading traces…</p></div>
+<script>
+const TASKS = ['t08_hammer_nail','t25_place_cup_on_plate','t14_move_and_click_mouse',
+               'turn_butter_block','t34_roll_ball_through_gate'];
+const BCLS = {perceive:'b-perceive',plan:'b-plan',gate:'b-gate',execute:'b-execute',judge:'b-judge',route:'b-route'};
+
+function viewer(cv, traj){
+  // draggable 3D polyline viewer: orbit (drag), zoom (wheel), pan (shift-drag), scrub (external)
+  const ctx = cv.getContext('2d');
+  let az = 0.9, el = 0.45, zoom = 1.0, panX = 0, panY = 0, tIdx = null;
+  const paths = [];
+  if (traj.reference_wrist && traj.reference_wrist.length) paths.push({pts: traj.reference_wrist, color:'#b9b9b9', dash:[6,5], w:1.6, name:'commanded wrist'});
+  if (traj.wrist && traj.wrist.length)   paths.push({pts: traj.wrist,  color:'#2056a8', dash:[], w:2.4, name:'achieved wrist'});
+  if (traj.object && traj.object.length) paths.push({pts: traj.object, color:'#e8842a', dash:[], w:2.2, name:'object'});
+  const all = paths.flatMap(p => p.pts);
+  if (!all.length) { ctx.font='14px sans-serif'; ctx.fillText('no trajectory in trace', 20, 30); return {set(){},}; }
+  const mn=[1/0,1/0,1/0], mx=[-1/0,-1/0,-1/0];
+  for (const q of all) for (let i=0;i<3;i++){ mn[i]=Math.min(mn[i],q[i]); mx[i]=Math.max(mx[i],q[i]); }
+  const c=[(mn[0]+mx[0])/2,(mn[1]+mx[1])/2,(mn[2]+mx[2])/2];
+  const span=Math.max(mx[0]-mn[0],mx[1]-mn[1],mx[2]-mn[2],0.15);
+  function draw(){
+    const W=cv.width=cv.clientWidth*2, H=cv.height=cv.clientHeight*2;
+    ctx.clearRect(0,0,W,H);
+    const sc=Math.min(W,H)*0.42*zoom/span;
+    const ca=Math.cos(az),sa=Math.sin(az),ce=Math.cos(el),se=Math.sin(el);
+    const P=q=>{const x=q[0]-c[0],y=q[1]-c[1],z=q[2]-c[2];
+      const rx=x*ca-y*sa, ry=x*sa+y*ca;                  // yaw
+      const sy=ry*ce-z*se, sz=ry*se+z*ce;                // pitch; screen: rx right, sz up
+      return [W/2+rx*sc+panX, H/2-sz*sc+panY, sy];};
+    // table grid at z=0.92
+    ctx.strokeStyle='#e8e6df'; ctx.lineWidth=1; ctx.setLineDash([]);
+    for(let gx=-4;gx<=4;gx++){ctx.beginPath();
+      let p1=P([c[0]+gx*span/6, c[1]-span*0.7, 0.92]), p2=P([c[0]+gx*span/6, c[1]+span*0.7, 0.92]);
+      ctx.moveTo(p1[0],p1[1]);ctx.lineTo(p2[0],p2[1]);ctx.stroke();
+      p1=P([c[0]-span*0.7, c[1]+gx*span/6, 0.92]); p2=P([c[0]+span*0.7, c[1]+gx*span/6, 0.92]);
+      ctx.beginPath();ctx.moveTo(p1[0],p1[1]);ctx.lineTo(p2[0],p2[1]);ctx.stroke();}
+    for (const path of paths){
+      ctx.strokeStyle=path.color; ctx.lineWidth=path.w*2; ctx.setLineDash(path.dash.map(d=>d*2));
+      ctx.beginPath();
+      path.pts.forEach((q,i)=>{const p=P(q); i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]);});
+      ctx.stroke(); ctx.setLineDash([]);
+      const s=P(path.pts[0]); ctx.fillStyle=path.color; ctx.beginPath(); ctx.arc(s[0],s[1],5,0,7); ctx.fill();
+    }
+    // event markers on the wrist path
+    const base = (traj.wrist && traj.wrist.length? traj.wrist : paths[0].pts);
+    for (const ev of (traj.events||[])){
+      const i=Math.min(ev.t_index, base.length-1); if(i<0)continue;
+      const p=P(base[i]); ctx.fillStyle='#444';
+      ctx.beginPath(); ctx.arc(p[0],p[1],6,0,7); ctx.fill();
+      ctx.font='20px sans-serif'; ctx.fillText(ev.label, p[0]+9, p[1]-6);
+    }
+    if (tIdx!=null){ // scrubber dots
+      for (const path of paths){
+        const i=Math.min(Math.floor(tIdx*(path.pts.length-1)), path.pts.length-1);
+        const p=P(path.pts[i]); ctx.fillStyle=path.color;
+        ctx.beginPath(); ctx.arc(p[0],p[1],10,0,7); ctx.fill();
+        ctx.strokeStyle='#fff'; ctx.lineWidth=3; ctx.stroke();
+      }
+    }
+  }
+  let drag=null;
+  cv.addEventListener('pointerdown',e=>{drag={x:e.clientX,y:e.clientY,shift:e.shiftKey};cv.setPointerCapture(e.pointerId);});
+  cv.addEventListener('pointermove',e=>{if(!drag)return;
+    const dx=e.clientX-drag.x, dy=e.clientY-drag.y; drag.x=e.clientX; drag.y=e.clientY;
+    if(drag.shift){panX+=dx*2;panY+=dy*2;} else {az+=dx*0.012; el=Math.max(-1.4,Math.min(1.4,el+dy*0.012));}
+    draw();});
+  cv.addEventListener('pointerup',()=>drag=null);
+  cv.addEventListener('wheel',e=>{e.preventDefault();zoom=Math.max(0.3,Math.min(6,zoom*(e.deltaY<0?1.12:0.89)));draw();},{passive:false});
+  new ResizeObserver(draw).observe(cv);
+  draw();
+  return {set(t){tIdx=t;draw();}};
+}
+
+async function load(){
+  const root=document.getElementById('cases'); root.innerHTML='';
+  for (const t of TASKS){
+    let d;
+    try{ d=await (await fetch(`breakdowns/${t}.json`)).json(); }
+    catch(e){ const el=document.createElement('div'); el.className='case';
+      el.innerHTML=`<h2>${t}</h2><p class="hint">trace not yet published</p>`; root.appendChild(el); continue; }
+    const el=document.createElement('div'); el.className='case'; el.id=t;
+    const steps=(d.steps||[]).map((s,i)=>`
+      <div class="step" data-i="${i}">
+        <span class="badge ${BCLS[s.stage]||'b-route'}">${s.stage}</span>
+        <span class="ws">${s.wall_s!=null?s.wall_s.toFixed(1)+'s':''}</span>
+        <div class="call">${s.call||''}</div>
+        <div class="why">${s.reasoning||''}</div>
+      </div>`).join('');
+    el.innerHTML=`<h2>${d.prompt||t}</h2>
+      <div class="meta">${t} · rig ${d.rig||'tianji2'} · total ${d.total_wall_s!=null?d.total_wall_s.toFixed(1)+'s':'—'}</div>
+      <div class="cols">
+        <div class="steps">${steps}</div>
+        <div>
+          <canvas></canvas>
+          <input class="scrub" type="range" min="0" max="1000" value="0">
+          <div class="legend"><b style="color:#2056a8">—</b> achieved wrist &nbsp;
+            <b style="color:#b9b9b9">┄</b> commanded reference &nbsp;
+            <b style="color:#e8842a">—</b> object &nbsp; ● events</div>
+          <div class="outcome">${d.outcome_html || ('outcome: '+JSON.stringify(d.outcome||{}))}</div>
+        </div>
+      </div>`;
+    root.appendChild(el);
+    const v=viewer(el.querySelector('canvas'), d.trajectory||{});
+    const scrub=el.querySelector('.scrub');
+    scrub.addEventListener('input',()=>v.set(scrub.value/1000));
+    el.querySelectorAll('.step').forEach(se=>se.addEventListener('click',()=>{
+      el.querySelectorAll('.step').forEach(x=>x.classList.remove('active'));
+      se.classList.add('active');
+      const i=+se.dataset.i, s=(d.steps||[])[i];
+      if (s && s.t_frac!=null){ scrub.value=Math.round(s.t_frac*1000); v.set(s.t_frac); }
+    }));
+  }
+}
+load();
+</script></body></html>
