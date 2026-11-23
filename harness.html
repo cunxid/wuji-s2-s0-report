@@ -21,12 +21,12 @@ and the <b>motion-planning gates</b> around every skill call — with tonight's 
   │   else depth-plane — disclosed per run)        │ typed failures + repair outcomes
   │ estimate_pose (ICP on segment cloud)           │
   ▼                                                ▼
-S2 PLAN: pick hold/basin from atlas → compile verb(params, mesh, scene)
+S2 PLAN: pick basin (from the basins file or author-typed) → compile verb(params, mesh, scene)
   │  • yaw-sweep kinematic IK search (per-frame DLS on a scratch model)
   │  • depth-scan corridors: carry gets a per-sample z-floor from the MEASURED
   │    height map; marker drops descend to the measured surface (PLAN_SETDOWN)
-  │  • IK path gate (new): joint accel + singularity + limit margins along the
-  │    whole 50 Hz path; infeasible → typed rejection or retime suggestion
+  │  • IK path gate (standalone today, NOT yet in the default compile path):
+  │    joint accel + singularity + limit margins along the whole 50 Hz path
   ▼
 EXECUTE on frozen S0 (50 Hz reference; physics arbitrates)
   │  gates: lift-confirm · slip-pause · drop-abort
@@ -40,11 +40,11 @@ JUDGE (between segments and after): re-observe via perception, typed verdict,
 <h2>1 · How plans take in the atlas</h2>
 <table>
 <tr><th>atlas product</th><th>how the plan consumes it</th><th>live example (tonight)</th></tr>
-<tr><td>capture basins<br><code>v2_capture_basins.json</code></td><td>acquire pins ψ (spawn-yaw) + measured CORRECT before any skill — the yaw sweep ties at ~0 on the shipped mount, so basin search + offset retry is mandatory</td><td>box60 ψ=-90 (bucket/bowl/pour passes); rod15x150 ψ=-120 → t09 peg official pass; bulb: 0 basins = typed capture gap</td></tr>
-<tr><td>object envelopes<br><code>envelope_v2.json</code> (24 objects)</td><td>speed/primitive selection from the envelope <i>interior</i>; CARRY_MIN_T reflection stretches too-fast carries</td><td>cyl30x80 pour lead tested and rejected (0/11 at 0.05 m/s); long objects (hammerS/lbar/tbar) lose HORIZONTAL primitives on the v2 mount — the far anchor sits at the arm's x/y reach edge (palm err plateaus 50–100 mm with grip retained) — so plans route those carries vertically or re-anchor</td></tr>
-<tr><td>task-scene envelopes<br><code>envelope_tasks.json</code> (50 scenes)</td><td>per-task carry feasibility inside the real clutter, behind a qualified grasp prefix</td><td>44/50 scenes: lift+arc tracked; lateral lines untrackable across scenes (consistent rig boundary)</td></tr>
-<tr><td>typed failures + repairs</td><td>actor routing: CAPTURE_MISSED+offset→CORRECT; GRASP_SLIP→basin switch; saturation→chunking/retime</td><td>t25: free-fall scatter diagnosed → measured-surface setdown → 27.7 mm official</td></tr>
-<tr><td>writeback</td><td>every episode (task, probe, or retry) commits a cell: (object, skill, params+scene_rev, outcome, measured metrics)</td><td>4,300 cells: v2-rig requal 938 + 2,041 probe · 1,185 task-scene · 349 place · 143 spin · …</td></tr>
+<tr><td>capture basins<br><code>v2_capture_basins.json</code></td><td>acquire pins ψ (spawn-yaw) + measured CORRECT before any skill — the yaw sweep ties at ~0 on the shipped mount, so basin search + offset retry is mandatory. <b>Read from the file</b> by the 50-task evaluation runner and the V21 requalification; in the later builders (round 2/3, in-hand suite) the same values are typed in as constants by the plan author</td><td>box60 ψ=-90 (bucket/bowl/pour passes); rod15x150 ψ=-120 → t09 peg official pass; bulb: 0 basins = typed capture gap</td></tr>
+<tr><td>object envelopes<br><code>envelope_v2.json</code> (24 objects)</td><td><b>Read by the plan author, not automatically.</b> The agent consults it when writing a plan (speeds, which lever to try, which lead to drop). The automatic carry-speed reflection (CARRY_MIN_T) exists but is inert today: it still reads the old-rig envelope file and its cap saturates, so it changes no plan (0 of 7 objects)</td><td>cyl30x80 pour lead tested and rejected (0/11 at 0.05 m/s); long objects (hammerS/lbar/tbar) lose HORIZONTAL primitives on the v2 mount — the far anchor sits at the arm's x/y reach edge (palm err plateaus 50–100 mm with grip retained) — so plans route those carries vertically or re-anchor</td></tr>
+<tr><td>task-scene envelopes<br><code>envelope_tasks.json</code> (50 scenes)</td><td><b>Recorded only.</b> No planner reads it yet; it informs the plan author and this site</td><td>44/50 scenes: lift+arc tracked; lateral lines untrackable across scenes (consistent rig boundary)</td></tr>
+<tr><td>typed failures + repairs</td><td>retry routing uses the <b>last episode's measurement</b> (precontact offset → CORRECT; failure type → next lever), not an atlas lookup. The atlas adds candidate ordering (proven-good yaws first) only inside the actor retry loop, which the 50-task evaluation path does not call</td><td>t25: free-fall scatter diagnosed → measured-surface setdown → 27.7 mm official</td></tr>
+<tr><td>writeback</td><td>probe, suite, and retry-round episodes each commit a cell: (object, skill, params+scene_rev, outcome, measured metrics). The 50-task evaluation runners deliberately do not write cells. Caveat: the scene revision tag was not bumped for the shipped rig — old- and new-rig cells are separated by the arm tag instead</td><td>4,300 cells: v2-rig requal 938 + 2,041 probe · 1,185 task-scene · 349 place · 143 spin · …</td></tr>
 </table>
 
 <h2>2 · How the harness uses segmentation &amp; depth (beyond the skill call)</h2>
@@ -57,13 +57,16 @@ JUDGE (between segments and after): re-observe via perception, typed verdict,
 </table>
 
 <h2>3 · Motion-planning gates around every skill call</h2>
-<p>A reference is only handed to S0 after passing, in order: <b>(i)</b> the yaw-sweep kinematic
+<p><b>Wiring status:</b> checks (i) and (ii) run automatically inside the compile path; check
+(iii) is a standalone tool today — it was run after the fact on the traced references and used
+once as a forward planner (the lying-cup approach) — it does not yet block execution by default.
+The checks, in order: <b>(i)</b> the yaw-sweep kinematic
 IK search (endpoint feasibility over candidate spawn yaws, warm-started damped-least-squares on a
 scratch model); <b>(ii)</b> the depth corridor check (swept path vs measured height map);
 <b>(iii)</b> the <b>IK path gate</b>: full-path 50 Hz IK with joint-velocity/acceleration bounds,
 manipulability (singularity proximity) and joint-limit margins — references that would demand
 accel spikes or pass near singular configs are rejected with a typed reason or returned with a
-minimal retime factor. A rejection is itself a boundary datum and is written to the atlas.
+minimal retime factor.
 <b>Measured calibration</b> (23 exact composed references on the shipped rig; thresholds =
 winner envelope +15%, no winner rejected by construction): the gate predicts <b>4 of 10 real
 failures before spending an episode</b> — water-plant's 78° sustained orientation
