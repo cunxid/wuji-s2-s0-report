@@ -46,6 +46,11 @@ function viewer(cv, traj){
   if (traj.reference_wrist && traj.reference_wrist.length) paths.push({pts: traj.reference_wrist, color:'#b9b9b9', dash:[6,5], w:1.6, name:'commanded wrist'});
   if (traj.wrist && traj.wrist.length)   paths.push({pts: traj.wrist,  color:'#2056a8', dash:[], w:2.4, name:'achieved wrist'});
   if (traj.object && traj.object.length) paths.push({pts: traj.object, color:'#e8842a', dash:[], w:2.2, name:'object'});
+  for (const [k,v] of Object.entries(traj)){
+    if (['wrist','object','reference_wrist','events','hz'].includes(k)) continue;
+    if (Array.isArray(v) && v.length && Array.isArray(v[0]) && v[0].length===3)
+      paths.push({pts:v, color:'#8a63c9', dash:[2,4], w:1.6, name:k});
+  }
   const all = paths.flatMap(p => p.pts);
   if (!all.length) { ctx.font='14px sans-serif'; ctx.fillText('no trajectory in trace', 20, 30); return {set(){},}; }
   const mn=[1/0,1/0,1/0], mx=[-1/0,-1/0,-1/0];
@@ -129,8 +134,8 @@ async function load(){
           <input class="scrub" type="range" min="0" max="1000" value="0">
           <div class="legend"><b style="color:#2056a8">—</b> achieved wrist &nbsp;
             <b style="color:#b9b9b9">┄</b> commanded reference &nbsp;
-            <b style="color:#e8842a">—</b> object &nbsp; ● events</div>
-          <div class="outcome">${d.outcome_html || ('outcome: '+JSON.stringify(d.outcome||{}))}</div>
+            <b style="color:#e8842a">—</b> object &nbsp; ● events &nbsp; <b style="color:#8a63c9">┄</b> aux series (left wrist / scene objects)</div>
+          <div class="outcome">${d.outcome_html || ((d.outcome&&d.outcome.headline) ? d.outcome.headline : 'outcome: '+JSON.stringify(d.outcome||{}))}</div>
         </div>
       </div>`;
     root.appendChild(el);
