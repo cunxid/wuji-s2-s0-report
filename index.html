@@ -56,32 +56,28 @@ differs.</p>
 <div class="cell"><div class="lab">WITHOUT HARNESS · native clip replay</div>
 <video muted loop autoplay playsinline src="cmp_strike_baseline.mp4"></video>
 <div><b>t08 hammer strike</b> · <span class="fail">FAIL</span> · nail 0.0&nbsp;mm</div></div>
+
 <div class="cell"><div class="lab">WITH HARNESS · S2-compiled reference</div>
 <video muted loop autoplay playsinline src="cmp_strike_harness.mp4"></video>
-<div><b>t08 hammer strike</b> · <span class="pass">PASS</span> · nail 16.0&nbsp;mm (≥6)</div></div>
+<div><b>t08 hammer strike</b> · <span class="pass">PASS</span> · nail 9.7&nbsp;mm (≥6)</div></div>
 
-<div class="cell"><div class="lab">WITHOUT HARNESS</div>
+<div class="cell"><div class="lab">WITHOUT HARNESS · native clip replay</div>
 <video muted loop autoplay playsinline src="cmp_place_bucket_baseline.mp4"></video>
-<div><b>place in bucket</b> · <span class="fail">FAIL</span> · 462&nbsp;mm off</div></div>
-<div class="cell"><div class="lab">WITH HARNESS</div>
-<video muted loop autoplay playsinline src="cmp_place_bucket_harness.mp4"></video>
-<div><b>place in bucket</b> · <span class="pass">PASS</span> · 1.2&nbsp;mm from center</div></div>
+<div><b>place in bucket</b> · <span class="fail">FAIL</span> · 490&nbsp;mm off</div></div>
 
-<div class="cell"><div class="lab">WITHOUT HARNESS</div>
+<div class="cell"><div class="lab">WITH HARNESS · S2-compiled reference</div>
+<video muted loop autoplay playsinline src="cmp_place_bucket_harness.mp4"></video>
+<div><b>place in bucket</b> · <span class="pass">PASS</span> · 20&nbsp;mm from center</div></div>
+
+<div class="cell"><div class="lab">WITHOUT HARNESS · native clip replay</div>
 <video muted loop autoplay playsinline src="cmp_mouse_press_baseline.mp4"></video>
 <div><b>click mouse</b> · <span class="fail">FAIL</span> · 0.0&nbsp;mm travel</div></div>
-<div class="cell"><div class="lab">WITH HARNESS</div>
-<video muted loop autoplay playsinline src="cmp_mouse_press_harness.mp4"></video>
-<div><b>click mouse</b> · <span class="pass">PASS</span> · 6.3&nbsp;mm (≥4)</div></div>
 
-<div class="cell"><div class="lab">WITHOUT HARNESS</div>
-<video muted loop autoplay playsinline src="cmp_pour_baseline.mp4"></video>
-<div><b>pour</b> · <span class="fail">FAIL</span> · 0°&nbsp;tilt</div></div>
-<div class="cell"><div class="lab">WITH HARNESS</div>
-<video muted loop autoplay playsinline src="cmp_pour_harness.mp4"></video>
-<div><b>pour</b> · <span class="pass">PASS</span> · 124°&nbsp;held</div></div>
+<div class="cell"><div class="lab">WITH HARNESS · S2-compiled reference</div>
+<video muted loop autoplay playsinline src="cmp_mouse_press_harness.mp4"></video>
+<div><b>click mouse</b> · <span class="pass">PASS</span> · 13.5&nbsp;mm (≥4)</div></div>
 </div>
-<p class="na">All runs on the Tianji+wuji2 bimanual setup at real-time physics. The baseline is the
+<p class="na">All runs on the HandsOn-shipped Tianji M6-CCS dual-desktop bimanual rig (shoulder-mounted arms, central stand) at real-time physics; each pair is the IDENTICAL scene and spawn — only the reference S0 tracks differs. The baseline is the
 same pick/carry clip S0 was trained to track; it reaches the object but has no composed strike /
 precise-drop / press / tilt — exactly the capability the harness supplies by rewriting the
 reference.</p>
