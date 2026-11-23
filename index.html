@@ -98,7 +98,7 @@ reference.</p>
 
 
 <h2>In-hand rotation suite — 10 real-world tasks</h2>
-<p>Ten rotation tasks over the S0 training-dataset objects in semantically dressed scenes — graded on <b>in-hand rotation only</b> (≥55° while held); tool-on-target engagement (tip-down screwdriving, lid-on-jar) is a separate, harder contract — the first engaged version is being built and will be shown with its own measured criteria, each in a semantically
+<p>Ten rotation tasks over the S0 training-dataset objects in semantically dressed scenes — graded on <b>in-hand rotation only</b> (≥55° while held); tool-on-target engagement (tip-down screwdriving, lid-on-jar) is a separate, harder contract — the engaged screwdriving version was attempted with criteria declared up front and failed them (shown below), each in a semantically
 dressed scene (socket fixture, wood block + nail, jar, paint pot, cutting board, saucer, bolt,
 pipe, tray) on the shipped rig: calibrated acquire → <b>in-hand</b> spin/flip (S0 finger
 dexterity, wrist frozen) → graded ≥55° achieved while still held at the end.
@@ -108,7 +108,7 @@ the basin table and every attempt are in the capability atlas.</p>
 <div class="cmp">
 <div class="cell"><div class="lab">screw · z-axis · 4 attempts</div>
 <video muted loop autoplay playsinline src="ih_drive_screwdriver.mp4"></video>
-<div><b>Rotate the screwdriver one half-turn in-hand</b><br><span class="na">⚠ grades in-hand rotation only — tip-down screw engagement is NOT verified here (engaged version in progress below)</span><br><span class="pass">PASS</span> · 131° achieved · grip 0.56<br><span class="na">scene: wood block with nail (t08-style, static) at (-0.08,-0.58)</span></div></div>
+<div><b>Rotate the screwdriver one half-turn in-hand</b><br><span class="na">⚠ grades in-hand rotation only — tip-down screw engagement is NOT verified here; the engaged version was attempted separately and failed its declared bar (see below)</span><br><span class="pass">PASS</span> · 131° achieved · grip 0.56<br><span class="na">scene: wood block with nail (t08-style, static) at (-0.08,-0.58)</span></div></div>
 <div class="cell"><div class="lab">bar120x20 · y-axis · 4 attempts</div>
 <video muted loop autoplay playsinline src="ih_flip_paintbrush.mp4"></video>
 <div><b>Flip the paintbrush bristles-down to start painting</b><br><span class="pass">PASS</span> · 78° achieved · grip 0.62<br><span class="na">scene: paint pot (existing bowl) + paint can with blue paint top at (-0.10,-0.63)</span></div></div>
@@ -142,6 +142,30 @@ it from the fingertip grip; the bulb has NO capture basin on this rig (full 12-y
 measured-CORRECT retries). The jar-lid passes the 55° bar at the validated −170° dial; a full
 −340° single twist holds firmly but saturates at 36° — long continuous twists need composed
 re-grips (split_compose), a measured retraining target.</p>
+
+
+<h3>Engaged screwdriving — the real contract (attempted, failed)</h3>
+<p>The rotation cards above only grade in-hand rotation. This is the task as a person would mean
+it: a screw with a slotted head seated in the wood block, the screwdriver held <b>tip-down</b> on
+it, and success measured on the <b>screw's own hinge</b>. The criteria were written down before any
+episode and not changed afterwards: (a) tip within 15&nbsp;mm of the screw head and tool axis
+within 25° of vertical for at least 90% of the drive window; (b) the screw turns at least 90°
+while (a) holds; (c) the tool is still held at the end.</p>
+<div class="cmp">
+<div class="cell"><div class="lab">best run of 30 · tip-down on the screw</div>
+<video muted loop autoplay playsinline src="dse_a18.mp4"></video>
+<div><span class="fail">FAIL</span> against the declared bar · screw turned <b>5.9°</b> while engaged (bar 90°) ·
+engaged 20% of the window (bar 90%) · tool axis median 8.7° from vertical · tool held at the end</div></div>
+<div class="cell"><div class="lab">what 30 episodes measured</div>
+<div style="font-size:13px;line-height:1.55;padding:6px 2px">
+The tool does reach the screw tip-down and the screw does turn through the seated blade, but only
+in short pulses: as soon as the fingers actively rotate the tool, tracking error builds up and
+the tip is thrown out of the slot. The largest total screw rotation in any run was 55°, and in
+that run the tool was outside the declared engagement window for most of the drive, so it does
+not count. Verdict: (a) fail, (b) fail, (c) pass. This is a measured limit of the frozen hand
+policy under this harness, not a pass. Full attempt log:
+<code>s2/s2loop/drive_screw_engaged.json</code>.</div></div>
+</div>
 
 <h3>Beyond the single-grasp wall: the ratchet re-grip (composed skill)</h3>
 <p>The allen key's single-grasp rotation wall is measured at ~35° held. Chaining
