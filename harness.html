@@ -64,8 +64,19 @@ scratch model); <b>(ii)</b> the depth corridor check (swept path vs measured hei
 manipulability (singularity proximity) and joint-limit margins — references that would demand
 accel spikes or pass near singular configs are rejected with a typed reason or returned with a
 minimal retime factor. A rejection is itself a boundary datum and is written to the atlas.
-The gate's calibration study (thresholds fitted on winning vs failing references, with its
-pre-execution failure-prediction rate) publishes here when the run completes.</p>
+<b>Measured calibration</b> (23 exact composed references on the shipped rig; thresholds =
+winner envelope +15%, no winner rejected by construction): the gate predicts <b>4 of 10 real
+failures before spending an episode</b> — water-plant's 78° sustained orientation
+unreachability, pinch-tongs 428&nbsp;mm out of workspace (57% solver-recovery dwell),
+the microwave press (375&nbsp;mm/178°), and t09's overshooting aim whose wrist flange sweeps
+73&nbsp;mm <i>into the table</i> (vs 31&nbsp;mm for the winning aim). 11/13 winners pass; the two
+rejections are the same press plan twice and expose a real composer defect (the approach march
+runs ~325 frames out of workspace in arenas lacking the tracked object joint — the episode
+survives only via the arrival-gated replan), now flagged for repair. A per-family view also
+separates the allen-key escape (21&nbsp;mm/49° sustained hold error vs ≤0.1&nbsp;mm for winning
+spins). Honestly reported blind spots: pure grasp-slips and semantic failures are kinematically
+clean — the gate cannot see them, the atlas can. Retime demo under a tight accel budget:
+t25 ×1.68, t09 ×1.07. API: <code>ik_gate.check_reference(arena, poses_50hz, arm)</code>.</p>
 
 <p class="na">Everything above is measured machinery, not aspiration: file pointers —
 <code>s2/perception/observe.py</code> · <code>s2/dexharness/sweep.py</code> ·
