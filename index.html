@@ -90,11 +90,55 @@ same pick/carry clip S0 was trained to track; it reaches the object but has no c
 precise-drop / press / tilt — exactly the capability the harness supplies by rewriting the
 reference.</p>
 
+
+<h2>In-hand rotation suite — 10 real-world tasks</h2>
+<p>Ten realistic rotation tasks over the S0 training-dataset objects (V21), on the shipped rig:
+calibrated acquire → <b>in-hand</b> spin/flip (S0 finger dexterity, wrist frozen) → graded
+≥55° achieved while still held. Boundaries are reported as measured, not hidden: the bulb and
+cup are capture-class objects and fail exactly where the probed envelope predicts.</p>
+<div class="cmp">
+<div class="cell"><div class="lab">screw · z-axis · 3 attempts</div>
+<video muted loop autoplay playsinline src="ih_drive_screwdriver.mp4"></video>
+<div><b>Drive a screw: turn the screwdriver one half-turn</b><br><span class="pass">PASS</span> · 131° achieved · grip 0.56</div></div>
+<div class="cell"><div class="lab">bar120x20 · y-axis · 3 attempts</div>
+<video muted loop autoplay playsinline src="ih_flip_paintbrush.mp4"></video>
+<div><b>Flip the paintbrush bristles-down to start painting</b><br><span class="pass">PASS</span> · 78° achieved · grip 0.62</div></div>
+<div class="cell"><div class="lab">hammerS · x-axis · 6 attempts</div>
+<video muted loop autoplay playsinline src="ih_hammer_face_to_claw.mp4"></video>
+<div><b>Rotate the hammer in hand from striking face to claw</b><br><span class="pass">PASS</span> · 99° achieved · grip 0.52</div></div>
+<div class="cell"><div class="lab">cup76x90 · y-axis · 6 attempts</div>
+<video muted loop autoplay playsinline src="ih_topple_water_cup.mp4"></video>
+<div><b>Lay the water cup down on its side (tip it over in-hand)</b><br><span class="fail">GRASP_SLIP</span> · 108° achieved · grip 0.38</div></div>
+<div class="cell"><div class="lab">box60 · z-axis · 6 attempts</div>
+<video muted loop autoplay playsinline src="ih_turn_butter_block.mp4"></video>
+<div><b>Rotate the butter block to align it for cutting</b><br><span class="fail">GRASP_SLIP</span> · 63° achieved · grip 0.29</div></div>
+<div class="cell"><div class="lab">dengpao48h138 · z-axis · 6 attempts</div>
+<video muted loop autoplay playsinline src="ih_screw_in_light_bulb.mp4"></video>
+<div><b>Screw a light bulb into its socket (thread it clockwise)</b><br><span class="fail">GRASP_SLIP</span> · 6° achieved · grip 0.00</div></div>
+<div class="cell"><div class="lab">screw · z-axis · 6 attempts</div>
+<video muted loop autoplay playsinline src="ih_unscrew_jar_lid.mp4"></video>
+<div><b>Unscrew a stuck jar lid: one long continuous twist</b><br><span class="fail">GRASP_SLIP</span> · 9° achieved · grip 0.00</div></div>
+<div class="cell"><div class="lab">box40 · y-axis · 6 attempts</div>
+<video muted loop autoplay playsinline src="ih_roll_dice_show_face.mp4"></video>
+<div><b>Turn the die in the fingers to show the opposite face</b><br><span class="fail">GRASP_SLIP</span> · 2° achieved · grip 0.00</div></div>
+<div class="cell"><div class="lab">lbar100x60 · z-axis · 6 attempts</div>
+<video muted loop autoplay playsinline src="ih_turn_allen_key.mp4"></video>
+<div><b>Tighten with the allen key: one wrench turn in-hand</b><br><span class="fail">GRASP_SLIP</span> · 7° achieved · grip 0.00</div></div>
+<div class="cell"><div class="lab">tbar110 · z-axis · 6 attempts</div>
+<video muted loop autoplay playsinline src="ih_thread_tee_fitting.mp4"></video>
+<div><b>Thread the pipe tee fitting a quarter turn</b><br><span class="fail">GRASP_SLIP</span> · 3° achieved · grip 0.00</div></div>
+</div>
+<p class="na">3/10 pass outright (screwdriver 131°, paintbrush flip 78°, hammer face→claw 99°).
+The cup tips 99–108° but slips at the end of the motion (grip 0.33–0.38 vs the 0.30 bar +
+held-at-end check); butter block reaches 63° at grip 0.29; dice/allen-key/tee/jar-lid/bulb sit
+on the capture or long-twist walls — measured retraining targets, written back to the atlas as
+<code>inhand_rot_*</code> cells.</p>
+
 <h2>Status</h2>
 <div class="kpi"><div class="big">50</div>wuji2 HandsOn tasks (gallery)</div>
 <div class="kpi"><div class="big">17/78</div>evaluated PASS (official-else-grader)</div>
 <div class="kpi"><div class="big">4</div>full official HandsOn predicate passes</div>
-<div class="kpi"><div class="big">28</div>task scenes envelope-probed</div>
+<div class="kpi"><div class="big">1</div>task scenes envelope-probed</div>
 <p class="na">Scope: HandsOn only (the one native-wuji2 benchmark). Scenes loaded from their own
 <code>prepare_task_mjcf</code> pipeline; success scored by their ported predicates.
 Details in the <a href="agentic-dexterity.pdf">paper</a>; per-verb boundary in the
