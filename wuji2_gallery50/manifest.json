@@ -1,0 +1,468 @@
+{
+ "_provenance": {
+  "scenes": "generated per task by THEIR handson.sim.isaaclab.task_preview.prepare_task_mjcf(task, hand_type=wuji2)",
+  "repairs": "3 shipped asset defects fixed content-identically and labeled per card"
+ },
+ "b02_nut_bolt_assembly": {
+  "arena": "arena_arm_hand_b02_nut_bolt_assembly_rokae_wuji2.xml",
+  "prompts": [],
+  "alias_of": null,
+  "prompts_note": "legacy task \u2014 not in the shipped language bank (bank covers the 66 paper tasks)",
+  "rendered": true,
+  "scene": "b02_nut_bolt_assembly_wuji2_scene_isaac.xml"
+ },
+ "b320_towel_corner_synchronized_spread": {
+  "arena": "arena_arm_hand_c_tool_interactions_rokae_wuji2.xml",
+  "prompts": [
+   "Hold the mug upright under the faucet with the left hand. Open the right lever outward past 70 percent, fill for half a second, place the mug on the marked pad, and close the faucet."
+  ],
+  "alias_of": "t05_fill_cup",
+  "rendered": true,
+  "scene": "b320_towel_corner_synchronized_spread_wuji2_scene_isaac.xml"
+ },
+ "bench320_hl015_bimanual_cable_route_dual_plug": {
+  "arena": "arena_arm_hand_hl015_cable_route_rokae_wuji2.xml",
+  "prompts": [
+   "Insert the charger plug into the power strip first, then insert the charging cable connector into the charger head."
+  ],
+  "alias_of": "t02_connect_charger_and_cable",
+  "rendered": true,
+  "scene": "bench320_hl015_bimanual_cable_route_dual_plug_wuji2_scene_isaac.xml"
+ },
+ "bench320_hs014_bottle_stabilized_cap_opening": {
+  "arena": "arena_arm_hand_ycb_tasks_rokae_wuji2.xml",
+  "prompts": [
+   "Pick the apple and place it into the bucket.",
+   "Pick the banana and place it into the bucket.",
+   "Pick the orange and place it into the bucket."
+  ],
+  "alias_of": "t26_place_fruit_in_bucket",
+  "rendered": true,
+  "scene": "bench320_hs014_bottle_stabilized_cap_opening_wuji2_scene_isaac.xml"
+ },
+ "bimanual_assembly": {
+  "arena": "arena_arm_hand_bimanual_assembly_rokae_wuji2.xml",
+  "prompts": [],
+  "alias_of": null,
+  "prompts_note": "legacy task \u2014 not in the shipped language bank (bank covers the 66 paper tasks)",
+  "rendered": true,
+  "scene": "bimanual_assembly_wuji2_scene_isaac.xml"
+ },
+ "bimanual_hanoi": {
+  "arena": "arena_arm_hand_bimanual_hanoi_rokae_wuji2.xml",
+  "prompts": [],
+  "alias_of": null,
+  "prompts_note": "legacy task \u2014 not in the shipped language bank (bank covers the 66 paper tasks)",
+  "rendered": true,
+  "scene": "bimanual_hanoi_wuji2_scene_isaac.xml"
+ },
+ "bimanual_microwave_cook": {
+  "arena": "arena_arm_hand_microwave_cook_rokae_wuji2.xml",
+  "prompts": [
+   "Open the microwave door, carry the plate with its food box into the microwave, close the door, then press the green start button."
+  ],
+  "alias_of": "t12_load_and_start_microwave",
+  "rendered": true,
+  "scene": "bimanual_microwave_cook_wuji2_scene_isaac.xml"
+ },
+ "bimanual_photograph": {
+  "arena": "arena_arm_hand_bimanual_photograph_rokae_wuji2.xml",
+  "prompts": [
+   "Pick up the camera, aim it at the logo, and press the shutter button."
+  ],
+  "alias_of": "t23_photograph_logo",
+  "rendered": true,
+  "scene": "bimanual_photograph_wuji2_scene_isaac.xml"
+ },
+ "bimanual_unlock_ipad": {
+  "arena": "arena_arm_hand_ipad_rokae_wuji2.xml",
+  "prompts": [],
+  "alias_of": null,
+  "prompts_note": "legacy task \u2014 not in the shipped language bank (bank covers the 66 paper tasks)",
+  "rendered": true,
+  "scene": "bimanual_unlock_ipad_wuji2_scene_isaac.xml"
+ },
+ "c07_pitcher_pour_cup": {
+  "arena": "arena_arm_hand_c07_ycb_pour_rokae_wuji2.xml",
+  "prompts": [],
+  "alias_of": null,
+  "prompts_note": "legacy task \u2014 not in the shipped language bank (bank covers the 66 paper tasks)",
+  "rendered": true,
+  "scene": "c07_pitcher_pour_cup_wuji2_scene_isaac.xml"
+ },
+ "c08_tongs_ice_cubes": {
+  "arena": "arena_arm_hand_c_tool_interactions_rokae_wuji2.xml",
+  "prompts": [
+   "Hold the water bottle with the left hand. Brush its lower, middle, then upper bands with the right hand. Release both objects, leaving the bottle upright and stable."
+  ],
+  "alias_of": "t37_scrub_bottle",
+  "rendered": true,
+  "scene": "c08_tongs_ice_cubes_wuji2_scene_isaac.xml"
+ },
+ "c09_staple_paper_sheets": {
+  "arena": "arena_arm_hand_c_tool_interactions_rokae_wuji2.xml",
+  "prompts": [
+   "Hold the water bottle with the left hand. Brush its lower, middle, then upper bands with the right hand. Release both objects, leaving the bottle upright and stable."
+  ],
+  "alias_of": "t37_scrub_bottle",
+  "rendered": true,
+  "scene": "c09_staple_paper_sheets_wuji2_scene_isaac.xml"
+ },
+ "c11_xylophone_sequence": {
+  "arena": "arena_arm_hand_c_tool_interactions_rokae_wuji2.xml",
+  "prompts": [
+   "Hold the water bottle with the left hand. Brush its lower, middle, then upper bands with the right hand. Release both objects, leaving the bottle upright and stable."
+  ],
+  "alias_of": "t37_scrub_bottle",
+  "rendered": true,
+  "scene": "c11_xylophone_sequence_wuji2_scene_isaac.xml"
+ },
+ "click_mouse": {
+  "arena": "arena_arm_hand_monitor_mouse_rokae_wuji2.xml",
+  "prompts": [
+   "Move the mouse onto the mouse pad without pressing either button, then click the left mouse button."
+  ],
+  "alias_of": "t14_move_and_click_mouse",
+  "rendered": true,
+  "scene": "t14_move_and_click_mouse_wuji2_scene_isaac.xml"
+ },
+ "eval_comb01_cover_pitcher_and_box": {
+  "arena": "arena_arm_hand_ycb_tasks_rokae_wuji2.xml",
+  "prompts": [
+   "First align and seat the pitcher lid, then release it and let it settle. Next align and seat the clear-box lid, release it and let it settle. Both lids must remain correctly seated on their own containers."
+  ],
+  "alias_of": null,
+  "rendered": true,
+  "scene": "eval_comb01_cover_pitcher_and_box_wuji2_scene_isaac.xml"
+ },
+ "eval_comb02_open_laptop_and_click_mouse": {
+  "arena": "arena_arm_hand_monitor_mouse_rokae_wuji2.xml",
+  "prompts": [
+   "Open the initially closed laptop to 30 degrees with either hand and let it settle; you may release the screen. Move the mouse onto its pad without pressing either button, then click the left button once. Keep the laptop at the target angle and the mouse on the pad while the scene settles.",
+   "Open the initially closed laptop to 60 degrees with either hand and let it settle; you may release the screen. Move the mouse onto its pad without pressing either button, then click the left button once. Keep the laptop at the target angle and the mouse on the pad while the scene settles.",
+   "Open the initially closed laptop to 90 degrees with either hand and let it settle; you may release the screen. Move the mouse onto its pad without pressing either button, then click the left button once. Keep the laptop at the target angle and the mouse on the pad while the scene settles."
+  ],
+  "alias_of": null,
+  "rendered": true,
+  "scene": "eval_comb02_open_laptop_and_click_mouse_wuji2_scene_isaac.xml"
+ },
+ "fold_glasses": {
+  "arena": "arena_arm_hand_glass_v2_rokae_wuji2.xml",
+  "prompts": [],
+  "alias_of": null,
+  "prompts_note": "legacy task \u2014 not in the shipped language bank (bank covers the 66 paper tasks)",
+  "rendered": true,
+  "scene": "fold_glasses_wuji2_scene_isaac.xml"
+ },
+ "hammer_nail": {
+  "arena": "arena_arm_hand_hammer_nail_rokae_wuji2.xml",
+  "prompts": [
+   "Hold the wood block with the left hand, keeping its nail inserted. Pick up the hammer with the right hand and strike the nail so it sinks into the block."
+  ],
+  "alias_of": "t08_hammer_nail",
+  "rendered": true,
+  "scene": "t08_hammer_nail_wuji2_scene_isaac.xml"
+ },
+ "p003_bimanual_folding_ruler_shape_configuration": {
+  "arena": "arena_arm_hand_c_tool_interactions_rokae_wuji2.xml",
+  "prompts": [
+   "Hold the water bottle with the left hand. Brush its lower, middle, then upper bands with the right hand. Release both objects, leaving the bottle upright and stable."
+  ],
+  "alias_of": "t37_scrub_bottle",
+  "rendered": true,
+  "scene": "p003_bimanual_folding_ruler_shape_configuration_wuji2_scene_isaac.xml"
+ },
+ "p006_side_release_buckle_align_press": {
+  "arena": "arena_arm_hand_c_tool_interactions_rokae_wuji2.xml",
+  "prompts": [
+   "Hold the water bottle with the left hand. Brush its lower, middle, then upper bands with the right hand. Release both objects, leaving the bottle upright and stable."
+  ],
+  "alias_of": "t37_scrub_bottle",
+  "rendered": true,
+  "scene": "p006_side_release_buckle_align_press_wuji2_scene_isaac.xml"
+ },
+ "pick_bucket": {
+  "arena": "arena_arm_hand_bucket_pick_rokae_wuji2.xml",
+  "prompts": [
+   "Pick the apple and place it into the bucket.",
+   "Pick the banana and place it into the bucket.",
+   "Pick the orange and place it into the bucket."
+  ],
+  "alias_of": "t26_place_fruit_in_bucket",
+  "rendered": true,
+  "scene": "pick_bucket_wuji2_scene_isaac.xml"
+ },
+ "pinch_tongs": {
+  "arena": "arena_arm_hand_table_tongs_rokae_wuji2.xml",
+  "prompts": [],
+  "alias_of": null,
+  "prompts_note": "legacy task \u2014 not in the shipped language bank (bank covers the 66 paper tasks)",
+  "rendered": true,
+  "scene": "pinch_tongs_wuji2_scene_isaac.xml"
+ },
+ "t02_connect_charger_and_cable": {
+  "arena": "arena_arm_hand_c_tool_interactions_rokae_wuji2.xml",
+  "prompts": [
+   "Insert the charger plug into the power strip first, then insert the charging cable connector into the charger head."
+  ],
+  "alias_of": null,
+  "rendered": true,
+  "scene": "t02_connect_charger_and_cable_wuji2_scene_isaac.xml"
+ },
+ "t03_cover_box": {
+  "arena": "arena_arm_hand_ycb_tasks_rokae_wuji2.xml",
+  "prompts": [
+   "Align the box lid and place it onto the clear box."
+  ],
+  "alias_of": null,
+  "rendered": true,
+  "scene": "t03_cover_box_wuji2_scene_isaac.xml"
+ },
+ "t04_cover_pitcher": {
+  "arena": "arena_arm_hand_ycb_tasks_rokae_wuji2.xml",
+  "prompts": [
+   "Align the pitcher lid and place it onto the pitcher body."
+  ],
+  "alias_of": null,
+  "rendered": true,
+  "scene": "t04_cover_pitcher_wuji2_scene_isaac.xml"
+ },
+ "t08_hammer_nail": {
+  "arena": "arena_arm_hand_t08_hammer_nail_rokae_wuji2.xml",
+  "prompts": [
+   "Hold the wood block with the left hand, keeping its nail inserted. Pick up the hammer with the right hand and strike the nail so it sinks into the block."
+  ],
+  "alias_of": null,
+  "rendered": true,
+  "scene": "t08_hammer_nail_wuji2_scene_isaac.xml"
+ },
+ "t09_insert_peg": {
+  "arena": "arena_arm_hand_t09_insert_peg_rokae_wuji2.xml",
+  "prompts": [
+   "Insert the round peg into the socket tray hole."
+  ],
+  "alias_of": null,
+  "rendered": true,
+  "scene": "t09_insert_peg_wuji2_scene_isaac.xml"
+ },
+ "t11_line_up_blocks": {
+  "arena": "arena_arm_hand_c_tool_interactions_rokae_wuji2.xml",
+  "prompts": [
+   "Use only the set square tool to push three scattered wood blocks onto the baseline and align them side by side."
+  ],
+  "alias_of": null,
+  "rendered": true,
+  "scene": "t11_line_up_blocks_wuji2_scene_isaac.xml"
+ },
+ "t13_load_cans": {
+  "arena": "arena_arm_hand_c_tool_interactions_rokae_wuji2.xml",
+  "prompts": [
+   "Pick up both soup cans with their assigned hands and cross-load them into the opposite bin partitions. Release them within the synchronization window and leave them stable."
+  ],
+  "alias_of": null,
+  "rendered": true,
+  "scene": "t13_load_cans_wuji2_scene_isaac.xml"
+ },
+ "t14_move_and_click_mouse": {
+  "arena": "arena_arm_hand_monitor_mouse_rokae_wuji2.xml",
+  "prompts": [
+   "Move the mouse onto the mouse pad without pressing either button, then click the left mouse button."
+  ],
+  "alias_of": null,
+  "rendered": true,
+  "scene": "t14_move_and_click_mouse_wuji2_scene_isaac.xml"
+ },
+ "t16_open_laptop": {
+  "arena": "arena_arm_hand_c_tool_interactions_rokae_wuji2.xml",
+  "prompts": [
+   "Lift the laptop display from its front edge with the right hand and open it to 60 degrees.",
+   "Lift the laptop display from its front edge with the right hand and open it to 90 degrees.",
+   "Lift the laptop display from its front edge with the right hand and open it to 120 degrees."
+  ],
+  "alias_of": null,
+  "rendered": true,
+  "scene": "t16_open_laptop_wuji2_scene_isaac.xml"
+ },
+ "t17_open_latched_door": {
+  "arena": "arena_arm_hand_c_tool_interactions_rokae_wuji2.xml",
+  "prompts": [
+   "Depress the near lever past 45 degrees with the left hand for five frames. Push the unlatched door to 45 degrees with the right hand, avoiding the table, frame, and far handle."
+  ],
+  "alias_of": null,
+  "rendered": true,
+  "scene": "t17_open_latched_door_wuji2_scene_isaac.xml"
+ },
+ "t19_orient_cup_upright": {
+  "arena": "arena_arm_hand_ycb_tasks_rokae_wuji2.xml",
+  "prompts": [
+   "Pick up the cup and place it upright on the table."
+  ],
+  "alias_of": null,
+  "rendered": true,
+  "scene": "t19_orient_cup_upright_wuji2_scene_isaac.xml"
+ },
+ "t22_pass_screwdriver": {
+  "arena": "arena_arm_hand_c_tool_interactions_rokae_wuji2.xml",
+  "prompts": [
+   "Touch the screwdriver with the right hand first, then touch it with the left hand while it is airborne, and let it land in the horizontal green target zone."
+  ],
+  "alias_of": null,
+  "rendered": true,
+  "scene": "t22_pass_screwdriver_wuji2_scene_isaac.xml"
+ },
+ "t23_photograph_logo": {
+  "arena": "arena_arm_hand_bimanual_photograph_rokae_wuji2.xml",
+  "prompts": [
+   "Pick up the camera, aim it at the logo, and press the shutter button."
+  ],
+  "alias_of": null,
+  "rendered": true,
+  "scene": "t23_photograph_logo_wuji2_scene_isaac.xml"
+ },
+ "t24_place_ball_in_bowl": {
+  "arena": "arena_arm_hand_ball_to_bowl_rokae_wuji2.xml",
+  "prompts": [
+   "Pick the tennis ball and place it into the bowl.",
+   "Pick the mini soccer ball and place it into the bowl.",
+   "Pick the golf ball and place it into the bowl."
+  ],
+  "alias_of": null,
+  "rendered": true,
+  "scene": "t24_place_ball_in_bowl_wuji2_scene_isaac.xml"
+ },
+ "t25_place_cup_on_plate": {
+  "arena": "arena_arm_hand_t25_place_cup_on_plate_rokae_wuji2.xml",
+  "prompts": [
+   "Pick up the mug and place it upright in the center of the plate."
+  ],
+  "alias_of": null,
+  "rendered": true,
+  "scene": "t25_place_cup_on_plate_wuji2_scene_isaac.xml"
+ },
+ "t26_place_fruit_in_bucket": {
+  "arena": "arena_arm_hand_ycb_tasks_rokae_wuji2.xml",
+  "prompts": [
+   "Pick the apple and place it into the bucket.",
+   "Pick the banana and place it into the bucket.",
+   "Pick the orange and place it into the bucket."
+  ],
+  "alias_of": null,
+  "rendered": true,
+  "scene": "t26_place_fruit_in_bucket_wuji2_scene_isaac.xml"
+ },
+ "t34_roll_ball_through_gate": {
+  "arena": "arena_arm_hand_ycb_tasks_rokae_wuji2.xml",
+  "prompts": [
+   "Roll or flick the tennis ball from its starting side through the opening between the cracker box and the sugar box. Keep it on the table without picking it up or touching either box."
+  ],
+  "alias_of": null,
+  "rendered": true,
+  "scene": "t34_roll_ball_through_gate_wuji2_scene_isaac.xml"
+ },
+ "t36_scoop_marbles": {
+  "arena": "arena_arm_hand_ycb_tasks_rokae_wuji2.xml",
+  "prompts": [
+   "Keep the spoon level or slightly nose-down, scoop the marble, carry it over the bowl, and pour it into the bowl."
+  ],
+  "alias_of": null,
+  "rendered": true,
+  "scene": "t36_scoop_marbles_wuji2_scene_isaac.xml"
+ },
+ "t37_scrub_bottle": {
+  "arena": "arena_arm_hand_c_tool_interactions_rokae_wuji2.xml",
+  "prompts": [
+   "Hold the water bottle with the left hand. Brush its lower, middle, then upper bands with the right hand. Release both objects, leaving the bottle upright and stable."
+  ],
+  "alias_of": null,
+  "rendered": true,
+  "scene": "t37_scrub_bottle_wuji2_scene_isaac.xml"
+ },
+ "t40_slide_knife_blade": {
+  "arena": "arena_arm_hand_c_tool_interactions_rokae_wuji2.xml",
+  "prompts": [
+   "Pick up the utility knife with the right hand, then use the left fingertips on its slider to extend the blade fully.",
+   "Pick up the utility knife with the right hand, then use the left fingertips on its slider to retract the blade fully."
+  ],
+  "alias_of": null,
+  "rendered": true,
+  "scene": "t40_slide_knife_blade_wuji2_scene_isaac.xml"
+ },
+ "t44_stack_blocks": {
+  "arena": "arena_arm_hand_ycb_tasks_rokae_wuji2.xml",
+  "prompts": [
+   "Arrange the four blocks into four distinct height layers with the large wood block on the bottom layer, then keep the hand from touching the blocks for 0.5 seconds."
+  ],
+  "alias_of": null,
+  "rendered": true,
+  "scene": "t44_stack_blocks_wuji2_scene_isaac.xml"
+ },
+ "t46_store_charger": {
+  "arena": "arena_arm_hand_c_tool_interactions_rokae_wuji2.xml",
+  "prompts": [
+   "Hold the drawer open with the left hand and place the charger fully inside with the right. Release the charger, then the drawer, and hold stable for half a second."
+  ],
+  "alias_of": null,
+  "rendered": true,
+  "scene": "t46_store_charger_wuji2_scene_isaac.xml"
+ },
+ "t48_unfold_fan": {
+  "arena": "arena_arm_hand_c_tool_interactions_rokae_wuji2.xml",
+  "prompts": [
+   "Use both hands to grasp the two outermost fan ribs and unfold the fan symmetrically to 60 degrees, then hold it steadily on the table.",
+   "Use both hands to grasp the two outermost fan ribs and unfold the fan symmetrically to 120 degrees, then hold it steadily on the table.",
+   "Use both hands to grasp the two outermost fan ribs and unfold the fan symmetrically to 90 degrees, then hold it steadily on the table."
+  ],
+  "alias_of": null,
+  "rendered": true,
+  "scene": "t48_unfold_fan_wuji2_scene_isaac.xml"
+ },
+ "t50_water_plant": {
+  "arena": "arena_arm_hand_plant_rokae_wuji2.xml",
+  "prompts": [
+   "Grasp the spray bottle and aim it at the plant before pressing, then press the sprayer so that the water lands on the plant or its soil."
+  ],
+  "alias_of": null,
+  "rendered": true,
+  "scene": "t50_water_plant_wuji2_scene_isaac.xml"
+ },
+ "user_make_pizza_long_horizon": {
+  "arena": "arena_arm_hand_c_tool_interactions_rokae_wuji2.xml",
+  "prompts": [
+   "Hold the water bottle with the left hand. Brush its lower, middle, then upper bands with the right hand. Release both objects, leaving the bottle upright and stable."
+  ],
+  "alias_of": "t37_scrub_bottle",
+  "rendered": true,
+  "scene": "user_make_pizza_long_horizon_wuji2_scene_isaac.xml"
+ },
+ "water_plant": {
+  "arena": "arena_arm_hand_plant_rokae_wuji2.xml",
+  "prompts": [
+   "Grasp the spray bottle and aim it at the plant before pressing, then press the sprayer so that the water lands on the plant or its soil."
+  ],
+  "alias_of": "t50_water_plant",
+  "rendered": true,
+  "scene": "t50_water_plant_wuji2_scene_isaac.xml"
+ },
+ "z01_pipette": {
+  "arena": "arena_arm_hand_ycb_tasks_rokae_wuji2.xml",
+  "prompts": [
+   "Pick the apple and place it into the bucket.",
+   "Pick the banana and place it into the bucket.",
+   "Pick the orange and place it into the bucket."
+  ],
+  "alias_of": "t26_place_fruit_in_bucket",
+  "rendered": true,
+  "scene": "z01_pipette_wuji2_scene_isaac.xml"
+ },
+ "z02_bottle_cap": {
+  "arena": "arena_arm_hand_ycb_tasks_rokae_wuji2.xml",
+  "prompts": [
+   "Pick the apple and place it into the bucket.",
+   "Pick the banana and place it into the bucket.",
+   "Pick the orange and place it into the bucket."
+  ],
+  "alias_of": "t26_place_fruit_in_bucket",
+  "rendered": true,
+  "scene": "z02_bottle_cap_wuji2_scene_isaac.xml"
+ }
+}
