@@ -6,8 +6,8 @@
   "tasks_attempted": 4,
   "tasks_with_a_counted_test_episode": 0,
   "tasks_with_a_pass": 0,
-  "episodes_listed": 6,
-  "probe_episodes": 6,
+  "episodes_listed": 7,
+  "probe_episodes": 7,
   "test_episodes_listed": 0,
   "test_episodes_excluded": 0,
   "episodes_without_series": 0,
@@ -610,21 +610,27 @@
    "task": "t41_power_strip",
    "prompt": "Switch on the power strip; the desk lamp should light.",
    "version": 3,
-   "status": "probe only: 2 development episode(s), nothing counted",
+   "status": "probe only: 3 development episode(s), nothing counted",
    "passed": false,
    "episodes": [
     "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T204536Z-b8a2799b",
-    "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T205103Z-5a7c46a8"
+    "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T205103Z-5a7c46a8",
+    "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T205435Z-2c5d6c28"
    ],
    "best": null,
-   "failure": "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T205103Z-5a7c46a8",
+   "failure": "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T205435Z-2c5d6c28",
    "failure_role": "a probe episode (development, the latest; not counted)",
-   "note": null,
+   "note": {
+    "file": "s2/outputs/harness_round/daily50/tasks/t41_power_strip/NOTES.md",
+    "sha256": "d6f0697a42c459e52c7f3bc5df39432766dab5f6b8cc96ca725a07413b4ff41b",
+    "chars": 3423,
+    "text": "# t41_power_strip: notes for a fresh S2 agent\n\nInstruction: \"Switch on the power strip; the desk lamp should light.\"\nFrom 3 development episodes (series probe, agent s2_t41, 2026-11-24): 1 FAIL, then 2 PASS.\n[seen] = observed in an episode; [guess] = my inference.\n\n## What the task turned out to require\n- [seen] One press on the red pad at one end of the strip. The pad is a TOGGLE: a second press switches it off again\n  (episode 0: two presses, switch ended off). Press, look at the lamp, and stop as soon as it is lit.\n- [seen] The strip must stay where it lay (position and orientation), be at rest, and no hand part may touch it at the\n  end. The strip is a free, light body: a press that goes too deep shoves it, and that alone fails the episode.\n- [seen] The lamp lighting is visible in every colour picture (bulb glows, whole scene brightens): use it as the check.\n  `guarded_press` itself returns `passed: null` / `stopped_on_guard: false` in every press here, whether it toggled or not.\n- [guess] The lamp's plug staying in the strip is not a term of the rule, but a shove pulls it out, and that goes with a\n  moved strip anyway.\n\n## Seeing it\n- [seen] `top` shows the strip from straight above with the red pad clearly; `close` and `hero` show the strip from the\n  side and the lamp bulb. `wrist_right` is useless at home (black).\n- [seen] `locate_objects` does NOT give the switch. The strip comes back merged with its cables as one long flat object\n  (class named like a hammer, yaw set, top_z = the top of the plug, not of the strip's face). The lamp is not returned\n  as an object at all; the largest object is the stationery at the far side with two 'mask part' entries.\n- [seen] To aim at the pad: find the pad's centre pixel in `top_rgb.jpg` (zoom the crop), and convert it with the top\n  camera's calibration, which the fragment can read: `view.cameras['top'].intrinsics` and `.camera_pose.position`. The\n  top camera looks straight down; image right is world +y and image down is world +x:\n  `x = cam_x + (v - cv) * (cam_z - z) / f`, `y = cam_y + (u - cu) * (cam_z - z) / f`. For z I took the strip object's\n  `top_z` minus about 1 cm (the plug stands above the face). The fingertip landed in the middle of the pad (checked in\n  the `close`/`top` pictures with `retract=False`).\n\n## Acting\n- [seen] WORKED twice: `guarded_press(view, Pose(switch_xyz, palm_down_pose(switch_xyz).quaternion_wxyz, 'world'),\n  max_travel_m=0.01, speed_m_s=0.03)` then `go_home(view)` then close. The strip moved well under the allowed distance.\n- [seen] FAILED: the same press with `max_travel_m=0.02` at the default speed. It toggled the switch but pushed the\n  strip sideways and turned it, and pulled the lamp's plug out. The guard never stops on this light object, so\n  the finger always goes the full `max_travel_m`: depth is yours to choose, the guard will not save you.\n- [seen] TOO SHALLOW: `max_travel_m=0.005` did not toggle (lamp stayed dark, strip unmoved); a following press at 0.01\n  did. So start shallow, look, and deepen in small steps; never repeat a press that already lit the lamp.\n- [seen] Ticks: one press costs about 230 to 430 ticks (rows plus latency charged while the planner thinks, up to 150),\n  go_home about 130 to 150. The budget allows about three presses plus the retreat and the 300 settle ticks.\n- [seen] The right arm reaches the pad with the default press orientation; no IK trouble.\n"
+   },
    "media": {
     "failure": {
-     "video": "t41_power_strip__probe1__f614b895.mp4",
-     "poster": "t41_power_strip__probe1__f614b895.jpg",
-     "run": "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T205103Z-5a7c46a8"
+     "video": "t41_power_strip__probe2__22c127b6.mp4",
+     "poster": "t41_power_strip__probe2__22c127b6.jpg",
+     "run": "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T205435Z-2c5d6c28"
     }
    }
   },
@@ -835,7 +841,9 @@
     "object_in_training_recipe": "unknown"
    },
    "task_version": 2,
-   "excluded": [],
+   "excluded": [
+    "the task's scene.xml changed after this episode (or the card gives no digest)"
+   ],
    "problems": [],
    "video": {
     "dir": "s2/dexharness/runs/live/daily50_t19_jar_drawer/20261124T204539Z-45d41bfc/media/episode",
@@ -884,7 +892,9 @@
     "object_in_training_recipe": "unknown"
    },
    "task_version": 3,
-   "excluded": [],
+   "excluded": [
+    "the task's scene.xml changed after this episode (or the card gives no digest)"
+   ],
    "problems": [],
    "video": {
     "dir": "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T204536Z-b8a2799b/media/episode",
@@ -933,7 +943,9 @@
     "object_in_training_recipe": "unknown"
    },
    "task_version": 3,
-   "excluded": [],
+   "excluded": [
+    "the task's scene.xml changed after this episode (or the card gives no digest)"
+   ],
    "problems": [],
    "video": {
     "dir": "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T205103Z-5a7c46a8/media/episode",
@@ -1044,6 +1056,57 @@
     "problems": []
    },
    "card_sha256": "d25a1a22012f7c359dca31bd4db3f9904471434cf5425a50a265c181701cb98e"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T205435Z-2c5d6c28",
+   "run_name": "daily50_t41_power_strip/20261124T205435Z-2c5d6c28",
+   "task": "t41_power_strip",
+   "series": "probe",
+   "episode_index": 2,
+   "mode": "live",
+   "agent": "s2_t41",
+   "prompt": "Switch on the power strip; the desk lamp should light.",
+   "turns": 3,
+   "ticks_used": 1113,
+   "tick_budget": 1500,
+   "verdict": "PASS",
+   "terms": [
+    "[yes] switch pad pressed in this episode: m_switch_presses at least 1 above its settled value: 1; true for 499 ticks; recorded joint m_switch_presses minus its value in the settled scene",
+    "[yes] strip switched on: m_strip_switch >= 0.5: 1; true for 499 ticks; recorded joint m_strip_switch: the mirror of the switch flag strip_on (1 = on)",
+    "[yes] lamp lit: m_lamp_lit >= 0.5: 1; true for 499 ticks; recorded joint m_lamp_lit: the mirror of the lamp effect lamp_lit (1 = on: the strip switched on, the lamp's plug in it, its own cord on it)",
+    "[yes] strip within 0.020 m of where it settled: 0.007659; true for 1113 ticks; power_strip origin against its settled position",
+    "[yes] strip lies as it lay: top within 15 deg and long axis within 20 deg of the settled scene: 0; true for 1113 ticks; power_strip mesh +y (top) and mesh +z (long axis) against their settled directions; final = top angle in deg",
+    "[yes] no part of either hand touches the strip (finger links, palm link, palm surface): 0; true for 1070 ticks; recorded contacts of the hand links and of the two palm-surface bodies with the strip; final = hand links + palm surfaces touching",
+    "[yes] strip at rest (0.02 m/s, 0.5 rad/s): 4.913e-06; true for 1090 ticks; recorded joint velocity of the strip"
+   ],
+   "policy": {
+    "bound": false,
+    "engine": null,
+    "clip": null,
+    "object_in_training_recipe": "unknown"
+   },
+   "task_version": 3,
+   "excluded": [
+    "the task's scene.xml changed after this episode (or the card gives no digest)"
+   ],
+   "problems": [],
+   "video": {
+    "dir": "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T205435Z-2c5d6c28/media/episode",
+    "bytes": 378781,
+    "sha256": "d376aa5ee53bc3f6a83db6b1d11ca19ad5f72638da3ab4b0c29d8731b21dbd34",
+    "poster_bytes": 61875,
+    "poster_sha256": "384d8226d7174e59e5b0b78303d12f123abe3e5933494b64dbb3aaf92f6475b5",
+    "duration_s": 28.1,
+    "speed": 1.0,
+    "size": [
+     848,
+     602
+    ],
+    "turns_source": "s2_turns.jsonl",
+    "never_touch_events": 0,
+    "problems": []
+   },
+   "card_sha256": "9e9af3fc201faa138f241730c6292f61e9e1104ccee72ed871e4c8f720f0cb5c"
   }
  ],
  "other_episodes": [],
@@ -1071,14 +1134,14 @@
    "sha256": "be717d5304a24676743d9b3c9fafd97e7e4bff4d375f09cc8d4f50ff0b395fc2"
   },
   {
-   "name": "t41_power_strip__probe1__f614b895.mp4",
-   "bytes": 332803,
-   "sha256": "ecea5fe8e25d841e319173a80d7188365e123a8c9e427d270a24dedc4c440080"
+   "name": "t41_power_strip__probe2__22c127b6.mp4",
+   "bytes": 378781,
+   "sha256": "d376aa5ee53bc3f6a83db6b1d11ca19ad5f72638da3ab4b0c29d8731b21dbd34"
   },
   {
-   "name": "t41_power_strip__probe1__f614b895.jpg",
-   "bytes": 72841,
-   "sha256": "81090e134dd067804a05ca54f0dab4c6db64b7a48b6138eadf379b44f4f12fe4"
+   "name": "t41_power_strip__probe2__22c127b6.jpg",
+   "bytes": 61875,
+   "sha256": "384d8226d7174e59e5b0b78303d12f123abe3e5933494b64dbb3aaf92f6475b5"
   },
   {
    "name": "t49_weigh_orange__probe1__b87d5142.mp4",
@@ -1091,7 +1154,7 @@
    "sha256": "73ca8a99dbce99f339e4b038d8ead51063977268921374646785ff4328f64b0f"
   }
  ],
- "media_bytes": 2304609,
+ "media_bytes": 2339621,
  "media_budget_bytes": 250000000,
  "not_done": [
   {
@@ -1153,8 +1216,17 @@
     "t41_power_strip",
     "t49_weigh_orange"
    ]
+  },
+  {
+   "text": "4 other episode(s) have files that do not hold together.",
+   "items": [
+    "daily50_t19_jar_drawer/20261124T204539Z-45d41bfc: the task's scene.xml changed after this episode (or the card gives no digest)",
+    "daily50_t41_power_strip/20261124T204536Z-b8a2799b: the task's scene.xml changed after this episode (or the card gives no digest)",
+    "daily50_t41_power_strip/20261124T205103Z-5a7c46a8: the task's scene.xml changed after this episode (or the card gives no digest)",
+    "daily50_t41_power_strip/20261124T205435Z-2c5d6c28: the task's scene.xml changed after this episode (or the card gives no digest)"
+   ]
   }
  ],
- "generated": "2026-11-24 15:59 EST",
- "page_sha256": "e7b6f46fb628becdf064789d0ad6957933dd4e9f193fef105755f8a6247f1285"
+ "generated": "2026-11-24 16:02 EST",
+ "page_sha256": "b688501b758d33fa30ebb288fba51e56b1e62b8dfe5e0775268c48dbda33338c"
 }
