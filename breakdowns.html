@@ -241,7 +241,7 @@ async function load(){
       </div>`;
     root.appendChild(el);
     const v=viewer(el.querySelector('canvas'), d.trajectory||{});
-    (function(){ // grip-consistency strip: |wrist-object| over time; held window shaded
+    (function(){ // grip-consistency strip: |wrist-object| over time; shaded = grasp to planned release (or end), not proof of a hold
       const tr=d.trajectory||{}, w=tr.wrist||[], o=tr.object||[];
       const cv2=el.querySelector('canvas.drift'); if(!cv2||!w.length||!o.length) { if(cv2) cv2.remove(); return; }
       const n=Math.min(w.length,o.length);
