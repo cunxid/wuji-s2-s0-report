@@ -1,0 +1,83 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Motion planning from the depth image — prototype</title><style>
+body{font:15px/1.5 -apple-system,"Segoe UI",sans-serif;color:#0b0b0b;background:#fcfcfb;max-width:1240px;margin:24px auto;padding:0 16px}
+h1{font-size:22px;margin:6px 0 10px}h2{font-size:18px;margin:26px 0 8px}
+.na{color:#898781;font-size:12px}
+.note{font-size:13.5px;margin:10px 0;padding:10px 13px;background:#fff4f1;border:1px solid #f0b8a8;border-left:5px solid #d8343c;border-radius:8px;color:#4a150e}
+.card{border:1px solid #e1e0d9;border-radius:10px;padding:12px 14px;background:#fff;margin:10px 0}
+.card h3{font-size:15.5px;margin:0 0 4px}
+.media{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:10px;margin:8px 0}
+.media figure{margin:0}.media video,.media img{width:100%;border-radius:6px;border:1px solid #e1e0d9}
+.media figcaption{font-size:11.5px;color:#5c5a55;margin-top:2px}
+table{border-collapse:collapse;font-size:13px;margin:6px 0}td,th{border:1px solid #e1e0d9;padding:3px 8px;text-align:left}th{background:#f6f5f1}
+ul{margin:4px 0 4px 18px;padding:0;font-size:13.5px}
+</style></head><body>
+<p class="na"><a href="index.html">dashboard</a> · generated 2026-11-24 03:45</p>
+<h1>Motion planning from the depth image — prototype</h1>
+<div class="note"><b>What this is and is not.</b> A prototype of the planner that every skill will call: it takes the
+current depth images and the measured joint angles, builds a collision model of the scene from the depth alone, and
+returns a joint trajectory for the Tianji arm that is collision-free against that model and solvable by the arm's
+inverse kinematics, or a typed refusal. It runs on the CPU in plain MuJoCo. The tracking policy is not in the loop
+here, nothing is grasped, and no skill calls it yet; the planned paths were checked afterwards against the true scene,
+which the planner itself never sees. Scene: the ball-and-bowl table shipped with HandsOn.</div>
+
+<h2>From depth to a collision model</h2>
+<p>Depth is rendered from the cameras <code>head_main, topdown</code>, back-projected to world points,
+the robot's own pixels are removed, and the points fill a voxel grid of 10 mm
+(92 × 170 × 81 cells). Occupied cells are merged into boxes in a
+robot-only MuJoCo model; a collision query on it is one kinematics pass. Space behind a seen surface is treated as
+occupied down to the table; space the robot's own arm hides is taken from the previous observation. Planning margin
+10 mm (guaranteed clearance to the model 7.5 mm).
+Rendering two cameras took 93 ms and filling the grid 137 ms.</p>
+<div class="media">
+<figure><img src="planning/step2_head_main_rgb.png" loading="lazy"><figcaption>Head camera, colour image (not used by the planner)</figcaption></figure>
+<figure><img src="planning/step2_head_main_depth_selfmask.png" loading="lazy"><figcaption>Head camera, depth with the robot removed: the planner input</figcaption></figure>
+<figure><img src="planning/step2_occupancy_maps.png" loading="lazy"><figcaption>Occupancy built from depth: seen free, hit, hidden</figcaption></figure>
+<figure><img src="planning/case_a_pregrasp_planning_model.png" loading="lazy"><figcaption>The planning model: the robot and boxes made from the occupied cells</figcaption></figure>
+</div>
+
+<h2>Test cases (10 random seeds each)</h2>
+<table><tr><th>Case</th><th>Planned</th><th>Refusal</th><th>Planning, ms (median)</th><th>Collision queries</th>
+<th>Waypoints</th><th>Joint path, rad</th><th>Duration, s</th><th>Peak wrist speed, m/s</th>
+<th>Min. clearance to the depth model, mm</th><th>Min. clearance to the true scene, mm</th></tr>
+<tr><td>(a) settled start → pre-grasp 10 cm above the ball</td><td>10/10</td><td>—</td><td>41</td><td>629</td><td>2</td><td>1.85</td><td>2.21</td><td>0.30</td><td>39.6</td><td>47.2</td></tr><tr><td>(b1) lift 15 cm: a vertical line, every sample solved by IK and checked</td><td>10/10</td><td>—</td><td>13</td><td>—</td><td>31</td><td>0.66</td><td>1.02</td><td>0.30</td><td>11.9</td><td>17.1</td></tr><tr><td>(b2) lifted pose → above the bowl centre</td><td>10/10</td><td>—</td><td>46</td><td>390</td><td>2</td><td>1.10</td><td>1.20</td><td>0.24</td><td>48.0</td><td>49.7</td></tr><tr><td>(b3) start → above the bowl in one plan</td><td>10/10</td><td>—</td><td>183</td><td>4653</td><td>6</td><td>0.75</td><td>1.27</td><td>0.29</td><td>10.0</td><td>11.3</td></tr><tr><td>(c) goal 0.99 m from the shoulder</td><td>0/10</td><td>IK_INFEASIBLE</td><td>35</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>(c2) goal reachable but inside the table</td><td>0/10</td><td>GOAL_IN_COLLISION</td><td>28</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>(d) a 30 cm box between start and goal</td><td>10/10</td><td>—</td><td>336</td><td>8012</td><td>4</td><td>2.06</td><td>2.65</td><td>0.29</td><td>10.0</td><td>14.7</td></tr></table>
+<p class="na">Clearances are the smallest over the 10 seeds; the true scene is used only for this check. A refusal returns no trajectory.</p>
+
+<div class="card"><h3>(a) Reach a pre-grasp pose above the ball</h3>
+<div class="media"><figure><video src="planning/case_a_pregrasp.mp4" poster="planning/case_a_pregrasp.png" controls muted loop playsinline preload="metadata"></video><figcaption>Planned motion, replayed kinematically in the true scene</figcaption></figure></div></div>
+
+<div class="card"><h3>(b) A lift may not be a bare straight line</h3>
+<p style="font-size:13.5px">From beside the bowl to above its centre. The straight Cartesian line is solvable by IK at
+every sample, but it cuts the bowl rim, so it is refused. The planner returns either a lift followed by a move across
+the rim, or one plan that goes over it.</p>
+<div class="media">
+<figure><video src="planning/case_b_straight_line_REJECTED.mp4" poster="planning/case_b_straight_line_REJECTED.png" controls muted loop playsinline preload="metadata"></video><figcaption>REFUSED: the straight line passes through the bowl rim</figcaption></figure>
+<figure><video src="planning/case_b_lift_then_across.mp4" poster="planning/case_b_lift_then_across.png" controls muted loop playsinline preload="metadata"></video><figcaption>Planned: lift 15 cm (IK-solved line, checked), then across the rim</figcaption></figure>
+<figure><video src="planning/case_b_direct.mp4" poster="planning/case_b_direct.png" controls muted loop playsinline preload="metadata"></video><figcaption>Planned: start to above the bowl in one plan</figcaption></figure>
+</div></div>
+
+<div class="card"><h3>(c) Goals that cannot be reached are refused, not approximated</h3>
+<div class="media"><figure><img src="planning/case_c_infeasible.png" loading="lazy"><figcaption>Out of reach: IK_INFEASIBLE. Inside the table: GOAL_IN_COLLISION. No trajectory is returned.</figcaption></figure></div></div>
+
+<div class="card"><h3>(d) An obstacle in the way</h3>
+<p style="font-size:13.5px">A 30 cm box was added to the true scene between the start and the ball. It is seen only
+through depth. The straight joint-space segment would go through it; the planner searches a way round.</p>
+<div class="media">
+<figure><video src="planning/case_d_box_in_the_way.mp4" poster="planning/case_d_box_in_the_way.png" controls muted loop playsinline preload="metadata"></video><figcaption>Planned motion around the box</figcaption></figure>
+<figure><img src="planning/case_d_box_in_the_way_planning_model.png" loading="lazy"><figcaption>What the planner sees: the box as cells from depth</figcaption></figure>
+</div></div>
+
+<h2>Following the plan in physics</h2>
+<p style="font-size:13.5px">A plan is only collision-free in execution if the arm stays on it. Driving the planned
+joint path through the co-simulation's present arm servo in CPU physics (no policy) gives the errors below; the servo
+is being corrected for this reason.</p>
+<table><tr><th>Case</th><th>How the plan is followed (stock gains 700/40) → error</th></tr><tr><td>a_pregrasp</td><td>A track the planned joints directly: palm error mean 17.4 mm, max 29.4 mm, largest joint error 0.076 rad<br>B per-tick IK on the plan&#x27;s wrist path (today): palm error mean 15.3 mm, max 27.5 mm, largest joint error 0.243 rad<br>C per-tick IK + the plan as posture target: palm error mean 17.3 mm, max 29.8 mm, largest joint error 0.079 rad<br>A* track directly, per-joint critical damping: palm error mean 3.5 mm, max 5.8 mm, largest joint error 0.038 rad</td></tr><tr><td>b_direct</td><td>A track the planned joints directly: palm error mean 10.0 mm, max 12.1 mm, largest joint error 0.075 rad<br>B per-tick IK on the plan&#x27;s wrist path (today): palm error mean 10.3 mm, max 12.8 mm, largest joint error 0.579 rad<br>C per-tick IK + the plan as posture target: palm error mean 10.0 mm, max 12.2 mm, largest joint error 0.077 rad<br>A* track directly, per-joint critical damping: palm error mean 1.6 mm, max 3.8 mm, largest joint error 0.026 rad</td></tr><tr><td>b_lift_then_across</td><td>A track the planned joints directly: palm error mean 9.0 mm, max 12.9 mm, largest joint error 0.076 rad<br>B per-tick IK on the plan&#x27;s wrist path (today): palm error mean 9.3 mm, max 13.0 mm, largest joint error 0.548 rad<br>C per-tick IK + the plan as posture target: palm error mean 9.1 mm, max 12.8 mm, largest joint error 0.077 rad<br>A* track directly, per-joint critical damping: palm error mean 2.0 mm, max 6.5 mm, largest joint error 0.041 rad</td></tr><tr><td>d_box_in_the_way</td><td>A track the planned joints directly: palm error mean 14.1 mm, max 28.0 mm, largest joint error 0.075 rad<br>B per-tick IK on the plan&#x27;s wrist path (today): palm error mean 12.9 mm, max 27.5 mm, largest joint error 0.254 rad<br>C per-tick IK + the plan as posture target: palm error mean 14.1 mm, max 27.9 mm, largest joint error 0.078 rad<br>A* track directly, per-joint critical damping: palm error mean 3.5 mm, max 5.4 mm, largest joint error 0.035 rad</td></tr></table>
+
+<h2>Not done yet</h2>
+<ul>
+<li>No skill calls this planner yet; today's skills still replay recorded wrist paths and straight segments.</li>
+<li>The contact phase (the last centimetres to a grasp, with the target taken out of the obstacles) is not planned.</li>
+<li>The planned wrist paths have not been run through the tracking policy.</li>
+<li>Only the right arm plans; the left arm is a fixed obstacle.</li>
+<li>Simulated depth is exact. Sensor noise and calibration error are not modelled.</li>
+</ul>
+</body></html>
