@@ -3,11 +3,11 @@
  "manifest": "s2/outputs/harness_round/daily50/episodes.json",
  "headline": {
   "tasks_total": 50,
-  "tasks_attempted": 4,
+  "tasks_attempted": 2,
   "tasks_with_a_counted_test_episode": 0,
   "tasks_with_a_pass": 0,
-  "episodes_listed": 8,
-  "probe_episodes": 8,
+  "episodes_listed": 2,
+  "probe_episodes": 2,
   "test_episodes_listed": 0,
   "test_episodes_excluded": 0,
   "episodes_without_series": 0,
@@ -67,7 +67,38 @@
     "episodes": 0,
     "rate": null
    }
-  }
+  },
+  "episodes_listed_of_every_kind": 10,
+  "before_rule": {
+   "episodes_listed": 8,
+   "tasks": 4,
+   "probe_episodes": 8,
+   "probe_passes": 3,
+   "test_episodes_listed": 0,
+   "test": {
+    "passes": 0,
+    "episodes": 0,
+    "rate": null
+   },
+   "tasks_with_any_pass": [
+    "t19_jar_drawer",
+    "t41_power_strip"
+   ]
+  },
+  "with_switches": {
+   "episodes_listed": 0,
+   "tasks": 0,
+   "probe_episodes": 0,
+   "probe_passes": 0,
+   "test_episodes_listed": 0,
+   "test": {
+    "passes": 0,
+    "episodes": 0,
+    "rate": null
+   },
+   "tasks_with_any_pass": []
+  },
+  "probe_passes": 0
  },
  "tasks": [
   {
@@ -77,6 +108,9 @@
    "status": "not attempted",
    "passed": false,
    "episodes": [],
+   "episodes_before_rule": [],
+   "episodes_with_switches": [],
+   "apart": null,
    "best": null,
    "failure": null,
    "failure_role": null,
@@ -90,6 +124,9 @@
    "status": "not attempted",
    "passed": false,
    "episodes": [],
+   "episodes_before_rule": [],
+   "episodes_with_switches": [],
+   "apart": null,
    "best": null,
    "failure": null,
    "failure_role": null,
@@ -103,6 +140,9 @@
    "status": "not attempted",
    "passed": false,
    "episodes": [],
+   "episodes_before_rule": [],
+   "episodes_with_switches": [],
+   "apart": null,
    "best": null,
    "failure": null,
    "failure_role": null,
@@ -116,6 +156,9 @@
    "status": "not attempted",
    "passed": false,
    "episodes": [],
+   "episodes_before_rule": [],
+   "episodes_with_switches": [],
+   "apart": null,
    "best": null,
    "failure": null,
    "failure_role": null,
@@ -129,6 +172,9 @@
    "status": "not attempted",
    "passed": false,
    "episodes": [],
+   "episodes_before_rule": [],
+   "episodes_with_switches": [],
+   "apart": null,
    "best": null,
    "failure": null,
    "failure_role": null,
@@ -142,6 +188,9 @@
    "status": "not attempted",
    "passed": false,
    "episodes": [],
+   "episodes_before_rule": [],
+   "episodes_with_switches": [],
+   "apart": null,
    "best": null,
    "failure": null,
    "failure_role": null,
@@ -155,6 +204,9 @@
    "status": "not attempted",
    "passed": false,
    "episodes": [],
+   "episodes_before_rule": [],
+   "episodes_with_switches": [],
+   "apart": null,
    "best": null,
    "failure": null,
    "failure_role": null,
@@ -168,6 +220,9 @@
    "status": "not attempted",
    "passed": false,
    "episodes": [],
+   "episodes_before_rule": [],
+   "episodes_with_switches": [],
+   "apart": null,
    "best": null,
    "failure": null,
    "failure_role": null,
@@ -181,6 +236,9 @@
    "status": "not attempted",
    "passed": false,
    "episodes": [],
+   "episodes_before_rule": [],
+   "episodes_with_switches": [],
+   "apart": null,
    "best": null,
    "failure": null,
    "failure_role": null,
@@ -194,6 +252,9 @@
    "status": "not attempted",
    "passed": false,
    "episodes": [],
+   "episodes_before_rule": [],
+   "episodes_with_switches": [],
+   "apart": null,
    "best": null,
    "failure": null,
    "failure_role": null,
@@ -207,6 +268,9 @@
    "status": "not attempted",
    "passed": false,
    "episodes": [],
+   "episodes_before_rule": [],
+   "episodes_with_switches": [],
+   "apart": null,
    "best": null,
    "failure": null,
    "failure_role": null,
@@ -220,6 +284,9 @@
    "status": "not attempted",
    "passed": false,
    "episodes": [],
+   "episodes_before_rule": [],
+   "episodes_with_switches": [],
+   "apart": null,
    "best": null,
    "failure": null,
    "failure_role": null,
@@ -233,6 +300,9 @@
    "status": "not attempted",
    "passed": false,
    "episodes": [],
+   "episodes_before_rule": [],
+   "episodes_with_switches": [],
+   "apart": null,
    "best": null,
    "failure": null,
    "failure_role": null,
@@ -246,6 +316,9 @@
    "status": "not attempted",
    "passed": false,
    "episodes": [],
+   "episodes_before_rule": [],
+   "episodes_with_switches": [],
+   "apart": null,
    "best": null,
    "failure": null,
    "failure_role": null,
@@ -259,6 +332,9 @@
    "status": "not attempted",
    "passed": false,
    "episodes": [],
+   "episodes_before_rule": [],
+   "episodes_with_switches": [],
+   "apart": null,
    "best": null,
    "failure": null,
    "failure_role": null,
@@ -272,6 +348,9 @@
    "status": "not attempted",
    "passed": false,
    "episodes": [],
+   "episodes_before_rule": [],
+   "episodes_with_switches": [],
+   "apart": null,
    "best": null,
    "failure": null,
    "failure_role": null,
@@ -285,6 +364,9 @@
    "status": "not attempted",
    "passed": false,
    "episodes": [],
+   "episodes_before_rule": [],
+   "episodes_with_switches": [],
+   "apart": null,
    "best": null,
    "failure": null,
    "failure_role": null,
@@ -298,6 +380,9 @@
    "status": "not attempted",
    "passed": false,
    "episodes": [],
+   "episodes_before_rule": [],
+   "episodes_with_switches": [],
+   "apart": null,
    "best": null,
    "failure": null,
    "failure_role": null,
@@ -308,14 +393,19 @@
    "task": "t19_jar_drawer",
    "prompt": "Put the cream jar in the drawer and close it.",
    "version": 2,
-   "status": "probe only: 2 development episode(s), nothing counted",
+   "status": "probe only: 1 development episode(s), nothing counted",
    "passed": false,
    "episodes": [
+    "s2/dexharness/runs/live/daily50_t19_jar_drawer/20261124T214949Z-40eb5e48"
+   ],
+   "episodes_before_rule": [
     "s2/dexharness/runs/live/daily50_t19_jar_drawer/20261124T204539Z-45d41bfc",
     "s2/dexharness/runs/live/daily50_t19_jar_drawer/20261124T205453Z-b111253a"
    ],
+   "episodes_with_switches": [],
+   "apart": "s2/dexharness/runs/live/daily50_t19_jar_drawer/20261124T205453Z-b111253a",
    "best": null,
-   "failure": "s2/dexharness/runs/live/daily50_t19_jar_drawer/20261124T205453Z-b111253a",
+   "failure": "s2/dexharness/runs/live/daily50_t19_jar_drawer/20261124T214949Z-40eb5e48",
    "failure_role": "a probe episode (development, the latest; not counted)",
    "note": {
     "file": "s2/outputs/harness_round/daily50/tasks/t19_jar_drawer/NOTES.md",
@@ -325,6 +415,11 @@
    },
    "media": {
     "failure": {
+     "video": "t19_jar_drawer__probe0__d40f5b5d.mp4",
+     "poster": "t19_jar_drawer__probe0__d40f5b5d.jpg",
+     "run": "s2/dexharness/runs/live/daily50_t19_jar_drawer/20261124T214949Z-40eb5e48"
+    },
+    "apart": {
      "video": "t19_jar_drawer__probe1__d8f9ac5e.mp4",
      "poster": "t19_jar_drawer__probe1__d8f9ac5e.jpg",
      "run": "s2/dexharness/runs/live/daily50_t19_jar_drawer/20261124T205453Z-b111253a"
@@ -338,6 +433,9 @@
    "status": "not attempted",
    "passed": false,
    "episodes": [],
+   "episodes_before_rule": [],
+   "episodes_with_switches": [],
+   "apart": null,
    "best": null,
    "failure": null,
    "failure_role": null,
@@ -351,6 +449,9 @@
    "status": "not attempted",
    "passed": false,
    "episodes": [],
+   "episodes_before_rule": [],
+   "episodes_with_switches": [],
+   "apart": null,
    "best": null,
    "failure": null,
    "failure_role": null,
@@ -364,6 +465,9 @@
    "status": "not attempted",
    "passed": false,
    "episodes": [],
+   "episodes_before_rule": [],
+   "episodes_with_switches": [],
+   "apart": null,
    "best": null,
    "failure": null,
    "failure_role": null,
@@ -377,6 +481,9 @@
    "status": "not attempted",
    "passed": false,
    "episodes": [],
+   "episodes_before_rule": [],
+   "episodes_with_switches": [],
+   "apart": null,
    "best": null,
    "failure": null,
    "failure_role": null,
@@ -390,6 +497,9 @@
    "status": "not attempted",
    "passed": false,
    "episodes": [],
+   "episodes_before_rule": [],
+   "episodes_with_switches": [],
+   "apart": null,
    "best": null,
    "failure": null,
    "failure_role": null,
@@ -403,6 +513,9 @@
    "status": "not attempted",
    "passed": false,
    "episodes": [],
+   "episodes_before_rule": [],
+   "episodes_with_switches": [],
+   "apart": null,
    "best": null,
    "failure": null,
    "failure_role": null,
@@ -416,6 +529,9 @@
    "status": "not attempted",
    "passed": false,
    "episodes": [],
+   "episodes_before_rule": [],
+   "episodes_with_switches": [],
+   "apart": null,
    "best": null,
    "failure": null,
    "failure_role": null,
@@ -426,17 +542,20 @@
    "task": "t27_paperweight",
    "prompt": "Put the paperweight on the poster so it stops rolling back up.",
    "version": 2,
-   "status": "probe only: 1 development episode(s), nothing counted",
+   "status": "not attempted under the head-camera rule",
    "passed": false,
-   "episodes": [
+   "episodes": [],
+   "episodes_before_rule": [
     "s2/dexharness/runs/live/daily50_t27_paperweight/20261124T200253Z-c16ec82c"
    ],
+   "episodes_with_switches": [],
+   "apart": "s2/dexharness/runs/live/daily50_t27_paperweight/20261124T200253Z-c16ec82c",
    "best": null,
-   "failure": "s2/dexharness/runs/live/daily50_t27_paperweight/20261124T200253Z-c16ec82c",
-   "failure_role": "a probe episode (development, the latest; not counted)",
+   "failure": null,
+   "failure_role": null,
    "note": null,
    "media": {
-    "failure": {
+    "apart": {
      "video": "t27_paperweight__probe0__4959e6b7.mp4",
      "poster": "t27_paperweight__probe0__4959e6b7.jpg",
      "run": "s2/dexharness/runs/live/daily50_t27_paperweight/20261124T200253Z-c16ec82c"
@@ -450,6 +569,9 @@
    "status": "not attempted",
    "passed": false,
    "episodes": [],
+   "episodes_before_rule": [],
+   "episodes_with_switches": [],
+   "apart": null,
    "best": null,
    "failure": null,
    "failure_role": null,
@@ -463,6 +585,9 @@
    "status": "not attempted",
    "passed": false,
    "episodes": [],
+   "episodes_before_rule": [],
+   "episodes_with_switches": [],
+   "apart": null,
    "best": null,
    "failure": null,
    "failure_role": null,
@@ -476,6 +601,9 @@
    "status": "not attempted",
    "passed": false,
    "episodes": [],
+   "episodes_before_rule": [],
+   "episodes_with_switches": [],
+   "apart": null,
    "best": null,
    "failure": null,
    "failure_role": null,
@@ -489,6 +617,9 @@
    "status": "not attempted",
    "passed": false,
    "episodes": [],
+   "episodes_before_rule": [],
+   "episodes_with_switches": [],
+   "apart": null,
    "best": null,
    "failure": null,
    "failure_role": null,
@@ -502,6 +633,9 @@
    "status": "not attempted",
    "passed": false,
    "episodes": [],
+   "episodes_before_rule": [],
+   "episodes_with_switches": [],
+   "apart": null,
    "best": null,
    "failure": null,
    "failure_role": null,
@@ -515,6 +649,9 @@
    "status": "not attempted",
    "passed": false,
    "episodes": [],
+   "episodes_before_rule": [],
+   "episodes_with_switches": [],
+   "apart": null,
    "best": null,
    "failure": null,
    "failure_role": null,
@@ -528,6 +665,9 @@
    "status": "not attempted",
    "passed": false,
    "episodes": [],
+   "episodes_before_rule": [],
+   "episodes_with_switches": [],
+   "apart": null,
    "best": null,
    "failure": null,
    "failure_role": null,
@@ -541,6 +681,9 @@
    "status": "not attempted",
    "passed": false,
    "episodes": [],
+   "episodes_before_rule": [],
+   "episodes_with_switches": [],
+   "apart": null,
    "best": null,
    "failure": null,
    "failure_role": null,
@@ -554,6 +697,9 @@
    "status": "not attempted",
    "passed": false,
    "episodes": [],
+   "episodes_before_rule": [],
+   "episodes_with_switches": [],
+   "apart": null,
    "best": null,
    "failure": null,
    "failure_role": null,
@@ -567,6 +713,9 @@
    "status": "not attempted",
    "passed": false,
    "episodes": [],
+   "episodes_before_rule": [],
+   "episodes_with_switches": [],
+   "apart": null,
    "best": null,
    "failure": null,
    "failure_role": null,
@@ -580,6 +729,9 @@
    "status": "not attempted",
    "passed": false,
    "episodes": [],
+   "episodes_before_rule": [],
+   "episodes_with_switches": [],
+   "apart": null,
    "best": null,
    "failure": null,
    "failure_role": null,
@@ -593,6 +745,9 @@
    "status": "not attempted",
    "passed": false,
    "episodes": [],
+   "episodes_before_rule": [],
+   "episodes_with_switches": [],
+   "apart": null,
    "best": null,
    "failure": null,
    "failure_role": null,
@@ -606,6 +761,9 @@
    "status": "not attempted",
    "passed": false,
    "episodes": [],
+   "episodes_before_rule": [],
+   "episodes_with_switches": [],
+   "apart": null,
    "best": null,
    "failure": null,
    "failure_role": null,
@@ -616,15 +774,20 @@
    "task": "t41_power_strip",
    "prompt": "Switch on the power strip; the desk lamp should light.",
    "version": 3,
-   "status": "probe only: 3 development episode(s), nothing counted",
+   "status": "probe only: 1 development episode(s), nothing counted",
    "passed": false,
    "episodes": [
+    "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T214742Z-c213e570"
+   ],
+   "episodes_before_rule": [
     "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T204536Z-b8a2799b",
     "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T205103Z-5a7c46a8",
     "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T205435Z-2c5d6c28"
    ],
+   "episodes_with_switches": [],
+   "apart": "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T205103Z-5a7c46a8",
    "best": null,
-   "failure": "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T205435Z-2c5d6c28",
+   "failure": "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T214742Z-c213e570",
    "failure_role": "a probe episode (development, the latest; not counted)",
    "note": {
     "file": "s2/outputs/harness_round/daily50/tasks/t41_power_strip/NOTES.md",
@@ -634,9 +797,14 @@
    },
    "media": {
     "failure": {
-     "video": "t41_power_strip__probe2__22c127b6.mp4",
-     "poster": "t41_power_strip__probe2__22c127b6.jpg",
-     "run": "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T205435Z-2c5d6c28"
+     "video": "t41_power_strip__probe0__26ee5e93.mp4",
+     "poster": "t41_power_strip__probe0__26ee5e93.jpg",
+     "run": "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T214742Z-c213e570"
+    },
+    "apart": {
+     "video": "t41_power_strip__probe1__f614b895.mp4",
+     "poster": "t41_power_strip__probe1__f614b895.jpg",
+     "run": "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T205103Z-5a7c46a8"
     }
    }
   },
@@ -647,6 +815,9 @@
    "status": "not attempted",
    "passed": false,
    "episodes": [],
+   "episodes_before_rule": [],
+   "episodes_with_switches": [],
+   "apart": null,
    "best": null,
    "failure": null,
    "failure_role": null,
@@ -660,6 +831,9 @@
    "status": "not attempted",
    "passed": false,
    "episodes": [],
+   "episodes_before_rule": [],
+   "episodes_with_switches": [],
+   "apart": null,
    "best": null,
    "failure": null,
    "failure_role": null,
@@ -673,6 +847,9 @@
    "status": "not attempted",
    "passed": false,
    "episodes": [],
+   "episodes_before_rule": [],
+   "episodes_with_switches": [],
+   "apart": null,
    "best": null,
    "failure": null,
    "failure_role": null,
@@ -686,6 +863,9 @@
    "status": "not attempted",
    "passed": false,
    "episodes": [],
+   "episodes_before_rule": [],
+   "episodes_with_switches": [],
+   "apart": null,
    "best": null,
    "failure": null,
    "failure_role": null,
@@ -699,6 +879,9 @@
    "status": "not attempted",
    "passed": false,
    "episodes": [],
+   "episodes_before_rule": [],
+   "episodes_with_switches": [],
+   "apart": null,
    "best": null,
    "failure": null,
    "failure_role": null,
@@ -712,6 +895,9 @@
    "status": "not attempted",
    "passed": false,
    "episodes": [],
+   "episodes_before_rule": [],
+   "episodes_with_switches": [],
+   "apart": null,
    "best": null,
    "failure": null,
    "failure_role": null,
@@ -725,6 +911,9 @@
    "status": "not attempted",
    "passed": false,
    "episodes": [],
+   "episodes_before_rule": [],
+   "episodes_with_switches": [],
+   "apart": null,
    "best": null,
    "failure": null,
    "failure_role": null,
@@ -735,18 +924,21 @@
    "task": "t49_weigh_orange",
    "prompt": "Weigh the orange on the kitchen scale.",
    "version": 1,
-   "status": "probe only: 2 development episode(s), nothing counted",
+   "status": "not attempted under the head-camera rule",
    "passed": false,
-   "episodes": [
+   "episodes": [],
+   "episodes_before_rule": [
     "s2/dexharness/runs/live/daily50_t49_weigh_orange/20261124T204539Z-71b6fd22",
     "s2/dexharness/runs/live/daily50_t49_weigh_orange/20261124T205218Z-ad5c5872"
    ],
+   "episodes_with_switches": [],
+   "apart": "s2/dexharness/runs/live/daily50_t49_weigh_orange/20261124T205218Z-ad5c5872",
    "best": null,
-   "failure": "s2/dexharness/runs/live/daily50_t49_weigh_orange/20261124T205218Z-ad5c5872",
-   "failure_role": "a probe episode (development, the latest; not counted)",
+   "failure": null,
+   "failure_role": null,
    "note": null,
    "media": {
-    "failure": {
+    "apart": {
      "video": "t49_weigh_orange__probe1__b87d5142.mp4",
      "poster": "t49_weigh_orange__probe1__b87d5142.jpg",
      "run": "s2/dexharness/runs/live/daily50_t49_weigh_orange/20261124T205218Z-ad5c5872"
@@ -760,6 +952,9 @@
    "status": "not attempted",
    "passed": false,
    "episodes": [],
+   "episodes_before_rule": [],
+   "episodes_with_switches": [],
+   "apart": null,
    "best": null,
    "failure": null,
    "failure_role": null,
@@ -800,15 +995,15 @@
    },
    "task_version": 2,
    "excluded": [
-    "the task's scene.xml changed after this episode (or the card gives no digest)"
+    "the task's scene.xml, task.json changed after this episode (or the card gives no digest)"
    ],
    "problems": [],
    "video": {
     "dir": "s2/dexharness/runs/live/daily50_t27_paperweight/20261124T200253Z-c16ec82c/media/episode",
-    "bytes": 366057,
-    "sha256": "4932c7a02671e100eae9c12299ffef3d0d5c201d7f82acea7015a0ee07058c1a",
-    "poster_bytes": 91768,
-    "poster_sha256": "be717d5304a24676743d9b3c9fafd97e7e4bff4d375f09cc8d4f50ff0b395fc2",
+    "bytes": 371805,
+    "sha256": "eb7e420de7168c5edd64e87fa31b3a110e433592d34090ebada9852a09c78726",
+    "poster_bytes": 95606,
+    "poster_sha256": "c4191f58fa3af9f64704aeee696d246452fa0ca3482e5f91c12c1767a0f693b4",
     "duration_s": 19.35,
     "speed": 1.0,
     "size": [
@@ -819,7 +1014,14 @@
     "never_touch_events": 0,
     "problems": []
    },
-   "card_sha256": "8e9de758c37e6911b4a5c3c011bc2cccf5be982d31e14c4da254abe71ae6fe8c"
+   "card_sha256": "8e9de758c37e6911b4a5c3c011bc2cccf5be982d31e14c4da254abe71ae6fe8c",
+   "observation": {
+    "rule": "before",
+    "label": "many cameras (before the head-camera rule)",
+    "cameras": [],
+    "mounts": [],
+    "switches": []
+   }
   },
   {
    "run": "s2/dexharness/runs/live/daily50_t19_jar_drawer/20261124T204539Z-45d41bfc",
@@ -850,15 +1052,15 @@
    },
    "task_version": 2,
    "excluded": [
-    "the task's scene.xml changed after this episode (or the card gives no digest)"
+    "the task's scene.xml, task.json changed after this episode (or the card gives no digest)"
    ],
    "problems": [],
    "video": {
     "dir": "s2/dexharness/runs/live/daily50_t19_jar_drawer/20261124T204539Z-45d41bfc/media/episode",
-    "bytes": 795003,
-    "sha256": "ae8cabf170db6435896b9af5389b6cbfbd3a5ecb409eed8ba805524a346e5f90",
-    "poster_bytes": 73320,
-    "poster_sha256": "9d1ae9826085cc77cdbadb568f46c52c744bdf9424bbca9e94bf0b33109a4ce1",
+    "bytes": 809944,
+    "sha256": "aa0aa7a4c9345c490b128b1a59b67ab608731b1515fa012140e80bbce979dc43",
+    "poster_bytes": 77414,
+    "poster_sha256": "cbc8dfae7db7009b8aa58c60e52d97c4706c8580a9a0ff099de80c0141d8bdc2",
     "duration_s": 55.4,
     "speed": 1.0,
     "size": [
@@ -869,7 +1071,14 @@
     "never_touch_events": 2,
     "problems": []
    },
-   "card_sha256": "0d44a2f0a0485a7eaa20c2e42e99d27fc103c524009562ba1c20cc2b465fb2dd"
+   "card_sha256": "0d44a2f0a0485a7eaa20c2e42e99d27fc103c524009562ba1c20cc2b465fb2dd",
+   "observation": {
+    "rule": "before",
+    "label": "many cameras (before the head-camera rule)",
+    "cameras": [],
+    "mounts": [],
+    "switches": []
+   }
   },
   {
    "run": "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T204536Z-b8a2799b",
@@ -901,15 +1110,15 @@
    },
    "task_version": 3,
    "excluded": [
-    "the task's scene.xml changed after this episode (or the card gives no digest)"
+    "the task's scene.xml, task.json changed after this episode (or the card gives no digest)"
    ],
    "problems": [],
    "video": {
     "dir": "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T204536Z-b8a2799b/media/episode",
-    "bytes": 427386,
-    "sha256": "08df14fcc03f7b81a2201e980eda62010bec0092c9e3072f5e1949c01a36cb6e",
-    "poster_bytes": 62955,
-    "poster_sha256": "baadc871752f998887c01b7dd4552668467aed2585689f1294340314471a4906",
+    "bytes": 441434,
+    "sha256": "e1d3162b398fca23e66790a7537af33611dac2e0234c08fd1241d8fb297bb31f",
+    "poster_bytes": 67136,
+    "poster_sha256": "7e9f06db985275fe4f4fe0984fa478cf10fa087efde08508adb70de5b703926b",
     "duration_s": 30.35,
     "speed": 1.0,
     "size": [
@@ -920,7 +1129,14 @@
     "never_touch_events": 0,
     "problems": []
    },
-   "card_sha256": "294109ad05d3b10636c0141090ec6b0d364322b598fca20eba238f532f78de55"
+   "card_sha256": "294109ad05d3b10636c0141090ec6b0d364322b598fca20eba238f532f78de55",
+   "observation": {
+    "rule": "before",
+    "label": "many cameras (before the head-camera rule)",
+    "cameras": [],
+    "mounts": [],
+    "switches": []
+   }
   },
   {
    "run": "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T205103Z-5a7c46a8",
@@ -952,15 +1168,15 @@
    },
    "task_version": 3,
    "excluded": [
-    "the task's scene.xml changed after this episode (or the card gives no digest)"
+    "the task's scene.xml, task.json changed after this episode (or the card gives no digest)"
    ],
    "problems": [],
    "video": {
     "dir": "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T205103Z-5a7c46a8/media/episode",
-    "bytes": 332803,
-    "sha256": "ecea5fe8e25d841e319173a80d7188365e123a8c9e427d270a24dedc4c440080",
-    "poster_bytes": 72841,
-    "poster_sha256": "81090e134dd067804a05ca54f0dab4c6db64b7a48b6138eadf379b44f4f12fe4",
+    "bytes": 342794,
+    "sha256": "503003e0106500963ce2cccc6bed0b450aa2ea13055bf7e30da6b5b39d80ba8b",
+    "poster_bytes": 76937,
+    "poster_sha256": "7a62ba054d4fc54deabe4d210e58bd2010e0c3313825643fe4e7ecbdb97c7786",
     "duration_s": 22.75,
     "speed": 1.0,
     "size": [
@@ -971,7 +1187,14 @@
     "never_touch_events": 0,
     "problems": []
    },
-   "card_sha256": "68453e47f032ee0a633295d1f647d43750138a26bd8f5230b8668e057ca6bc4d"
+   "card_sha256": "68453e47f032ee0a633295d1f647d43750138a26bd8f5230b8668e057ca6bc4d",
+   "observation": {
+    "rule": "before",
+    "label": "many cameras (before the head-camera rule)",
+    "cameras": [],
+    "mounts": [],
+    "switches": []
+   }
   },
   {
    "run": "s2/dexharness/runs/live/daily50_t49_weigh_orange/20261124T204539Z-71b6fd22",
@@ -999,14 +1222,16 @@
     "object_in_training_recipe": "unknown"
    },
    "task_version": 1,
-   "excluded": [],
+   "excluded": [
+    "the task's scene.xml changed after this episode (or the card gives no digest)"
+   ],
    "problems": [],
    "video": {
     "dir": "s2/dexharness/runs/live/daily50_t49_weigh_orange/20261124T204539Z-71b6fd22/media/episode",
-    "bytes": 696302,
-    "sha256": "17a706ec38fc9a8a797f0baf4b7bc50d727517d98420f2fba6920b00ebe6998a",
-    "poster_bytes": 83578,
-    "poster_sha256": "e948b5f33de71f439592e9811f314401ef7b728cca008cfa556cd9aad83bffd7",
+    "bytes": 712311,
+    "sha256": "7524523e18acfb8079526c276da38031eded3cb01e13c29714791a72f0c396b0",
+    "poster_bytes": 87743,
+    "poster_sha256": "e1917932376c94a2cd8c2b574bca5572f2943493bf7599a4905b44b63f3ae94d",
     "duration_s": 42.75,
     "speed": 1.0,
     "size": [
@@ -1017,7 +1242,14 @@
     "never_touch_events": 2,
     "problems": []
    },
-   "card_sha256": "a46ef6f80e9bddefd1c0ad6a2380efe08310b486797abc51908a5a2dcf9c3d2f"
+   "card_sha256": "a46ef6f80e9bddefd1c0ad6a2380efe08310b486797abc51908a5a2dcf9c3d2f",
+   "observation": {
+    "rule": "before",
+    "label": "many cameras (before the head-camera rule)",
+    "cameras": [],
+    "mounts": [],
+    "switches": []
+   }
   },
   {
    "run": "s2/dexharness/runs/live/daily50_t49_weigh_orange/20261124T205218Z-ad5c5872",
@@ -1045,14 +1277,16 @@
     "object_in_training_recipe": "unknown"
    },
    "task_version": 1,
-   "excluded": [],
+   "excluded": [
+    "the task's scene.xml changed after this episode (or the card gives no digest)"
+   ],
    "problems": [],
    "video": {
     "dir": "s2/dexharness/runs/live/daily50_t49_weigh_orange/20261124T205218Z-ad5c5872/media/episode",
-    "bytes": 493576,
-    "sha256": "122750a713670e90f8aede860705716b0595595e2aa4eacc5f71e6cbd264653a",
-    "poster_bytes": 79241,
-    "poster_sha256": "73ca8a99dbce99f339e4b038d8ead51063977268921374646785ff4328f64b0f",
+    "bytes": 507697,
+    "sha256": "3310639ab367d5865953f2f780ecf77f2f31f361060f977de2b058d72c35a98d",
+    "poster_bytes": 83438,
+    "poster_sha256": "2efdb90eac34aaba0045f2cf34d45ddbe377ad6847a78c264752e2672890a88e",
     "duration_s": 29.2,
     "speed": 1.0,
     "size": [
@@ -1063,7 +1297,14 @@
     "never_touch_events": 2,
     "problems": []
    },
-   "card_sha256": "d25a1a22012f7c359dca31bd4db3f9904471434cf5425a50a265c181701cb98e"
+   "card_sha256": "d25a1a22012f7c359dca31bd4db3f9904471434cf5425a50a265c181701cb98e",
+   "observation": {
+    "rule": "before",
+    "label": "many cameras (before the head-camera rule)",
+    "cameras": [],
+    "mounts": [],
+    "switches": []
+   }
   },
   {
    "run": "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T205435Z-2c5d6c28",
@@ -1095,15 +1336,15 @@
    },
    "task_version": 3,
    "excluded": [
-    "the task's scene.xml changed after this episode (or the card gives no digest)"
+    "the task's scene.xml, task.json changed after this episode (or the card gives no digest)"
    ],
    "problems": [],
    "video": {
     "dir": "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T205435Z-2c5d6c28/media/episode",
-    "bytes": 378781,
-    "sha256": "d376aa5ee53bc3f6a83db6b1d11ca19ad5f72638da3ab4b0c29d8731b21dbd34",
-    "poster_bytes": 61875,
-    "poster_sha256": "384d8226d7174e59e5b0b78303d12f123abe3e5933494b64dbb3aaf92f6475b5",
+    "bytes": 391216,
+    "sha256": "cd7ec4141fe177c849b0859425ab13c99928a85bad1976782258011dba0ddcf8",
+    "poster_bytes": 66041,
+    "poster_sha256": "60a40f9955de44a45e7d37bbb6056eb9c39dccdb1b713d03c55ba81c828c0528",
     "duration_s": 28.1,
     "speed": 1.0,
     "size": [
@@ -1114,7 +1355,14 @@
     "never_touch_events": 0,
     "problems": []
    },
-   "card_sha256": "9e9af3fc201faa138f241730c6292f61e9e1104ccee72ed871e4c8f720f0cb5c"
+   "card_sha256": "9e9af3fc201faa138f241730c6292f61e9e1104ccee72ed871e4c8f720f0cb5c",
+   "observation": {
+    "rule": "before",
+    "label": "many cameras (before the head-camera rule)",
+    "cameras": [],
+    "mounts": [],
+    "switches": []
+   }
   },
   {
    "run": "s2/dexharness/runs/live/daily50_t19_jar_drawer/20261124T205453Z-b111253a",
@@ -1145,16 +1393,16 @@
    },
    "task_version": 2,
    "excluded": [
-    "the task's scene.xml changed after this episode (or the card gives no digest)",
+    "the task's scene.xml, task.json changed after this episode (or the card gives no digest)",
     "the scene the simulator recorded has another digest than the card's scene.xml"
    ],
    "problems": [],
    "video": {
     "dir": "s2/dexharness/runs/live/daily50_t19_jar_drawer/20261124T205453Z-b111253a/media/episode",
-    "bytes": 582140,
-    "sha256": "4c7f8574504ecd305f740807f92011183900cc75f1234d77a7792f2f46f3211a",
-    "poster_bytes": 71969,
-    "poster_sha256": "003787d81ef9c89e5780854ca368e042ec4a795c4aefd21d28b3c9ccbf8643ff",
+    "bytes": 595846,
+    "sha256": "7b9771c83a46af389c7200edf0204965de37232ae599cefb7203288a28569e2e",
+    "poster_bytes": 75945,
+    "poster_sha256": "9e687f3ffc4500ce32e7917d8306c71c93d0398a645e36095724bd45f51f1700",
     "duration_s": 40.1,
     "speed": 1.0,
     "size": [
@@ -1165,59 +1413,537 @@
     "never_touch_events": 2,
     "problems": []
    },
-   "card_sha256": "a8a47093920fcc48f48f35222475f1d6c647f6b56aa4ba0c83b3bb8570e9bee3"
+   "card_sha256": "a8a47093920fcc48f48f35222475f1d6c647f6b56aa4ba0c83b3bb8570e9bee3",
+   "observation": {
+    "rule": "before",
+    "label": "many cameras (before the head-camera rule)",
+    "cameras": [],
+    "mounts": [],
+    "switches": []
+   }
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T214742Z-c213e570",
+   "run_name": "daily50_t41_power_strip/20261124T214742Z-c213e570",
+   "task": "t41_power_strip",
+   "series": "probe",
+   "episode_index": 0,
+   "mode": "live",
+   "agent": "headcam-proof-script",
+   "prompt": "Switch on the power strip; the desk lamp should light.",
+   "turns": 2,
+   "ticks_used": 442,
+   "tick_budget": 1500,
+   "verdict": "FAIL",
+   "terms": [
+    "[NO] switch pad pressed in this episode: m_switch_presses at least 1 above its settled value: 0; true for 0 ticks; recorded joint m_switch_presses minus its value in the settled scene",
+    "[NO] strip switched on: m_strip_switch >= 0.5: 0; true for 0 ticks; recorded joint m_strip_switch: the mirror of the switch flag strip_on (1 = on)",
+    "[NO] lamp lit: m_lamp_lit >= 0.5: 0; true for 0 ticks; recorded joint m_lamp_lit: the mirror of the lamp effect lamp_lit (1 = on: the strip switched on, the lamp's plug in it, its own cord on it)",
+    "[yes] strip within 0.020 m of where it settled: 3.911e-07; true for 442 ticks; power_strip origin against its settled position",
+    "[yes] strip lies as it lay: top within 15 deg and long axis within 20 deg of the settled scene: 0; true for 442 ticks; power_strip mesh +y (top) and mesh +z (long axis) against their settled directions; final = top angle in deg",
+    "[yes] no part of either hand touches the strip (finger links, palm link, palm surface): 0; true for 442 ticks; recorded contacts of the hand links and of the two palm-surface bodies with the strip; final = hand links + palm surfaces touching",
+    "[yes] strip at rest (0.02 m/s, 0.5 rad/s): 5.701e-08; true for 442 ticks; recorded joint velocity of the strip"
+   ],
+   "policy": {
+    "bound": false,
+    "engine": null,
+    "clip": null,
+    "object_in_training_recipe": "unknown"
+   },
+   "task_version": 3,
+   "excluded": [],
+   "problems": [],
+   "video": {
+    "dir": "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T214742Z-c213e570/media/episode",
+    "bytes": 180828,
+    "sha256": "5c98c170abff92502cf8787b811ceb3082ff79089255a118b6a7db8c5400a8ee",
+    "poster_bytes": 66696,
+    "poster_sha256": "df6f9f1de984a06685f1ffc75cb974c01f65fb3fae994b2ef283e8119c5b5d16",
+    "duration_s": 14.65,
+    "speed": 1.0,
+    "size": [
+     848,
+     602
+    ],
+    "turns_source": "s2_turns.jsonl",
+    "never_touch_events": 0,
+    "problems": []
+   },
+   "card_sha256": "c8576998b019825404215b04309aafbb63c3a15155f8f93fa8d23b1e8d5eadea",
+   "observation": {
+    "rule": "head",
+    "label": "head camera",
+    "cameras": [
+     "head"
+    ],
+    "mounts": [
+     "head"
+    ],
+    "switches": []
+   }
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t19_jar_drawer/20261124T214949Z-40eb5e48",
+   "run_name": "daily50_t19_jar_drawer/20261124T214949Z-40eb5e48",
+   "task": "t19_jar_drawer",
+   "series": "probe",
+   "episode_index": 0,
+   "mode": "live",
+   "agent": "headcam-proof-script",
+   "prompt": "Put the cream jar in the drawer and close it.",
+   "turns": 2,
+   "ticks_used": 563,
+   "tick_budget": 1500,
+   "verdict": "FAIL",
+   "terms": [
+    "[NO] jar centre inside the drawer footprint (within 85 mm along the slide, 80 mm across): 0.2282, 0.0600; true for 0 ticks; jar origin in the chest_drawer0 frame, |x| and |y| in m",
+    "[yes] jar centre 12 to 42 mm above the inside floor of the drawer: 0.015; true for 563 ticks; jar origin in the chest_drawer0 frame, height above the inside floor in m",
+    "[NO] drawer closed to within 5 mm: 0.135; true for 0 ticks; chest_drawer0_slide position in m (0 = closed)",
+    "[yes] no part of either hand touches the jar: 0; true for 563 ticks; recorded contacts of the jar with hand links and palm surfaces, number of hand bodies",
+    "[yes] jar at rest (0.02 m/s, 0.5 rad/s): 0.0000 m/s, 0.000 rad/s; true for 563 ticks; recorded joint velocity of the jar",
+    "[NO] the jar has been carried by a hand (two or more links of one hand on it, nothing else touching it, for 0.2 s without a break): longest carry 0.00 s (0 such ticks in the episode); true for 0 ticks; recorded contacts of the jar: ticks with >= 2 links of one hand on it and no contact with anything that is not the robot; longest unbroken run so far, against 10 ticks (0.2 s)"
+   ],
+   "policy": {
+    "bound": false,
+    "engine": null,
+    "clip": null,
+    "object_in_training_recipe": "unknown"
+   },
+   "task_version": 2,
+   "excluded": [],
+   "problems": [],
+   "video": {
+    "dir": "s2/dexharness/runs/live/daily50_t19_jar_drawer/20261124T214949Z-40eb5e48/media/episode",
+    "bytes": 205200,
+    "sha256": "c542f6dda35e0f832f3b3f82865df9913fe96e4db469b887f78f945c02f58207",
+    "poster_bytes": 75967,
+    "poster_sha256": "f042724fb7ba328e42849ad5c50b1ffdecd51415e9624fda0019bba28c6b546c",
+    "duration_s": 17.1,
+    "speed": 1.0,
+    "size": [
+     848,
+     602
+    ],
+    "turns_source": "s2_turns.jsonl",
+    "never_touch_events": 0,
+    "problems": []
+   },
+   "card_sha256": "86be304b95429b42d3da2071892caf845d2681b53fb1724d41c008c0ce8f7b49",
+   "observation": {
+    "rule": "head",
+    "label": "head camera",
+    "cameras": [
+     "head"
+    ],
+    "mounts": [
+     "head"
+    ],
+    "switches": []
+   }
   }
  ],
  "other_episodes": [],
- "unlisted_on_disk": [],
+ "unlisted_on_disk": [
+  {
+   "run": "s2/dexharness/runs/live/daily50_t01_hammer_nail/20261124T201227Z-6e497725",
+   "task": "t01_hammer_nail",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t02_crack_walnut/20261124T201227Z-d3900b37",
+   "task": "t02_crack_walnut",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t03_paint_lid_shut/20261124T201333Z-05918f18",
+   "task": "t03_paint_lid_shut",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t04_pull_nail/20261124T201347Z-f08a1ea2",
+   "task": "t04_pull_nail",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t05_hang_hammer/20261124T201447Z-f8af4506",
+   "task": "t05_hang_hammer",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t06_hinge_screw/20261124T201449Z-e0cc2172",
+   "task": "t06_hinge_screw",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t07_battery_cover/20261124T201550Z-c55f48e2",
+   "task": "t07_battery_cover",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t08_pry_paint_lid/20261124T201554Z-5c44d804",
+   "task": "t08_pry_paint_lid",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t09_valve_key/20261124T201703Z-dbefbc06",
+   "task": "t09_valve_key",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t10_mist_plant/20261124T201712Z-c31ba7a5",
+   "task": "t10_mist_plant",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t11_spray_mirror/20261124T201809Z-143978d2",
+   "task": "t11_spray_mirror",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t12_bulb_table_lamp/20261124T195611Z-a18ff905",
+   "task": "t12_bulb_table_lamp",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t13_bulb_vanity/20261124T201816Z-2869ba73",
+   "task": "t13_bulb_vanity",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t14_bulb_remove/20261124T201939Z-1ee67147",
+   "task": "t14_bulb_remove",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t15_bulb_pendant/20261124T202008Z-d74a0070",
+   "task": "t15_bulb_pendant",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t16_block_tower/20261124T202046Z-249bb8ff",
+   "task": "t16_block_tower",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t17_shape_sorter/20261124T202116Z-ab2a727e",
+   "task": "t17_shape_sorter",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t18_hob_knob/20261124T202155Z-e0fdfe7b",
+   "task": "t18_hob_knob",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t19_jar_drawer/20261124T202227Z-0b2f9ab2",
+   "task": "t19_jar_drawer",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t20_sink_plug/20261124T195611Z-8bdc8ec3",
+   "task": "t20_sink_plug",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t21_calendar_cube/20261124T202301Z-0547795c",
+   "task": "t21_calendar_cube",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t22_seal_stamp/20261124T202328Z-33b82057",
+   "task": "t22_seal_stamp",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t23_milk_microwave/20261124T202403Z-0be28070",
+   "task": "t23_milk_microwave",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t24_salt_shaker/20261124T202428Z-d6b297ec",
+   "task": "t24_salt_shaker",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t25_fish_food/20261124T202457Z-6e760d86",
+   "task": "t25_fish_food",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t26_can_rack/20261124T202534Z-5f7a3367",
+   "task": "t26_can_rack",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t27_paperweight/20261124T195611Z-620c5d90",
+   "task": "t27_paperweight",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t27_paperweight/20261124T200614Z-9cb9052d",
+   "task": "t27_paperweight",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t28_can_bin/20261124T202554Z-5e19ff35",
+   "task": "t28_can_bin",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t29_lighter_candle/20261124T202641Z-2f108bf9",
+   "task": "t29_lighter_candle",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t30_toggle_clamp/20261124T202653Z-e1c91fd4",
+   "task": "t30_toggle_clamp",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t31_tube_lamp/20261124T202746Z-517c55de",
+   "task": "t31_tube_lamp",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t32_umbrella_stand/20261124T202754Z-28e17dad",
+   "task": "t32_umbrella_stand",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t33_candle_holder/20261124T202854Z-650173c6",
+   "task": "t33_candle_holder",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t34_crush_crackers/20261124T202856Z-71f949c4",
+   "task": "t34_crush_crackers",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t35_flashlight/20261124T203001Z-09d7fef3",
+   "task": "t35_flashlight",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t36_thermos_pour/20261124T203002Z-93903c9f",
+   "task": "t36_thermos_pour",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t37_box_cutter/20261124T203058Z-14bb648a",
+   "task": "t37_box_cutter",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t38_tv_remote/20261124T203121Z-5763ff27",
+   "task": "t38_tv_remote",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t39_whiteboard_erase/20261124T203204Z-15258105",
+   "task": "t39_whiteboard_erase",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t40_scrape_crumbs/20261124T203238Z-b026388f",
+   "task": "t40_scrape_crumbs",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T203345Z-02a48d09",
+   "task": "t41_power_strip",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t42_dish_soap/20261124T203447Z-8fd8a3f1",
+   "task": "t42_dish_soap",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t43_chalk_line/20261124T203458Z-806eab67",
+   "task": "t43_chalk_line",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t44_crush_garlic/20261124T203602Z-3407e09d",
+   "task": "t44_crush_garlic",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t45_pepper_mill/20261124T203606Z-0f19f13a",
+   "task": "t45_pepper_mill",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t46_table_leg/20261124T203702Z-10db0224",
+   "task": "t46_table_leg",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t47_level_shelf/20261124T203710Z-6d45c1b4",
+   "task": "t47_level_shelf",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t48_wheel_chock/20261124T203755Z-17933f1b",
+   "task": "t48_wheel_chock",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t49_weigh_orange/20261124T203816Z-1ef69be5",
+   "task": "t49_weigh_orange",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t49_weigh_orange/20261124T205737Z-893d9f45",
+   "task": "t49_weigh_orange",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t49_weigh_orange/20261124T210752Z-288d033a",
+   "task": "t49_weigh_orange",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t50_toy_bowling/20261124T203859Z-ed719cd5",
+   "task": "t50_toy_bowling",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/srv_captest_live_idle/20261124T200928Z-cb9d88cd",
+   "task": "t27_paperweight",
+   "series": "probe",
+   "verdict": "FAIL"
+  }
+ ],
  "videos_left_out_for_size": [],
  "files": [
   {
+   "name": "t19_jar_drawer__probe0__d40f5b5d.mp4",
+   "bytes": 205200,
+   "sha256": "c542f6dda35e0f832f3b3f82865df9913fe96e4db469b887f78f945c02f58207"
+  },
+  {
+   "name": "t19_jar_drawer__probe0__d40f5b5d.jpg",
+   "bytes": 75967,
+   "sha256": "f042724fb7ba328e42849ad5c50b1ffdecd51415e9624fda0019bba28c6b546c"
+  },
+  {
    "name": "t19_jar_drawer__probe1__d8f9ac5e.mp4",
-   "bytes": 582140,
-   "sha256": "4c7f8574504ecd305f740807f92011183900cc75f1234d77a7792f2f46f3211a"
+   "bytes": 595846,
+   "sha256": "7b9771c83a46af389c7200edf0204965de37232ae599cefb7203288a28569e2e"
   },
   {
    "name": "t19_jar_drawer__probe1__d8f9ac5e.jpg",
-   "bytes": 71969,
-   "sha256": "003787d81ef9c89e5780854ca368e042ec4a795c4aefd21d28b3c9ccbf8643ff"
+   "bytes": 75945,
+   "sha256": "9e687f3ffc4500ce32e7917d8306c71c93d0398a645e36095724bd45f51f1700"
   },
   {
    "name": "t27_paperweight__probe0__4959e6b7.mp4",
-   "bytes": 366057,
-   "sha256": "4932c7a02671e100eae9c12299ffef3d0d5c201d7f82acea7015a0ee07058c1a"
+   "bytes": 371805,
+   "sha256": "eb7e420de7168c5edd64e87fa31b3a110e433592d34090ebada9852a09c78726"
   },
   {
    "name": "t27_paperweight__probe0__4959e6b7.jpg",
-   "bytes": 91768,
-   "sha256": "be717d5304a24676743d9b3c9fafd97e7e4bff4d375f09cc8d4f50ff0b395fc2"
+   "bytes": 95606,
+   "sha256": "c4191f58fa3af9f64704aeee696d246452fa0ca3482e5f91c12c1767a0f693b4"
   },
   {
-   "name": "t41_power_strip__probe2__22c127b6.mp4",
-   "bytes": 378781,
-   "sha256": "d376aa5ee53bc3f6a83db6b1d11ca19ad5f72638da3ab4b0c29d8731b21dbd34"
+   "name": "t41_power_strip__probe0__26ee5e93.mp4",
+   "bytes": 180828,
+   "sha256": "5c98c170abff92502cf8787b811ceb3082ff79089255a118b6a7db8c5400a8ee"
   },
   {
-   "name": "t41_power_strip__probe2__22c127b6.jpg",
-   "bytes": 61875,
-   "sha256": "384d8226d7174e59e5b0b78303d12f123abe3e5933494b64dbb3aaf92f6475b5"
+   "name": "t41_power_strip__probe0__26ee5e93.jpg",
+   "bytes": 66696,
+   "sha256": "df6f9f1de984a06685f1ffc75cb974c01f65fb3fae994b2ef283e8119c5b5d16"
+  },
+  {
+   "name": "t41_power_strip__probe1__f614b895.mp4",
+   "bytes": 342794,
+   "sha256": "503003e0106500963ce2cccc6bed0b450aa2ea13055bf7e30da6b5b39d80ba8b"
+  },
+  {
+   "name": "t41_power_strip__probe1__f614b895.jpg",
+   "bytes": 76937,
+   "sha256": "7a62ba054d4fc54deabe4d210e58bd2010e0c3313825643fe4e7ecbdb97c7786"
   },
   {
    "name": "t49_weigh_orange__probe1__b87d5142.mp4",
-   "bytes": 493576,
-   "sha256": "122750a713670e90f8aede860705716b0595595e2aa4eacc5f71e6cbd264653a"
+   "bytes": 507697,
+   "sha256": "3310639ab367d5865953f2f780ecf77f2f31f361060f977de2b058d72c35a98d"
   },
   {
    "name": "t49_weigh_orange__probe1__b87d5142.jpg",
-   "bytes": 79241,
-   "sha256": "73ca8a99dbce99f339e4b038d8ead51063977268921374646785ff4328f64b0f"
+   "bytes": 83438,
+   "sha256": "2efdb90eac34aaba0045f2cf34d45ddbe377ad6847a78c264752e2672890a88e"
   }
  ],
- "media_bytes": 2125407,
+ "media_bytes": 2678759,
  "media_budget_bytes": 250000000,
  "not_done": [
   {
-   "text": "46 of 50 tasks have no episode at all.",
+   "text": "8 listed episode(s) on 4 task(s) were recorded with many cameras (before the head-camera rule): they are kept apart and are in no number above (3 probe pass(es), 0 test pass(es) among them). Whether those results hold with the head camera alone is shown only by episodes under the rule.",
+   "items": [
+    "t19_jar_drawer",
+    "t41_power_strip"
+   ]
+  },
+  {
+   "text": "48 of 50 tasks have no episode under the head-camera rule.",
    "items": [
     "t01_hammer_nail",
     "t02_crack_walnut",
@@ -1244,6 +1970,7 @@
     "t24_salt_shaker",
     "t25_fish_food",
     "t26_can_rack",
+    "t27_paperweight",
     "t28_can_bin",
     "t29_lighter_candle",
     "t30_toggle_clamp",
@@ -1264,30 +1991,90 @@
     "t46_table_leg",
     "t47_level_shelf",
     "t48_wheel_chock",
+    "t49_weigh_orange",
     "t50_toy_bowling"
    ]
   },
   {
-   "text": "4 task(s) have only probe episodes (development, never counted).",
+   "text": "2 task(s) have only probe episodes (development, never counted).",
    "items": [
     "t19_jar_drawer",
-    "t27_paperweight",
-    "t41_power_strip",
-    "t49_weigh_orange"
+    "t41_power_strip"
    ]
   },
   {
-   "text": "6 other episode(s) have files that do not hold together.",
+   "text": "8 other episode(s) have files that do not hold together.",
    "items": [
-    "daily50_t27_paperweight/20261124T200253Z-c16ec82c: the task's scene.xml changed after this episode (or the card gives no digest)",
-    "daily50_t19_jar_drawer/20261124T204539Z-45d41bfc: the task's scene.xml changed after this episode (or the card gives no digest)",
-    "daily50_t41_power_strip/20261124T204536Z-b8a2799b: the task's scene.xml changed after this episode (or the card gives no digest)",
-    "daily50_t41_power_strip/20261124T205103Z-5a7c46a8: the task's scene.xml changed after this episode (or the card gives no digest)",
-    "daily50_t41_power_strip/20261124T205435Z-2c5d6c28: the task's scene.xml changed after this episode (or the card gives no digest)",
-    "daily50_t19_jar_drawer/20261124T205453Z-b111253a: the task's scene.xml changed after this episode (or the card gives no digest); the scene the simulator recorded has another digest than the card's scene.xml"
+    "daily50_t27_paperweight/20261124T200253Z-c16ec82c: the task's scene.xml, task.json changed after this episode (or the card gives no digest)",
+    "daily50_t19_jar_drawer/20261124T204539Z-45d41bfc: the task's scene.xml, task.json changed after this episode (or the card gives no digest)",
+    "daily50_t41_power_strip/20261124T204536Z-b8a2799b: the task's scene.xml, task.json changed after this episode (or the card gives no digest)",
+    "daily50_t41_power_strip/20261124T205103Z-5a7c46a8: the task's scene.xml, task.json changed after this episode (or the card gives no digest)",
+    "daily50_t49_weigh_orange/20261124T204539Z-71b6fd22: the task's scene.xml changed after this episode (or the card gives no digest)",
+    "daily50_t49_weigh_orange/20261124T205218Z-ad5c5872: the task's scene.xml changed after this episode (or the card gives no digest)",
+    "daily50_t41_power_strip/20261124T205435Z-2c5d6c28: the task's scene.xml, task.json changed after this episode (or the card gives no digest)",
+    "daily50_t19_jar_drawer/20261124T205453Z-b111253a: the task's scene.xml, task.json changed after this episode (or the card gives no digest); the scene the simulator recorded has another digest than the card's scene.xml"
+   ]
+  },
+  {
+   "text": "54 episode card(s) are on disk under the runs folder and NOT on this page.",
+   "items": [
+    "s2/dexharness/runs/live/daily50_t01_hammer_nail/20261124T201227Z-6e497725 (t01_hammer_nail, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t02_crack_walnut/20261124T201227Z-d3900b37 (t02_crack_walnut, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t03_paint_lid_shut/20261124T201333Z-05918f18 (t03_paint_lid_shut, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t04_pull_nail/20261124T201347Z-f08a1ea2 (t04_pull_nail, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t05_hang_hammer/20261124T201447Z-f8af4506 (t05_hang_hammer, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t06_hinge_screw/20261124T201449Z-e0cc2172 (t06_hinge_screw, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t07_battery_cover/20261124T201550Z-c55f48e2 (t07_battery_cover, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t08_pry_paint_lid/20261124T201554Z-5c44d804 (t08_pry_paint_lid, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t09_valve_key/20261124T201703Z-dbefbc06 (t09_valve_key, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t10_mist_plant/20261124T201712Z-c31ba7a5 (t10_mist_plant, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t11_spray_mirror/20261124T201809Z-143978d2 (t11_spray_mirror, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t12_bulb_table_lamp/20261124T195611Z-a18ff905 (t12_bulb_table_lamp, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t13_bulb_vanity/20261124T201816Z-2869ba73 (t13_bulb_vanity, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t14_bulb_remove/20261124T201939Z-1ee67147 (t14_bulb_remove, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t15_bulb_pendant/20261124T202008Z-d74a0070 (t15_bulb_pendant, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t16_block_tower/20261124T202046Z-249bb8ff (t16_block_tower, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t17_shape_sorter/20261124T202116Z-ab2a727e (t17_shape_sorter, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t18_hob_knob/20261124T202155Z-e0fdfe7b (t18_hob_knob, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t19_jar_drawer/20261124T202227Z-0b2f9ab2 (t19_jar_drawer, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t20_sink_plug/20261124T195611Z-8bdc8ec3 (t20_sink_plug, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t21_calendar_cube/20261124T202301Z-0547795c (t21_calendar_cube, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t22_seal_stamp/20261124T202328Z-33b82057 (t22_seal_stamp, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t23_milk_microwave/20261124T202403Z-0be28070 (t23_milk_microwave, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t24_salt_shaker/20261124T202428Z-d6b297ec (t24_salt_shaker, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t25_fish_food/20261124T202457Z-6e760d86 (t25_fish_food, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t26_can_rack/20261124T202534Z-5f7a3367 (t26_can_rack, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t27_paperweight/20261124T195611Z-620c5d90 (t27_paperweight, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t27_paperweight/20261124T200614Z-9cb9052d (t27_paperweight, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t28_can_bin/20261124T202554Z-5e19ff35 (t28_can_bin, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t29_lighter_candle/20261124T202641Z-2f108bf9 (t29_lighter_candle, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t30_toggle_clamp/20261124T202653Z-e1c91fd4 (t30_toggle_clamp, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t31_tube_lamp/20261124T202746Z-517c55de (t31_tube_lamp, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t32_umbrella_stand/20261124T202754Z-28e17dad (t32_umbrella_stand, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t33_candle_holder/20261124T202854Z-650173c6 (t33_candle_holder, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t34_crush_crackers/20261124T202856Z-71f949c4 (t34_crush_crackers, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t35_flashlight/20261124T203001Z-09d7fef3 (t35_flashlight, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t36_thermos_pour/20261124T203002Z-93903c9f (t36_thermos_pour, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t37_box_cutter/20261124T203058Z-14bb648a (t37_box_cutter, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t38_tv_remote/20261124T203121Z-5763ff27 (t38_tv_remote, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t39_whiteboard_erase/20261124T203204Z-15258105 (t39_whiteboard_erase, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t40_scrape_crumbs/20261124T203238Z-b026388f (t40_scrape_crumbs, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T203345Z-02a48d09 (t41_power_strip, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t42_dish_soap/20261124T203447Z-8fd8a3f1 (t42_dish_soap, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t43_chalk_line/20261124T203458Z-806eab67 (t43_chalk_line, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t44_crush_garlic/20261124T203602Z-3407e09d (t44_crush_garlic, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t45_pepper_mill/20261124T203606Z-0f19f13a (t45_pepper_mill, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t46_table_leg/20261124T203702Z-10db0224 (t46_table_leg, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t47_level_shelf/20261124T203710Z-6d45c1b4 (t47_level_shelf, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t48_wheel_chock/20261124T203755Z-17933f1b (t48_wheel_chock, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t49_weigh_orange/20261124T203816Z-1ef69be5 (t49_weigh_orange, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t49_weigh_orange/20261124T205737Z-893d9f45 (t49_weigh_orange, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t49_weigh_orange/20261124T210752Z-288d033a (t49_weigh_orange, probe, FAIL)",
+    "s2/dexharness/runs/live/daily50_t50_toy_bowling/20261124T203859Z-ed719cd5 (t50_toy_bowling, probe, FAIL)",
+    "s2/dexharness/runs/live/srv_captest_live_idle/20261124T200928Z-cb9d88cd (t27_paperweight, probe, FAIL)"
    ]
   }
  ],
- "generated": "2026-11-24 16:05 EST",
- "page_sha256": "784bb74ed4ed9deda1d642c5e8c0d0fe942e47fc6e5d83205a1bed2e6852aacb"
+ "generated": "2026-11-24 16:56 EST",
+ "page_sha256": "9e54d25dbc985552653ef42a0fcbea769688801df77f91426013f13b5f561523"
 }

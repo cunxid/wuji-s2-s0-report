@@ -1,0 +1,24 @@
+{
+ "written": "2026-11-24 16:56 EST",
+ "rule": "S2 observes with the robot's head camera only (owner, 2026-11-24 16:15)",
+ "pictures": [
+  {
+   "file": "headcam_example_t41_start_marked.jpg",
+   "task": "t41_power_strip",
+   "run": "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T214742Z-c213e570",
+   "source": "s2_view/turn_0000/head_marked.jpg",
+   "caption": "What S2 is given at the start of t41 (power strip) under the head-camera rule: the head camera's colour image (848 x 480, on the robot's stand, looking forward and down) inside a labelled pixel grid, with the nine objects the session located in that observation's depth outlined and numbered. The numbers are the ones S2 uses (numbered[2] is the power strip with its cord). The red switch pad is not an object of its own: S2 reads its pixel off the grid (about u 570, v 320) and asks point_at(view, u, v). Scripted proof session, no LLM; verdict FAIL as expected (nothing was pressed).",
+   "sha256": "c3bc6902fb0b1fef608fc962b88a8837422090d1a310420fef149979c2fdc01d",
+   "bytes": 132225
+  },
+  {
+   "file": "headcam_example_t19_after_reach_rgb.jpg",
+   "task": "t19_jar_drawer",
+   "run": "s2/dexharness/runs/live/daily50_t19_jar_drawer/20261124T214949Z-40eb5e48",
+   "source": "s2_view/turn_0003/head_rgb.jpg",
+   "caption": "What S2 is given on t19 (jar and drawer) after one reach planned from the head camera's depth alone (palm 18 cm above the largest located object): the same camera, now with the robot's right arm and hand in the picture. The hand covers what is under it; this is the only view S2 has, so it must move the hand away (clear_view) to see the result of its work. Scripted proof session, no LLM; verdict FAIL as expected (nothing was moved).",
+   "sha256": "ba182679bf8a1e72afd99e39b104100ec29082fb86de091b98645a0daa6f504b",
+   "bytes": 135911
+  }
+ ]
+}
