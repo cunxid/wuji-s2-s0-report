@@ -3,11 +3,11 @@
  "manifest": "s2/outputs/harness_round/daily50/episodes.json",
  "headline": {
   "tasks_total": 50,
-  "tasks_attempted": 0,
+  "tasks_attempted": 1,
   "tasks_with_a_counted_test_episode": 0,
   "tasks_with_a_pass": 0,
-  "episodes_listed": 0,
-  "probe_episodes": 0,
+  "episodes_listed": 1,
+  "probe_episodes": 1,
   "test_episodes_listed": 0,
   "test_episodes_excluded": 0,
   "episodes_without_series": 0,
@@ -412,14 +412,22 @@
    "task": "t27_paperweight",
    "prompt": "Put the paperweight on the poster so it stops rolling back up.",
    "version": 2,
-   "status": "not attempted",
+   "status": "probe only: 1 development episode(s), nothing counted",
    "passed": false,
-   "episodes": [],
+   "episodes": [
+    "s2/dexharness/runs/live/daily50_t27_paperweight/20261124T200253Z-c16ec82c"
+   ],
    "best": null,
-   "failure": null,
-   "failure_role": null,
+   "failure": "s2/dexharness/runs/live/daily50_t27_paperweight/20261124T200253Z-c16ec82c",
+   "failure_role": "a probe episode (development, the latest; not counted)",
    "note": null,
-   "media": {}
+   "media": {
+    "failure": {
+     "video": "t27_paperweight__probe0__4959e6b7.mp4",
+     "poster": "t27_paperweight__probe0__4959e6b7.jpg",
+     "run": "s2/dexharness/runs/live/daily50_t27_paperweight/20261124T200253Z-c16ec82c"
+    }
+   }
   },
   {
    "task": "t28_can_bin",
@@ -721,19 +729,138 @@
    "media": {}
   }
  ],
- "episodes": [],
+ "episodes": [
+  {
+   "run": "s2/dexharness/runs/live/daily50_t27_paperweight/20261124T200253Z-c16ec82c",
+   "run_name": "daily50_t27_paperweight/20261124T200253Z-c16ec82c",
+   "task": "t27_paperweight",
+   "series": "probe",
+   "episode_index": 0,
+   "mode": "live",
+   "agent": "harness-policy-bind",
+   "prompt": "Put the paperweight on the poster so it stops rolling back up.",
+   "turns": 3,
+   "ticks_used": 677,
+   "tick_budget": 1500,
+   "verdict": "FAIL",
+   "terms": [
+    "[NO] free edge of the poster lower than 0.003 m above the desk: 0.05165; true for 0 ticks; height of poster_tip in the frame of poster (0.0007 m flat, 0.0517 m as authored)",
+    "[NO] free edge within 0.010 m of where it lies when the sheet is flat: 0.01971; true for 0 ticks; horizontal distance of poster_tip from its flat position, in the frame of poster",
+    "[NO] the paperweight touches the last strip of the curling end: 0; true for 0 ticks; recorded contact pairs between the paperweight and poster_curl8",
+    "[yes] the paperweight is at rest (0.02 m/s, 0.5 rad/s): 2.637e-07; true for 587 ticks; recorded velocity of the paperweight",
+    "[yes] no hand link and no palm surface touches the paperweight: 0; true for 590 ticks; hand links of both hands plus the palm surfaces (wrist links) in contact with the paperweight",
+    "[yes] no hand link touches the poster: 0; true for 677 ticks; recorded contact pairs between hand links of either hand and the bodies of the poster",
+    "[NO] right palm at least 0.18 m from the paperweight: 0.1442; true for 122 ticks; distance between the origins of right_palm_link and the paperweight",
+    "[NO] the paperweight lies at the end of the sheet: -0.2792; true for 0 ticks; origin of the paperweight in the frame of poster: |x| <= 0.165 m and -0.160 m <= y <= -0.030 m (free edge at y = -0.096 m); the value is y",
+    "[yes] the paperweight has been lifted in the hand (0.070 m above the desk, two links of one hand on it): 0.07832; true for 414 ticks; at this or an earlier tick: origin of the paperweight at least 0.070 m above the desk (frame of poster) while at least two links of one hand touched it; the value is the greatest such height so far"
+   ],
+   "policy": {
+    "bound": true,
+    "engine": "m8000",
+    "clip": "/home/jimmy/workspace/wuji-rl-gmt/data/recipes_local/hoi_pack_v1/c154.recipe.json",
+    "object_in_training_recipe": "yes"
+   },
+   "task_version": 2,
+   "excluded": [],
+   "problems": [],
+   "video": {
+    "dir": "s2/dexharness/runs/live/daily50_t27_paperweight/20261124T200253Z-c16ec82c/media/episode",
+    "bytes": 366057,
+    "sha256": "4932c7a02671e100eae9c12299ffef3d0d5c201d7f82acea7015a0ee07058c1a",
+    "poster_bytes": 91768,
+    "poster_sha256": "be717d5304a24676743d9b3c9fafd97e7e4bff4d375f09cc8d4f50ff0b395fc2",
+    "duration_s": 19.35,
+    "speed": 1.0,
+    "size": [
+     848,
+     602
+    ],
+    "turns_source": "s2_turns.jsonl",
+    "never_touch_events": 0,
+    "problems": []
+   },
+   "card_sha256": "8e9de758c37e6911b4a5c3c011bc2cccf5be982d31e14c4da254abe71ae6fe8c"
+  }
+ ],
  "other_episodes": [],
  "unlisted_on_disk": [],
  "videos_left_out_for_size": [],
- "files": [],
- "media_bytes": 0,
+ "files": [
+  {
+   "name": "t27_paperweight__probe0__4959e6b7.mp4",
+   "bytes": 366057,
+   "sha256": "4932c7a02671e100eae9c12299ffef3d0d5c201d7f82acea7015a0ee07058c1a"
+  },
+  {
+   "name": "t27_paperweight__probe0__4959e6b7.jpg",
+   "bytes": 91768,
+   "sha256": "be717d5304a24676743d9b3c9fafd97e7e4bff4d375f09cc8d4f50ff0b395fc2"
+  }
+ ],
+ "media_bytes": 457825,
  "media_budget_bytes": 250000000,
  "not_done": [
   {
-   "text": "No episode has been run and listed here: 0 of 50 tasks attempted. There is no success rate.",
-   "items": []
+   "text": "49 of 50 tasks have no episode at all.",
+   "items": [
+    "t01_hammer_nail",
+    "t02_crack_walnut",
+    "t03_paint_lid_shut",
+    "t04_pull_nail",
+    "t05_hang_hammer",
+    "t06_hinge_screw",
+    "t07_battery_cover",
+    "t08_pry_paint_lid",
+    "t09_valve_key",
+    "t10_mist_plant",
+    "t11_spray_mirror",
+    "t12_bulb_table_lamp",
+    "t13_bulb_vanity",
+    "t14_bulb_remove",
+    "t15_bulb_pendant",
+    "t16_block_tower",
+    "t17_shape_sorter",
+    "t18_hob_knob",
+    "t19_jar_drawer",
+    "t20_sink_plug",
+    "t21_calendar_cube",
+    "t22_seal_stamp",
+    "t23_milk_microwave",
+    "t24_salt_shaker",
+    "t25_fish_food",
+    "t26_can_rack",
+    "t28_can_bin",
+    "t29_lighter_candle",
+    "t30_toggle_clamp",
+    "t31_tube_lamp",
+    "t32_umbrella_stand",
+    "t33_candle_holder",
+    "t34_crush_crackers",
+    "t35_flashlight",
+    "t36_thermos_pour",
+    "t37_box_cutter",
+    "t38_tv_remote",
+    "t39_whiteboard_erase",
+    "t40_scrape_crumbs",
+    "t41_power_strip",
+    "t42_dish_soap",
+    "t43_chalk_line",
+    "t44_crush_garlic",
+    "t45_pepper_mill",
+    "t46_table_leg",
+    "t47_level_shelf",
+    "t48_wheel_chock",
+    "t49_weigh_orange",
+    "t50_toy_bowling"
+   ]
+  },
+  {
+   "text": "1 task(s) have only probe episodes (development, never counted).",
+   "items": [
+    "t27_paperweight"
+   ]
   }
  ],
- "generated": "2026-11-24 14:58 EST",
- "page_sha256": "f117a804ba580b74234377406326820439ec5e83a0abaefc2d8596a6016a9d01"
+ "generated": "2026-11-24 15:43 EST",
+ "page_sha256": "81de1a34ba1e32f87a2a92462dfac5b2c611cbedca87a9f57f31d8bb9a1c1906"
 }
