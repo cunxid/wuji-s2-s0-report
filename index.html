@@ -20,6 +20,7 @@ table{border-collapse:collapse;width:100%;font-size:13px;margin:8px 0}td,th{bord
 .pass{color:#1baf7a;font-weight:700}.fail{color:#eb6834;font-weight:700}
 .kpi{display:inline-block;border:1px solid #e1e0d9;border-radius:8px;padding:9px 15px;margin:4px 9px 4px 0}.big{font-size:19px;font-weight:700}
 .notice{font-size:13.5px;margin:12px 0;padding:10px 13px;background:#fff4f1;border:1px solid #f0b8a8;border-left:5px solid #d8343c;border-radius:8px;color:#4a150e}
+.demo{color:#b7791f;font-weight:700}
 </style></head><body>
 
 <h1>Agentic Dexterity</h1>
@@ -37,7 +38,7 @@ never retraining the controller. Tianji arm + wuji2 20-DoF hand; evaluated on Ha
 <a href="timing.html">⏱ Agent-in-the-loop timing (60)</a>
 </div>
 
-<div class="notice"><b>Correction, 2026-11-23 — pass counts on this site are under audit.</b> A step-by-step trace of the runs found two problems. (1) The <b>"official predicate" label was not justified</b>: the scoring helper passed fixed values for predicate terms it could not measure (peg insertion depth and axis, cup upright and height above the plate, hammer strike kinematics, mouse on the pad), and several rows used a substitute object or a marker position instead of the task's own object and target. All 9 "official" labels are withdrawn. (2) <b>Some passes came from an uncontrolled mechanism</b>: in cup-on-plate the cup fell out of the hand mid-carry and was pushed to the target; in move-and-click the mouse was knocked by an arm in IK recovery following a junk reference; the reported hammer–nail depth was reached during the left-hand lift, not the strike. Every passing row (15 evaluation, 7 in-hand) is being re-audited for mechanism, scene and scoring; corrected numbers will replace this notice. Details: <a href="breakdowns.html">agent breakdowns</a>.</div>
+<div class="notice"><b>Correction, 2026-11-23 — the pass counts previously shown here were wrong.</b> Every row reported as a pass was audited (run logs, per-tick traces, video frames, scoring code; each verdict checked twice). <b>Result: none of the 50 evaluation tasks was completed, and none of the 10 in-hand tasks was completed as described.</b> Four behaviours hold up as demos: a substitute box picked up and released into the bucket, a left mouse click, an in-hand roll of the screwdriver, and an in-hand turn of a cone. The earlier figures (15/50, 9 "official" passes, 7/10 in-hand) came from scoring that did not measure what it claimed, and from runs where the result was produced by an uncontrolled motion (a dropped cup pushed to its target, a mouse knocked by an arm following a junk reference, a nail-depth reading from the wrong phase). Full table and evidence: <a href="audit.html"><b>audit of reported passes</b></a>.</div>
 <h2>The pipeline</h2>
 <div class="pipe">
 <div class="stage"><b>① Perceive</b><span class="d">RGB-D only (SAM&nbsp;/ mesh-ICP&nbsp;/ depth). No simulator state.</span></div>
@@ -52,11 +53,11 @@ never retraining the controller. Tianji arm + wuji2 20-DoF hand; evaluated on Ha
 </div>
 <div class="loop">↑_____ per segment: observe → judge → <b>continue · retry · replan</b> &nbsp;(outcomes written back to the Capability Atlas) _____↑</div>
 
-<h2>Why it matters: the harness vs. the raw policy</h2>
-<p>The same frozen S0, same scene, same success criterion. <b>Left:</b> S0 tracking the native
-motion clip directly (no S2 composition or gating) — the no-harness baseline. <b>Right:</b> S0
-driven by the S2-compiled reference. The policy is byte-identical; only the reference it tracks
-differs.</p>
+<h2>The harness vs. the raw policy — after the audit</h2>
+<p>Same frozen policy and same scene in each pair. <b>Left:</b> the policy replaying its native
+motion clip. <b>Right:</b> the policy following the agent-composed reference. This section used to
+claim four passes against four baseline failures. After the audit, <b>two of the four right-hand
+runs hold up as demos and two do not</b>; the captions say which and why.</p>
 
 <div class="cmp">
 <div class="cell"><div class="lab">WITHOUT HARNESS · native clip replay</div>
@@ -65,7 +66,7 @@ differs.</p>
 
 <div class="cell"><div class="lab">WITH HARNESS · S2-compiled reference</div>
 <video muted loop autoplay playsinline src="cmp_strike_harness.mp4"></video>
-<div><b>t08 hammer strike</b> · <span class="pass">PASS</span> · nail 9.7&nbsp;mm (≥6) · 28s</div></div>
+<div><b>hammer strike</b> · <span class="fail">FAIL (audited)</span> · the nail ends exactly where it started; the 9.7&nbsp;mm reading was a 40&nbsp;ms blip on the first blow, with a substitute hammer · 28s</div></div>
 
 <div class="cell"><div class="lab">WITHOUT HARNESS · native clip replay</div>
 <video muted loop autoplay playsinline src="cmp_place_bucket_baseline.mp4"></video>
@@ -73,7 +74,7 @@ differs.</p>
 
 <div class="cell"><div class="lab">WITH HARNESS · S2-compiled reference</div>
 <video muted loop autoplay playsinline src="cmp_place_bucket_harness.mp4"></video>
-<div><b>place in bucket</b> · <span class="pass">PASS</span> · 20&nbsp;mm from center · 24s</div></div>
+<div><b>place in bucket</b> · <span class="demo">DEMO</span> · a substitute box is picked up, carried and released into the bucket as commanded (20&nbsp;mm from centre); not the task's fruit · 24s</div></div>
 
 <div class="cell"><div class="lab">WITHOUT HARNESS · native clip replay</div>
 <video muted loop autoplay playsinline src="cmp_mouse_press_baseline.mp4"></video>
@@ -81,7 +82,7 @@ differs.</p>
 
 <div class="cell"><div class="lab">WITH HARNESS · S2-compiled reference</div>
 <video muted loop autoplay playsinline src="cmp_mouse_press_harness.mp4"></video>
-<div><b>click mouse</b> · <span class="pass">PASS</span> · 13.0&nbsp;mm (≥4) · 28s</div></div>
+<div><b>click mouse</b> · <span class="demo">DEMO</span> · three commanded left clicks on the task's own mouse, pressed to the stop (15&nbsp;mm); the click only, in a rebuilt scene, re-recorded after a planner fix · 28s</div></div>
 
 <div class="cell"><div class="lab">WITHOUT HARNESS · native clip replay</div>
 <video muted loop autoplay playsinline src="cmp_pour_baseline.mp4"></video>
@@ -89,12 +90,9 @@ differs.</p>
 
 <div class="cell"><div class="lab">WITH HARNESS · S2-compiled reference</div>
 <video muted loop autoplay playsinline src="cmp_pour_harness.mp4"></video>
-<div><b>pour</b> · <span class="pass">PASS</span> · 146°&nbsp;held · 29s</div></div>
+<div><b>pour</b> · <span class="fail">FAIL (audited)</span> · the commanded tilt stalled at the wrist joint limits; most of the reported 146° was the cube's orientation before the tilt began · 29s</div></div>
 </div>
-<p class="na">All runs on the HandsOn-shipped Tianji M6-CCS dual-desktop bimanual rig (shoulder-mounted arms, central stand) at real-time physics; each pair is the IDENTICAL scene and spawn — only the reference S0 tracks differs. The baseline is the
-same pick/carry clip S0 was trained to track; it reaches the object but has no composed strike /
-precise-drop / press / tilt — exactly the capability the harness supplies by rewriting the
-reference.</p>
+<p class="na">All runs on the shipped Tianji M6-CCS dual-desktop rig at real-time physics; each pair shares one scene and spawn. The left-hand baselines replay the full native clip. The earlier statement that the harness supplies a working strike, precise drop, press and tilt in all four is withdrawn; see the <a href="audit.html">audit</a>.</p>
 
 
 <h2>In-hand rotation suite — 10 real-world tasks</h2>
@@ -102,34 +100,34 @@ reference.</p>
 dressed scene (socket fixture, wood block + nail, jar, paint pot, cutting board, saucer, bolt,
 pipe, tray) on the shipped rig: calibrated acquire → <b>in-hand</b> spin/flip (S0 finger
 dexterity, wrist frozen) → graded ≥55° achieved while still held at the end.
-<b>7/10 pass.</b> Capture basins were qualified per object before any spin
+<b>Audited result: 0 of 10 are passes of the task as described; 2 hold up as in-hand rotation demos.</b> The rotation score used here ignores which axis the object turned about, so tumbles and uncommanded rolls were being counted (<a href="audit.html">audit</a>). Capture basins were qualified per object before any spin
 (the yaw sweep ties on this mount, so basin search + measured-CORRECT is required) —
 the basin table and every attempt are in the capability atlas.</p>
 <div class="cmp">
 <div class="cell"><div class="lab">screw · z-axis · 4 attempts</div>
 <video muted loop autoplay playsinline src="ih_drive_screwdriver.mp4"></video>
-<div><b>Rotate the screwdriver one half-turn in-hand</b><br><span class="na">⚠ grades in-hand rotation only — tip-down screw engagement is NOT verified here; the engaged version was attempted separately and failed its declared bar (see below)</span><br><span class="pass">PASS</span> · 131° achieved · grip 0.56<br><span class="na">scene: wood block with nail (t08-style, static) at (-0.08,-0.58)</span></div></div>
+<div><b>Rotate the screwdriver one half-turn in-hand</b><br><span class="na">⚠ grades in-hand rotation only — tip-down screw engagement is NOT verified here; the engaged version was attempted separately and failed its declared bar (see below)</span><br><span class="demo">DEMO (audited)</span> · 131° achieved · grip 0.56<br><span class="na">scene: wood block with nail (t08-style, static) at (-0.08,-0.58)</span><br><span class="na">Audit: a real in-hand roll. The fingers turned the tool about 130° around its long axis with the wrist still and the tool held. A rotation demo only; there is no screw in this scene.</span></div></div>
 <div class="cell"><div class="lab">bar120x20 · y-axis · 4 attempts</div>
 <video muted loop autoplay playsinline src="ih_flip_paintbrush.mp4"></video>
-<div><b>Flip the paintbrush bristles-down to start painting</b><br><span class="pass">PASS</span> · 78° achieved · grip 0.62<br><span class="na">scene: paint pot (existing bowl) + paint can with blue paint top at (-0.10,-0.63)</span></div></div>
+<div><b>Flip the paintbrush bristles-down to start painting</b><br><span class="fail">FAIL (audited)</span> · 78° achieved · grip 0.62<br><span class="na">scene: paint pot (existing bowl) + paint can with blue paint top at (-0.10,-0.63)</span><br><span class="na">Audit: not a flip. The bar turned about 37° during the commanded 110° ramp; most of the scored 78° is an uncommanded roll about its own axis afterwards, with a corner pressed on the table.</span></div></div>
 <div class="cell"><div class="lab">hammerS · x-axis · 8 attempts</div>
 <video muted loop autoplay playsinline src="ih_hammer_face_to_claw.mp4"></video>
-<div><b>Rotate the hammer in hand from striking face to claw</b><br><span class="pass">PASS</span> · 99° achieved · grip 0.52<br><span class="na">scene: wood block with nail (t08-style, static) at (-0.10,-0.72)</span></div></div>
+<div><b>Rotate the hammer in hand from striking face to claw</b><br><span class="fail">FAIL (audited)</span> · 99° achieved · grip 0.52<br><span class="na">scene: wood block with nail (t08-style, static) at (-0.10,-0.72)</span><br><span class="na">Audit: the hammer followed only about 25–35° of the commanded 140° turn; the scored 99° came from an uncommanded roll about the handle, mostly after the commanded motion had ended.</span></div></div>
 <div class="cell"><div class="lab">cup76x90 · y-axis · 10 attempts</div>
 <video muted loop autoplay playsinline src="ih_topple_water_cup.mp4"></video>
-<div><b>Lay the water cup down on its side (tip it over in-hand)</b><br><span class="pass">PASS</span> · 88° achieved · grip 0.54<br><span class="na">scene: saucer (V21 disc100x15 mesh, static) beside the cup at (-0.14,-0.62)</span></div></div>
+<div><b>Lay the water cup down on its side (tip it over in-hand)</b><br><span class="demo">DEMO (audited)</span> · 88° achieved · grip 0.54<br><span class="na">scene: saucer (V21 disc100x15 mesh, static) beside the cup at (-0.14,-0.62)</span><br><span class="na">Audit: the object is a solid cone that starts on its side; it was turned about 65° in the fingers without being dropped. Not a toppled cup; an in-hand rotation demo (medium confidence).</span></div></div>
 <div class="cell"><div class="lab">screw · z-axis · 9 attempts</div>
 <video muted loop autoplay playsinline src="ih_unscrew_jar_lid.mp4"></video>
-<div><b>Long continuous in-hand twist (jar-lid motion)</b><br><span class="na">⚠ grades in-hand rotation only; lid-on-jar engagement is NOT verified</span><br><span class="pass">PASS</span> · 131° achieved · grip 0.56<br><span class="na">scene: open glass jar (cylinder shell + thread rim) at (-0.10,-0.62)</span></div></div>
+<div><b>Long continuous in-hand twist (jar-lid motion)</b><br><span class="na">⚠ grades in-hand rotation only; lid-on-jar engagement is NOT verified</span><br><span class="fail">FAIL (audited)</span> · 131° achieved · grip 0.56<br><span class="na">scene: open glass jar (cylinder shell + thread rim) at (-0.10,-0.62)</span><br><span class="na">Audit: not a separate result. The long −340° twist failed in all 7 attempts; the recorded pass is the screwdriver episode re-run under this name. There is no lid in the scene.</span></div></div>
 <div class="cell"><div class="lab">box60 · z-axis · 13 attempts</div>
 <video muted loop autoplay playsinline src="ih_turn_butter_block.mp4"></video>
-<div><b>Rotate the butter block to align it for cutting</b><br><span class="pass">PASS</span> · 113° achieved · grip 0.83<br><span class="na">scene: cutting board (20x14x1cm thin box) directly under the butter spawn</span></div></div>
+<div><b>Rotate the butter block to align it for cutting</b><br><span class="fail">FAIL (audited)</span> · 113° achieved · grip 0.83<br><span class="na">scene: cutting board (20x14x1cm thin box) directly under the butter spawn</span><br><span class="na">Audit: the cube swivelled 113° about the pinch line, roughly 85° away from the commanded axis and unrelated in timing to the command. The score ignores the rotation axis.</span></div></div>
 <div class="cell"><div class="lab">lbar100x60 · z-axis · 13 attempts</div>
 <video muted loop autoplay playsinline src="ih_turn_allen_key.mp4"></video>
 <div><b>Rotate the allen key in-hand (wrench-like motion)</b><br><span class="na">⚠ grades in-hand rotation only; bolt engagement is NOT verified</span><br><span class="fail">SPIN_SHORT</span> · 33° achieved · grip 0.44<br><span class="na">scene: hex bolt-head prism (3 crossed boxes) at (-0.10,-0.58)</span></div></div>
 <div class="cell"><div class="lab">tbar110 · z-axis · 10 attempts</div>
 <video muted loop autoplay playsinline src="ih_thread_tee_fitting.mp4"></video>
-<div><b>Rotate the tee fitting in-hand (thread-like motion)</b><br><span class="na">⚠ grades in-hand rotation only; pipe-thread engagement is NOT verified</span><br><span class="pass">PASS</span> · 174° achieved · grip 0.73<br><span class="na">scene: standing pipe stub (steel cylinder) at (-0.10,-0.62)</span></div></div>
+<div><b>Rotate the tee fitting in-hand (thread-like motion)</b><br><span class="na">⚠ grades in-hand rotation only; pipe-thread engagement is NOT verified</span><br><span class="fail">FAIL (audited)</span> · 174° achieved · grip 0.73<br><span class="na">scene: standing pipe stub (steel cylinder) at (-0.10,-0.62)</span><br><span class="na">Audit: the bar came loose when the fingers opened and flopped over; the scored 174° is that tumble, not the commanded rotation.</span></div></div>
 <div class="cell"><div class="lab">box40 · y-axis · 10 attempts</div>
 <video muted loop autoplay playsinline src="ih_roll_dice_show_face.mp4"></video>
 <div><b>Turn the die in the fingers to show the opposite face</b><br><span class="fail">GRASP_SLIP</span> · 6° achieved · grip 0.03<br><span class="na">scene: flat dice tray (V21 plate160 mesh, static) at (-0.08,-0.60)</span></div></div>
@@ -137,11 +135,7 @@ the basin table and every attempt are in the capability atlas.</p>
 <video muted loop autoplay playsinline src="ih_screw_in_light_bulb.mp4"></video>
 <div><b>Rotate the bulb as if threading (capture never achieved)</b><br><span class="na">⚠ grades in-hand rotation only; no socket engagement is verified</span><br><span class="fail">GRASP_SLIP</span> · 5° achieved · grip 0.00<br><span class="na">scene: lamp-socket fixture (standing cylinder + open top ring) at (-0.10,-0.60)</span></div></div>
 </div>
-<p class="na">The five walls are measured, not assumed: the allen key rotates ~35° in-grip then escapes (99° reachable but not held — passable by the ratchet re-grip below); butter and tee CONVERTED once the reference-buffer ceiling was removed: gentle multi-chunk drives reach 113° and 174° held (single episodes, suite grader); the die's only capture basin is lift-only and every flip rips
-it from the fingertip grip; the bulb has NO capture basin on this rig (full 12-yaw sweep + 4
-measured-CORRECT retries). The jar-lid passes the 55° bar at the validated −170° dial; a full
-−340° single twist holds firmly but saturates at 36° — long continuous twists need composed
-re-grips (split_compose), a measured retraining target.</p>
+<p class="na">Audit summary for this suite: only the screwdriver roll (about 130° about its long axis) and the cone turn (about 65°) are rotations the fingers produced as commanded. The butter-block and tee-fitting results that were reported as conversions were an off-axis swivel and a tumble. The allen key, die and bulb rows were already failures. The per-object rotation "wall" figures quoted earlier on this site came from the same score and are unverified.</p>
 
 
 <h3>Engaged screwdriving — the real contract (attempted, failed)</h3>
@@ -167,7 +161,8 @@ policy under this harness, not a pass. Full attempt log:
 <code>s2/s2loop/drive_screw_engaged.json</code>.</div></div>
 </div>
 
-<h3>Beyond the single-grasp wall: the ratchet re-grip (composed skill)</h3>
+<h3>Ratchet re-grip (composed skill) — unverified after the audit</h3>
+<p class="notice"><b>Unverified.</b> The angles below use the same rotation score the audit found unreliable (it ignores the rotation axis), and a later trace of this object showed it tilting during the hand-off settle before any spin was commanded. Treat the 69° figure as unverified until it is re-measured from a per-tick trace.</p>
 <p>The allen key's single-grasp rotation wall is measured at ~35° held. Chaining
 <b>grasp → spin to the wall → set-down → re-grip the rotated key → spin again</b> (the
 verified-regrip route, like a human ratcheting) achieves <b>69.0° of held in-hand rotation</b>
@@ -181,7 +176,7 @@ ground-truth-measured and disclosed (<code>s2/s2loop/ratchet_demo.json</code>).<
 <div>38.4° held, set-down 22–69&nbsp;mm from home</div></div>
 <div class="cell"><div class="lab">cycle 2 · re-grip the rotated, leaning key</div>
 <video muted loop autoplay playsinline src="ratchet_c2.mp4"></video>
-<div><span class="pass">+30.6° held</span> — cumulative 69.0°</div></div>
+<div>+30.6° by the unverified score — cumulative 69.0° (unverified)</div></div>
 <div class="cell"><div class="lab">cycle 3 · the measured end of the chain</div>
 <video muted loop autoplay playsinline src="ratchet_c3.mp4"></video>
 <div><span class="fail">re-acquire fails</span> from the 112° rest (CORRECT retry included)</div></div>
@@ -189,13 +184,12 @@ ground-truth-measured and disclosed (<code>s2/s2loop/ratchet_demo.json</code>).<
 
 <h2>Status</h2>
 <div class="kpi"><div class="big">50</div>wuji2 HandsOn tasks (gallery)</div>
-<div class="kpi"><div class="big">15/50</div>evaluation rows passing the repo graders — <b>under audit</b>, expect this to drop</div>
-<div class="kpi"><div class="big" style="color:#d8343c">0</div>official HandsOn predicate passes verified (the 9 earlier labels are withdrawn)</div>
+<div class="kpi"><div class="big" style="color:#d8343c">0/50</div>evaluation tasks completed (audited; 15 had been reported)</div>
+<div class="kpi"><div class="big" style="color:#d8343c">0</div>official HandsOn predicate passes (the 9 earlier labels are withdrawn)</div>
+<div class="kpi"><div class="big">4</div>behaviours that hold up as demos (box into bucket, mouse click, screwdriver roll, cone turn)</div>
 <div class="kpi"><div class="big">50</div>task scenes envelope-probed</div>
 <div class="kpi"><div class="big">24</div>V21 objects envelope-requalified (shipped rig)</div>
-<p class="na">Scope: HandsOn only (the one native-wuji2 benchmark). Requalification finding: the mount is part of the capability boundary — the shipped rig qualifies capture on 18/25 objects and rescues 6 outright (sph60/rod/cyl70 0→10/11; rotation envelopes wide: yaw tracks at 120°/s), while long objects lose horizontal-reach primitives (far anchor at the arm's x/y reach edge) — measured both directions, 938 new cells in the atlas. Scenes loaded from their own
-<code>prepare_task_mjcf</code> pipeline; success scored by their ported predicates.
-All numbers requalified on the HandsOn-shipped Tianji M6-CCS mount (old-rig tally was 9/50: the mouse, bucket and bowl families fully requalified; t08 fully requalified after a measured left-pinch fix (L_PITCH=20: the shoulder mount saturates the left palm high, so the fingers dip to wrap the block — 80.7mm lift, 11.8mm nail, official PASS); box40 pour retention is marginal — both measured, both logged as retune targets). Details in the <a href="agentic-dexterity.pdf">paper</a>; per-verb boundary in the
+<p class="na">Scope: HandsOn only (the one native-wuji2 benchmark). Requalification finding: the mount is part of the capability boundary — the shipped rig qualifies capture on 18/25 objects and rescues 6 outright (sph60/rod/cyl70 0→10/11; rotation envelopes wide: yaw tracks at 120°/s), while long objects lose horizontal-reach primitives (far anchor at the arm's x/y reach edge) — measured both directions, 938 new cells in the atlas. Scoring: the audit found that the ported "official" predicates were being fed fixed values for the terms the harness could not measure, so no official pass is supported, and the earlier statements here about requalified official passes (mouse, bucket, bowl, hammer–nail, cup-on-plate, peg) are withdrawn. The probing results above are tracking measurements and were not part of this audit. Details in the <a href="agentic-dexterity.pdf">paper</a>; per-verb boundary in the
 <a href="capability.html">capability page</a>; every task scene in the
 <a href="wuji2_tasks.html">gallery</a>.</p>
 </body></html>
