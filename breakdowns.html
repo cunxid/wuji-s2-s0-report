@@ -7,7 +7,11 @@ a{color:#2056a8}code{background:#f1f0ec;padding:1px 5px;border-radius:4px;font-s
 .nav a{display:inline-block;border:1px solid #d7d6cf;border-radius:8px;padding:6px 12px;background:#fff;text-decoration:none;font-weight:600;margin-right:8px;font-size:13.5px}
 .case{border:1px solid #e1e0d9;border-radius:12px;background:#fff;margin:18px 0;padding:14px 16px}
 .case h2{font-size:17px;margin:0 0 2px;border:none;padding:0}
+.case .prompt{font-size:13.5px;color:#333;margin:3px 0 2px}
 .case .meta{color:#777;font-size:12.5px;margin-bottom:10px}
+.st{display:inline-block;font:700 12px/1.7 -apple-system,"Segoe UI",sans-serif;letter-spacing:.03em;border-radius:5px;padding:0 8px;margin-right:9px;vertical-align:2px;color:#fff;background:#898781}
+.st.fail{background:#d8343c}.st.demo{background:#b7791f}.st.pass{background:#1baf7a}
+.colhead{font:11px/1.4 monospace;letter-spacing:.03em;color:#898781;margin:0 0 5px}
 .cols{display:grid;grid-template-columns:minmax(330px,43%) 1fr;gap:14px}
 .steps{max-height:470px;overflow-y:auto;padding-right:6px}
 .step{border:1px solid #eceae4;border-radius:9px;padding:8px 10px;margin-bottom:7px;cursor:pointer}
@@ -25,6 +29,8 @@ a{color:#2056a8}code{background:#f1f0ec;padding:1px 5px;border-radius:4px;font-s
 .fn.k-subprocess{background:#eef8f2;border-color:#cfe8d8;color:#1d6b45}
 .step .why{font-size:12.5px;color:#555;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .step.active .why{display:block}
+.step .saudit{font-size:12.5px;color:#5a1a12;background:#fff4f1;border-left:3px solid #d8343c;border-radius:4px;padding:3px 8px;margin:3px 0 5px}
+.step .logged{font:10.5px monospace;color:#999}
 .step .ws{float:right;font:11px monospace;color:#999}
 .modmap{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 9px}
 .modmap span{font-size:11.5px;border:1px solid #e1e0d9;border-radius:999px;padding:1px 9px;background:#fafaf8;color:#444}
@@ -34,31 +40,44 @@ canvas:active{cursor:grabbing}
 .scrub{width:100%;margin-top:6px}
 .legend{font-size:11.5px;color:#777;margin-top:4px}
 .legend b{font-weight:600}
-.outcome{font-size:13px;margin-top:8px;padding:7px 10px;background:#f6fbf7;border:1px solid #d8eede;border-radius:8px}
-.audit{font-size:13px;margin-top:8px;padding:8px 11px;background:#fff4f1;border:1px solid #f0b8a8;border-left:4px solid #d8343c;border-radius:8px;color:#5a1a12}
+.outcome{font-size:13px;margin-top:8px;padding:7px 10px;background:#f7f6f1;border:1px solid #e1e0d9;border-radius:8px}
+.outcome.fail{background:#fff4f1;border-color:#f0b8a8;color:#5a1a12}
+.outcome.demo{background:#fdf6e7;border-color:#ecd9a8}
+.outcome.pass{background:#f6fbf7;border-color:#d8eede}
+.audit{font-size:13px;margin:8px 0 10px;padding:8px 11px;background:#fff4f1;border:1px solid #f0b8a8;border-left:4px solid #d8343c;border-radius:8px;color:#5a1a12}
 .notice{font-size:13.5px;margin:12px 0;padding:10px 13px;background:#fff4f1;border:1px solid #f0b8a8;border-left:5px solid #d8343c;border-radius:8px;color:#4a150e}
 .hint{color:#999;font-size:11.5px}
 </style></head><body>
 <h1>Agent breakdowns — what was called, step by step</h1>
-<p class="sub">Five tasks <b>re-run fresh on the current harness</b> (shipped tianji2 rig, all of
-tonight's fixes), each traced end to end. Every step is one <b>sub-module</b> of the pipeline with
-the <b>function / tool calls</b> it made (names only — hover a call for what it does and where it
-lives), the measured reasoning behind it, and the resulting trajectory.</p>
+<p class="sub">Five runs that this site had reported as passes, <b>re-run on the current harness</b>
+(shipped tianji2 rig) and traced end to end. <b>The audit of 2026-11-23 found that none of the five
+is a pass.</b> The traces stay up because they show what the pipeline called and what the robot
+actually did. Every step is one <b>sub-module</b> of the pipeline with the <b>function / tool
+calls</b> it made (names only — hover a call for what it does and where it lives), the reasoning
+the pipeline logged for that step at run time, and the resulting trajectory. The logged reasoning
+was written before the audit and is shown as recorded; where the audit contradicts a step, the
+step carries a red <b>Audit</b> line, and that line overrides the logged text.</p>
 <p class="hint">Calls: <span class="fn">function</span> <span class="fn d1">↳ internal sub-call</span>
 <span class="fn k-inline_block">inline block in the co-sim script</span>
 <span class="fn k-subprocess">subprocess</span> <span class="fn k-external">external model</span>
 · click a step to expand its reasoning and jump the plot to its moment (steps from earlier attempts
 have no moment on the final-episode plot).<br>
-Plot: drag to orbit · wheel to zoom · shift-drag to pan · scrub the timeline. In-hand spin cases
-freeze the wrist by design — the fingers rotate the object, so the object path orbits the grip
-while the wrist stays put; the red strip under each plot is |wrist−object| over time, so rigid
-holds read flat and slip or reorientation shows as drift.</p>
-<div class="nav"><a href="index.html">← Main</a><a href="skills.html">🛠 Skills</a><a href="harness.html">🔩 Harness</a><a href="timing.html">⏱ Timing</a></div>
-<div class="notice"><b>Correction, 2026-11-23.</b> Tracing these runs step by step showed that three
-of the five did not succeed the way this site had described, and that the "official predicate"
-label used across the site was not justified: the scoring helper filled in predicate terms it
-could not measure with passing values. The affected cases carry a red audit note below. All
-passing rows are being re-audited; see the notice on the <a href="index.html">main page</a>.</div>
+Plot: drag to orbit · wheel to zoom · shift-drag to pan · scrub the timeline. In the in-hand spin
+case the wrist reference is frozen by design and only the object reference rotates, so the object
+path moves around the grip while the wrist stays put; the red strip under each plot is
+|wrist−object| over time, so a rigid hold reads flat and a slip, a drop or a turn in the hand
+shows as a change.</p>
+<div class="nav"><a href="index.html">← Main</a><a href="audit.html">Audit of reported passes</a><a href="skills.html">🛠 Skills</a><a href="harness.html">🔩 Harness</a><a href="timing.html">⏱ Timing</a></div>
+<div class="notice"><b>Correction, 2026-11-23 — none of these five runs is a pass.</b> Every row this
+site had reported as a pass was audited against its raw run data (run logs, per-tick traces, video
+frames, scoring code). <b>Result: 0 of 50 evaluation tasks were completed, and 0 of 10 in-hand
+tasks were completed as described.</b> All five cases below had been reported as passes, three of
+them (hammer and nail, cup on plate, mouse) with an "official predicate" label. All five are
+audited <b>FAIL</b>. No "official predicate" label is supported: the scoring helper filled in the
+predicate terms it could not measure with fixed passing values. Of everything shown on this page,
+only the left mouse click holds up as a demo. Each case below states what was reported, its
+audited status and what the audit found. Full table and evidence:
+<a href="audit.html"><b>audit of reported passes</b></a>.</div>
 <div id="cases"><p class="hint">loading traces…</p></div>
 <script>
 const TASKS = ['t08_hammer_nail','t25_place_cup_on_plate','t14_move_and_click_mouse',
@@ -88,6 +107,7 @@ function namesFromRaw(raw){
 function stepHTML(s,i){
   const calls=(s.calls&&s.calls.length)?s.calls:namesFromRaw(s.call);
   const chips=calls.map(c=>`<span class="fn ${c.depth?'d1':''} k-${esc(c.kind||'function')}" title="${esc([c.note,c.file].filter(Boolean).join(' — '))}">${c.depth?'↳ ':''}${esc(c.name)}</span>`).join('');
+  // s.audit_note: what the audit found about this step; shown in full above the logged reasoning
   return `
       <div class="step" data-i="${i}">
         <span class="badge ${BCLS[s.stage]||'b-route'}">${esc(s.stage)}</span>
@@ -95,8 +115,18 @@ function stepHTML(s,i){
         <span class="ws">${s.wall_s!=null?s.wall_s.toFixed(1)+'s':''}</span>
         <div class="files">${esc((s.files||[]).join(' · '))}</div>
         <div class="calls">${chips||'<span class="hint">decision only — no call</span>'}</div>
-        <div class="why">${esc(s.reasoning||'')}</div>
+        ${s.audit_note?`<div class="saudit"><b>Audit:</b> ${esc(s.audit_note)}</div>`:''}
+        <div class="why">${s.audit_note?'<span class="logged">logged at run time: </span>':''}${esc(s.reasoning||'')}</div>
       </div>`;
+}
+// Audited status of a case, from the trace's "audit" block (s2/s2loop/audit_2026-11-23.json).
+function auditBadge(A){
+  if (!A || !A.status) return {cls:'', txt:'not audited'};
+  const s=String(A.status).toUpperCase();
+  if (s==='FAIL') return {cls:'fail', txt:'FAIL (audited)'};
+  if (s.startsWith('DEMO')) return {cls:'demo', txt:'DEMO (audited)'};
+  if (s==='PASS') return {cls:'pass', txt:'PASS (audited)'};
+  return {cls:'', txt:String(A.status)};
 }
 function modMapHTML(steps){
   const order=[], agg={};
@@ -188,11 +218,17 @@ async function load(){
       el.innerHTML=`<h2>${t}</h2><p class="hint">trace not yet published</p>`; root.appendChild(el); continue; }
     const el=document.createElement('div'); el.className='case'; el.id=t;
     const steps=(d.steps||[]).map(stepHTML).join('');
-    el.innerHTML=`<h2>${esc(d.prompt||t)}</h2>
-      <div class="meta">${esc(t)} · rig ${esc(d.rig||'tianji2')} · total ${d.total_wall_s!=null?d.total_wall_s.toFixed(1)+'s':'—'}</div>
+    const A=d.audit||null, B=auditBadge(A);
+    el.innerHTML=`<h2><span class="st ${B.cls}">${esc(B.txt)}</span>${esc(t)}</h2>
+      <div class="prompt"><b>Task prompt:</b> ${esc(d.prompt||'—')}</div>
+      <div class="meta">${A&&A.reported?`reported as ${esc(A.reported)} · `:''}${A&&A.status?`audited ${esc(A.date||'')}: ${esc(A.status)}${A.confidence?`, confidence ${esc(A.confidence)}`:''} · `:''}rig ${esc(d.rig||'tianji2')} · total ${d.total_wall_s!=null?d.total_wall_s.toFixed(1)+'s':'—'}</div>
+      ${d.audit_note?`<div class="audit">${esc(d.audit_note)} <a href="audit.html">Row in the audit table →</a></div>`:''}
       <div class="modmap">${modMapHTML(d.steps||[])}</div>
       <div class="cols">
-        <div class="steps">${steps}</div>
+        <div style="min-width:0">
+          <div class="colhead">pipeline log, written at run time (before the audit)</div>
+          <div class="steps">${steps}</div>
+        </div>
         <div>
           <canvas></canvas>
           <input class="scrub" type="range" min="0" max="1000" value="0">
@@ -200,8 +236,7 @@ async function load(){
       <div class="legend"><b style="color:#2056a8">—</b> achieved wrist &nbsp;
             <b style="color:#b9b9b9">┄</b> commanded reference &nbsp;
             <b style="color:#e8842a">—</b> object &nbsp; ● events &nbsp; <b style="color:#8a63c9">┄</b> aux series (left wrist / scene objects)</div>
-          ${d.audit_note?`<div class="audit">${esc(d.audit_note)}</div>`:''}
-          <div class="outcome">${d.outcome_html || esc((d.outcome&&d.outcome.headline) ? d.outcome.headline : 'outcome: '+JSON.stringify(d.outcome||{}))}</div>
+          <div class="outcome ${B.cls}"><b>Outcome.</b> ${d.outcome_html || esc((d.outcome&&d.outcome.headline) ? d.outcome.headline : 'outcome: '+JSON.stringify(d.outcome||{}))}</div>
         </div>
       </div>`;
     root.appendChild(el);
@@ -222,7 +257,7 @@ async function load(){
       ctx.stroke();
       ctx.fillStyle='#777'; ctx.font='18px monospace';
       ctx.fillText(`|wrist−object|  ${ (dmn*1000).toFixed(0)}–${(dmx*1000).toFixed(0)}mm` +
-        (tr.held_window?`  (shaded = held: flat ⇒ rigid grip; drift ⇒ measured slip or in-hand reorientation)`:''), 8, 20);
+        (tr.held_window?`  (shaded = grasp to planned release or end; flat ⇒ rigid grip, else slip/drop/turn)`:''), 8, 20);
     })();
     const scrub=el.querySelector('.scrub');
     scrub.addEventListener('input',()=>v.set(scrub.value/1000));

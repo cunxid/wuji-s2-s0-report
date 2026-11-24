@@ -26,11 +26,12 @@ reference it would generate. Per-parameter measurements live on the
 <div class="nav"><a href="index.html">← Main</a><a href="capability.html">📊 Capability boundary</a><a href="wuji2_tasks.html">🎬 Task gallery</a></div>
 <div class="notice"><b>Correction, 2026-11-23.</b> Three panels on this page (spin, pour, strike) used to
 quote results next to the generated reference: per-object in-hand rotation “walls”, a pour that
-“reaches 146°”, and a strike elevation band. An audit of every reported pass found that the scores
-behind those figures did not measure what they claimed. The three panels now say what the audit
-found instead. The reference generators are unchanged, and so are the ✅ / ⚠ envelope lines, which
-come from tracking measurements the audit did not cover. Full record:
-<a href="audit.html">audit of reported passes</a>.</div>
+“reaches 146°”, and a strike elevation band labelled “mallet-down”. An audit of every reported pass
+found that the rotation and pour figures came from scores that did not measure what they claimed,
+and that the strike was a push along the handle that left the nail where it started. The three
+panels now say what the audit found instead. The reference generators are unchanged, and so are
+the ✅ / ⚠ envelope lines, which come from tracking measurements the audit did not cover. Full
+record: <a href="audit.html">audit of reported passes</a>.</div>
 <div class="grid" id="grid"></div>
 <p class="note">Frames: table top at z≈0.92&nbsp;m, grasp anchor at (-0.32,&nbsp;-0.45). Eased position
 segments use p(t)=p₀+(p₁-p₀)·(0.5-0.5cos(πt)) at 50&nbsp;Hz — identical to the cosim composer’s
@@ -68,7 +69,7 @@ const GENS={
    seg(pts,30,t=>{prof.push(0);return ANCHOR;});
    seg(pts,+p.T_ticks,t=>{prof.push(ease(t)*+p.deg);return ANCHOR;});
    seg(pts,60,t=>{prof.push(+p.deg);return ANCHOR;});
-   return{pts,profile:prof,angular:true,stats:`${p.deg}° about obj-${p.axis} in ${(+p.T_ticks/HZ).toFixed(1)} s · ${(Math.abs(+p.deg)/(+p.T_ticks/HZ)).toFixed(0)} °/s (audit 2026-11-23: the per-object “wall” figures shown here before are unverified, because the score behind them ignores which axis the object turned about. What holds up: the screwdriver, commanded −170° about its long axis in 120 ticks, was rolled about 130° in the fingers and stopped following near 135–140°; a cone was turned about 65° in the fingers without being dropped, medium confidence)`}}},
+   return{pts,profile:prof,angular:true,stats:`${p.deg}° about obj-${p.axis} in ${(+p.T_ticks/HZ).toFixed(1)} s · ${(Math.abs(+p.deg)/(+p.T_ticks/HZ)).toFixed(0)} °/s (audit 2026-11-23: the per-object “wall” figures shown here before are unverified, because the score behind them ignores which axis the object turned about. What holds up: the screwdriver, commanded −170° about its long axis in 120 ticks, was rolled about 130° in the fingers and went no further while the command continued; a cone was turned about 65° in the fingers without being dropped, medium confidence)`}}},
  pour:{title:'pour',desc:'carry over the receptacle, tilt past POUR_DEG, return upright (how far the wrist can tilt in each direction depends on the mount)',
   params:{POUR_DEG:-120,carry_T:140,tilt_T:80},
   gen:(p)=>{const over=[BOWL[0],BOWL[1],BOWL[2]+0.30];const pts=[];const prof=[];
