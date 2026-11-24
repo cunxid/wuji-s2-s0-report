@@ -12,7 +12,7 @@ td.n{text-align:right;font-variant-numeric:tabular-nums}
 ul,ol{margin:4px 0 4px 20px;padding:0;font-size:13.5px}li{margin:3px 0}
 code{font-size:12.5px}
 </style></head><body>
-<p class="na"><a href="index.html">dashboard</a> · <a href="planning.html">planner prototype</a> · generated 2026-11-24 07:51</p>
+<p class="na"><a href="index.html">dashboard</a> · <a href="planning.html">planner prototype</a> · generated 2026-11-24 12:32</p>
 <h1>Skills through the depth-based motion planner, in the co-simulation — first runs</h1>
 <div class="note"><b>What this is and is not.</b> The new skill layer (<code>s2/dexharness/cap</code>, organised the way
 ASPIRE organises its harness: a registry of typed tools, a sandbox for the agent's program, one template every skill
@@ -55,7 +55,7 @@ arm does not move.</p>
 
 <h2>What is still wrong</h2>
 <div class="note warn">Found in the same session by probing beyond the simple moves (full list with reproductions:
-<code>s2/outputs/skills_dev/cosim_scout/REPORT.md</code>). None of this is fixed yet.</div>
+<code>s2/outputs/skills_dev/cosim_scout/REPORT.md</code>). This page shows the state of 07:51 on 2026-11-24, before any fix. Since then the two workers who took these defects report them fixed in the code (a move that also closes the hand is now checked with the closed hand and the call next to the ball is refused; planning time is charged; the clearance is measured), and an independent re-run in the co-simulation is in progress, so treat the fixes as unconfirmed. The clips below were not rebuilt: they still print the old fixed clearance of 20.0 mm. Only 4 of the layer's 14 skills appear here; the other ten have not run in the co-simulation. Current state: <a href="status.html">status.html</a>.</div>
 <div class="media"><figure><video src="skills_cosim/s3b_probes_media_copy__0007-move_to_pose.mp4" poster="skills_cosim/s3b_probes_media_copy__0007-move_to_pose.png" controls muted loop playsinline preload="none"></video><figcaption>A WRONG RESULT, kept here on purpose. move_to_pose was asked to close the hand to a fist during the move. The plan was checked with the open hand measured before the move; the fist came down on the tennis ball (seven finger links in contact, the ball pushed 15.9 mm) and the skill still reported ok. Middle panel: the open hand the plan was checked with. Right panel: what happened.</figcaption></figure><figure><video src="skills_cosim/s3b_probes_media_copy__0008-retreat.mp4" poster="skills_cosim/s3b_probes_media_copy__0008-retreat.png" controls muted loop playsinline preload="none"></video><figcaption>After that fist, every further plan is refused as a self collision (little finger against the wrist flange), including a retreat and go_home: the session is stuck.</figcaption></figure></div>
 <ol>
 <li>A move that also commands a hand posture is collision-checked with the hand as it was before the move (clip above).</li>
