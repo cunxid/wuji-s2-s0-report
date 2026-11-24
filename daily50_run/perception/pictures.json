@@ -1,0 +1,30 @@
+{
+ "made": "2026-11-24 15:35 EST",
+ "note": "Perception proof, 4 co-simulation sessions without the policy. Truth was read by the tester from the host record after each run; the provider used images, depth and calibration only.",
+ "pictures": [
+  {
+   "file": "t24_ball_bowl_locate_front.jpg",
+   "caption": "own_t24 ball-to-bowl scene, camera front: locate_objects finds 4 objects (three balls, one bowl); centres within 0.7 to 1.9 mm and extents within 7.2 mm of the truth read after the run. Masks: SAM 2.1 large."
+  },
+  {
+   "file": "t24_ball_bowl_localize_the_bowl_front.jpg",
+   "caption": "own_t24, localize_object('the bowl'): right object, share 0.88, centre 0.7 mm from the truth. Text matching: CLIP ViT-B/32 ranking of the located objects (SAM 3 is not available on this machine)."
+  },
+  {
+   "file": "t01_hammer_nail_locate_front.jpg",
+   "caption": "daily50 t01_hammer_nail, camera front: 8 depth objects and 6 mask parts on the bench; the hammer is object 4 (centre 5.7 mm, extents 0.3 mm from the truth)."
+  },
+  {
+   "file": "t01_hammer_nail_localize_the_hammer_front_WRONG.jpg",
+   "caption": "daily50 t01_hammer_nail, localize_object('the hammer'): WRONG object (the vise, 1.05 m from the hammer), share 0.30 and flagged ambiguous. The text matcher is the weak part; the hammer itself is located correctly as object 4."
+  },
+  {
+   "file": "t12_bulb_table_lamp_locate_hero.jpg",
+   "caption": "daily50 t12_bulb_table_lamp, camera hero: depth alone merges the bulb with the box it stands in (object 3); image masks split it into parts (14: the bulb above the box, 13 and 15: the box)."
+  },
+  {
+   "file": "t19_jar_drawer_localize_the_cream_jar_hero.jpg",
+   "caption": "daily50 t19_jar_drawer, localize_object('the cream jar'): the jar as a mask part of the depth object jar+cloth, share 0.92, centre 18.8 mm from the truth."
+  }
+ ]
+}

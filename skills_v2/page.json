@@ -4180,20 +4180,1739 @@
     "clips": 1
    },
    "problems": []
+  },
+  {
+   "run": "s2/dexharness/runs/r2skill_push_ball/20261124T195713Z-f8aef7f1",
+   "run_dir": "s2/dexharness/runs/r2skill_push_ball/20261124T195713Z-f8aef7f1",
+   "clips_dir": "s2/dexharness/runs/r2skill_push_ball/20261124T195713Z-f8aef7f1/media/skills",
+   "slug": "r2skill_push_ball__20261124T195713Z-f8aef7f1",
+   "title": "Push the tennis ball 8 cm with the fist (round 2)",
+   "what": "Co-simulation, 2026-11-24 15:00 EST. No tracking policy used; hand: scripted postures. The program locates the tennis ball by position and size and calls push (8 cm along +y), retreat and go_home. The fist is made by two short dwells before the arm moves (a 25-tick ramp, then hold after 21 ticks), because the simulator still commands the old fist, in which the little finger rests on the hand's own wrist flange. Host record: the ball moved 89.4 mm; every contact row is a finger link on the ball (339 rows, up to 1.2 N); no robot link touched another.",
+   "task_id": "r2skill_push_ball",
+   "prompt": "round 2 skills: push_ball (no tracking policy used; hand: scripted postures)",
+   "started_at": "2026-11-24T19:56:18.848119Z",
+   "finished_at": "2026-11-24T19:58:29.952566Z",
+   "session": "co-simulation",
+   "synthetic": false,
+   "scene": "own_t24_place_ball_in_bowl_tianji2.xml",
+   "render": "cpu",
+   "arm_servo": "implicit",
+   "providers": {
+    "atlas": "CapabilityAtlas",
+    "grasp": "ClipGraspProvider",
+    "perception": "DepthPerception",
+    "planner": "TianjiPlanner"
+   },
+   "program_ok": true,
+   "termination_reason": "program_completed",
+   "ticks_used": 700,
+   "tick_budget": 3000,
+   "wall_duration_s": 131.10406540398253,
+   "requests": {
+    "hello": 1,
+    "observe": 12,
+    "execute": 3,
+    "close": 1
+   },
+   "policy": {
+    "bound": false,
+    "manifest": false,
+    "recipe": null,
+    "clips": null,
+    "object_class": null,
+    "tracked_joint": null,
+    "object_pose_from": "simulator",
+    "hand_commands": [
+     "fist",
+     "hold"
+    ]
+   },
+   "verdict": {
+    "source": "none",
+    "manifest": "none",
+    "rule": null,
+    "status": null,
+    "reasons": [
+     "the task declares no rule (neither rule_file nor handson_task)"
+    ],
+    "file_status": "NOT_EVALUABLE"
+   },
+   "only_moves": false,
+   "calls": [
+    {
+     "label": "0001-push",
+     "skill": "push",
+     "kind": "skill",
+     "arm": "right",
+     "ok": true,
+     "declares_contact": true,
+     "result": {
+      "text": "ok",
+      "ok": true,
+      "code": null,
+      "kind": null,
+      "moved": true
+     },
+     "planner_modes": [
+      "dwell",
+      "dwell",
+      "direct",
+      "cartesian_line",
+      "cartesian_line",
+      "cartesian_line"
+     ],
+     "planning_time_s": 0.5030272159783635,
+     "rows": 437,
+     "duration_s": 8.74,
+     "ticks_charged": 40,
+     "ticks_charged_source": "flight record",
+     "api_latency_ticks": 40,
+     "hand_commands": [
+      "fist",
+      "hold"
+     ],
+     "guards": 0,
+     "planned": {
+      "planner_m": 0.009941775941061621,
+      "planner_is_lower_bound": false,
+      "planner_link": "right_finger3_link3",
+      "planner_row": 380,
+      "planner_obstacle": "world_box_4",
+      "replay_m": 0.04029095312333829,
+      "replay_is_lower_bound": false,
+      "replay_margin_m": 0.1,
+      "replay_link": "right_wuji2_wrist_link",
+      "replay_row": 380,
+      "replay_box": "world_box_4",
+      "replay_links": "arm links, flange and palm shell",
+      "replayed": true,
+      "shown_m": 0.009941775941061621,
+      "shown_is_lower_bound": false,
+      "source": "planner",
+      "link": "right_finger3_link3",
+      "row": 380,
+      "agree": false
+     },
+     "executed": {
+      "shown_m": 0.008527492333528439,
+      "shown_is_lower_bound": false,
+      "margin_m": 0.1,
+      "link": "right_finger3_link3",
+      "other": "table",
+      "tick": 258,
+      "link_class": "fingers",
+      "no_contact_links_m": 0.03974818755164986,
+      "no_contact_links_pair": [
+       "right_wuji2_wrist_link",
+       "table"
+      ],
+      "fingers_undeclared_m": 0.008527492333528439,
+      "fingers_undeclared_pair": [
+       "right_finger3_link3",
+       "table"
+      ],
+      "declared_bodies": [
+       "tennis_ball"
+      ],
+      "counts": "arm links, flange and palm shell against everything; fingers against what the call did not declare"
+     },
+     "palm_error": {
+      "mean_m": 0.0007127136321479349,
+      "p95_m": 0.0021909409843826645,
+      "max_m": 0.0039348115138955085,
+      "samples": 437
+     },
+     "contacts": {
+      "counted": {
+       "rows": 0,
+       "force_max_n": 0.0,
+       "groups": [],
+       "robot_groups": 1
+      },
+      "robot": [
+       {
+        "pair": "right fingers | object",
+        "rows": 339,
+        "ticks": 104,
+        "force_max_n": 1.2028155326843262,
+        "dist_min_m": -0.0005145487957634032,
+        "status": "declared",
+        "forbidden": false,
+        "undeclared": false,
+        "unjudged": false,
+        "own_hand": false,
+        "plan_reported": null,
+        "rows_undeclared": 0,
+        "ticks_undeclared": 0,
+        "force_max_undeclared_n": 0.0,
+        "others": [
+         "tennis_ball"
+        ]
+       }
+      ],
+      "scene_rows": 1908,
+      "declared": {
+       "declared": {
+        "target_excluded": true,
+        "holding": false,
+        "policy_fingers": false,
+        "hand_modes": [
+         "fist",
+         "hold"
+        ],
+        "reference_modes": [],
+        "contact_links": [
+         "fingers"
+        ],
+        "fingers_may_touch_target": true,
+        "fingers_may_touch_held": false
+       },
+       "names": [
+        "tennis_ball"
+       ],
+       "target": [
+        "tennis_ball"
+       ],
+       "held": [],
+       "tracked": [],
+       "matched_with": "the true scene's geoms",
+       "complete": true
+      }
+     },
+     "policy_ran": false,
+     "reference_mode": "none",
+     "refusal": null,
+     "clip": {
+      "kind": "video",
+      "video": "0001-push.mp4",
+      "poster": "0001-push.png",
+      "video_bytes": 275360,
+      "recompressed": true,
+      "frames": 239,
+      "duration_s": 9.56,
+      "codec": "h264",
+      "size": [
+       1444,
+       508
+      ],
+      "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+      "footer": [
+       "0001-push   \u00b7   push(arm=right)   \u00b7   planner: dwell, dwell, direct, cartesian_line, cartesian_line, cartesian_line   \u00b7   rows 437 (8.74 s)   \u00b7   planning 0.50 s (+40 ticks charged)   \u00b7   hand: fist, hold",
+       "planned clearance 9.9 mm (right_finger3_link3; row 381; replay: 40.3 mm)",
+       "executed clearance 8.5 mm: fingers, nothing declared (right_finger3_link3 / table); arm, flange, palm 39.7 mm",
+       "palm error mean 0.7 / p95 2.2 / max 3.9 mm   \u00b7   verdict: NOT_EVALUABLE",
+       "contacts in the call's ticks: right fingers | object: 339 rows in 104 ticks, up to 1.2 N (declared: tennis_ball)"
+      ],
+      "execution_shown": true,
+      "why_no_execution": null,
+      "video_file": "r2skill_push_ball__20261124T195713Z-f8aef7f1__0001-push.mp4",
+      "video_file_bytes": 275360,
+      "poster_file": "r2skill_push_ball__20261124T195713Z-f8aef7f1__0001-push.png",
+      "poster_file_bytes": 254415
+     },
+     "clip_problems": []
+    },
+    {
+     "label": "0002-retreat",
+     "skill": "retreat",
+     "kind": "skill",
+     "arm": "right",
+     "ok": true,
+     "declares_contact": false,
+     "result": {
+      "text": "ok",
+      "ok": true,
+      "code": null,
+      "kind": null,
+      "moved": true
+     },
+     "planner_modes": [
+      "cartesian_line"
+     ],
+     "planning_time_s": 0.17246204998809844,
+     "rows": 42,
+     "duration_s": 0.84,
+     "ticks_charged": 13,
+     "ticks_charged_source": "flight record",
+     "api_latency_ticks": 13,
+     "hand_commands": [],
+     "guards": 0,
+     "planned": {
+      "planner_m": 0.07043905653205657,
+      "planner_is_lower_bound": false,
+      "planner_link": "right_finger1_link4",
+      "planner_row": 0,
+      "planner_obstacle": "world_box_9",
+      "replay_m": 0.07043876391962814,
+      "replay_is_lower_bound": false,
+      "replay_margin_m": 0.1,
+      "replay_link": "right_finger1_link4",
+      "replay_row": 0,
+      "replay_box": "world_box_9",
+      "replay_links": "arm links, flange, palm shell and fingers",
+      "replayed": true,
+      "shown_m": 0.07043905653205657,
+      "shown_is_lower_bound": false,
+      "source": "planner",
+      "link": "right_finger1_link4",
+      "row": 0,
+      "agree": true
+     },
+     "executed": {
+      "shown_m": 0.079218148131448,
+      "shown_is_lower_bound": false,
+      "margin_m": 0.1,
+      "link": "right_finger1_link4",
+      "other": "tennis_ball",
+      "tick": 479,
+      "link_class": "fingers",
+      "no_contact_links_m": null,
+      "no_contact_links_pair": null,
+      "fingers_undeclared_m": 0.079218148131448,
+      "fingers_undeclared_pair": [
+       "right_finger1_link4",
+       "tennis_ball"
+      ],
+      "declared_bodies": [],
+      "counts": "arm links, flange and palm shell against everything; fingers against what the call did not declare"
+     },
+     "palm_error": {
+      "mean_m": 0.000381782992652429,
+      "p95_m": 0.0007960768320759029,
+      "max_m": 0.0008879684227907811,
+      "samples": 42
+     },
+     "contacts": {
+      "counted": {
+       "rows": 0,
+       "force_max_n": 0.0,
+       "groups": [],
+       "robot_groups": 0
+      },
+      "robot": [],
+      "scene_rows": 220,
+      "declared": {
+       "declared": {
+        "target_excluded": false,
+        "holding": false,
+        "policy_fingers": false,
+        "hand_modes": [],
+        "reference_modes": [],
+        "contact_links": [
+         "fingers"
+        ],
+        "fingers_may_touch_target": false,
+        "fingers_may_touch_held": false
+       },
+       "names": [],
+       "target": [],
+       "held": [],
+       "tracked": [],
+       "matched_with": "the true scene's geoms",
+       "complete": true
+      }
+     },
+     "policy_ran": false,
+     "reference_mode": "none",
+     "refusal": null,
+     "clip": {
+      "kind": "video",
+      "video": "0002-retreat.mp4",
+      "poster": "0002-retreat.png",
+      "video_bytes": 148848,
+      "recompressed": false,
+      "frames": 28,
+      "duration_s": 1.12,
+      "codec": "h264",
+      "size": [
+       1444,
+       508
+      ],
+      "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+      "footer": [
+       "0002-retreat   \u00b7   retreat(arm=right)   \u00b7   planner: cartesian_line   \u00b7   rows 42 (0.84 s)   \u00b7   planning 0.17 s (+13 ticks charged)",
+       "planned clearance 70.4 mm (right_finger1_link4; row 1)",
+       "executed clearance 79.2 mm: fingers, nothing declared (right_finger1_link4 / tennis_ball)",
+       "palm error mean 0.4 / p95 0.8 / max 0.9 mm   \u00b7   verdict: NOT_EVALUABLE",
+       "contacts in the call's ticks: none by the robot"
+      ],
+      "execution_shown": true,
+      "why_no_execution": null,
+      "video_file": "r2skill_push_ball__20261124T195713Z-f8aef7f1__0002-retreat.mp4",
+      "video_file_bytes": 148848,
+      "poster_file": "r2skill_push_ball__20261124T195713Z-f8aef7f1__0002-retreat.png",
+      "poster_file_bytes": 235800
+     },
+     "clip_problems": []
+    },
+    {
+     "label": "0003-go_home",
+     "skill": "go_home",
+     "kind": "skill",
+     "arm": "right",
+     "ok": true,
+     "declares_contact": false,
+     "result": {
+      "text": "ok",
+      "ok": true,
+      "code": null,
+      "kind": null,
+      "moved": true
+     },
+     "planner_modes": [
+      "direct"
+     ],
+     "planning_time_s": 0.28307578500243835,
+     "rows": 144,
+     "duration_s": 2.88,
+     "ticks_charged": 24,
+     "ticks_charged_source": "flight record",
+     "api_latency_ticks": 24,
+     "hand_commands": [],
+     "guards": 0,
+     "planned": {
+      "planner_m": 0.1,
+      "planner_is_lower_bound": true,
+      "planner_link": null,
+      "planner_row": null,
+      "planner_obstacle": null,
+      "replay_m": 0.1,
+      "replay_is_lower_bound": true,
+      "replay_margin_m": 0.1,
+      "replay_link": null,
+      "replay_row": null,
+      "replay_box": null,
+      "replay_links": "arm links, flange, palm shell and fingers",
+      "replayed": true,
+      "shown_m": 0.1,
+      "shown_is_lower_bound": true,
+      "source": "replay",
+      "link": null,
+      "row": null,
+      "agree": null
+     },
+     "executed": {
+      "shown_m": 0.1,
+      "shown_is_lower_bound": true,
+      "margin_m": 0.1,
+      "link": null,
+      "other": null,
+      "tick": null,
+      "link_class": null,
+      "no_contact_links_m": null,
+      "no_contact_links_pair": null,
+      "fingers_undeclared_m": null,
+      "fingers_undeclared_pair": null,
+      "declared_bodies": [],
+      "counts": "arm links, flange and palm shell against everything; fingers against what the call did not declare"
+     },
+     "palm_error": {
+      "mean_m": 0.0007827608859967692,
+      "p95_m": 0.0024550281832326232,
+      "max_m": 0.0029464871327835127,
+      "samples": 144
+     },
+     "contacts": {
+      "counted": {
+       "rows": 0,
+       "force_max_n": 0.0,
+       "groups": [],
+       "robot_groups": 0
+      },
+      "robot": [],
+      "scene_rows": 672,
+      "declared": {
+       "declared": {
+        "target_excluded": false,
+        "holding": false,
+        "policy_fingers": false,
+        "hand_modes": [],
+        "reference_modes": [],
+        "contact_links": [],
+        "fingers_may_touch_target": false,
+        "fingers_may_touch_held": false
+       },
+       "names": [],
+       "target": [],
+       "held": [],
+       "tracked": [],
+       "matched_with": "the true scene's geoms",
+       "complete": true
+      }
+     },
+     "policy_ran": false,
+     "reference_mode": "none",
+     "refusal": null,
+     "clip": {
+      "kind": "video",
+      "video": "0003-go_home.mp4",
+      "poster": "0003-go_home.png",
+      "video_bytes": 319367,
+      "recompressed": false,
+      "frames": 85,
+      "duration_s": 3.4,
+      "codec": "h264",
+      "size": [
+       1444,
+       508
+      ],
+      "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+      "footer": [
+       "0003-go_home   \u00b7   go_home(arm=right)   \u00b7   planner: direct   \u00b7   rows 144 (2.88 s)   \u00b7   planning 0.28 s (+24 ticks charged)",
+       "planned clearance >= 100 mm (by replay of the saved rows; the planner said >= 100 mm)",
+       "executed clearance >= 100 mm",
+       "palm error mean 0.8 / p95 2.5 / max 2.9 mm   \u00b7   verdict: NOT_EVALUABLE",
+       "contacts in the call's ticks: none by the robot"
+      ],
+      "execution_shown": true,
+      "why_no_execution": null,
+      "video_file": "r2skill_push_ball__20261124T195713Z-f8aef7f1__0003-go_home.mp4",
+      "video_file_bytes": 319367,
+      "poster_file": "r2skill_push_ball__20261124T195713Z-f8aef7f1__0003-go_home.png",
+      "poster_file_bytes": 244339
+     },
+     "clip_problems": []
+    }
+   ],
+   "calls_without_folder": [],
+   "clips_built": "2026-11-24T15:25:33-0500",
+   "clips_build": {
+    "wall_s": 239.69,
+    "peak_resident_mib": 958.0,
+    "clips": 3
+   },
+   "problems": []
+  },
+  {
+   "run": "s2/dexharness/runs/r2skill_press_table_and_ball/20261124T195830Z-2efda110",
+   "run_dir": "s2/dexharness/runs/r2skill_press_table_and_ball/20261124T195830Z-2efda110",
+   "clips_dir": "s2/dexharness/runs/r2skill_press_table_and_ball/20261124T195830Z-2efda110/media/skills",
+   "slug": "r2skill_press_table_and_ball__20261124T195830Z-2efda110",
+   "title": "Press the table (stay 1 s), then press and stay on the ball (round 2)",
+   "what": "Co-simulation, 2026-11-24 15:00 EST. No tracking policy used; hand: scripted postures. guarded_press on a bare stretch of table with a guard threshold of 0.10, 2 cm/s and a stay of 1 s: the guard stopped the descent on the arm's torque (row 267), then the stay moved on to the planned depth, 2 cm into the table (index tip up to 43.6 N). Then press and stay on the free tennis ball with a threshold of 0.05: the guard did not stop (4.6 N), the skill reports the contact as unknown, and the ball rolled off the table when the finger rose.",
+   "task_id": "r2skill_press_table_and_ball",
+   "prompt": "round 2 skills: press_table_and_ball (no tracking policy used; hand: scripted postures)",
+   "started_at": "2026-11-24T19:58:30.236402Z",
+   "finished_at": "2026-11-24T20:00:30.084483Z",
+   "session": "co-simulation",
+   "synthetic": false,
+   "scene": "own_t24_place_ball_in_bowl_tianji2.xml",
+   "render": "cpu",
+   "arm_servo": "implicit",
+   "providers": {
+    "atlas": "CapabilityAtlas",
+    "grasp": "ClipGraspProvider",
+    "perception": "DepthPerception",
+    "planner": "TianjiPlanner"
+   },
+   "program_ok": true,
+   "termination_reason": "program_completed",
+   "ticks_used": 1041,
+   "tick_budget": 3000,
+   "wall_duration_s": 119.84784061499522,
+   "requests": {
+    "hello": 1,
+    "observe": 16,
+    "execute": 4,
+    "close": 1
+   },
+   "policy": {
+    "bound": false,
+    "manifest": false,
+    "recipe": null,
+    "clips": null,
+    "object_class": null,
+    "tracked_joint": null,
+    "object_pose_from": "simulator",
+    "hand_commands": [
+     "hold",
+     "point"
+    ]
+   },
+   "verdict": {
+    "source": "none",
+    "manifest": "none",
+    "rule": null,
+    "status": null,
+    "reasons": [
+     "the task declares no rule (neither rule_file nor handson_task)"
+    ],
+    "file_status": "NOT_EVALUABLE"
+   },
+   "only_moves": true,
+   "calls": [
+    {
+     "label": "0001-guarded_press",
+     "skill": "guarded_press",
+     "kind": "skill",
+     "arm": "right",
+     "ok": true,
+     "declares_contact": false,
+     "result": {
+      "text": "ok",
+      "ok": true,
+      "code": null,
+      "kind": null,
+      "moved": true
+     },
+     "planner_modes": [
+      "dwell",
+      "dwell",
+      "direct",
+      "cartesian_line",
+      "dwell",
+      "cartesian_line"
+     ],
+     "planning_time_s": 0.21937151599559002,
+     "rows": 391,
+     "duration_s": 7.82,
+     "ticks_charged": 40,
+     "ticks_charged_source": "flight record",
+     "api_latency_ticks": 40,
+     "hand_commands": [
+      "point",
+      "hold"
+     ],
+     "guards": 1,
+     "planned": {
+      "planner_m": 0.034488008692992574,
+      "planner_is_lower_bound": false,
+      "planner_link": "right_finger3_link3",
+      "planner_row": 305,
+      "planner_obstacle": "world_box_4",
+      "replay_m": -0.018491019048719776,
+      "replay_is_lower_bound": false,
+      "replay_margin_m": 0.1,
+      "replay_link": "right_finger2_link4",
+      "replay_row": 294,
+      "replay_box": "world_box_4",
+      "replay_links": "arm links, flange, palm shell and fingers",
+      "replayed": true,
+      "shown_m": 0.034488008692992574,
+      "shown_is_lower_bound": false,
+      "source": "planner",
+      "link": "right_finger3_link3",
+      "row": 305,
+      "agree": false
+     },
+     "executed": {
+      "shown_m": -0.0026099453261513583,
+      "shown_is_lower_bound": false,
+      "margin_m": 0.1,
+      "link": "right_finger2_link4",
+      "other": "table",
+      "tick": 347,
+      "link_class": "fingers",
+      "no_contact_links_m": 0.08397147240700158,
+      "no_contact_links_pair": [
+       "right_wuji2_wrist_link",
+       "table"
+      ],
+      "fingers_undeclared_m": -0.0026099453261513583,
+      "fingers_undeclared_pair": [
+       "right_finger2_link4",
+       "table"
+      ],
+      "declared_bodies": [],
+      "counts": "arm links, flange and palm shell against everything; fingers against what the call did not declare"
+     },
+     "palm_error": {
+      "mean_m": 0.0024886976064664593,
+      "p95_m": 0.012503089546076472,
+      "max_m": 0.01402080221651985,
+      "samples": 363
+     },
+     "contacts": {
+      "counted": {
+       "rows": 97,
+       "force_max_n": 43.5782356262207,
+       "groups": [
+        "right fingers | scene"
+       ],
+       "robot_groups": 1
+      },
+      "robot": [
+       {
+        "pair": "right fingers | scene",
+        "rows": 97,
+        "ticks": 97,
+        "force_max_n": 43.5782356262207,
+        "dist_min_m": -0.0026142762508243322,
+        "status": "undeclared",
+        "forbidden": false,
+        "undeclared": true,
+        "unjudged": false,
+        "own_hand": false,
+        "plan_reported": null,
+        "rows_undeclared": 97,
+        "ticks_undeclared": 97,
+        "force_max_undeclared_n": 43.5782356262207,
+        "others": [
+         "table"
+        ]
+       }
+      ],
+      "scene_rows": 1612,
+      "declared": {
+       "declared": {
+        "target_excluded": false,
+        "holding": false,
+        "policy_fingers": false,
+        "hand_modes": [
+         "point",
+         "hold"
+        ],
+        "reference_modes": [],
+        "contact_links": [
+         "fingers"
+        ],
+        "fingers_may_touch_target": false,
+        "fingers_may_touch_held": false
+       },
+       "names": [],
+       "target": [],
+       "held": [],
+       "tracked": [],
+       "matched_with": "the true scene's geoms",
+       "complete": true
+      }
+     },
+     "policy_ran": false,
+     "reference_mode": "none",
+     "refusal": null,
+     "clip": {
+      "kind": "video",
+      "video": "0001-guarded_press.mp4",
+      "poster": "0001-guarded_press.png",
+      "video_bytes": 258153,
+      "recompressed": true,
+      "frames": 202,
+      "duration_s": 8.08,
+      "codec": "h264",
+      "size": [
+       1444,
+       508
+      ],
+      "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+      "footer": [
+       "0001-guarded_press   \u00b7   guarded_press(arm=right)   \u00b7   planner: dwell, dwell, direct, cartesian_line, dwell, cartesian_line   \u00b7   rows 391 (7.82 s)   \u00b7   planning 0.22 s (+40 ticks charged)   \u00b7   hand: point, hold",
+       "planned clearance 34.5 mm (right_finger3_link3; row 306; replay: -18.5 mm)",
+       "executed clearance -2.6 mm: FINGERS IN CONTACT, not declared (right_finger2_link4 / table); arm, flange, palm 84.0 mm",
+       "palm error mean 2.5 / p95 12.5 / max 14.0 mm   \u00b7   verdict: NOT_EVALUABLE",
+       "contacts in the call's ticks: right fingers | scene: 97 rows in 97 ticks, up to 43.6 N (NOT DECLARED: table)"
+      ],
+      "execution_shown": true,
+      "why_no_execution": null,
+      "video_file": "r2skill_press_table_and_ball__20261124T195830Z-2efda110__0001-guarded_press.mp4",
+      "video_file_bytes": 258153,
+      "poster_file": "r2skill_press_table_and_ball__20261124T195830Z-2efda110__0001-guarded_press.png",
+      "poster_file_bytes": 256542
+     },
+     "clip_problems": []
+    },
+    {
+     "label": "0002-guarded_press",
+     "skill": "guarded_press",
+     "kind": "skill",
+     "arm": "right",
+     "ok": true,
+     "declares_contact": false,
+     "result": {
+      "text": "ok",
+      "ok": true,
+      "code": null,
+      "kind": null,
+      "moved": true
+     },
+     "planner_modes": [
+      "direct",
+      "cartesian_line",
+      "dwell"
+     ],
+     "planning_time_s": 0.2619603250059299,
+     "rows": 350,
+     "duration_s": 7.0,
+     "ticks_charged": 34,
+     "ticks_charged_source": "flight record",
+     "api_latency_ticks": 34,
+     "hand_commands": [],
+     "guards": 1,
+     "planned": {
+      "planner_m": 0.02258809711426426,
+      "planner_is_lower_bound": false,
+      "planner_link": "right_finger2_link4",
+      "planner_row": 182,
+      "planner_obstacle": "world_box_14",
+      "replay_m": -0.009024862541231887,
+      "replay_is_lower_bound": false,
+      "replay_margin_m": 0.1,
+      "replay_link": "right_finger2_link4",
+      "replay_row": 298,
+      "replay_box": "world_box_13",
+      "replay_links": "arm links, flange, palm shell and fingers",
+      "replayed": true,
+      "shown_m": 0.02258809711426426,
+      "shown_is_lower_bound": false,
+      "source": "planner",
+      "link": "right_finger2_link4",
+      "row": 182,
+      "agree": false
+     },
+     "executed": {
+      "shown_m": -0.0006110294291900437,
+      "shown_is_lower_bound": false,
+      "margin_m": 0.1,
+      "link": "right_finger2_link4",
+      "other": "tennis_ball",
+      "tick": 712,
+      "link_class": "fingers",
+      "no_contact_links_m": 0.09058438518489446,
+      "no_contact_links_pair": [
+       "right_wuji2_wrist_link",
+       "tennis_ball"
+      ],
+      "fingers_undeclared_m": -0.0006110294291900437,
+      "fingers_undeclared_pair": [
+       "right_finger2_link4",
+       "tennis_ball"
+      ],
+      "declared_bodies": [],
+      "counts": "arm links, flange and palm shell against everything; fingers against what the call did not declare"
+     },
+     "palm_error": {
+      "mean_m": 0.0006464015795798129,
+      "p95_m": 0.0015907377149884947,
+      "max_m": 0.003189747882957506,
+      "samples": 350
+     },
+     "contacts": {
+      "counted": {
+       "rows": 90,
+       "force_max_n": 4.6094136238098145,
+       "groups": [
+        "right fingers | object"
+       ],
+       "robot_groups": 1
+      },
+      "robot": [
+       {
+        "pair": "right fingers | object",
+        "rows": 90,
+        "ticks": 90,
+        "force_max_n": 4.6094136238098145,
+        "dist_min_m": -0.0008249357342720032,
+        "status": "undeclared",
+        "forbidden": false,
+        "undeclared": true,
+        "unjudged": false,
+        "own_hand": false,
+        "plan_reported": null,
+        "rows_undeclared": 90,
+        "ticks_undeclared": 90,
+        "force_max_undeclared_n": 4.6094136238098145,
+        "others": [
+         "tennis_ball"
+        ]
+       }
+      ],
+      "scene_rows": 1536,
+      "declared": {
+       "declared": {
+        "target_excluded": false,
+        "holding": false,
+        "policy_fingers": false,
+        "hand_modes": [],
+        "reference_modes": [],
+        "contact_links": [
+         "fingers"
+        ],
+        "fingers_may_touch_target": false,
+        "fingers_may_touch_held": false
+       },
+       "names": [],
+       "target": [],
+       "held": [],
+       "tracked": [],
+       "matched_with": "the true scene's geoms",
+       "complete": true
+      }
+     },
+     "policy_ran": false,
+     "reference_mode": "none",
+     "refusal": null,
+     "clip": {
+      "kind": "video",
+      "video": "0002-guarded_press.mp4",
+      "poster": "0002-guarded_press.png",
+      "video_bytes": 252295,
+      "recompressed": true,
+      "frames": 193,
+      "duration_s": 7.72,
+      "codec": "h264",
+      "size": [
+       1444,
+       508
+      ],
+      "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+      "footer": [
+       "0002-guarded_press   \u00b7   guarded_press(arm=right)   \u00b7   planner: direct, cartesian_line, dwell   \u00b7   rows 350 (7.00 s)   \u00b7   planning 0.26 s (+34 ticks charged)",
+       "planned clearance 22.6 mm (right_finger2_link4; row 183; replay: -9.0 mm)",
+       "executed clearance -0.6 mm: FINGERS IN CONTACT, not declared (right_finger2_link4 / tennis_ball); arm, flange, palm 90.6 mm",
+       "palm error mean 0.6 / p95 1.6 / max 3.2 mm   \u00b7   verdict: NOT_EVALUABLE",
+       "contacts in the call's ticks: right fingers | object: 90 rows in 90 ticks, up to 4.6 N (NOT DECLARED: tennis_ball)"
+      ],
+      "execution_shown": true,
+      "why_no_execution": null,
+      "video_file": "r2skill_press_table_and_ball__20261124T195830Z-2efda110__0002-guarded_press.mp4",
+      "video_file_bytes": 252295,
+      "poster_file": "r2skill_press_table_and_ball__20261124T195830Z-2efda110__0002-guarded_press.png",
+      "poster_file_bytes": 246471
+     },
+     "clip_problems": []
+    },
+    {
+     "label": "0003-retreat",
+     "skill": "retreat",
+     "kind": "skill",
+     "arm": "right",
+     "ok": true,
+     "declares_contact": false,
+     "result": {
+      "text": "ok",
+      "ok": true,
+      "code": null,
+      "kind": null,
+      "moved": true
+     },
+     "planner_modes": [
+      "cartesian_line"
+     ],
+     "planning_time_s": 0.2607863050070591,
+     "rows": 41,
+     "duration_s": 0.8200000000000001,
+     "ticks_charged": 26,
+     "ticks_charged_source": "flight record",
+     "api_latency_ticks": 26,
+     "hand_commands": [],
+     "guards": 0,
+     "planned": {
+      "planner_m": 0.0018042318396302125,
+      "planner_is_lower_bound": false,
+      "planner_link": "right_finger2_link4",
+      "planner_row": 0,
+      "planner_obstacle": "world_box_14",
+      "replay_m": 0.0033647813682215894,
+      "replay_is_lower_bound": false,
+      "replay_margin_m": 0.1,
+      "replay_link": "right_finger2_link4",
+      "replay_row": 2,
+      "replay_box": "world_box_8",
+      "replay_links": "arm links, flange, palm shell and fingers",
+      "replayed": true,
+      "shown_m": 0.0018042318396302125,
+      "shown_is_lower_bound": false,
+      "source": "planner",
+      "link": "right_finger2_link4",
+      "row": 0,
+      "agree": true
+     },
+     "executed": {
+      "shown_m": -0.0004668309842278118,
+      "shown_is_lower_bound": false,
+      "margin_m": 0.1,
+      "link": "right_finger2_link4",
+      "other": "tennis_ball",
+      "tick": 793,
+      "link_class": "fingers",
+      "no_contact_links_m": 0.08926113957265046,
+      "no_contact_links_pair": [
+       "right_wuji2_wrist_link",
+       "tennis_ball"
+      ],
+      "fingers_undeclared_m": -0.0004668309842278118,
+      "fingers_undeclared_pair": [
+       "right_finger2_link4",
+       "tennis_ball"
+      ],
+      "declared_bodies": [],
+      "counts": "arm links, flange and palm shell against everything; fingers against what the call did not declare"
+     },
+     "palm_error": {
+      "mean_m": 0.0008868373667867229,
+      "p95_m": 0.0014780395063816235,
+      "max_m": 0.0015390702885998352,
+      "samples": 41
+     },
+     "contacts": {
+      "counted": {
+       "rows": 40,
+       "force_max_n": 3.8478381633758545,
+       "groups": [
+        "right fingers | object"
+       ],
+       "robot_groups": 1
+      },
+      "robot": [
+       {
+        "pair": "right fingers | object",
+        "rows": 40,
+        "ticks": 40,
+        "force_max_n": 3.8478381633758545,
+        "dist_min_m": -0.0007767101051285863,
+        "status": "undeclared",
+        "forbidden": false,
+        "undeclared": true,
+        "unjudged": false,
+        "own_hand": false,
+        "plan_reported": null,
+        "rows_undeclared": 40,
+        "ticks_undeclared": 40,
+        "force_max_undeclared_n": 3.8478381633758545,
+        "others": [
+         "tennis_ball"
+        ]
+       }
+      ],
+      "scene_rows": 268,
+      "declared": {
+       "declared": {
+        "target_excluded": false,
+        "holding": false,
+        "policy_fingers": false,
+        "hand_modes": [],
+        "reference_modes": [],
+        "contact_links": [
+         "fingers"
+        ],
+        "fingers_may_touch_target": false,
+        "fingers_may_touch_held": false
+       },
+       "names": [],
+       "target": [],
+       "held": [],
+       "tracked": [],
+       "matched_with": "the true scene's geoms",
+       "complete": true
+      }
+     },
+     "policy_ran": false,
+     "reference_mode": "none",
+     "refusal": null,
+     "clip": {
+      "kind": "video",
+      "video": "0003-retreat.mp4",
+      "poster": "0003-retreat.png",
+      "video_bytes": 167497,
+      "recompressed": false,
+      "frames": 34,
+      "duration_s": 1.36,
+      "codec": "h264",
+      "size": [
+       1444,
+       508
+      ],
+      "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+      "footer": [
+       "0003-retreat   \u00b7   retreat(arm=right)   \u00b7   planner: cartesian_line   \u00b7   rows 41 (0.82 s)   \u00b7   planning 0.26 s (+26 ticks charged)",
+       "planned clearance 1.8 mm (right_finger2_link4; row 1)",
+       "executed clearance -0.5 mm: FINGERS IN CONTACT, not declared (right_finger2_link4 / tennis_ball); arm, flange, palm 89.3 mm",
+       "palm error mean 0.9 / p95 1.5 / max 1.5 mm   \u00b7   verdict: NOT_EVALUABLE",
+       "contacts in the call's ticks: right fingers | object: 40 rows in 40 ticks, up to 3.8 N (NOT DECLARED: tennis_ball)"
+      ],
+      "execution_shown": true,
+      "why_no_execution": null,
+      "video_file": "r2skill_press_table_and_ball__20261124T195830Z-2efda110__0003-retreat.mp4",
+      "video_file_bytes": 167497,
+      "poster_file": "r2skill_press_table_and_ball__20261124T195830Z-2efda110__0003-retreat.png",
+      "poster_file_bytes": 245434
+     },
+     "clip_problems": []
+    },
+    {
+     "label": "0004-go_home",
+     "skill": "go_home",
+     "kind": "skill",
+     "arm": "right",
+     "ok": true,
+     "declares_contact": false,
+     "result": {
+      "text": "ok",
+      "ok": true,
+      "code": null,
+      "kind": null,
+      "moved": true
+     },
+     "planner_modes": [
+      "direct"
+     ],
+     "planning_time_s": 0.2760493890091311,
+     "rows": 162,
+     "duration_s": 3.24,
+     "ticks_charged": 25,
+     "ticks_charged_source": "flight record",
+     "api_latency_ticks": 25,
+     "hand_commands": [],
+     "guards": 0,
+     "planned": {
+      "planner_m": 0.07204248262512855,
+      "planner_is_lower_bound": false,
+      "planner_link": "right_finger2_link4",
+      "planner_row": 1,
+      "planner_obstacle": "world_box_8",
+      "replay_m": 0.07204261477560941,
+      "replay_is_lower_bound": false,
+      "replay_margin_m": 0.1,
+      "replay_link": "right_finger2_link4",
+      "replay_row": 0,
+      "replay_box": "world_box_8",
+      "replay_links": "arm links, flange, palm shell and fingers",
+      "replayed": true,
+      "shown_m": 0.07204248262512855,
+      "shown_is_lower_bound": false,
+      "source": "planner",
+      "link": "right_finger2_link4",
+      "row": 1,
+      "agree": true
+     },
+     "executed": {
+      "shown_m": 0.08302932152321943,
+      "shown_is_lower_bound": false,
+      "margin_m": 0.1,
+      "link": "right_finger2_link4",
+      "other": "tennis_ball",
+      "tick": 854,
+      "link_class": "fingers",
+      "no_contact_links_m": null,
+      "no_contact_links_pair": null,
+      "fingers_undeclared_m": 0.08302932152321943,
+      "fingers_undeclared_pair": [
+       "right_finger2_link4",
+       "tennis_ball"
+      ],
+      "declared_bodies": [],
+      "counts": "arm links, flange and palm shell against everything; fingers against what the call did not declare"
+     },
+     "palm_error": {
+      "mean_m": 0.0009044030467718363,
+      "p95_m": 0.0028357831582837834,
+      "max_m": 0.004013372047763354,
+      "samples": 162
+     },
+     "contacts": {
+      "counted": {
+       "rows": 0,
+       "force_max_n": 0.0,
+       "groups": [],
+       "robot_groups": 0
+      },
+      "robot": [],
+      "scene_rows": 729,
+      "declared": {
+       "declared": {
+        "target_excluded": false,
+        "holding": false,
+        "policy_fingers": false,
+        "hand_modes": [],
+        "reference_modes": [],
+        "contact_links": [],
+        "fingers_may_touch_target": false,
+        "fingers_may_touch_held": false
+       },
+       "names": [],
+       "target": [],
+       "held": [],
+       "tracked": [],
+       "matched_with": "the true scene's geoms",
+       "complete": true
+      }
+     },
+     "policy_ran": false,
+     "reference_mode": "none",
+     "refusal": null,
+     "clip": {
+      "kind": "video",
+      "video": "0004-go_home.mp4",
+      "poster": "0004-go_home.png",
+      "video_bytes": 351432,
+      "recompressed": false,
+      "frames": 94,
+      "duration_s": 3.76,
+      "codec": "h264",
+      "size": [
+       1444,
+       508
+      ],
+      "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+      "footer": [
+       "0004-go_home   \u00b7   go_home(arm=right)   \u00b7   planner: direct   \u00b7   rows 162 (3.24 s)   \u00b7   planning 0.28 s (+25 ticks charged)",
+       "planned clearance 72.0 mm (right_finger2_link4; row 2)",
+       "executed clearance 83.0 mm: fingers, nothing declared (right_finger2_link4 / tennis_ball)",
+       "palm error mean 0.9 / p95 2.8 / max 4.0 mm   \u00b7   verdict: NOT_EVALUABLE",
+       "contacts in the call's ticks: none by the robot"
+      ],
+      "execution_shown": true,
+      "why_no_execution": null,
+      "video_file": "r2skill_press_table_and_ball__20261124T195830Z-2efda110__0004-go_home.mp4",
+      "video_file_bytes": 351432,
+      "poster_file": "r2skill_press_table_and_ball__20261124T195830Z-2efda110__0004-go_home.png",
+      "poster_file_bytes": 243814
+     },
+     "clip_problems": []
+    }
+   ],
+   "calls_without_folder": [],
+   "clips_built": "2026-11-24T15:31:05-0500",
+   "clips_build": {
+    "wall_s": 328.85,
+    "peak_resident_mib": 967.2,
+    "clips": 4
+   },
+   "problems": []
+  },
+  {
+   "run": "s2/dexharness/runs/r2skill_press_table_defaults/20261124T200030Z-ca1255d9",
+   "run_dir": "s2/dexharness/runs/r2skill_press_table_defaults/20261124T200030Z-ca1255d9",
+   "clips_dir": "s2/dexharness/runs/r2skill_press_table_defaults/20261124T200030Z-ca1255d9/media/skills",
+   "slug": "r2skill_press_table_defaults__20261124T200030Z-ca1255d9",
+   "title": "Press the table with the default guard, then with the lightest (round 2)",
+   "what": "Co-simulation, 2026-11-24 15:01 EST. No tracking policy used; hand: scripted postures. guarded_press on the bare table twice with the defaults (threshold 0.30 of a joint's torque limit, default speed, 3 cm past the perceived surface): both descents were stopped on the arm's torque, index tip up to 77.0 N. Then once with the lowest threshold the skill accepts (0.02) at 2 cm/s: stopped, 2.9 N.",
+   "task_id": "r2skill_press_table_defaults",
+   "prompt": "round 2 skills: press_table_defaults (no tracking policy used; hand: scripted postures)",
+   "started_at": "2026-11-24T20:00:30.378674Z",
+   "finished_at": "2026-11-24T20:01:30.495404Z",
+   "session": "co-simulation",
+   "synthetic": false,
+   "scene": "own_t24_place_ball_in_bowl_tianji2.xml",
+   "render": "cpu",
+   "arm_servo": "implicit",
+   "providers": {
+    "atlas": "CapabilityAtlas",
+    "grasp": "ClipGraspProvider",
+    "perception": "DepthPerception",
+    "planner": "TianjiPlanner"
+   },
+   "program_ok": true,
+   "termination_reason": "program_completed",
+   "ticks_used": 555,
+   "tick_budget": 3000,
+   "wall_duration_s": 60.11649644499994,
+   "requests": {
+    "hello": 1,
+    "observe": 12,
+    "execute": 3,
+    "close": 1
+   },
+   "policy": {
+    "bound": false,
+    "manifest": false,
+    "recipe": null,
+    "clips": null,
+    "object_class": null,
+    "tracked_joint": null,
+    "object_pose_from": "simulator",
+    "hand_commands": [
+     "hold",
+     "point"
+    ]
+   },
+   "verdict": {
+    "source": "none",
+    "manifest": "none",
+    "rule": null,
+    "status": null,
+    "reasons": [
+     "the task declares no rule (neither rule_file nor handson_task)"
+    ],
+    "file_status": "NOT_EVALUABLE"
+   },
+   "only_moves": true,
+   "calls": [
+    {
+     "label": "0001-guarded_press",
+     "skill": "guarded_press",
+     "kind": "skill",
+     "arm": "right",
+     "ok": true,
+     "declares_contact": false,
+     "result": {
+      "text": "ok",
+      "ok": true,
+      "code": null,
+      "kind": null,
+      "moved": true
+     },
+     "planner_modes": [
+      "dwell",
+      "dwell",
+      "direct",
+      "cartesian_line",
+      "cartesian_line",
+      "cartesian_line",
+      "cartesian_line"
+     ],
+     "planning_time_s": 0.19832165600382723,
+     "rows": 251,
+     "duration_s": 5.0200000000000005,
+     "ticks_charged": 37,
+     "ticks_charged_source": "flight record",
+     "api_latency_ticks": 37,
+     "hand_commands": [
+      "point",
+      "hold"
+     ],
+     "guards": 2,
+     "planned": {
+      "planner_m": 0.02448799605614767,
+      "planner_is_lower_bound": false,
+      "planner_link": "right_finger3_link3",
+      "planner_row": 213,
+      "planner_obstacle": "world_box_4",
+      "replay_m": -0.020734404342998003,
+      "replay_is_lower_bound": false,
+      "replay_margin_m": 0.1,
+      "replay_link": "right_finger2_link4",
+      "replay_row": 205,
+      "replay_box": "world_box_123",
+      "replay_links": "arm links, flange, palm shell and fingers",
+      "replayed": true,
+      "shown_m": 0.02448799605614767,
+      "shown_is_lower_bound": false,
+      "source": "planner",
+      "link": "right_finger3_link3",
+      "row": 213,
+      "agree": false
+     },
+     "executed": {
+      "shown_m": -0.004333225534347548,
+      "shown_is_lower_bound": false,
+      "margin_m": 0.1,
+      "link": "right_finger2_link4",
+      "other": "table",
+      "tick": 165,
+      "link_class": "fingers",
+      "no_contact_links_m": 0.09055789080392358,
+      "no_contact_links_pair": [
+       "right_wuji2_wrist_link",
+       "table"
+      ],
+      "fingers_undeclared_m": -0.004333225534347548,
+      "fingers_undeclared_pair": [
+       "right_finger2_link4",
+       "table"
+      ],
+      "declared_bodies": [],
+      "counts": "arm links, flange and palm shell against everything; fingers against what the call did not declare"
+     },
+     "palm_error": {
+      "mean_m": 0.00802011175703586,
+      "p95_m": 0.052448116333116676,
+      "max_m": 0.05392954062305703,
+      "samples": 225
+     },
+     "contacts": {
+      "counted": {
+       "rows": 34,
+       "force_max_n": 76.99226379394531,
+       "groups": [
+        "right fingers | scene"
+       ],
+       "robot_groups": 1
+      },
+      "robot": [
+       {
+        "pair": "right fingers | scene",
+        "rows": 34,
+        "ticks": 34,
+        "force_max_n": 76.99226379394531,
+        "dist_min_m": -0.00433582765981555,
+        "status": "undeclared",
+        "forbidden": false,
+        "undeclared": true,
+        "unjudged": false,
+        "own_hand": false,
+        "plan_reported": null,
+        "rows_undeclared": 34,
+        "ticks_undeclared": 34,
+        "force_max_undeclared_n": 76.99226379394531,
+        "others": [
+         "table"
+        ]
+       }
+      ],
+      "scene_rows": 1048,
+      "declared": {
+       "declared": {
+        "target_excluded": false,
+        "holding": false,
+        "policy_fingers": false,
+        "hand_modes": [
+         "point",
+         "hold"
+        ],
+        "reference_modes": [],
+        "contact_links": [
+         "fingers"
+        ],
+        "fingers_may_touch_target": false,
+        "fingers_may_touch_held": false
+       },
+       "names": [],
+       "target": [],
+       "held": [],
+       "tracked": [],
+       "matched_with": "the true scene's geoms",
+       "complete": true
+      }
+     },
+     "policy_ran": false,
+     "reference_mode": "none",
+     "refusal": null,
+     "clip": {
+      "kind": "video",
+      "video": "0001-guarded_press.mp4",
+      "poster": "0001-guarded_press.png",
+      "video_bytes": 352804,
+      "recompressed": false,
+      "frames": 132,
+      "duration_s": 5.28,
+      "codec": "h264",
+      "size": [
+       1444,
+       508
+      ],
+      "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+      "footer": [
+       "0001-guarded_press   \u00b7   guarded_press(arm=right)   \u00b7   planner: dwell, dwell, direct, cartesian_line, cartesian_line, cartesian_line, cartesian_line   \u00b7   rows 251 (5.02 s)   \u00b7   planning 0.20 s (+37 ticks charged)   \u00b7   hand: point, hold",
+       "planned clearance 24.5 mm (right_finger3_link3; row 214; replay: -20.7 mm)",
+       "executed clearance -4.3 mm: FINGERS IN CONTACT, not declared (right_finger2_link4 / table); arm, flange, palm 90.6 mm",
+       "palm error mean 8.0 / p95 52.4 / max 53.9 mm   \u00b7   verdict: NOT_EVALUABLE",
+       "contacts in the call's ticks: right fingers | scene: 34 rows in 34 ticks, up to 77.0 N (NOT DECLARED: table)"
+      ],
+      "execution_shown": true,
+      "why_no_execution": null,
+      "video_file": "r2skill_press_table_defaults__20261124T200030Z-ca1255d9__0001-guarded_press.mp4",
+      "video_file_bytes": 352804,
+      "poster_file": "r2skill_press_table_defaults__20261124T200030Z-ca1255d9__0001-guarded_press.png",
+      "poster_file_bytes": 255925
+     },
+     "clip_problems": []
+    },
+    {
+     "label": "0002-guarded_press",
+     "skill": "guarded_press",
+     "kind": "skill",
+     "arm": "right",
+     "ok": true,
+     "declares_contact": false,
+     "result": {
+      "text": "ok",
+      "ok": true,
+      "code": null,
+      "kind": null,
+      "moved": true
+     },
+     "planner_modes": [
+      "direct",
+      "cartesian_line",
+      "cartesian_line"
+     ],
+     "planning_time_s": 0.14162512999610044,
+     "rows": 235,
+     "duration_s": 4.7,
+     "ticks_charged": 29,
+     "ticks_charged_source": "flight record",
+     "api_latency_ticks": 29,
+     "hand_commands": [],
+     "guards": 1,
+     "planned": {
+      "planner_m": 0.03390283436208545,
+      "planner_is_lower_bound": false,
+      "planner_link": "right_finger3_link3",
+      "planner_row": 200,
+      "planner_obstacle": "world_box_4",
+      "replay_m": -0.01861391681913767,
+      "replay_is_lower_bound": false,
+      "replay_margin_m": 0.1,
+      "replay_link": "right_finger2_link4",
+      "replay_row": 186,
+      "replay_box": "world_box_4",
+      "replay_links": "arm links, flange, palm shell and fingers",
+      "replayed": true,
+      "shown_m": 0.03390283436208545,
+      "shown_is_lower_bound": false,
+      "source": "planner",
+      "link": "right_finger3_link3",
+      "row": 200,
+      "agree": false
+     },
+     "executed": {
+      "shown_m": -0.000517632575618085,
+      "shown_is_lower_bound": false,
+      "margin_m": 0.1,
+      "link": "right_finger2_link4",
+      "other": "table",
+      "tick": 431,
+      "link_class": "fingers",
+      "no_contact_links_m": 0.09439150425928339,
+      "no_contact_links_pair": [
+       "right_wuji2_wrist_link",
+       "table"
+      ],
+      "fingers_undeclared_m": -0.000517632575618085,
+      "fingers_undeclared_pair": [
+       "right_finger2_link4",
+       "table"
+      ],
+      "declared_bodies": [],
+      "counts": "arm links, flange and palm shell against everything; fingers against what the call did not declare"
+     },
+     "palm_error": {
+      "mean_m": 0.000310928598508031,
+      "p95_m": 0.0013355313623792063,
+      "max_m": 0.005418225717372874,
+      "samples": 173
+     },
+     "contacts": {
+      "counted": {
+       "rows": 15,
+       "force_max_n": 2.908325433731079,
+       "groups": [
+        "right fingers | scene"
+       ],
+       "robot_groups": 1
+      },
+      "robot": [
+       {
+        "pair": "right fingers | scene",
+        "rows": 15,
+        "ticks": 15,
+        "force_max_n": 2.908325433731079,
+        "dist_min_m": -0.0005176333361305296,
+        "status": "undeclared",
+        "forbidden": false,
+        "undeclared": true,
+        "unjudged": false,
+        "own_hand": false,
+        "plan_reported": null,
+        "rows_undeclared": 15,
+        "ticks_undeclared": 15,
+        "force_max_undeclared_n": 2.908325433731079,
+        "others": [
+         "table"
+        ]
+       }
+      ],
+      "scene_rows": 808,
+      "declared": {
+       "declared": {
+        "target_excluded": false,
+        "holding": false,
+        "policy_fingers": false,
+        "hand_modes": [],
+        "reference_modes": [],
+        "contact_links": [
+         "fingers"
+        ],
+        "fingers_may_touch_target": false,
+        "fingers_may_touch_held": false
+       },
+       "names": [],
+       "target": [],
+       "held": [],
+       "tracked": [],
+       "matched_with": "the true scene's geoms",
+       "complete": true
+      }
+     },
+     "policy_ran": false,
+     "reference_mode": "none",
+     "refusal": null,
+     "clip": {
+      "kind": "video",
+      "video": "0002-guarded_press.mp4",
+      "poster": "0002-guarded_press.png",
+      "video_bytes": 341766,
+      "recompressed": false,
+      "frames": 102,
+      "duration_s": 4.08,
+      "codec": "h264",
+      "size": [
+       1444,
+       508
+      ],
+      "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+      "footer": [
+       "0002-guarded_press   \u00b7   guarded_press(arm=right)   \u00b7   planner: direct, cartesian_line, cartesian_line   \u00b7   rows 235 (4.70 s)   \u00b7   planning 0.14 s (+29 ticks charged)",
+       "planned clearance 33.9 mm (right_finger3_link3; row 201; replay: -18.6 mm)",
+       "executed clearance -0.5 mm: FINGERS IN CONTACT, not declared (right_finger2_link4 / table); arm, flange, palm 94.4 mm",
+       "palm error mean 0.3 / p95 1.3 / max 5.4 mm   \u00b7   verdict: NOT_EVALUABLE",
+       "contacts in the call's ticks: right fingers | scene: 15 rows in 15 ticks, up to 2.9 N (NOT DECLARED: table)"
+      ],
+      "execution_shown": true,
+      "why_no_execution": null,
+      "video_file": "r2skill_press_table_defaults__20261124T200030Z-ca1255d9__0002-guarded_press.mp4",
+      "video_file_bytes": 341766,
+      "poster_file": "r2skill_press_table_defaults__20261124T200030Z-ca1255d9__0002-guarded_press.png",
+      "poster_file_bytes": 230040
+     },
+     "clip_problems": []
+    },
+    {
+     "label": "0003-go_home",
+     "skill": "go_home",
+     "kind": "skill",
+     "arm": "right",
+     "ok": true,
+     "declares_contact": false,
+     "result": {
+      "text": "ok",
+      "ok": true,
+      "code": null,
+      "kind": null,
+      "moved": true
+     },
+     "planner_modes": [
+      "direct"
+     ],
+     "planning_time_s": 0.19129913300275803,
+     "rows": 72,
+     "duration_s": 1.44,
+     "ticks_charged": 19,
+     "ticks_charged_source": "flight record",
+     "api_latency_ticks": 19,
+     "hand_commands": [],
+     "guards": 0,
+     "planned": {
+      "planner_m": 0.049145248946671945,
+      "planner_is_lower_bound": false,
+      "planner_link": "right_finger2_link4",
+      "planner_row": 1,
+      "planner_obstacle": "world_box_4",
+      "replay_m": 0.04914524852583299,
+      "replay_is_lower_bound": false,
+      "replay_margin_m": 0.1,
+      "replay_link": "right_finger2_link4",
+      "replay_row": 0,
+      "replay_box": "world_box_4",
+      "replay_links": "arm links, flange, palm shell and fingers",
+      "replayed": true,
+      "shown_m": 0.049145248946671945,
+      "shown_is_lower_bound": false,
+      "source": "planner",
+      "link": "right_finger2_link4",
+      "row": 1,
+      "agree": true
+     },
+     "executed": {
+      "shown_m": 0.049149758521129454,
+      "shown_is_lower_bound": false,
+      "margin_m": 0.1,
+      "link": "right_finger2_link4",
+      "other": "table",
+      "tick": 471,
+      "link_class": "fingers",
+      "no_contact_links_m": null,
+      "no_contact_links_pair": null,
+      "fingers_undeclared_m": 0.049149758521129454,
+      "fingers_undeclared_pair": [
+       "right_finger2_link4",
+       "table"
+      ],
+      "declared_bodies": [],
+      "counts": "arm links, flange and palm shell against everything; fingers against what the call did not declare"
+     },
+     "palm_error": {
+      "mean_m": 0.0008272792008968621,
+      "p95_m": 0.0018481810495917766,
+      "max_m": 0.0019675245143003692,
+      "samples": 72
+     },
+     "contacts": {
+      "counted": {
+       "rows": 0,
+       "force_max_n": 0.0,
+       "groups": [],
+       "robot_groups": 0
+      },
+      "robot": [],
+      "scene_rows": 364,
+      "declared": {
+       "declared": {
+        "target_excluded": false,
+        "holding": false,
+        "policy_fingers": false,
+        "hand_modes": [],
+        "reference_modes": [],
+        "contact_links": [],
+        "fingers_may_touch_target": false,
+        "fingers_may_touch_held": false
+       },
+       "names": [],
+       "target": [],
+       "held": [],
+       "tracked": [],
+       "matched_with": "the true scene's geoms",
+       "complete": true
+      }
+     },
+     "policy_ran": false,
+     "reference_mode": "none",
+     "refusal": null,
+     "clip": {
+      "kind": "video",
+      "video": "0003-go_home.mp4",
+      "poster": "0003-go_home.png",
+      "video_bytes": 227594,
+      "recompressed": false,
+      "frames": 46,
+      "duration_s": 1.84,
+      "codec": "h264",
+      "size": [
+       1444,
+       508
+      ],
+      "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+      "footer": [
+       "0003-go_home   \u00b7   go_home(arm=right)   \u00b7   planner: direct   \u00b7   rows 72 (1.44 s)   \u00b7   planning 0.19 s (+19 ticks charged)",
+       "planned clearance 49.1 mm (right_finger2_link4; row 2)",
+       "executed clearance 49.1 mm: fingers, nothing declared (right_finger2_link4 / table)",
+       "palm error mean 0.8 / p95 1.8 / max 2.0 mm   \u00b7   verdict: NOT_EVALUABLE",
+       "contacts in the call's ticks: none by the robot"
+      ],
+      "execution_shown": true,
+      "why_no_execution": null,
+      "video_file": "r2skill_press_table_defaults__20261124T200030Z-ca1255d9__0003-go_home.mp4",
+      "video_file_bytes": 227594,
+      "poster_file": "r2skill_press_table_defaults__20261124T200030Z-ca1255d9__0003-go_home.png",
+      "poster_file_bytes": 240113
+     },
+     "clip_problems": []
+    }
+   ],
+   "calls_without_folder": [],
+   "clips_built": "2026-11-24T15:34:10-0500",
+   "clips_build": {
+    "wall_s": 180.78,
+    "peak_resident_mib": 965.1,
+    "clips": 3
+   },
+   "problems": []
   }
  ],
  "not_done": [
   {
    "key": "skills_without_a_call",
-   "text": "9 of the 14 skills have no call on this page.",
+   "text": "11 of the 18 skills have no call on this page.",
    "items": [
     "acquire",
-    "guarded_press",
+    "grasp_scripted",
+    "orbit",
     "place_release",
     "pour",
-    "push",
+    "set_down",
     "spin_in_hand",
     "strike",
+    "stroke",
     "transport",
     "wrist_reorient"
    ]
@@ -4211,13 +5930,8 @@
    "items": []
   },
   {
-   "key": "no_guard",
-   "text": "No plan on this page carries a contact guard: no guarded motion and no guard stop is shown.",
-   "items": []
-  },
-  {
    "key": "task_verdicts",
-   "text": "4 of 9 run(s) were judged by a rule of their own: 4 NOT_EVALUABLE. One judged episode is one episode, not a success rate.",
+   "text": "4 of 12 run(s) were judged by a rule of their own: 4 NOT_EVALUABLE. One judged episode is one episode, not a success rate.",
    "items": [
     "Ported task jar_lid_open: one planned move above the perceived jar, then home: NOT_EVALUABLE",
     "Left arm: one planned move and home (jar_lid_open scene): NOT_EVALUABLE",
@@ -4227,9 +5941,14 @@
   },
   {
    "key": "ok_with_contacts",
-   "text": "1 call(s) returned ok although the flight record has contacts that count against them (a link that may never touch, or fingers on something the call did not declare).",
+   "text": "6 call(s) returned ok although the flight record has contacts that count against them (a link that may never touch, or fingers on something the call did not declare).",
    "items": [
-    "Probes: refusals, the program's own plan, a fist beside the ball (scene 1), 0007-move_to_pose: right fingers | object 120 rows, up to 9.8 N; right flange | right fingers 40 rows, up to 2.2 N"
+    "Probes: refusals, the program's own plan, a fist beside the ball (scene 1), 0007-move_to_pose: right fingers | object 120 rows, up to 9.8 N; right flange | right fingers 40 rows, up to 2.2 N",
+    "Press the table (stay 1 s), then press and stay on the ball (round 2), 0001-guarded_press: right fingers | scene 97 rows, up to 43.6 N",
+    "Press the table (stay 1 s), then press and stay on the ball (round 2), 0002-guarded_press: right fingers | object 90 rows, up to 4.6 N",
+    "Press the table (stay 1 s), then press and stay on the ball (round 2), 0003-retreat: right fingers | object 40 rows, up to 3.8 N",
+    "Press the table with the default guard, then with the lightest (round 2), 0001-guarded_press: right fingers | scene 34 rows, up to 77.0 N",
+    "Press the table with the default guard, then with the lightest (round 2), 0002-guarded_press: right fingers | scene 15 rows, up to 2.9 N"
    ]
   },
   {
@@ -4242,7 +5961,7 @@
   },
   {
    "key": "planning_time_not_charged",
-   "text": "In 14 of 20 executions the session charged 1 tick(s) for planning while the API's own measurement of the same interval was 23 to 114 ticks: planning time was not charged in those runs.",
+   "text": "In 14 of 30 executions the session charged 1 tick(s) for planning while the API's own measurement of the same interval was 23 to 114 ticks: planning time was not charged in those runs.",
    "items": [
     "Probes: refusals, the program's own plan, a fist beside the ball (scene 1)",
     "Reach above the ball, lift, go home (scene 1)",
@@ -4253,7 +5972,7 @@
   },
   {
    "key": "planner_clearance_is_a_bound",
-   "text": "In 20 of 22 plans the planner stated only a lower bound for its minimum clearance (the distance it looked to). The planned clearance shown for those is this page's own replay of the saved rows against the saved boxes.",
+   "text": "In 21 of 32 plans the planner stated only a lower bound for its minimum clearance (the distance it looked to). The planned clearance shown for those is this page's own replay of the saved rows against the saved boxes.",
    "items": []
   },
   {
@@ -4267,25 +5986,27 @@
   }
  ],
  "totals": {
-  "runs": 9,
-  "calls": 30,
-  "calls_ok": 19,
+  "runs": 12,
+  "calls": 40,
+  "calls_ok": 29,
   "calls_refused_or_failed": 9,
   "plans_only": 2,
   "calls_without_folder": 2,
-  "clips": 30,
+  "clips": 40,
   "skills_on_the_page": [
    "go_home",
+   "guarded_press",
    "hold",
    "lift",
    "move_to_pose",
+   "push",
    "retreat"
   ],
   "tools_called_by_programs": [
    "execute_plan",
    "plan_motion"
   ],
-  "media_bytes": 10557139,
+  "media_bytes": 15705148,
   "media_budget_bytes": 40000000,
   "clip_target_bytes": 400000,
   "clips_over_target": []
@@ -4590,8 +6311,108 @@
    "name": "r2run_cube_hold__20261124T183705Z-f1976279__0001-hold.png",
    "bytes": 165770,
    "sha256": "40f62adae34274929a72d18c958bfa2f570089473e410a43dbf65b379ed26a8a"
+  },
+  {
+   "name": "r2skill_push_ball__20261124T195713Z-f8aef7f1__0001-push.mp4",
+   "bytes": 275360,
+   "sha256": "ebd4efeb5b7e90c40a9f1c588ecf8026d1e4b54458749264277883953b2646b3"
+  },
+  {
+   "name": "r2skill_push_ball__20261124T195713Z-f8aef7f1__0001-push.png",
+   "bytes": 254415,
+   "sha256": "6e4d200e34985dd98380ee1eca06e9d1751b0ed9eb6ed26a4411c54a38bf15ee"
+  },
+  {
+   "name": "r2skill_push_ball__20261124T195713Z-f8aef7f1__0002-retreat.mp4",
+   "bytes": 148848,
+   "sha256": "b714df6c5d9c285be810c8c881d8563df6b69a47ace50491b25ee8cbbd3e83b2"
+  },
+  {
+   "name": "r2skill_push_ball__20261124T195713Z-f8aef7f1__0002-retreat.png",
+   "bytes": 235800,
+   "sha256": "8e7c0fffac46e42fa14bddf1cee8b38387b2ea9b9eb613e3962da3c26a7f3bdc"
+  },
+  {
+   "name": "r2skill_push_ball__20261124T195713Z-f8aef7f1__0003-go_home.mp4",
+   "bytes": 319367,
+   "sha256": "426f305d0cf23bee7d52a94e4a7e2c8cf80bd8a8528ee744ee133611f0b72596"
+  },
+  {
+   "name": "r2skill_push_ball__20261124T195713Z-f8aef7f1__0003-go_home.png",
+   "bytes": 244339,
+   "sha256": "edd9e58a00585fc9a3858927c3f42d70912b316e83c884f43244ecd5d6a972cf"
+  },
+  {
+   "name": "r2skill_press_table_and_ball__20261124T195830Z-2efda110__0001-guarded_press.mp4",
+   "bytes": 258153,
+   "sha256": "959cfd82d93f4051ffad1b23f4123ce6c6b4245043d34813429b2f604d066361"
+  },
+  {
+   "name": "r2skill_press_table_and_ball__20261124T195830Z-2efda110__0001-guarded_press.png",
+   "bytes": 256542,
+   "sha256": "96cf6255acb063cde85608f08d0981b7070613e6e51323fdbd011f08a7e66ed7"
+  },
+  {
+   "name": "r2skill_press_table_and_ball__20261124T195830Z-2efda110__0002-guarded_press.mp4",
+   "bytes": 252295,
+   "sha256": "bcae49d0b77f533f3d443f7ad1945c2cefed80a4d72637fe485c1b3446207125"
+  },
+  {
+   "name": "r2skill_press_table_and_ball__20261124T195830Z-2efda110__0002-guarded_press.png",
+   "bytes": 246471,
+   "sha256": "896b1f7e5fd2a6cea0af62eb0cee1f2e14803076b4e55d92d46984e024f105cb"
+  },
+  {
+   "name": "r2skill_press_table_and_ball__20261124T195830Z-2efda110__0003-retreat.mp4",
+   "bytes": 167497,
+   "sha256": "f606770c4faf31c373cfd005c179be2b5f49ba40c160084c1be7f63310ff6b16"
+  },
+  {
+   "name": "r2skill_press_table_and_ball__20261124T195830Z-2efda110__0003-retreat.png",
+   "bytes": 245434,
+   "sha256": "8643924ce7d8d4ef0be491a50d2bc4013e5d8b75dde088ea7f45230b904c7e18"
+  },
+  {
+   "name": "r2skill_press_table_and_ball__20261124T195830Z-2efda110__0004-go_home.mp4",
+   "bytes": 351432,
+   "sha256": "d2e58e2c7f9e963d63d7657b5178bb82f56c514abeef4db14bbade29b0594aba"
+  },
+  {
+   "name": "r2skill_press_table_and_ball__20261124T195830Z-2efda110__0004-go_home.png",
+   "bytes": 243814,
+   "sha256": "e9cf99be3f70a06281c2be1cc4a8478c4a9ff9a29b8455b09015ffb7737195ee"
+  },
+  {
+   "name": "r2skill_press_table_defaults__20261124T200030Z-ca1255d9__0001-guarded_press.mp4",
+   "bytes": 352804,
+   "sha256": "c085bf003a2f190bd88bd7db92f76505ce437aef53de078378a1d25e5b7505a2"
+  },
+  {
+   "name": "r2skill_press_table_defaults__20261124T200030Z-ca1255d9__0001-guarded_press.png",
+   "bytes": 255925,
+   "sha256": "6a31b08c8ad94c8a0bcd14ed4ca7b46ce1666bd6e18f163d67d42ca5e986cc5c"
+  },
+  {
+   "name": "r2skill_press_table_defaults__20261124T200030Z-ca1255d9__0002-guarded_press.mp4",
+   "bytes": 341766,
+   "sha256": "4dd2b8e52cc3bb7115333c2888160cff4dfbd2d4b3cdb4db7d802c88f328325c"
+  },
+  {
+   "name": "r2skill_press_table_defaults__20261124T200030Z-ca1255d9__0002-guarded_press.png",
+   "bytes": 230040,
+   "sha256": "4242e9efd4d2a9c6dada9efd79f274d904534025eb669ac83e18c74d585cbf34"
+  },
+  {
+   "name": "r2skill_press_table_defaults__20261124T200030Z-ca1255d9__0003-go_home.mp4",
+   "bytes": 227594,
+   "sha256": "2158fb818320af59d070b1a26d089a98d822af3f477a39096df2964127f9c559"
+  },
+  {
+   "name": "r2skill_press_table_defaults__20261124T200030Z-ca1255d9__0003-go_home.png",
+   "bytes": 240113,
+   "sha256": "eef788e87f12b84fba24357bbcf550d2506bcb63765d4447022c56fce70b936a"
   }
  ],
- "generated": "2026-11-24 13:45 EST",
- "page_sha256": "bee4a33bf3f630a7985215f7039e9a24662a3bae505ccaa73a45767d49991625"
+ "generated": "2026-11-24 15:34 EST",
+ "page_sha256": "9abb9df1f711a595cfcd93f3b36291ebfbd830c2d813ff2b8817b2bee3fb213b"
 }
