@@ -3,11 +3,11 @@
  "manifest": "s2/outputs/harness_round/daily50/episodes.json",
  "headline": {
   "tasks_total": 50,
-  "tasks_attempted": 1,
+  "tasks_attempted": 4,
   "tasks_with_a_counted_test_episode": 0,
   "tasks_with_a_pass": 0,
-  "episodes_listed": 1,
-  "probe_episodes": 1,
+  "episodes_listed": 6,
+  "probe_episodes": 6,
   "test_episodes_listed": 0,
   "test_episodes_excluded": 0,
   "episodes_without_series": 0,
@@ -308,14 +308,22 @@
    "task": "t19_jar_drawer",
    "prompt": "Put the cream jar in the drawer and close it.",
    "version": 2,
-   "status": "not attempted",
+   "status": "probe only: 1 development episode(s), nothing counted",
    "passed": false,
-   "episodes": [],
+   "episodes": [
+    "s2/dexharness/runs/live/daily50_t19_jar_drawer/20261124T204539Z-45d41bfc"
+   ],
    "best": null,
-   "failure": null,
-   "failure_role": null,
+   "failure": "s2/dexharness/runs/live/daily50_t19_jar_drawer/20261124T204539Z-45d41bfc",
+   "failure_role": "a probe episode (development, the latest; not counted)",
    "note": null,
-   "media": {}
+   "media": {
+    "failure": {
+     "video": "t19_jar_drawer__probe0__580697d8.mp4",
+     "poster": "t19_jar_drawer__probe0__580697d8.jpg",
+     "run": "s2/dexharness/runs/live/daily50_t19_jar_drawer/20261124T204539Z-45d41bfc"
+    }
+   }
   },
   {
    "task": "t20_sink_plug",
@@ -602,14 +610,23 @@
    "task": "t41_power_strip",
    "prompt": "Switch on the power strip; the desk lamp should light.",
    "version": 3,
-   "status": "not attempted",
+   "status": "probe only: 2 development episode(s), nothing counted",
    "passed": false,
-   "episodes": [],
+   "episodes": [
+    "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T204536Z-b8a2799b",
+    "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T205103Z-5a7c46a8"
+   ],
    "best": null,
-   "failure": null,
-   "failure_role": null,
+   "failure": "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T205103Z-5a7c46a8",
+   "failure_role": "a probe episode (development, the latest; not counted)",
    "note": null,
-   "media": {}
+   "media": {
+    "failure": {
+     "video": "t41_power_strip__probe1__f614b895.mp4",
+     "poster": "t41_power_strip__probe1__f614b895.jpg",
+     "run": "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T205103Z-5a7c46a8"
+    }
+   }
   },
   {
    "task": "t42_dish_soap",
@@ -706,14 +723,23 @@
    "task": "t49_weigh_orange",
    "prompt": "Weigh the orange on the kitchen scale.",
    "version": 1,
-   "status": "not attempted",
+   "status": "probe only: 2 development episode(s), nothing counted",
    "passed": false,
-   "episodes": [],
+   "episodes": [
+    "s2/dexharness/runs/live/daily50_t49_weigh_orange/20261124T204539Z-71b6fd22",
+    "s2/dexharness/runs/live/daily50_t49_weigh_orange/20261124T205218Z-ad5c5872"
+   ],
    "best": null,
-   "failure": null,
-   "failure_role": null,
+   "failure": "s2/dexharness/runs/live/daily50_t49_weigh_orange/20261124T205218Z-ad5c5872",
+   "failure_role": "a probe episode (development, the latest; not counted)",
    "note": null,
-   "media": {}
+   "media": {
+    "failure": {
+     "video": "t49_weigh_orange__probe1__b87d5142.mp4",
+     "poster": "t49_weigh_orange__probe1__b87d5142.jpg",
+     "run": "s2/dexharness/runs/live/daily50_t49_weigh_orange/20261124T205218Z-ad5c5872"
+    }
+   }
   },
   {
    "task": "t50_toy_bowling",
@@ -780,12 +806,260 @@
     "problems": []
    },
    "card_sha256": "8e9de758c37e6911b4a5c3c011bc2cccf5be982d31e14c4da254abe71ae6fe8c"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t19_jar_drawer/20261124T204539Z-45d41bfc",
+   "run_name": "daily50_t19_jar_drawer/20261124T204539Z-45d41bfc",
+   "task": "t19_jar_drawer",
+   "series": "probe",
+   "episode_index": 0,
+   "mode": "live",
+   "agent": "s2_t19",
+   "prompt": "Put the cream jar in the drawer and close it.",
+   "turns": 15,
+   "ticks_used": 1500,
+   "tick_budget": 1500,
+   "verdict": "FAIL",
+   "terms": [
+    "[yes] jar centre inside the drawer footprint (within 85 mm along the slide, 80 mm across): 0.0595, 0.0286; true for 1016 ticks; jar origin in the chest_drawer0 frame, |x| and |y| in m",
+    "[yes] jar centre 12 to 42 mm above the inside floor of the drawer: 0.025; true for 1273 ticks; jar origin in the chest_drawer0 frame, height above the inside floor in m",
+    "[NO] drawer closed to within 5 mm: 0.03861; true for 0 ticks; chest_drawer0_slide position in m (0 = closed)",
+    "[yes] no part of either hand touches the jar: 0; true for 1168 ticks; recorded contacts of the jar with hand links and palm surfaces, number of hand bodies",
+    "[yes] jar at rest (0.02 m/s, 0.5 rad/s): 0.0000 m/s, 0.001 rad/s; true for 1276 ticks; recorded joint velocity of the jar",
+    "[yes] the jar has been carried by a hand (two or more links of one hand on it, nothing else touching it, for 0.2 s without a break): longest carry 5.82 s (291 such ticks in the episode); true for 1234 ticks; recorded contacts of the jar: ticks with >= 2 links of one hand on it and no contact with anything that is not the robot; longest unbroken run so far, against 10 ticks (0.2 s)"
+   ],
+   "policy": {
+    "bound": false,
+    "engine": null,
+    "clip": null,
+    "object_in_training_recipe": "unknown"
+   },
+   "task_version": 2,
+   "excluded": [],
+   "problems": [],
+   "video": {
+    "dir": "s2/dexharness/runs/live/daily50_t19_jar_drawer/20261124T204539Z-45d41bfc/media/episode",
+    "bytes": 795003,
+    "sha256": "ae8cabf170db6435896b9af5389b6cbfbd3a5ecb409eed8ba805524a346e5f90",
+    "poster_bytes": 73320,
+    "poster_sha256": "9d1ae9826085cc77cdbadb568f46c52c744bdf9424bbca9e94bf0b33109a4ce1",
+    "duration_s": 55.4,
+    "speed": 1.0,
+    "size": [
+     848,
+     602
+    ],
+    "turns_source": "s2_turns.jsonl",
+    "never_touch_events": 2,
+    "problems": []
+   },
+   "card_sha256": "0d44a2f0a0485a7eaa20c2e42e99d27fc103c524009562ba1c20cc2b465fb2dd"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T204536Z-b8a2799b",
+   "run_name": "daily50_t41_power_strip/20261124T204536Z-b8a2799b",
+   "task": "t41_power_strip",
+   "series": "probe",
+   "episode_index": 0,
+   "mode": "live",
+   "agent": "s2_t41",
+   "prompt": "Switch on the power strip; the desk lamp should light.",
+   "turns": 7,
+   "ticks_used": 905,
+   "tick_budget": 1500,
+   "verdict": "FAIL",
+   "terms": [
+    "[yes] switch pad pressed in this episode: m_switch_presses at least 1 above its settled value: 2; true for 696 ticks; recorded joint m_switch_presses minus its value in the settled scene",
+    "[NO] strip switched on: m_strip_switch >= 0.5: 0; true for 216 ticks; recorded joint m_strip_switch: the mirror of the switch flag strip_on (1 = on)",
+    "[NO] lamp lit: m_lamp_lit >= 0.5: 0; true for 2 ticks; recorded joint m_lamp_lit: the mirror of the lamp effect lamp_lit (1 = on: the strip switched on, the lamp's plug in it, its own cord on it)",
+    "[NO] strip within 0.020 m of where it settled: 0.02719; true for 393 ticks; power_strip origin against its settled position",
+    "[yes] strip lies as it lay: top within 15 deg and long axis within 20 deg of the settled scene: 0; true for 895 ticks; power_strip mesh +y (top) and mesh +z (long axis) against their settled directions; final = top angle in deg",
+    "[yes] no part of either hand touches the strip (finger links, palm link, palm surface): 0; true for 809 ticks; recorded contacts of the hand links and of the two palm-surface bodies with the strip; final = hand links + palm surfaces touching",
+    "[yes] strip at rest (0.02 m/s, 0.5 rad/s): 7.796e-06; true for 834 ticks; recorded joint velocity of the strip"
+   ],
+   "policy": {
+    "bound": false,
+    "engine": null,
+    "clip": null,
+    "object_in_training_recipe": "unknown"
+   },
+   "task_version": 3,
+   "excluded": [],
+   "problems": [],
+   "video": {
+    "dir": "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T204536Z-b8a2799b/media/episode",
+    "bytes": 427386,
+    "sha256": "08df14fcc03f7b81a2201e980eda62010bec0092c9e3072f5e1949c01a36cb6e",
+    "poster_bytes": 62955,
+    "poster_sha256": "baadc871752f998887c01b7dd4552668467aed2585689f1294340314471a4906",
+    "duration_s": 30.35,
+    "speed": 1.0,
+    "size": [
+     848,
+     602
+    ],
+    "turns_source": "s2_turns.jsonl",
+    "never_touch_events": 0,
+    "problems": []
+   },
+   "card_sha256": "294109ad05d3b10636c0141090ec6b0d364322b598fca20eba238f532f78de55"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T205103Z-5a7c46a8",
+   "run_name": "daily50_t41_power_strip/20261124T205103Z-5a7c46a8",
+   "task": "t41_power_strip",
+   "series": "probe",
+   "episode_index": 1,
+   "mode": "live",
+   "agent": "s2_t41",
+   "prompt": "Switch on the power strip; the desk lamp should light.",
+   "turns": 3,
+   "ticks_used": 766,
+   "tick_budget": 1500,
+   "verdict": "PASS",
+   "terms": [
+    "[yes] switch pad pressed in this episode: m_switch_presses at least 1 above its settled value: 1; true for 476 ticks; recorded joint m_switch_presses minus its value in the settled scene",
+    "[yes] strip switched on: m_strip_switch >= 0.5: 1; true for 476 ticks; recorded joint m_strip_switch: the mirror of the switch flag strip_on (1 = on)",
+    "[yes] lamp lit: m_lamp_lit >= 0.5: 1; true for 476 ticks; recorded joint m_lamp_lit: the mirror of the lamp effect lamp_lit (1 = on: the strip switched on, the lamp's plug in it, its own cord on it)",
+    "[yes] strip within 0.020 m of where it settled: 0.007261; true for 766 ticks; power_strip origin against its settled position",
+    "[yes] strip lies as it lay: top within 15 deg and long axis within 20 deg of the settled scene: 0; true for 766 ticks; power_strip mesh +y (top) and mesh +z (long axis) against their settled directions; final = top angle in deg",
+    "[yes] no part of either hand touches the strip (finger links, palm link, palm surface): 0; true for 737 ticks; recorded contacts of the hand links and of the two palm-surface bodies with the strip; final = hand links + palm surfaces touching",
+    "[yes] strip at rest (0.02 m/s, 0.5 rad/s): 1.326e-06; true for 738 ticks; recorded joint velocity of the strip"
+   ],
+   "policy": {
+    "bound": false,
+    "engine": null,
+    "clip": null,
+    "object_in_training_recipe": "unknown"
+   },
+   "task_version": 3,
+   "excluded": [],
+   "problems": [],
+   "video": {
+    "dir": "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T205103Z-5a7c46a8/media/episode",
+    "bytes": 332803,
+    "sha256": "ecea5fe8e25d841e319173a80d7188365e123a8c9e427d270a24dedc4c440080",
+    "poster_bytes": 72841,
+    "poster_sha256": "81090e134dd067804a05ca54f0dab4c6db64b7a48b6138eadf379b44f4f12fe4",
+    "duration_s": 22.75,
+    "speed": 1.0,
+    "size": [
+     848,
+     602
+    ],
+    "turns_source": "s2_turns.jsonl",
+    "never_touch_events": 0,
+    "problems": []
+   },
+   "card_sha256": "68453e47f032ee0a633295d1f647d43750138a26bd8f5230b8668e057ca6bc4d"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t49_weigh_orange/20261124T204539Z-71b6fd22",
+   "run_name": "daily50_t49_weigh_orange/20261124T204539Z-71b6fd22",
+   "task": "t49_weigh_orange",
+   "series": "probe",
+   "episode_index": 0,
+   "mode": "live",
+   "agent": "s2_t49",
+   "prompt": "Weigh the orange on the kitchen scale.",
+   "turns": 10,
+   "ticks_used": 1283,
+   "tick_budget": 1500,
+   "verdict": "FAIL",
+   "terms": [
+    "[NO] the orange lies on the scale's tray: centre within 0.045 m of the tray axis, 0.035 +- 0.004 m above its floor: 0.2395 m off axis, -0.1130 m above the floor; true for 0 ticks; orange against scale_pan: horizontal offset and height above the tray floor",
+    "[yes] the hand has let go: no robot body touches the orange, no hand link touches the platform: 0; true for 1004 ticks; recorded contacts robot - orange and hand links - scale platform / tray",
+    "[yes] the orange is at rest: linear speed <= 0.02 m/s: 2.013e-14; true for 1056 ticks; orange linear speed from the recorded joint velocity",
+    "[NO] the dial reads the orange's weight within 10 %: 0.001; true for 0 ticks; needle angle of scale_needle_hinge as grams against 84.476 g +- 10 %"
+   ],
+   "policy": {
+    "bound": false,
+    "engine": null,
+    "clip": null,
+    "object_in_training_recipe": "unknown"
+   },
+   "task_version": 1,
+   "excluded": [],
+   "problems": [],
+   "video": {
+    "dir": "s2/dexharness/runs/live/daily50_t49_weigh_orange/20261124T204539Z-71b6fd22/media/episode",
+    "bytes": 696302,
+    "sha256": "17a706ec38fc9a8a797f0baf4b7bc50d727517d98420f2fba6920b00ebe6998a",
+    "poster_bytes": 83578,
+    "poster_sha256": "e948b5f33de71f439592e9811f314401ef7b728cca008cfa556cd9aad83bffd7",
+    "duration_s": 42.75,
+    "speed": 1.0,
+    "size": [
+     848,
+     602
+    ],
+    "turns_source": "s2_turns.jsonl",
+    "never_touch_events": 2,
+    "problems": []
+   },
+   "card_sha256": "a46ef6f80e9bddefd1c0ad6a2380efe08310b486797abc51908a5a2dcf9c3d2f"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t49_weigh_orange/20261124T205218Z-ad5c5872",
+   "run_name": "daily50_t49_weigh_orange/20261124T205218Z-ad5c5872",
+   "task": "t49_weigh_orange",
+   "series": "probe",
+   "episode_index": 1,
+   "mode": "live",
+   "agent": "s2_t49",
+   "prompt": "Weigh the orange on the kitchen scale.",
+   "turns": 5,
+   "ticks_used": 1008,
+   "tick_budget": 1500,
+   "verdict": "FAIL",
+   "terms": [
+    "[NO] the orange lies on the scale's tray: centre within 0.045 m of the tray axis, 0.035 +- 0.004 m above its floor: 2.8764 m off axis, -1.0070 m above the floor; true for 0 ticks; orange against scale_pan: horizontal offset and height above the tray floor",
+    "[yes] the hand has let go: no robot body touches the orange, no hand link touches the platform: 0; true for 864 ticks; recorded contacts robot - orange and hand links - scale platform / tray",
+    "[NO] the orange is at rest: linear speed <= 0.02 m/s: 0.2377; true for 323 ticks; orange linear speed from the recorded joint velocity",
+    "[NO] the dial reads the orange's weight within 10 %: 0.001; true for 0 ticks; needle angle of scale_needle_hinge as grams against 84.476 g +- 10 %"
+   ],
+   "policy": {
+    "bound": false,
+    "engine": "m8000",
+    "clip": null,
+    "object_in_training_recipe": "unknown"
+   },
+   "task_version": 1,
+   "excluded": [],
+   "problems": [],
+   "video": {
+    "dir": "s2/dexharness/runs/live/daily50_t49_weigh_orange/20261124T205218Z-ad5c5872/media/episode",
+    "bytes": 493576,
+    "sha256": "122750a713670e90f8aede860705716b0595595e2aa4eacc5f71e6cbd264653a",
+    "poster_bytes": 79241,
+    "poster_sha256": "73ca8a99dbce99f339e4b038d8ead51063977268921374646785ff4328f64b0f",
+    "duration_s": 29.2,
+    "speed": 1.0,
+    "size": [
+     848,
+     602
+    ],
+    "turns_source": "s2_turns.jsonl",
+    "never_touch_events": 2,
+    "problems": []
+   },
+   "card_sha256": "d25a1a22012f7c359dca31bd4db3f9904471434cf5425a50a265c181701cb98e"
   }
  ],
  "other_episodes": [],
  "unlisted_on_disk": [],
  "videos_left_out_for_size": [],
  "files": [
+  {
+   "name": "t19_jar_drawer__probe0__580697d8.mp4",
+   "bytes": 795003,
+   "sha256": "ae8cabf170db6435896b9af5389b6cbfbd3a5ecb409eed8ba805524a346e5f90"
+  },
+  {
+   "name": "t19_jar_drawer__probe0__580697d8.jpg",
+   "bytes": 73320,
+   "sha256": "9d1ae9826085cc77cdbadb568f46c52c744bdf9424bbca9e94bf0b33109a4ce1"
+  },
   {
    "name": "t27_paperweight__probe0__4959e6b7.mp4",
    "bytes": 366057,
@@ -795,13 +1069,33 @@
    "name": "t27_paperweight__probe0__4959e6b7.jpg",
    "bytes": 91768,
    "sha256": "be717d5304a24676743d9b3c9fafd97e7e4bff4d375f09cc8d4f50ff0b395fc2"
+  },
+  {
+   "name": "t41_power_strip__probe1__f614b895.mp4",
+   "bytes": 332803,
+   "sha256": "ecea5fe8e25d841e319173a80d7188365e123a8c9e427d270a24dedc4c440080"
+  },
+  {
+   "name": "t41_power_strip__probe1__f614b895.jpg",
+   "bytes": 72841,
+   "sha256": "81090e134dd067804a05ca54f0dab4c6db64b7a48b6138eadf379b44f4f12fe4"
+  },
+  {
+   "name": "t49_weigh_orange__probe1__b87d5142.mp4",
+   "bytes": 493576,
+   "sha256": "122750a713670e90f8aede860705716b0595595e2aa4eacc5f71e6cbd264653a"
+  },
+  {
+   "name": "t49_weigh_orange__probe1__b87d5142.jpg",
+   "bytes": 79241,
+   "sha256": "73ca8a99dbce99f339e4b038d8ead51063977268921374646785ff4328f64b0f"
   }
  ],
- "media_bytes": 457825,
+ "media_bytes": 2304609,
  "media_budget_bytes": 250000000,
  "not_done": [
   {
-   "text": "49 of 50 tasks have no episode at all.",
+   "text": "46 of 50 tasks have no episode at all.",
    "items": [
     "t01_hammer_nail",
     "t02_crack_walnut",
@@ -821,7 +1115,6 @@
     "t16_block_tower",
     "t17_shape_sorter",
     "t18_hob_knob",
-    "t19_jar_drawer",
     "t20_sink_plug",
     "t21_calendar_cube",
     "t22_seal_stamp",
@@ -842,7 +1135,6 @@
     "t38_tv_remote",
     "t39_whiteboard_erase",
     "t40_scrape_crumbs",
-    "t41_power_strip",
     "t42_dish_soap",
     "t43_chalk_line",
     "t44_crush_garlic",
@@ -850,17 +1142,19 @@
     "t46_table_leg",
     "t47_level_shelf",
     "t48_wheel_chock",
-    "t49_weigh_orange",
     "t50_toy_bowling"
    ]
   },
   {
-   "text": "1 task(s) have only probe episodes (development, never counted).",
+   "text": "4 task(s) have only probe episodes (development, never counted).",
    "items": [
-    "t27_paperweight"
+    "t19_jar_drawer",
+    "t27_paperweight",
+    "t41_power_strip",
+    "t49_weigh_orange"
    ]
   }
  ],
- "generated": "2026-11-24 15:43 EST",
- "page_sha256": "81de1a34ba1e32f87a2a92462dfac5b2c611cbedca87a9f57f31d8bb9a1c1906"
+ "generated": "2026-11-24 15:59 EST",
+ "page_sha256": "e7b6f46fb628becdf064789d0ad6957933dd4e9f193fef105755f8a6247f1285"
 }
