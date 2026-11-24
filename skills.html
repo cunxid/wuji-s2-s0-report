@@ -15,14 +15,22 @@ canvas{width:100%;border:1px solid #eee;border-radius:6px;background:#fafaf8}
 .stats{font:11.5px monospace;color:#444;margin-top:5px}
 .note{color:#898781;font-size:12.5px;margin-top:18px}
 .nav a{display:inline-block;border:1px solid #d7d6cf;border-radius:8px;padding:6px 12px;background:#fff;text-decoration:none;font-weight:600;margin-right:8px;font-size:13.5px}
+.notice{font-size:13.5px;margin:12px 0;padding:10px 13px;background:#fff4f1;border:1px solid #f0b8a8;border-left:5px solid #d8343c;border-radius:8px;color:#4a150e}
 </style></head><body>
 <h1>Skills — interactive reference generators</h1>
 <p class="sub">Each skill is a <b>fixed wrapper</b>: parameters in → a 50&nbsp;Hz wrist(+object) reference
 out; the frozen S0 tracks it and physics decides. These panels run the <b>same analytic shapes</b>
 the wrappers compose (cosine-eased segments, slerp tilts) in your browser — type numbers, see the
-reference it would generate. Measured success envelopes per parameter live on the
+reference it would generate. Per-parameter measurements live on the
 <a href="capability.html">capability page</a>.</p>
 <div class="nav"><a href="index.html">← Main</a><a href="capability.html">📊 Capability boundary</a><a href="wuji2_tasks.html">🎬 Task gallery</a></div>
+<div class="notice"><b>Correction, 2026-11-23.</b> Three panels on this page (spin, pour, strike) used to
+quote results next to the generated reference: per-object in-hand rotation “walls”, a pour that
+“reaches 146°”, and a strike elevation band. An audit of every reported pass found that the scores
+behind those figures did not measure what they claimed. The three panels now say what the audit
+found instead. The reference generators are unchanged, and so are the ✅ / ⚠ envelope lines, which
+come from tracking measurements the audit did not cover. Full record:
+<a href="audit.html">audit of reported passes</a>.</div>
 <div class="grid" id="grid"></div>
 <p class="note">Frames: table top at z≈0.92&nbsp;m, grasp anchor at (-0.32,&nbsp;-0.45). Eased position
 segments use p(t)=p₀+(p₁-p₀)·(0.5-0.5cos(πt)) at 50&nbsp;Hz — identical to the cosim composer’s
@@ -54,14 +62,14 @@ const GENS={
  lift:{title:'lift',desc:'vertical raise of the held object',params:{dz_m:0.2,T_ticks:100},
   gen:(p)=>{const a=ANCHOR,b=[a[0],a[1],a[2]+ +p.dz_m];const pts=[];seg(pts,25,t=>a);seg(pts,+p.T_ticks,t=>lin(a,b,ease(t)));seg(pts,30,t=>b);
    const _v=1.571*+p.dz_m/(+p.T_ticks/HZ);return{pts,profile:pts.map(q=>q[2]),stats:`peak ${_v.toFixed(2)} m/s`+envCheck('lift',_v,' m/s')}}},
- spin:{title:'spin_in_hand / flip',desc:'wrist frozen; the OBJECT reference rotates about its own axis — S0’s fingers perform it',
+ spin:{title:'spin_in_hand / flip',desc:'wrist frozen; only the OBJECT reference rotates about its own axis, for S0’s fingers to follow',
   params:{axis:['z','x','y'],deg:-170,T_ticks:120},
   gen:(p)=>{const pts=[];const th=+p.deg*Math.PI/180;const prof=[];
    seg(pts,30,t=>{prof.push(0);return ANCHOR;});
    seg(pts,+p.T_ticks,t=>{prof.push(ease(t)*+p.deg);return ANCHOR;});
    seg(pts,60,t=>{prof.push(+p.deg);return ANCHOR;});
-   return{pts,profile:prof,angular:true,stats:`${p.deg}° about obj-${p.axis} in ${(+p.T_ticks/HZ).toFixed(1)} s · ${(Math.abs(+p.deg)/(+p.T_ticks/HZ)).toFixed(0)} °/s (measured in-grip walls: box60 ~30°, lbar ~33°, screw 131°+)`}}},
- pour:{title:'pour',desc:'carry over the receptacle, tilt past POUR_DEG, return upright (tilt direction is mount-dependent)',
+   return{pts,profile:prof,angular:true,stats:`${p.deg}° about obj-${p.axis} in ${(+p.T_ticks/HZ).toFixed(1)} s · ${(Math.abs(+p.deg)/(+p.T_ticks/HZ)).toFixed(0)} °/s (audit 2026-11-23: the per-object “wall” figures shown here before are unverified, because the score behind them ignores which axis the object turned about. What holds up: the screwdriver, commanded −170° about its long axis in 120 ticks, was rolled about 130° in the fingers and stopped following near 135–140°; a cone was turned about 65° in the fingers without being dropped, medium confidence)`}}},
+ pour:{title:'pour',desc:'carry over the receptacle, tilt past POUR_DEG, return upright (how far the wrist can tilt in each direction depends on the mount)',
   params:{POUR_DEG:-120,carry_T:140,tilt_T:80},
   gen:(p)=>{const over=[BOWL[0],BOWL[1],BOWL[2]+0.30];const pts=[];const prof=[];
    seg(pts,25,t=>{prof.push(0);return ANCHOR;});
@@ -70,7 +78,7 @@ const GENS={
    seg(pts,+p.tilt_T,t=>{prof.push(ease(t)*+p.POUR_DEG);return over;});
    seg(pts,60,t=>{prof.push(+p.POUR_DEG);return over;});
    seg(pts,60,t=>{prof.push((1-ease(t))*+p.POUR_DEG);return over;});
-   return{pts,profile:prof,angular:true,stats:`tilt ${p.POUR_DEG}° · total ${((25+ +p.carry_T+30+ +p.tilt_T+120)/HZ).toFixed(1)} s (box60 on this rig: −120° reaches 146°; +120 saturates ~80°)`}}},
+   return{pts,profile:prof,angular:true,stats:`tilt ${p.POUR_DEG}° · total ${((25+ +p.carry_T+30+ +p.tilt_T+120)/HZ).toFixed(1)} s (audit 2026-11-23, box60 on this rig: at −120° the tilt stalled at the wrist joint limits after about 70° of hand rotation; the 146° shown here before was the cube’s absolute orientation, roughly 80° of which was there before the tilt began. At +120° the hand tilted about 117°; the ~80° shown before was the same absolute-orientation reading. Neither run is a pour: the object is a solid cube)`}}},
  strike:{title:'strike (hammer → nail)',desc:'approach from above, then 5 sustained press cycles along the head direction',
   params:{elev_deg:75,az_deg:30,L_m:0.228},
   gen:(p)=>{const nail=[-0.10,0.10,0.959];const e=+p.elev_deg*Math.PI/180,az=+p.az_deg*Math.PI/180;
@@ -79,7 +87,7 @@ const GENS={
    const Wu=[Wr[0],Wr[1],Wr[2]+0.06],Wo=[Wr[0],Wr[1],Wr[2]+0.10];const st=[Wr[0]-0.25,Wr[1]-0.15,Wr[2]+0.12];
    const pts=[];seg(pts,60,t=>lin(st,Wo,ease(t)));seg(pts,30,t=>lin(Wo,Wr,t));seg(pts,15,t=>Wr);
    for(let k=0;k<5;k++){seg(pts,8,t=>lin(Wr,Wh,t));seg(pts,14,t=>Wh);seg(pts,7,t=>lin(Wh,Wu,t));seg(pts,5,t=>lin(Wu,Wr,t));}
-   return{pts,profile:pts.map(q=>q[2]),stats:`elev ${p.elev_deg}° az ${p.az_deg}° head-L ${(+p.L_m*1000)|0} mm · press stroke ${(125).toFixed(0)} mm along ĥ (vertical band ≥75° = mallet-down)`}}},
+   return{pts,profile:pts.map(q=>q[2]),stats:`elev ${p.elev_deg}° az ${p.az_deg}° head-L ${(+p.L_m*1000)|0} mm · press stroke ${(125).toFixed(0)} mm along ĥ (audit 2026-11-23: in both audited strike runs this press pattern left the nail where it started. It is a push along the handle, not a face-down blow: in the two-handed run the hammer’s long axis was 54–65° below horizontal at the strokes. The “≥75° = mallet-down” band shown here before is withdrawn)`}}},
  place:{title:'place / drop',desc:'carry above the receptacle, open at DROP_DZ',
   params:{DROP_DZ_m:0.04,carry_T:150},
   gen:(p)=>{const over=[BOWL[0],BOWL[1],BOWL[2]+0.17+ +p.DROP_DZ_m];const pts=[];

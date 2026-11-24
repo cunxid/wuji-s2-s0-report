@@ -5,13 +5,19 @@ body{font:15px/1.6 -apple-system,"Segoe UI",sans-serif;color:#0b0b0b;background:
 h1{font-size:22px}h2{font-size:17px;margin-top:28px;border-bottom:1px solid #e1e0d9;padding-bottom:4px}
 a{color:#2056a8}code{background:#f1f0ec;padding:1px 5px;border-radius:4px;font-size:12.5px}
 .flow{background:#fff;border:1px solid #e1e0d9;border-radius:10px;padding:12px 16px;font:12.5px/1.7 monospace;white-space:pre;overflow-x:auto}
-table{border-collapse:collapse;width:100%;font-size:13px}td,th{border:1px solid #e1e0d9;padding:5px 8px}th{background:#f3f2ee}
+table{border-collapse:collapse;width:100%;font-size:13px}td,th{border:1px solid #e1e0d9;padding:5px 8px;vertical-align:top}th{background:#f3f2ee}
 .na{color:#898781;font-size:12.5px}.nav a{display:inline-block;border:1px solid #d7d6cf;border-radius:8px;padding:6px 12px;background:#fff;text-decoration:none;font-weight:600;margin-right:8px;font-size:13.5px}
+.notice{font-size:13.5px;margin:12px 0;padding:10px 13px;background:#fff4f1;border:1px solid #f0b8a8;border-left:5px solid #d8343c;border-radius:8px;color:#4a150e}
+.fail{color:#d8343c;font-weight:700}.demo{color:#b7791f;font-weight:700}
 </style></head><body>
 <h1>Inside the harness</h1>
-<p>How the agent layer actually consumes the <b>capability atlas</b>, the <b>RGB-D perception stack</b>,
-and the <b>motion-planning gates</b> around every skill call — with tonight's live numbers.</p>
-<div class="nav"><a href="index.html">← Main</a><a href="skills.html">🛠 Skills</a><a href="capability.html">📊 Capability</a><a href="timing.html">⏱ Timing</a></div>
+<p>How the agent layer consumes the <b>capability atlas</b>, the <b>RGB-D perception stack</b>,
+and the <b>motion-planning gates</b> around every skill call. The numbers were taken on the night of
+22–23 November 2026 ("tonight" below). Every example that cited a run the audit later failed has been
+restated.</p>
+<div class="nav"><a href="index.html">← Main</a><a href="skills.html">🛠 Skills</a><a href="capability.html">📊 Capability</a><a href="timing.html">⏱ Timing</a><a href="audit.html">Audit</a></div>
+
+<div class="notice"><b>Correction, 2026-11-23 — this page cited runs as successes that were not.</b> Every row the project had reported as a pass was audited against its raw run data. <b>Result: none of the 50 evaluation tasks was completed, no "official predicate" pass is supported, and none of the 10 in-hand tasks was completed as described.</b> Four behaviours hold up as demos: a substitute box picked up and released into the bucket, a left mouse click, an in-hand roll of the screwdriver, and an in-hand turn of a cone. On this page: the cup-on-plate "27.7&nbsp;mm official pass", the peg "official pass" and the bowl and pour "passes" are withdrawn; the gate calibration ("13/13 winners pass", "predicts 4 of 10 failures") is withdrawn, because the runs it treated as winners are now failures or demos; the "rescued" strike and the "guaranteed PASS" for the mouse task are withdrawn; and in-hand rotation angles are marked unverified, because the score behind them ignores which axis the object turned about. How each mechanism works, the wall-clock timings and the tracking-probe measurements were not part of the audit and are kept. Full table and evidence: <a href="audit.html"><b>audit of reported passes</b></a>.</div>
 
 <h2>The data flow</h2>
 <div class="flow">RGB-D (head + front cams)                        CAPABILITY ATLAS (4,300 cells tonight)
@@ -30,8 +36,9 @@ S2 PLAN: pick basin (from the basins file or author-typed) → compile verb(para
   ▼
 EXECUTE on frozen S0 (50 Hz reference; physics arbitrates)
   │  gates: lift-confirm · slip-pause · drop-abort
-  │  mid-episode replans from MEASURED state: strike swing (in-hand pose),
-  │  press re-aim (button pose), @precontact offset logging
+  │  mid-episode replans read SIMULATOR state, not perception: strike swing
+  │  (in-hand pose), press re-aim (button pose), place re-aim (in-hand offset);
+  │  @precontact offset logging (also simulator state)
   ▼
 JUDGE (between segments and after): re-observe via perception, typed verdict,
   decide continue / retry-with-measured-CORRECT / replan — every outcome
