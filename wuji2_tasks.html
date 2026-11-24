@@ -1,11 +1,12 @@
 <!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>The 50 wuji2 HandsOn tasks — official scenes and prompts</title>
+<title>The 50 Wuji-2 scene files shipped with HandsOn — scenes and prompts</title>
 <style>body{font:15px/1.5 -apple-system,"Segoe UI",sans-serif;color:#0b0b0b;background:#fcfcfb;max-width:1240px;margin:24px auto;padding:0 16px}
 h1{font-size:22px}.na{color:#898781;font-size:11.5px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:12px}
 .card{border:1px solid #e1e0d9;border-radius:10px;padding:10px;background:#fff}</style></head><body>
 <p class="na"><a href="index.html">dashboard</a> · 2026-11-22 19:30</p>
-<h1>All 50 wuji2 HandsOn tasks — their scenes, their prompts (50/50)</h1>
+<h1>The 50 Wuji-2 scene files shipped with HandsOn — their scenes, their prompts</h1>
+<p style="font-size:13.5px;margin:10px 0;padding:10px 13px;background:#fff4f1;border:1px solid #f0b8a8;border-left:5px solid #d8343c;border-radius:8px;color:#4a150e"><b>What &ldquo;50 evaluation tasks&rdquo; means (added 2026-11-23).</b> The 50 rows are the scene files HandsOn ships for the Wuji&nbsp;2 hand, run in this project's own MuJoCo co-simulation and scored by this project's code. That is not the benchmark's evaluation. The benchmark's catalogue has 66 tasks (Core-50 and Transfer-16), run in Isaac Sim with the Wuji&nbsp;1 hand and judged by the benchmark's own checker. Of these 50 scenes, 26 are catalogue tasks (24 Core, 2 Transfer); 24 are older scene files that have no official success test or step budget; and for at least eleven rows the task's objects exist only inside Isaac Sim, so the scene shown below holds just the table and the robot. No number on this site is a HandsOn benchmark score.</p>
 <p>Each scene is generated per task by HandsOn's own <code>prepare_task_mjcf(task,
 hand_type='wuji2')</code>, physics-settled, shown as an autoplaying GIF orbit. Quoted text = the
 official canonical prompt from their shipped <code>language_bank.json</code>. Honest labels:
