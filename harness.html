@@ -17,7 +17,7 @@ and the <b>motion-planning gates</b> around every skill call. The numbers were t
 restated.</p>
 <div class="nav"><a href="index.html">← Main</a><a href="skills.html">🛠 Skills</a><a href="capability.html">📊 Capability</a><a href="timing.html">⏱ Timing</a><a href="audit.html">Audit</a></div>
 
-<div class="notice"><b>Correction, 2026-11-23 — this page cited runs as successes that were not.</b> Every row the project had reported as a pass was audited against its raw run data. <b>Result: none of the 50 evaluation tasks was completed, no "official predicate" pass is supported, and none of the 10 in-hand tasks was completed as described.</b> Four behaviours hold up as demos: a substitute box picked up and released into the bucket, a left mouse click, an in-hand roll of the screwdriver, and an in-hand turn of a cone. On this page: the cup-on-plate "27.7&nbsp;mm official pass" and the peg "official pass" are withdrawn; of the bucket, bowl and pour "passes" cited for the box, the bucket run stands only as a demo, the pour is a FAIL, and the bowl placement was not audited and is unverified; the gate calibration ("13/13 winners pass", "predicts 4 of 10 failures") is withdrawn, because the runs it treated as winners are now failures or demos; the "rescued" strike and the "guaranteed PASS" for the mouse task are withdrawn; and in-hand rotation angles are marked unverified, because the score behind them ignores which axis the object turned about. How each mechanism works, the wall-clock timings and the tracking-probe measurements were not part of the audit and are kept. Full table and evidence: <a href="audit.html"><b>audit of reported passes</b></a>.</div>
+<div class="notice"><b>Correction, 2026-11-23 — this page cited runs as successes that were not.</b> Every row the project had reported as a pass was audited against its raw run data. <b>Result: none of the 50 evaluation tasks was completed, no "official predicate" pass is supported, and none of the 10 in-hand tasks was completed as described.</b> Four behaviours hold up as demos: a substitute box picked up and released into the bucket, a left mouse click, an in-hand roll of the screwdriver, and an in-hand turn of a cone. On this page: the cup-on-plate "27.7&nbsp;mm official pass" and the peg "official pass" are withdrawn; of the bucket, bowl and pour "passes" cited for the box, the bucket run stands only as a demo, the pour is a FAIL, and the bowl placement was not audited and is unverified; the gate calibration ("13/13 winners pass", "predicts 4 of 10 failures") is withdrawn, because the runs it treated as winners are now failures or demos; the "rescued" strike and the "guaranteed PASS" for the mouse task are withdrawn; and in-hand rotation angles are marked unverified, because the score behind them ignores which axis the object turned about. How each mechanism works, the wall-clock timings and the tracking-probe measurements were not part of the audit and are kept, with one correction: the mid-episode replans and the precontact offset read simulator state, not perception (the audit noted this for the bucket run; the code shows it for the others). Full table and evidence: <a href="audit.html"><b>audit of reported passes</b></a>.</div>
 
 <h2>The data flow</h2>
 <div class="flow">RGB-D (head + front cams)                        CAPABILITY ATLAS (4,300 cells tonight)
@@ -35,14 +35,19 @@ S2 PLAN: pick basin (from the basins file or author-typed) → compile verb(para
   │    joint accel + singularity + limit margins along the whole 50 Hz path
   ▼
 EXECUTE on frozen S0 (50 Hz reference; physics arbitrates)
-  │  gates: lift-confirm · slip-pause · drop-abort
+  │  gates: lift-confirm · slip-pause · drop-abort (no gate stopped the audited
+  │  t25 run: the object fell from the hand about 1.5 s before the release and
+  │  the episode ran on to that release)
   │  mid-episode replans read SIMULATOR state, not perception: strike swing
   │  (in-hand pose), press re-aim (button pose), place re-aim (in-hand offset);
   │  @precontact offset logging (also simulator state)
   ▼
 JUDGE (between segments and after): re-observe via perception, typed verdict,
   decide continue / retry-with-measured-CORRECT / replan — every outcome
-  writes an atlas cell back (atlas_io.commit)</div>
+  writes an atlas cell back (atlas_io.commit)
+  (for the audited rows the pass verdict came from a score computed on
+  simulator state, not from perception; the audit rated that score unfair
+  in 17 of the 21 units it examined and only partly fair in the other 4)</div>
 
 <h2>1 · How plans take in the atlas</h2>
 <table>
@@ -50,7 +55,7 @@ JUDGE (between segments and after): re-observe via perception, typed verdict,
 <tr><td>capture basins<br><code>v2_capture_basins.json</code></td><td>acquire pins ψ (spawn-yaw) + measured CORRECT before any skill — the yaw sweep ties at ~0 on the shipped mount, so basin search + offset retry is mandatory. <b>Read from the file</b> by the 50-task evaluation runner and the shipped-rig envelope requalification; in the later builders (round 2/3, in-hand suite) the same values are typed in as constants by the plan author</td><td>box60 ψ=-90: the grasp behind the bucket run (<span class="demo">DEMO (audited)</span>: a substitute box picked up, carried and released into the bucket) and the pour run (<span class="fail">FAIL (audited)</span>: the box stayed in the hand, but the commanded tilt stalled at the wrist joint limits). The bowl placement of this box was not audited; it rests on the in-bowl test the audit lists as a scoring defect, so it is unverified. rod15x150 ψ=-120: the rod was picked up and carried, but the "t09 peg official pass" is withdrawn (<span class="fail">FAIL (audited)</span>: no peg, socket or insertion took place). bulb: 0 basins = typed capture gap</td></tr>
 <tr><td>object envelopes<br><code>envelope_v2.json</code> (24 objects)</td><td><b>Read by the plan author, not automatically.</b> The agent consults it when writing a plan (speeds, which lever to try, which lead to drop). The automatic carry-speed reflection (CARRY_MIN_T) exists but is inert today: it still reads the old-rig envelope file and its cap saturates, so it changes no plan (0 of 7 objects)</td><td>cyl30x80 pour lead tested and rejected (0/11 at 0.05 m/s); long objects (hammerS/lbar/tbar) lose HORIZONTAL primitives on the v2 mount — the far anchor sits at the arm's x/y reach edge (palm err plateaus 50–100 mm with grip retained) — so plans route those carries vertically or re-anchor</td></tr>
 <tr><td>task-scene envelopes<br><code>envelope_tasks.json</code> (50 scenes)</td><td><b>Recorded only.</b> No planner reads it yet; it informs the plan author and this site</td><td>44/50 scenes: lift+arc tracked; lateral lines untrackable across scenes (consistent rig boundary)</td></tr>
-<tr><td>typed failures + repairs</td><td>retry routing uses the <b>last episode's measurement</b> (precontact offset → CORRECT; failure type → next lever), not an atlas lookup. The atlas adds candidate ordering (proven-good yaws first) only inside the actor retry loop, which the 50-task evaluation path does not call. After the audit: in two audited cases the lever chosen for a retry did not take effect. In the t08 loop the SQUEEZE values chosen for the retries never reached the run specs, and in the cone-turn attempts SQUEEZE was set although spin episodes do not read it</td><td>t25: this cell reported a free-fall scatter that was diagnosed and repaired by the measured-surface setdown, ending at "27.7 mm official". Withdrawn (<span class="fail">FAIL (audited)</span>): the object slipped out of the still-closed hand about 1.5&nbsp;s before the commanded release, fell about 109&nbsp;mm and landed 89&nbsp;mm from the marker; it was knocked to 28&nbsp;mm when the empty hand came down on the bowl. The run does not show a repair</td></tr>
+<tr><td>typed failures + repairs</td><td>retry routing uses the <b>last episode's measurement</b> (precontact offset → CORRECT; failure type → next lever), not an atlas lookup. The atlas adds candidate ordering (proven-good yaws first) only inside the actor retry loop, which the 50-task evaluation path does not call. After the audit: in two audited cases a lever set for a retry or a later attempt had no effect. In the t08 loop the SQUEEZE values chosen for the retries never reached the run specs, and in the cone-turn attempts SQUEEZE was set although spin episodes do not read it</td><td>t25: this cell reported a free-fall scatter that was diagnosed and repaired by the measured-surface setdown, ending at "27.7 mm official". Withdrawn (<span class="fail">FAIL (audited)</span>): the object slipped out of the still-closed hand about 1.5&nbsp;s before the commanded release, fell about 109&nbsp;mm and landed 89&nbsp;mm from the marker; it was knocked to 28&nbsp;mm when the empty hand came down on the bowl. The run does not show a repair</td></tr>
 <tr><td>writeback</td><td>probe, suite, and retry-round episodes each commit a cell: (object, skill, params+scene_rev, outcome, measured metrics). The 50-task evaluation runners deliberately do not write cells. Caveat: the scene revision tag was not bumped for the shipped rig — old- and new-rig cells are separated by the arm tag instead. After the audit: a cell stores the outcome its score gave at the time. In-hand suite runs the audit examined are stored as successes, including runs the audit failed (for example the hammer face-to-claw run); those flags have not been re-scored</td><td>4,300 cells: v2-rig requal 938 + 2,041 probe · 1,185 task-scene · 349 place · 143 spin · …</td></tr>
 </table>
 <p class="na">Object provenance (corrected 2026-11-23): none of the objects the harness grasps on this
@@ -62,9 +67,9 @@ this page used to call the "V21 requalification" probed these objects, not V21 t
 <h2>2 · How the harness uses segmentation &amp; depth (beyond the skill call)</h2>
 <table>
 <tr><th>stage</th><th>mechanism</th><th>what the record shows after the audit</th></tr>
-<tr><td>object pose for acquire</td><td><code>segment_objects</code> (SAM-3 when weights present, depth-plane fallback — the run discloses which) → <code>estimate_pose</code> ICP against the object mesh</td><td>Withdrawn: this cell credited the perceived pose with the CORRECT repair that "converted" the bowl, bucket and cup grasps. The audited bowl, bucket and cup runs carried no CORRECT offset, and the <code>@precontact</code> offset that feeds CORRECT is computed from simulator state, not by this perception path. In audited runs the perception outputs that fed planning were wrong: the t14 push was aimed from a perceived "mouse" 736&nbsp;mm from the real one, and the object match for t25 and t09 named the wrong object class (in both, the builder bound the object by hand)</td></tr>
-<tr><td>collision-free carry</td><td>deprojected depth → height map → the carry corridor gets a per-sample z-floor + lateral detour (<code>PLAN_SCAN</code>, perceived source by default — not simulator state)</td><td>Probing (not part of the audit): the lift and arc probes were tracked in 44 of the 50 task scenes. The earlier wording, "clutter never fouls composed carries", is withdrawn: those probes record tracking error and grip retention, not contact with clutter, and the corridor check covers the carry only. In audited runs the hand or wrist struck scene objects at set-down or while pushing: a ball and the bowl (t09), the bowl (t25), a gate box (t34)</td></tr>
-<tr><td>precision drops</td><td>marker drops descend to the <b>measured</b> surface height instead of a fixed free-fall</td><td>The mechanism exists in code (<code>PLAN_SETDOWN</code>). The example given for it, "t25 cup-on-plate: 80–130 mm scatter → 27.7 mm official pass", is withdrawn (<span class="fail">FAIL (audited)</span>): the object left the still-closed hand about 1.5&nbsp;s before the commanded release, so the set-down was never performed with the object in hand; there is no plate in that scene and the object ended on its side. In the audited t11 run, which used the same option, the cube was held to within 6&nbsp;mm of its aim until the release and was then thrown about 100&nbsp;mm as the fingers opened. The four audited rows that used this set-down (t09, t11, t13, t25) ended between 67 and about 175&nbsp;mm from the point they aimed at; none shows a precise drop</td></tr>
+<tr><td>object pose for acquire</td><td><code>segment_objects</code> (SAM-3 when weights present, depth-plane fallback — the run discloses which) → <code>estimate_pose</code> ICP against the object mesh</td><td>Withdrawn. This cell said that precontact offsets measured per attempt fed the CORRECT repair that "converted" the bowl, bucket and cup grasps. After the audit the bowl and cup rows are <span class="fail">FAIL</span> and the bucket row is a <span class="demo">DEMO</span> with a substitute box. The logs of those three runs show a CORRECT offset of zero, and the <code>@precontact</code> offset is computed from simulator state, not by this perception path. In the audited bucket run the bucket position used by the plan and the in-hand offset used by the mid-carry re-aim were also read from simulator state. In three audited rows the perception output that fed planning was wrong: the t14 push was aimed from a perceived "mouse" 736&nbsp;mm from the real one, and for t25 and t09 the perceived object match named a different object class from the one that was run (in both, the builder set the object by hand)</td></tr>
+<tr><td>collision-free carry</td><td>deprojected depth → height map → the carry corridor gets a per-sample z-floor + lateral detour (<code>PLAN_SCAN</code>, perceived source by default — not simulator state)</td><td>Probing (not part of the audit): the lift and arc probes were tracked in 44 of the 50 task scenes. The earlier wording, "clutter never fouls composed carries", is withdrawn: those probes record tracking error and grip retention, not contact with clutter. In audited runs the hand or wrist struck scene objects: it knocked a ball away and tipped the bowl (t09), came down on the bowl with an empty hand (t25), and knocked over a gate box while pushing (t34)</td></tr>
+<tr><td>precision drops</td><td>marker drops descend to the <b>measured</b> surface height instead of a fixed free-fall</td><td>The mechanism exists in code (<code>PLAN_SETDOWN</code>). The example given for it, "t25 cup-on-plate: 80–130 mm scatter → 27.7 mm official pass", is withdrawn (<span class="fail">FAIL (audited)</span>): the object left the still-closed hand about 1.5&nbsp;s before the commanded release, so the set-down was never performed with the object in hand; there is no plate in that scene and the object ended on its side. In the audited t11 run, which used the same option, the cube was held to within 6&nbsp;mm of its aim until the release and was then thrown about 100&nbsp;mm as the fingers opened. The four audited rows whose run specs switch this option on (t09, t11, t13, t25) ended between 67 and 176&nbsp;mm from the point they aimed at; none shows a precise drop</td></tr>
 <tr><td>re-observation between segments</td><td>after place/release or before a strike, the pipeline re-renders, re-segments, re-fits pose; the judge compares perceived vs commanded</td><td>Neither example stands as a success. Strike: in the segment loop the swing is authorised after a depth-image check that the hammer is held (section 4); the in-episode REPLAN tick that plans the swing reads the in-hand pose from simulator state. In the audited strike runs the nail ended no deeper than it started. t14: the check before the click compared the push episode's own displacement figure (distance moved in any direction) with an 80&nbsp;mm bar. It passed on 232&nbsp;mm that the audit traced to the arm's wrist link knocking and dragging the mouse while the arm followed a reference about 28&nbsp;m below the table</td></tr>
 </table>
 
@@ -83,26 +88,29 @@ minimal retime factor.</p>
 <p><b>Calibration: withdrawn.</b> The gate was run on 23 composed references from the
 shipped rig: 13 whose episodes had been reported as passes (the "winners") and 10 reported as
 failures. Its thresholds were set to the envelope of the winners plus 15%, so that the gate would
-not reject them. The audit has since examined all 13 winner rows: <b>10 are FAIL, 3 are demos, none
-is a pass</b>. The thresholds therefore describe references that were run, not references that
-succeed, and they are loose: they allow an IK residual of up to 235&nbsp;mm (set by the
-hammer-strike reference) and a swept penetration of up to 32&nbsp;mm (set by the peg reference,
-whose wrist flange passes 31&nbsp;mm into the table). Both of those rows are audited FAIL. The
-earlier statements "13/13 winners pass" and "predicts 4 of 10 real failures before spending an
-episode" are withdrawn as measures of how well the gate separates success from failure: every
-reference the gate accepts belongs to a run that is now a FAIL or a demo, so being accepted says
-nothing about whether the task succeeds. The gate has not been recalibrated.</p>
+not reject them (the two mouse-press references were left out of that envelope and rejected; see
+below). The audit has since examined all 13 winner rows: <b>10 are FAIL, 3 are demos, none is a
+pass</b>. The three demo rows are the bucket run, which is listed under two row names, and the cone
+turn. The thresholds therefore describe references that were run, not references that succeed. As
+recorded in <code>s2/s2loop/ik_gate_study.json</code>, they allow an IK residual of up to
+235&nbsp;mm (set by the hammer-strike reference) and a swept penetration of up to 32&nbsp;mm (set
+by the peg reference, whose wrist flange passes 31&nbsp;mm into the table). Both of those rows are
+audited FAIL. The earlier statements "13/13 winners pass" and "predicts 4 of 10 real failures
+before spending an episode" are withdrawn as measures of how well the gate separates success from
+failure: no reference the gate accepts belongs to a run that passed, so being accepted says nothing
+about whether the task succeeds. The gate has not been recalibrated.</p>
 
 <p><b>What still stands</b> are the gate's kinematic measurements of individual references, which
-do not depend on any score. It rejects four references, and all four episodes were failures when
-run: water-plant's 78° sustained orientation unreachability, pinch-tongs 428&nbsp;mm out of
+do not depend on any score. Of the 10 references reported as failures it rejects four, and all four
+episodes were failures when run: water-plant's 78° sustained orientation unreachability, pinch-tongs 428&nbsp;mm out of
 workspace (57% solver-recovery dwell), the microwave press (375&nbsp;mm/178°), and t09's
 overshooting aim, whose wrist flange sweeps 73&nbsp;mm <i>into the table</i>. The t09 aim that had
 been called the winner sweeps the same flange 31&nbsp;mm into the table and is accepted; the audit
 found the arm 6–7&nbsp;cm off its reference through that set-down. A per-family comparison: the
 allen-key spin reference carries a sustained IK residual of 21&nbsp;mm/49°, against ≤0.1&nbsp;mm
 for the three spin references that had been reported as passes (after the audit: the cone turn is a
-demo, the paintbrush flip a FAIL, and the jar-lid row a re-run of the screwdriver roll).</p>
+demo with medium confidence, the paintbrush flip a FAIL, and the jar-lid row a FAIL that re-ran the
+screwdriver roll).</p>
 
 <p><b>The one defect the gate found, and what the audit added.</b> The gate flagged the mouse-press
 reference. The press composer's frame anchor came from a sim-binding stub that free-fell through the
@@ -111,7 +119,8 @@ button only via the arrival-gated replan. The composer now detects the degenerat
 re-anchors to the hand's own pose. After the fix the same click episode presses the button further
 (15.4&nbsp;mm of button travel, up from 13.0), its authored plan passes the gate with 0
 out-of-workspace frames, and arenas with a live tracked object are bit-identical to full float
-precision. That click is one of the four behaviours that hold up as a demo. This page described the
+precision. That click, made in a rebuilt scene, is one of the four behaviours that hold up as a
+demo; it is the click only, not the move-and-click task. This page described the
 fix as "at root cause"; that is withdrawn. The fix changed the press composer only. The audit found
 the same defect in the push composer, which takes the table height from the stub's settled
 position: the t14 push reference sat about 28&nbsp;m below the table and the arm was in IK recovery
@@ -121,8 +130,8 @@ push composer is unchanged at the time of this correction.</p>
 <p><b>Blind spots.</b> Pure grasp slips and semantic failures are kinematically clean, so the gate
 cannot see them. The earlier statement that the atlas can see them is withdrawn for semantic
 failures: the atlas records what the scores report, and the audit found those scores passing runs
-that did not do the task. The audit adds a third blind spot: the arm can sit far from a reference
-that a kinematic solve calls reachable. In the hammer face-to-claw run the wrist stayed about
+that did not do the task. The audited runs show a third blind spot: the arm can sit far from a
+reference that a kinematic solve calls reachable. In the hammer face-to-claw run the wrist stayed about
 10&nbsp;cm off its commanded pose although a kinematics-only solve of the same reference raises no
 flag, and in the paintbrush run the palm drifted up to 51&nbsp;mm off a reference the gate scores at
 0.02&nbsp;mm residual.</p>
@@ -148,18 +157,18 @@ truth is recorded alongside and not used for those decisions. Nail travel, butto
 pour tilt angle are not resolved by perception, so for those the loop defers to the episode's own
 score. Four protocols were run with disclosed scripted perturbations, same scene, open vs closed
 loop:</p>
-<p class="notice"><b>After the audit.</b> The unperturbed runs behind three of the four protocols
-are audited runs: the strike and the pour are the two main-page pairs the audit failed, and the
-mouse task is the audited t14 run. The place run was not audited. What the loop <i>detected</i>
-from perception was not part of the audit and stands as recorded. The task outcomes do not: every
-PASS this table used to show came from a score the audit found invalid, and the strike was not
-rescued.</p>
+<p class="notice"><b>After the audit.</b> Three of the four protocols replay the set-ups of
+audited runs: the strike and the pour use the run specs of the two main-page pairs the audit
+failed, and the mouse protocol reuses the push of the audited t14 run with a different push
+target. The place run was not audited. What the loop <i>detected</i> from perception was not part
+of the audit and stands as recorded. The task outcomes do not: every PASS this table used to show
+came from a score the audit found invalid, and the strike was not rescued.</p>
 <table>
 <tr><th>perturbation</th><th>open loop</th><th>closed loop (agent between skills)</th></tr>
-<tr><td>strike: 42&nbsp;mm mid-reach bump</td><td><span class="fail">FAIL</span> — the hammer is never lifted; nail reading 0.0&nbsp;mm</td><td><b>Not a rescue: the earlier "RESCUED … 11.7&nbsp;mm PASS" is withdrawn.</b> What stands: the depth-image check found the hammer still on the table and ordered a re-acquire, the re-acquire lifted it, and the swing was authorised. What does not: the two swings that followed read 5.6&nbsp;mm and then, after a retry chosen from that reading (CHOKE), 11.7&nbsp;mm on the peak nail-depth score. The audit found that score invalid (a single lowest sample; in this scene the nail tip already rests on the table), and each run's own log shows the nail ending no deeper than it started (74&nbsp;s vs 20&nbsp;s)</td></tr>
+<tr><td>strike: 42&nbsp;mm mid-reach bump</td><td><span class="fail">FAIL</span> — the hammer is never lifted; nail reading 0.0&nbsp;mm</td><td><b>Not a rescue: the earlier "RESCUED … 11.7&nbsp;mm PASS" is withdrawn.</b> What stands: the depth-image check found the hammer still on the table and ordered a re-acquire, the re-acquire lifted it, and the swing was authorised. What does not: the two swings that followed read 5.6&nbsp;mm and then, after a retry chosen from that reading (CHOKE), 11.7&nbsp;mm on the peak nail-depth score. The audit found that score invalid: it takes the single lowest sample, and in this scene the nail tip already rests on the table, so the reading can rise only if the tip is pushed into the table surface or the block leaves the table. These two swings were not audited individually; each run's own log records the nail ending no deeper than it started. Wall-clock: 74&nbsp;s closed loop, 20&nbsp;s open loop</td></tr>
 <tr><td>place: post-release bump out of the bowl</td><td><b>FALSE SUCCESS</b> — episode claims in-bowl; the object is 130&nbsp;mm out</td><td>caught by the bowl-occupancy depth probe → in-band re-grasp → retry-verify catches the short drop too → <b>truthful typed abort</b> instead of a false pass. <span class="na">Not part of the audit; no pass is claimed in this row.</span></td></tr>
 <tr><td>pour: 30&nbsp;mm mid-reach bump</td><td>fails silently (the cube is dropped; no tilt is scored)</td><td>caught pre-tilt (held-detector) → retry fails physically → typed NOT_HELD abort; the tilt is never attempted. This detection stands. The unperturbed pour it guards is itself <span class="fail">FAIL (audited)</span>: the commanded tilt stalls at the wrist joint limits</td></tr>
-<tr><td>t14: cable-snag drags the mouse back</td><td>was reported as passing by luck (the press itself shoves the mouse over the 80&nbsp;mm bar, 10–16&nbsp;mm margin). <span class="fail">Not a pass</span>: that bar counts movement in any direction, and the pad terms of the check were fixed values</td><td><b>"Guaranteed PASS" is withdrawn.</b> What stands: the loop saw from perception that the mouse had moved too little and ordered a re-push; in the unperturbed run it measured the mouse 194&nbsp;mm from its commanded position, the re-push did not correct that, and the run went on to the click with a flag. What does not: every push here uses the push spec the audit failed — the reference lies far below the table and the arm is in IK recovery for the whole push, as these runs' own logs also show — and "PASS" was the official check the audit found unsupported (this scene has no pad on the table). The left click is the one part of this task the audit accepts as real</td></tr>
+<tr><td>t14: cable-snag drags the mouse back</td><td>was reported as passing by luck (the press itself shoves the mouse over the 80&nbsp;mm bar, 10–16&nbsp;mm margin). <span class="fail">Not a pass</span>: that bar counts movement in any direction, and the pad terms of the check were fixed values</td><td><b>"Guaranteed PASS" is withdrawn.</b> What stands: the loop saw from perception that the mouse had moved too little and ordered a re-push; in the unperturbed run it measured the mouse 194&nbsp;mm from its commanded position, the re-push did not correct that, and the run went on to the click with a flag. What does not: every push here has the defect the audit found in the t14 push — the reference lies far below the table and the arm is in IK recovery for the whole push, as these runs' own logs show — and "PASS" was the official check the audit found unsupported (this scene has no pad on the table). The left click is the one part of this task the audit accepts as real</td></tr>
 </table>
 <p class="na">Protocols disclosed in <code>s2/s2loop/segment_loop.json</code> (state-carry via
 DUMP/INIT_STATE; authorize-then-recommit for in-hand segments, recommit fidelity measured at
@@ -179,12 +188,12 @@ score, which ignores the axis and direction of the turn. Rows without an audit n
 of the audit.</p>
 <table>
 <tr><th>wall</th><th>measured structure</th><th>evidence</th></tr>
-<tr><td>allen-key in-hand rotation</td><td><b>Angles unverified after the audit.</b> Reported as two walls, at about 33° (face-lock) and 64–67.5°; both are readings of the in-hand rotation score. Trace analysis, which does not rely on that score, then REVISED this: the bar departs during the handoff settle before the spin even starts, and the 64–67.5° readings include post-drop motion of the fallen bar (about 40° while still held). In none of the 11 profiles did the score reach 55° with the bar still held at the end</td><td>round3.json. The ratchet composition (69° across 2 grasps) uses the same score: unverified after the audit</td></tr>
-<tr><td>lying-cup carry retention (t19)</td><td>acquire lifted in 5 of 5 with the gate-planned clearance; all 5 lifted carries drop 190–455&nbsp;mm short across spin/squeeze/pace; release-dwell axis = uprighting axis (ready lever once carry holds)</td><td>round3.json gate table + 6 episodes</td></tr>
+<tr><td>allen-key in-hand rotation</td><td><b>Angles unverified after the audit.</b> Reported as two walls, at about 33° (face-lock) and 64–67.5°; both are readings of the in-hand rotation score. A later per-tick trace then REVISED this: the bar departs during the handoff settle before the spin even starts, and the 64–67.5° readings include post-drop motion of the fallen bar (about 40° while still held, by that trace). In none of the 11 profiles did the score reach 55° with the bar still held at the end</td><td>round3.json. The ratchet composition (69° across 2 grasps) uses the same score: unverified after the audit</td></tr>
+<tr><td>lying-cup carry retention (t19)</td><td>acquire lifted in 5 of 5 with the gate-planned clearance (not audited; "lifted" means the object rose more than 5&nbsp;cm); all 5 lifted carries drop 190–455&nbsp;mm short across spin/squeeze/pace; release-dwell axis = uprighting axis (ready lever once carry holds)</td><td>round3.json gate table + 6 episodes</td></tr>
 <tr><td>thin-vessel retention (cyl30x80 pour)</td><td>REVISED by trace analysis: the vessel escapes during the clip-driven ACQUIRE (keels 70.7° in 42 frames, slides out before handoff) — the pour phase is never reached; an acquire wall, not pour retention. Probe 0/11 to 0.05&nbsp;m/s</td><td>refpad_round.json, envelope_v2</td></tr>
-<tr><td>thin-stock release (t22 screw pass)</td><td>right-side acquire+carry 5/5; the screw flicks +0.16&nbsp;m along opening fingers at every catch timing — needs a pinch-to-pinch release no verb provides</td><td>maximize_r2, refpad_round (183&nbsp;mm vs 120 bar)</td></tr>
+<tr><td>thin-stock release (t22 screw pass)</td><td>right-side acquire+carry 5/5 (not audited); the screw flicks +0.16&nbsp;m along opening fingers at every catch timing — needs a pinch-to-pinch release no verb provides</td><td>maximize_r2, refpad_round (183&nbsp;mm vs 120 bar)</td></tr>
 <tr><td>small-cube capture (box40) · bulb capture</td><td>box40: sole lift-only basin; attempted flips pull the cube out of the grasp (the 2.5–5.7° readings come from the in-hand rotation score: unverified after the audit); bulb: zero basins upright or lying (16+ quals + CORRECT retries)</td><td>envelope_v2 GRASP_LIMITED records</td></tr>
-<tr><td>stack impact momentum (t44)</td><td>stack FORMS; pair skids 72–84&nbsp;mm at contact across gentle/slow/drop variants (retreat exonerated by bit-identical slide test) — pass/fail call deferred to the user's criterion decision</td><td>maximize_r2, 19 episodes, video</td></tr>
+<tr><td>stack impact momentum (t44)</td><td>stack FORMS (not audited); pair skids 72–84&nbsp;mm at contact across gentle/slow/drop variants (retreat exonerated by bit-identical slide test) — pass/fail call deferred to the user's criterion decision</td><td>maximize_r2, 19 episodes, video</td></tr>
 </table>
 
 <p class="na">File pointers for the machinery described above —

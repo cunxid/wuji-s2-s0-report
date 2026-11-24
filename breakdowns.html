@@ -53,20 +53,22 @@ canvas:active{cursor:grabbing}
 (shipped tianji2 rig) and traced end to end. <b>The audit of 2026-11-23 found that none of the five
 is a pass.</b> The traces stay up because they show what the pipeline called and what the robot
 actually did. Every step is one <b>sub-module</b> of the pipeline with the <b>function / tool
-calls</b> it made (names only — hover a call for what it does and where it lives), the reasoning
-the pipeline logged for that step at run time, and the resulting trajectory. The logged reasoning
-was written before the audit and is shown as recorded; where the audit contradicts a step, the
-step carries a red <b>Audit</b> line, and that line overrides the logged text.</p>
+calls</b> it made (names only — hover a call for what it does and where it lives), a description
+of the step, and the resulting trajectory. The step descriptions are not a machine log: they are
+the project's own explanation of each step, written when the runs were captured, before the
+audit, with each run's numbers and log lines filled in. They are shown as captured; where the
+audit contradicts a step, the step carries a red <b>Audit</b> line, and that line overrides the
+description.</p>
 <p class="hint">Calls: <span class="fn">function</span> <span class="fn d1">↳ internal sub-call</span>
 <span class="fn k-inline_block">inline block in the co-sim script</span>
 <span class="fn k-subprocess">subprocess</span> <span class="fn k-external">external model</span>
-· click a step to expand its reasoning and jump the plot to its moment (steps from earlier attempts
-have no moment on the final-episode plot).<br>
+· click a step to expand its description and jump the plot to its moment (steps from earlier
+attempts have no moment on the final-episode plot).<br>
 Plot: drag to orbit · wheel to zoom · shift-drag to pan · scrub the timeline. In the in-hand spin
-case the wrist reference is frozen by design and only the object reference rotates, so the object
-path moves around the grip while the wrist stays put; the red strip under each plot is
-|wrist−object| over time, so a rigid hold reads flat and a slip, a drop or a turn in the hand
-shows as a change.</p>
+case the wrist reference is frozen by design and only the object reference rotates; the wrist
+stays put, so any movement of the object path there is the object moving in the grip. The red
+strip under each plot is |wrist−object| over time, so a rigid hold reads flat and a slip, a drop
+or a turn in the hand shows as a change.</p>
 <div class="nav"><a href="index.html">← Main</a><a href="audit.html">Audit of reported passes</a><a href="skills.html">🛠 Skills</a><a href="harness.html">🔩 Harness</a><a href="timing.html">⏱ Timing</a></div>
 <div class="notice"><b>Correction, 2026-11-23 — none of these five runs is a pass.</b> Every row this
 site had reported as a pass was audited against its raw run data (run logs, per-tick traces, video
@@ -107,7 +109,8 @@ function namesFromRaw(raw){
 function stepHTML(s,i){
   const calls=(s.calls&&s.calls.length)?s.calls:namesFromRaw(s.call);
   const chips=calls.map(c=>`<span class="fn ${c.depth?'d1':''} k-${esc(c.kind||'function')}" title="${esc([c.note,c.file].filter(Boolean).join(' — '))}">${c.depth?'↳ ':''}${esc(c.name)}</span>`).join('');
-  // s.audit_note: what the audit found about this step; shown in full above the logged reasoning
+  // s.audit_note: what the audit found about this step; shown in full above the captured description
+  // s.reasoning: the project's own explanation of the step, authored at capture time (not a machine log)
   return `
       <div class="step" data-i="${i}">
         <span class="badge ${BCLS[s.stage]||'b-route'}">${esc(s.stage)}</span>
@@ -116,7 +119,7 @@ function stepHTML(s,i){
         <div class="files">${esc((s.files||[]).join(' · '))}</div>
         <div class="calls">${chips||'<span class="hint">decision only — no call</span>'}</div>
         ${s.audit_note?`<div class="saudit"><b>Audit:</b> ${esc(s.audit_note)}</div>`:''}
-        <div class="why">${s.audit_note?'<span class="logged">logged at run time: </span>':''}${esc(s.reasoning||'')}</div>
+        <div class="why">${s.audit_note?'<span class="logged">as captured, before the audit: </span>':''}${esc(s.reasoning||'')}</div>
       </div>`;
 }
 // Audited status of a case, from the trace's "audit" block (s2/s2loop/audit_2026-11-23.json).
@@ -226,7 +229,7 @@ async function load(){
       <div class="modmap">${modMapHTML(d.steps||[])}</div>
       <div class="cols">
         <div style="min-width:0">
-          <div class="colhead">pipeline log, written at run time (before the audit)</div>
+          <div class="colhead">steps as captured (descriptions written before the audit)</div>
           <div class="steps">${steps}</div>
         </div>
         <div>

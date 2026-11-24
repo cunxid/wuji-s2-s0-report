@@ -37,7 +37,7 @@
    "file_kb": 55.8,
    "episodes_this_process": 2,
    "total_wall_s": 47.3,
-   "outcome": "FAIL (audited 2026-11-23). Reported as PASS, official t14: mouse moved 232 mm (bar 80) and left button travel 15.5 mm (bar 4). The 232 mm came from the arm's wrist link knocking and dragging the mouse while the arm followed a reference 28 m below the table, and there is no pad on the table. Only the left click is a real, commanded action.",
+   "outcome": "FAIL (audited 2026-11-23). Reported as PASS, official t14: mouse moved 232 mm (bar 80) and left button travel 15.5 mm (bar 4). The 232 mm came from the arm's wrist link knocking and dragging the mouse while the arm's reference sat about 28 m below the table, and there is no pad on the table. Only the left click is a real, commanded action.",
    "outcome_reported": "PASS official t14: mouse moved 232mm (>=80), left button travel 15.5mm (>=4)"
   }
  },
@@ -62,7 +62,7 @@
   "honest_findings": [
    "t34: the hand knocks the SUGAR BOX flat (140mm). AUDIT 2026-11-23: this happens during the crossing, not in a follow-through (the box first moves at tick 458 while the ball is still between the boxes; the ball's rear clears the gate only at tick 530). It breaks the prompt's no-touch clause, which the scoring never looked at. Audited FAIL. The trace's IK gate step, a post-hoc check of the commanded reference, flags the same contact (wrist camera flange against the sugar box)",
    "t14: perception (min-n_points rule) picks a segment 736mm from the GT mouse \u2014 identical to the recorded converting run. AUDIT 2026-11-23: this was not survivable as first written here: the push target was built from that centroid, the push missed it by 687mm (push_ok false), and the displacement the judge accepted came from the arm knocking the mouse",
-   "t14: gate REJECTS segment A's reference (degenerate out-of-workspace frames). AUDIT 2026-11-23: the rejection was correct and execution did not survive via the arrival-gated replan as first written here: the reference stayed about 28m below the table, the arm was in IK recovery for the whole segment, and the 232mm came from the arm's wrist link knocking and dragging the mouse; segment B gate FEASIBLE",
+   "t14: gate REJECTS segment A's reference (degenerate out-of-workspace frames). AUDIT 2026-11-23: the audit found the same defect, and execution did not survive via the arrival-gated replan as first written here: the reference stayed about 28m below the table, the arm was in IK recovery for the whole segment, and the 232mm came from the arm's wrist link knocking and dragging the mouse; segment B gate FEASIBLE",
    "t25: raw grade_marker scores vs the SHIFTED aim (82.4mm, a miss) while the reported pass used the distance to the fixed point (-0.28,-0.08) (27.7mm). AUDIT 2026-11-23: there is no plate at that point, the 'official predicate' label is withdrawn (its other terms were fixed passing values), and the 27.7mm was reached after the cone slipped out of the hand early and was knocked. Audited FAIL",
    "perception identification on cluttered scenes is imperfect (AABB matcher reads the cup/butter segment as mug80-class; global best latches the bowl) \u2014 pose errors of the task objects are 1.3-6.1mm (mesh-ICP), disclosed with the GT-proximity selection caveat"
   ],

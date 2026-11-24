@@ -69,8 +69,8 @@ const GENS={
    seg(pts,30,t=>{prof.push(0);return ANCHOR;});
    seg(pts,+p.T_ticks,t=>{prof.push(ease(t)*+p.deg);return ANCHOR;});
    seg(pts,60,t=>{prof.push(+p.deg);return ANCHOR;});
-   return{pts,profile:prof,angular:true,stats:`${p.deg}° about obj-${p.axis} in ${(+p.T_ticks/HZ).toFixed(1)} s · ${(Math.abs(+p.deg)/(+p.T_ticks/HZ)).toFixed(0)} °/s (audit 2026-11-23: the per-object “wall” figures shown here before are unverified, because the score behind them ignores which axis the object turned about. What holds up: the screwdriver, commanded −170° about its long axis in 120 ticks, was rolled about 130° in the fingers and went no further while the command continued; a cone was turned about 65° in the fingers without being dropped, medium confidence)`}}},
- pour:{title:'pour',desc:'carry over the receptacle, tilt past POUR_DEG, return upright (how far the wrist can tilt in each direction depends on the mount)',
+   return{pts,profile:prof,angular:true,stats:`${p.deg}° about obj-${p.axis} in ${(+p.T_ticks/HZ).toFixed(1)} s · ${(Math.abs(+p.deg)/(+p.T_ticks/HZ)).toFixed(0)} °/s (audit 2026-11-23: the per-object “wall” figures shown here before are unverified, because the score behind them ignores which axis the object turned about. What holds up as a demo: the screwdriver, commanded −170° about its long axis in 120 ticks, was rolled about 130° in the fingers and went no further while the command continued; a cone was turned about 65° in the fingers without being dropped, medium confidence. Both are in-hand rotations only, not completed tasks)`}}},
+ pour:{title:'pour',desc:'carry over the receptacle, tilt past POUR_DEG, return upright (in the audited −120° run on this rig the wrist reached its joint limits)',
   params:{POUR_DEG:-120,carry_T:140,tilt_T:80},
   gen:(p)=>{const over=[BOWL[0],BOWL[1],BOWL[2]+0.30];const pts=[];const prof=[];
    seg(pts,25,t=>{prof.push(0);return ANCHOR;});
@@ -79,7 +79,7 @@ const GENS={
    seg(pts,+p.tilt_T,t=>{prof.push(ease(t)*+p.POUR_DEG);return over;});
    seg(pts,60,t=>{prof.push(+p.POUR_DEG);return over;});
    seg(pts,60,t=>{prof.push((1-ease(t))*+p.POUR_DEG);return over;});
-   return{pts,profile:prof,angular:true,stats:`tilt ${p.POUR_DEG}° · total ${((25+ +p.carry_T+30+ +p.tilt_T+120)/HZ).toFixed(1)} s (audit 2026-11-23, box60 on this rig: at −120° the tilt stalled at the wrist joint limits after about 70° of hand rotation; the 146° shown here before was the cube’s absolute orientation, roughly 80° of which was there before the tilt began. At +120° the hand tilted about 117°; the ~80° shown before was the same absolute-orientation reading. Neither run is a pour: the object is a solid cube)`}}},
+   return{pts,profile:prof,angular:true,stats:`tilt ${p.POUR_DEG}° · total ${((25+ +p.carry_T+30+ +p.tilt_T+120)/HZ).toFixed(1)} s (audit 2026-11-23, with a solid 60 mm cube on this rig: at −120° the tilt stalled at the wrist joint limits after about 70° of hand rotation; the 146° shown here before was the cube’s absolute orientation, roughly 80° of which was there before the tilt began. At +120° the hand tilted about 117°; the ~80° shown before was the same kind of absolute-orientation reading. Neither run is a pour)`}}},
  strike:{title:'strike (hammer → nail)',desc:'approach from above, then 5 sustained press cycles along the head direction',
   params:{elev_deg:75,az_deg:30,L_m:0.228},
   gen:(p)=>{const nail=[-0.10,0.10,0.959];const e=+p.elev_deg*Math.PI/180,az=+p.az_deg*Math.PI/180;
