@@ -225,7 +225,7 @@ async function load(){
     el.innerHTML=`<h2><span class="st ${B.cls}">${esc(B.txt)}</span>${esc(t)}</h2>
       <div class="prompt"><b>Task prompt:</b> ${esc(d.prompt||'—')}</div>
       <div class="meta">${A&&A.reported?`reported as ${esc(A.reported)} · `:''}${A&&A.status?`audited ${esc(A.date||'')}: ${esc(A.status)}${A.confidence?`, confidence ${esc(A.confidence)}`:''} · `:''}rig ${esc(d.rig||'tianji2')} · total ${d.total_wall_s!=null?d.total_wall_s.toFixed(1)+'s':'—'}</div>
-      ${d.audit_note?`<div class="audit">${esc(d.audit_note)} <a href="audit.html">Row in the audit table →</a></div>`:''}
+      ${d.audit_note?`<div class="audit">${esc(d.audit_note)} <a href="audit.html#${encodeURIComponent(t)}">Row in the audit table →</a></div>`:''}
       <div class="modmap">${modMapHTML(d.steps||[])}</div>
       <div class="cols">
         <div style="min-width:0">
