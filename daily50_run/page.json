@@ -1223,7 +1223,7 @@
    },
    "task_version": 1,
    "excluded": [
-    "the task's scene.xml changed after this episode (or the card gives no digest)"
+    "the task's scene.xml, task.json changed after this episode (or the card gives no digest)"
    ],
    "problems": [],
    "video": {
@@ -1278,7 +1278,7 @@
    },
    "task_version": 1,
    "excluded": [
-    "the task's scene.xml changed after this episode (or the card gives no digest)"
+    "the task's scene.xml, task.json changed after this episode (or the card gives no digest)"
    ],
    "problems": [],
    "video": {
@@ -1510,7 +1510,9 @@
     "object_in_training_recipe": "unknown"
    },
    "task_version": 2,
-   "excluded": [],
+   "excluded": [
+    "the task's scene.xml changed after this episode (or the card gives no digest)"
+   ],
    "problems": [],
    "video": {
     "dir": "s2/dexharness/runs/live/daily50_t19_jar_drawer/20261124T214949Z-40eb5e48/media/episode",
@@ -1867,6 +1869,18 @@
    "task": "t27_paperweight",
    "series": "probe",
    "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/srv_captest_live_idle/20261124T220440Z-6544e703",
+   "task": "t27_paperweight",
+   "series": "probe",
+   "verdict": "FAIL"
+  },
+  {
+   "run": "s2/dexharness/runs/live/srv_captest_live_idle/20261124T220546Z-4bc949a9",
+   "task": "t27_paperweight",
+   "series": "probe",
+   "verdict": "FAIL"
   }
  ],
  "videos_left_out_for_size": [],
@@ -2003,20 +2017,21 @@
    ]
   },
   {
-   "text": "8 other episode(s) have files that do not hold together.",
+   "text": "9 other episode(s) have files that do not hold together.",
    "items": [
     "daily50_t27_paperweight/20261124T200253Z-c16ec82c: the task's scene.xml, task.json changed after this episode (or the card gives no digest)",
     "daily50_t19_jar_drawer/20261124T204539Z-45d41bfc: the task's scene.xml, task.json changed after this episode (or the card gives no digest)",
     "daily50_t41_power_strip/20261124T204536Z-b8a2799b: the task's scene.xml, task.json changed after this episode (or the card gives no digest)",
     "daily50_t41_power_strip/20261124T205103Z-5a7c46a8: the task's scene.xml, task.json changed after this episode (or the card gives no digest)",
-    "daily50_t49_weigh_orange/20261124T204539Z-71b6fd22: the task's scene.xml changed after this episode (or the card gives no digest)",
-    "daily50_t49_weigh_orange/20261124T205218Z-ad5c5872: the task's scene.xml changed after this episode (or the card gives no digest)",
+    "daily50_t49_weigh_orange/20261124T204539Z-71b6fd22: the task's scene.xml, task.json changed after this episode (or the card gives no digest)",
+    "daily50_t49_weigh_orange/20261124T205218Z-ad5c5872: the task's scene.xml, task.json changed after this episode (or the card gives no digest)",
     "daily50_t41_power_strip/20261124T205435Z-2c5d6c28: the task's scene.xml, task.json changed after this episode (or the card gives no digest)",
-    "daily50_t19_jar_drawer/20261124T205453Z-b111253a: the task's scene.xml, task.json changed after this episode (or the card gives no digest); the scene the simulator recorded has another digest than the card's scene.xml"
+    "daily50_t19_jar_drawer/20261124T205453Z-b111253a: the task's scene.xml, task.json changed after this episode (or the card gives no digest); the scene the simulator recorded has another digest than the card's scene.xml",
+    "daily50_t19_jar_drawer/20261124T214949Z-40eb5e48: the task's scene.xml changed after this episode (or the card gives no digest)"
    ]
   },
   {
-   "text": "54 episode card(s) are on disk under the runs folder and NOT on this page.",
+   "text": "56 episode card(s) are on disk under the runs folder and NOT on this page.",
    "items": [
     "s2/dexharness/runs/live/daily50_t01_hammer_nail/20261124T201227Z-6e497725 (t01_hammer_nail, probe, FAIL)",
     "s2/dexharness/runs/live/daily50_t02_crack_walnut/20261124T201227Z-d3900b37 (t02_crack_walnut, probe, FAIL)",
@@ -2071,10 +2086,12 @@
     "s2/dexharness/runs/live/daily50_t49_weigh_orange/20261124T205737Z-893d9f45 (t49_weigh_orange, probe, FAIL)",
     "s2/dexharness/runs/live/daily50_t49_weigh_orange/20261124T210752Z-288d033a (t49_weigh_orange, probe, FAIL)",
     "s2/dexharness/runs/live/daily50_t50_toy_bowling/20261124T203859Z-ed719cd5 (t50_toy_bowling, probe, FAIL)",
-    "s2/dexharness/runs/live/srv_captest_live_idle/20261124T200928Z-cb9d88cd (t27_paperweight, probe, FAIL)"
+    "s2/dexharness/runs/live/srv_captest_live_idle/20261124T200928Z-cb9d88cd (t27_paperweight, probe, FAIL)",
+    "s2/dexharness/runs/live/srv_captest_live_idle/20261124T220440Z-6544e703 (t27_paperweight, probe, FAIL)",
+    "s2/dexharness/runs/live/srv_captest_live_idle/20261124T220546Z-4bc949a9 (t27_paperweight, probe, FAIL)"
    ]
   }
  ],
- "generated": "2026-11-24 16:56 EST",
- "page_sha256": "9e54d25dbc985552653ef42a0fcbea769688801df77f91426013f13b5f561523"
+ "generated": "2026-11-24 17:09 EST",
+ "page_sha256": "e5db74564d46bcb2426f837287a26a5543cf118205952cf9a4a6eed8331e16b3"
 }
