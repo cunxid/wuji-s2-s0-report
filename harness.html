@@ -124,8 +124,14 @@ demo; it is the click only, not the move-and-click task. This page described the
 fix as "at root cause"; that is withdrawn. The fix changed the press composer only. The audit found
 the same defect in the push composer, which takes the table height from the stub's settled
 position: the t14 push reference sat about 28&nbsp;m below the table and the arm was in IK recovery
-for the whole push. That reference was not among the 23 the gate was run on, and that part of the
-push composer is unchanged at the time of this correction.</p>
+for the whole push. That reference was not among the 23 the gate was run on. <b>Fixed in the code on 2026-11-23, after the audit:</b>
+when the tracked placeholder object has fallen out of the scene, the co-simulation now anchors its frame on the hand
+instead, and the push takes the table height from the body it pushes. Before and after on the audited push in the same
+scene: table height read as &minus;27.70&nbsp;m, now 0.890&nbsp;m; arm error at the start 28&nbsp;585&nbsp;mm, now 24&nbsp;mm;
+the arm is no longer dragged over the mouse before the stroke. Two ordinary episodes (a place and a push of the tracked
+object) give identical results before and after the change. This is a repair of the reference only, not a pass: the
+re-run push still ends 606&nbsp;mm from its target, because the target it was given lies outside the arm's reach
+(it is not the mouse pad), and the arm error grows to 200&ndash;400&nbsp;mm once the stroke leaves the workspace.</p>
 
 <p><b>Blind spots.</b> Pure grasp slips and semantic failures are kinematically clean, so the gate
 cannot see them. The earlier statement that the atlas can see them is withdrawn for semantic
