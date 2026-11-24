@@ -2892,16 +2892,1303 @@
     "clips": 8
    },
    "problems": []
+  },
+  {
+   "run": "s2/dexharness/runs/r2run_jar_reach_lid/20261124T183321Z-6eb3c09d",
+   "run_dir": "s2/dexharness/runs/r2run_jar_reach_lid/20261124T183321Z-6eb3c09d",
+   "clips_dir": "s2/dexharness/runs/r2run_jar_reach_lid/20261124T183321Z-6eb3c09d/media/skills",
+   "slug": "r2run_jar_reach_lid__20261124T183321Z-6eb3c09d",
+   "title": "Ported task jar_lid_open: one planned move above the perceived jar, then home",
+   "what": "A session started from the ported task folder efe_dexhand/jar_lid_open (version 2) with run.py --task-folder: the folder's scene, start files, scene hook and instruction; depth from the scene's own four cameras and the right wrist camera. The program locates the jar from depth (one object: jar and lid are not separated), moves the open right hand to 15 cm above its top and goes home. Nothing is touched; this is not an attempt at the task. The folder's rule answers NOT_EVALUABLE because version 2 of the folder declares no sha256 of the hook file; the original checker inside the episode recorded no stage, no success and no failure. No tracking policy used; hand: scripted postures (open).",
+   "task_id": "r2run_jar_reach_lid",
+   "prompt": "Open the jam jar with the robot's right hand and set its lid aside on the worktop. Scene (world frame, metres, z up, +x forward from the robot): the worktop top is at z = 0.75 and spans |x| <= 0.45, |y| <= 0.58. A filled 297 ml glass jam jar (550 g, 67 mm body diameter, 110 mm tall, rim at z = 0.86) stands upright on the worktop centred at x = -0.22, y = -0.08. Nothing holds the jar: it stands on its own weight and glass-on-worktop friction, which resists only about 0.13 N m of twisting torque, so the hand must turn the lid without turning, sliding or tipping the jar. Its red 64.8 mm twist-off steel lid (32 g) is closed. Jar and lid are free rigid bodies. The closure is a lug thread made of contact geometry only: four inclined glass ramps on the jar neck hold four inward lugs of the lid, so the closed lid cannot be pulled off. Turning the lid counter-clockwise seen from above (positive rotation about +z relative to the jar) slides the lugs up the ramps; at 1.049 rad they pass the ramp ends, and while they sit in the gaps between the ramps (turn between 1.049 and about 1.26 rad) the lid lifts off freely; turned further without lifting, the lugs run into the next ramps' leads, and turning clockwise from the closed position tightens and jams. The lid is lightly closed: no vacuum, seal adhesion or tightening torque is modelled, and the jam is part of the jar's rigid mass, not a fluid. Complete three stages in this order. (1) Unscrew: while the lid is still seated on the thread (lid origin less than 6 mm above its closed height and within 4 mm of the jar axis, in the jar frame), its counter-clockwise turn relative to the jar, unwrapped after every physics substep, reaches at least 1.049 rad. (2) Lift clear: afterwards, the lowest point of the lid skirt rises more than 30 mm above the jar rim. (3) Set aside: afterwards, for 50 consecutive controls (1 s), the lid touches the worktop and touches neither the hand nor the jar, is upright (tilt at most 0.15 rad), has its centre at least 90 mm horizontally from the jar axis, moves at most 0.02 m/s and turns at most 0.3 rad/s, while the jar touches the worktop, is not touched by the hand, is upright within 0.10 rad and moves at most 0.02 m/s. The episode ends with success at that moment; a partial sequence never counts. The episode ends immediately with failure, checked after every 2 ms physics substep, when: the jar tilts more than 15 degrees (jar_tipped), slides more than 30 mm horizontally from its start (jar_slid) or is lifted more than 15 mm (jar_lifted); the lid touches the worktop before stage 2 (lid_knocked_off); the lid drops: while it is in the air (its lowest point more than 10 mm above the worktop top), at any substep it touches nothing (no hand, jar or worktop contact) while its centre of mass moves downward faster than 0.3 m/s (about a 5 mm free fall; there is no window to catch it again), or its centre of mass moves downward faster than 1.0 m/s whatever it touches (lid_dropped); a lid that tips over or falls flat on the worktop (lowest point within 10 mm of the worktop top) has not dropped; the jar or the lid touches the floor, its origin falls more than 5 mm below the worktop top or leaves the worktop footprint (lid_off_table, jar_off_table) or the workspace box x in [-0.45, 0.45] m, y in [-0.40, 0.40] m, z in [0.73, 1.25] m (object_left_workspace); the lid leaves the thread upward while its lugs are not in the gaps between the ramps, i.e. its turn modulo pi/2 is outside [1.019, 1.291] rad (lid_forced_through_thread); the parked left arm or the left hand touches the jar or the lid (left_arm_contact; moving the left arm is not blocked, but the task is done by the right arm and hand); or the physics becomes unstable (unstable_physics). Later actions cannot undo a failure. Only robot actuator targets are allowed: the joints of the Marvin right arm and its hand (the left arm stays parked with its hand open), no object teleports, grasp welds, scripted object motion or direct object forces. Any robot part touching the jar or the lid counts as the hand touching it. The episode allows at most 3000 controls at 50 Hz; reaching that limit without success is a failure.",
+   "started_at": "2026-11-24T18:33:21.770813Z",
+   "finished_at": "2026-11-24T18:33:50.398594Z",
+   "session": "co-simulation",
+   "synthetic": false,
+   "scene": "scene.xml",
+   "render": "cpu",
+   "arm_servo": "implicit",
+   "providers": {
+    "atlas": "CapabilityAtlas",
+    "grasp": "ClipGraspProvider",
+    "perception": "DepthPerception",
+    "planner": "TianjiPlanner"
+   },
+   "program_ok": true,
+   "termination_reason": "program_completed",
+   "ticks_used": 288,
+   "tick_budget": 3000,
+   "wall_duration_s": 28.62752787800855,
+   "requests": {
+    "hello": 1,
+    "observe": 7,
+    "execute": 2,
+    "close": 1
+   },
+   "policy": {
+    "bound": false,
+    "manifest": false,
+    "recipe": null,
+    "clips": null,
+    "object_class": null,
+    "tracked_joint": null,
+    "object_pose_from": "simulator",
+    "hand_commands": []
+   },
+   "verdict": {
+    "source": "evaluation/protocol.json",
+    "manifest": "evaluation/protocol.json",
+    "rule": {
+     "kind": "rule file",
+     "name": "s2/benchmark/InHouse/efe_dexhand/jar_lid_open/rule.py"
+    },
+    "status": "NOT_EVALUABLE",
+    "reasons": [
+     "this rule declares no sha256 of the scene hook file (task.json hook.hook_sha256)"
+    ],
+    "file_status": "NOT_EVALUABLE"
+   },
+   "only_moves": true,
+   "calls": [
+    {
+     "label": "0001-move_to_pose",
+     "skill": "move_to_pose",
+     "kind": "skill",
+     "arm": "right",
+     "ok": true,
+     "declares_contact": false,
+     "result": {
+      "text": "ok",
+      "ok": true,
+      "code": null,
+      "kind": null,
+      "moved": true
+     },
+     "planner_modes": [
+      "direct"
+     ],
+     "planning_time_s": 0.38522846600972116,
+     "rows": 115,
+     "duration_s": 2.3000000000000003,
+     "ticks_charged": 34,
+     "ticks_charged_source": "flight record",
+     "api_latency_ticks": 34,
+     "hand_commands": [],
+     "guards": 0,
+     "planned": {
+      "planner_m": 0.031438931786518104,
+      "planner_is_lower_bound": false,
+      "planner_link": "link5_right",
+      "planner_row": 81,
+      "planner_obstacle": "world_box_20",
+      "replay_m": 0.03143888506509038,
+      "replay_is_lower_bound": false,
+      "replay_margin_m": 0.1,
+      "replay_link": "link5_right",
+      "replay_row": 81,
+      "replay_box": "world_box_20",
+      "replay_links": "arm links, flange, palm shell and fingers",
+      "replayed": true,
+      "shown_m": 0.031438931786518104,
+      "shown_is_lower_bound": false,
+      "source": "planner",
+      "link": "link5_right",
+      "row": 81,
+      "agree": true
+     },
+     "executed": {
+      "shown_m": 0.037003994716156924,
+      "shown_is_lower_bound": false,
+      "margin_m": 0.1,
+      "link": "link5_right",
+      "other": "lid",
+      "tick": 115,
+      "link_class": "arm",
+      "no_contact_links_m": 0.037003994716156924,
+      "no_contact_links_pair": [
+       "link5_right",
+       "lid"
+      ],
+      "fingers_undeclared_m": null,
+      "fingers_undeclared_pair": null,
+      "declared_bodies": [],
+      "counts": "arm links, flange and palm shell against everything; fingers against what the call did not declare"
+     },
+     "palm_error": {
+      "mean_m": 0.0010959059760001833,
+      "p95_m": 0.003435835355748204,
+      "max_m": 0.004017114947101917,
+      "samples": 115
+     },
+     "contacts": {
+      "counted": {
+       "rows": 0,
+       "force_max_n": 0.0,
+       "groups": [],
+       "robot_groups": 0
+      },
+      "robot": [],
+      "scene_rows": 298,
+      "declared": {
+       "declared": {
+        "target_excluded": false,
+        "holding": false,
+        "policy_fingers": false,
+        "hand_modes": [],
+        "reference_modes": [],
+        "contact_links": null,
+        "fingers_may_touch_target": false,
+        "fingers_may_touch_held": false
+       },
+       "names": [],
+       "target": [],
+       "held": [],
+       "tracked": [],
+       "matched_with": "the true scene's geoms",
+       "complete": true
+      }
+     },
+     "policy_ran": false,
+     "reference_mode": "none",
+     "refusal": null,
+     "clip": {
+      "kind": "video",
+      "video": "0001-move_to_pose.mp4",
+      "poster": "0001-move_to_pose.png",
+      "video_bytes": 302877,
+      "recompressed": false,
+      "frames": 75,
+      "duration_s": 3.0,
+      "codec": "h264",
+      "size": [
+       1444,
+       508
+      ],
+      "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+      "footer": [
+       "0001-move_to_pose   \u00b7   move_to_pose(arm=right)   \u00b7   planner: direct   \u00b7   rows 115 (2.30 s)   \u00b7   planning 0.39 s (+34 ticks charged)",
+       "planned clearance 31.4 mm (link5_right; row 82)",
+       "executed clearance 37.0 mm (link5_right / lid)",
+       "palm error mean 1.1 / p95 3.4 / max 4.0 mm   \u00b7   verdict: NOT_EVALUABLE",
+       "contacts in the call's ticks: none by the robot"
+      ],
+      "execution_shown": true,
+      "why_no_execution": null,
+      "video_file": "r2run_jar_reach_lid__20261124T183321Z-6eb3c09d__0001-move_to_pose.mp4",
+      "video_file_bytes": 302877,
+      "poster_file": "r2run_jar_reach_lid__20261124T183321Z-6eb3c09d__0001-move_to_pose.png",
+      "poster_file_bytes": 150858
+     },
+     "clip_problems": []
+    },
+    {
+     "label": "0002-go_home",
+     "skill": "go_home",
+     "kind": "skill",
+     "arm": "right",
+     "ok": true,
+     "declares_contact": false,
+     "result": {
+      "text": "ok",
+      "ok": true,
+      "code": null,
+      "kind": null,
+      "moved": true
+     },
+     "planner_modes": [
+      "direct"
+     ],
+     "planning_time_s": 0.2379708810185548,
+     "rows": 115,
+     "duration_s": 2.3000000000000003,
+     "ticks_charged": 24,
+     "ticks_charged_source": "flight record",
+     "api_latency_ticks": 24,
+     "hand_commands": [],
+     "guards": 0,
+     "planned": {
+      "planner_m": 0.03137647309399702,
+      "planner_is_lower_bound": false,
+      "planner_link": "link5_right",
+      "planner_row": 33,
+      "planner_obstacle": "world_box_20",
+      "replay_m": 0.03137671971931255,
+      "replay_is_lower_bound": false,
+      "replay_margin_m": 0.1,
+      "replay_link": "link5_right",
+      "replay_row": 33,
+      "replay_box": "world_box_20",
+      "replay_links": "arm links, flange, palm shell and fingers",
+      "replayed": true,
+      "shown_m": 0.03137647309399702,
+      "shown_is_lower_bound": false,
+      "source": "planner",
+      "link": "link5_right",
+      "row": 33,
+      "agree": true
+     },
+     "executed": {
+      "shown_m": 0.03683168948552648,
+      "shown_is_lower_bound": false,
+      "margin_m": 0.1,
+      "link": "link5_right",
+      "other": "lid",
+      "tick": 206,
+      "link_class": "arm",
+      "no_contact_links_m": 0.03683168948552648,
+      "no_contact_links_pair": [
+       "link5_right",
+       "lid"
+      ],
+      "fingers_undeclared_m": null,
+      "fingers_undeclared_pair": null,
+      "declared_bodies": [],
+      "counts": "arm links, flange and palm shell against everything; fingers against what the call did not declare"
+     },
+     "palm_error": {
+      "mean_m": 0.0006395781289875431,
+      "p95_m": 0.002922852606913578,
+      "max_m": 0.003471556286350689,
+      "samples": 115
+     },
+     "contacts": {
+      "counted": {
+       "rows": 0,
+       "force_max_n": 0.0,
+       "groups": [],
+       "robot_groups": 0
+      },
+      "robot": [],
+      "scene_rows": 278,
+      "declared": {
+       "declared": {
+        "target_excluded": false,
+        "holding": false,
+        "policy_fingers": false,
+        "hand_modes": [],
+        "reference_modes": [],
+        "contact_links": null,
+        "fingers_may_touch_target": false,
+        "fingers_may_touch_held": false
+       },
+       "names": [],
+       "target": [],
+       "held": [],
+       "tracked": [],
+       "matched_with": "the true scene's geoms",
+       "complete": true
+      }
+     },
+     "policy_ran": false,
+     "reference_mode": "none",
+     "refusal": null,
+     "clip": {
+      "kind": "video",
+      "video": "0002-go_home.mp4",
+      "poster": "0002-go_home.png",
+      "video_bytes": 307855,
+      "recompressed": false,
+      "frames": 70,
+      "duration_s": 2.8,
+      "codec": "h264",
+      "size": [
+       1444,
+       508
+      ],
+      "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+      "footer": [
+       "0002-go_home   \u00b7   go_home(arm=right)   \u00b7   planner: direct   \u00b7   rows 115 (2.30 s)   \u00b7   planning 0.24 s (+24 ticks charged)",
+       "planned clearance 31.4 mm (link5_right; row 34)",
+       "executed clearance 36.8 mm (link5_right / lid)",
+       "palm error mean 0.6 / p95 2.9 / max 3.5 mm   \u00b7   verdict: NOT_EVALUABLE",
+       "contacts in the call's ticks: none by the robot"
+      ],
+      "execution_shown": true,
+      "why_no_execution": null,
+      "video_file": "r2run_jar_reach_lid__20261124T183321Z-6eb3c09d__0002-go_home.mp4",
+      "video_file_bytes": 307855,
+      "poster_file": "r2run_jar_reach_lid__20261124T183321Z-6eb3c09d__0002-go_home.png",
+      "poster_file_bytes": 169586
+     },
+     "clip_problems": []
+    }
+   ],
+   "calls_without_folder": [],
+   "clips_built": "2026-11-24T13:36:20-0500",
+   "clips_build": {
+    "wall_s": 86.92,
+    "peak_resident_mib": 933.4,
+    "clips": 2
+   },
+   "problems": []
+  },
+  {
+   "run": "s2/dexharness/runs/r2run_jar_left_reach/20261124T183747Z-234d24a7",
+   "run_dir": "s2/dexharness/runs/r2run_jar_left_reach/20261124T183747Z-234d24a7",
+   "clips_dir": "s2/dexharness/runs/r2run_jar_left_reach/20261124T183747Z-234d24a7/media/skills",
+   "slug": "r2run_jar_left_reach__20261124T183747Z-234d24a7",
+   "title": "Left arm: one planned move and home (jar_lid_open scene)",
+   "what": "The first planned motion of the left arm in the co-simulation. Same task-folder session as above; the left arm starts stretched sideways (the rig's zero posture). The first pose the program asks for is out of the arm's reach and is refused (ik_unreachable); the second is planned and executed, then go_home. The left arm moves through space none of the scene's cameras sees (44 % and 34 % of the swept volume of the two plans); the planner treats unseen space as free, so the clearance shown is against what the depth shows only. Not an attempt at the task. No tracking policy used; hand: scripted postures (open).",
+   "task_id": "r2run_jar_left_reach",
+   "prompt": "Open the jam jar with the robot's right hand and set its lid aside on the worktop. Scene (world frame, metres, z up, +x forward from the robot): the worktop top is at z = 0.75 and spans |x| <= 0.45, |y| <= 0.58. A filled 297 ml glass jam jar (550 g, 67 mm body diameter, 110 mm tall, rim at z = 0.86) stands upright on the worktop centred at x = -0.22, y = -0.08. Nothing holds the jar: it stands on its own weight and glass-on-worktop friction, which resists only about 0.13 N m of twisting torque, so the hand must turn the lid without turning, sliding or tipping the jar. Its red 64.8 mm twist-off steel lid (32 g) is closed. Jar and lid are free rigid bodies. The closure is a lug thread made of contact geometry only: four inclined glass ramps on the jar neck hold four inward lugs of the lid, so the closed lid cannot be pulled off. Turning the lid counter-clockwise seen from above (positive rotation about +z relative to the jar) slides the lugs up the ramps; at 1.049 rad they pass the ramp ends, and while they sit in the gaps between the ramps (turn between 1.049 and about 1.26 rad) the lid lifts off freely; turned further without lifting, the lugs run into the next ramps' leads, and turning clockwise from the closed position tightens and jams. The lid is lightly closed: no vacuum, seal adhesion or tightening torque is modelled, and the jam is part of the jar's rigid mass, not a fluid. Complete three stages in this order. (1) Unscrew: while the lid is still seated on the thread (lid origin less than 6 mm above its closed height and within 4 mm of the jar axis, in the jar frame), its counter-clockwise turn relative to the jar, unwrapped after every physics substep, reaches at least 1.049 rad. (2) Lift clear: afterwards, the lowest point of the lid skirt rises more than 30 mm above the jar rim. (3) Set aside: afterwards, for 50 consecutive controls (1 s), the lid touches the worktop and touches neither the hand nor the jar, is upright (tilt at most 0.15 rad), has its centre at least 90 mm horizontally from the jar axis, moves at most 0.02 m/s and turns at most 0.3 rad/s, while the jar touches the worktop, is not touched by the hand, is upright within 0.10 rad and moves at most 0.02 m/s. The episode ends with success at that moment; a partial sequence never counts. The episode ends immediately with failure, checked after every 2 ms physics substep, when: the jar tilts more than 15 degrees (jar_tipped), slides more than 30 mm horizontally from its start (jar_slid) or is lifted more than 15 mm (jar_lifted); the lid touches the worktop before stage 2 (lid_knocked_off); the lid drops: while it is in the air (its lowest point more than 10 mm above the worktop top), at any substep it touches nothing (no hand, jar or worktop contact) while its centre of mass moves downward faster than 0.3 m/s (about a 5 mm free fall; there is no window to catch it again), or its centre of mass moves downward faster than 1.0 m/s whatever it touches (lid_dropped); a lid that tips over or falls flat on the worktop (lowest point within 10 mm of the worktop top) has not dropped; the jar or the lid touches the floor, its origin falls more than 5 mm below the worktop top or leaves the worktop footprint (lid_off_table, jar_off_table) or the workspace box x in [-0.45, 0.45] m, y in [-0.40, 0.40] m, z in [0.73, 1.25] m (object_left_workspace); the lid leaves the thread upward while its lugs are not in the gaps between the ramps, i.e. its turn modulo pi/2 is outside [1.019, 1.291] rad (lid_forced_through_thread); the parked left arm or the left hand touches the jar or the lid (left_arm_contact; moving the left arm is not blocked, but the task is done by the right arm and hand); or the physics becomes unstable (unstable_physics). Later actions cannot undo a failure. Only robot actuator targets are allowed: the joints of the Marvin right arm and its hand (the left arm stays parked with its hand open), no object teleports, grasp welds, scripted object motion or direct object forces. Any robot part touching the jar or the lid counts as the hand touching it. The episode allows at most 3000 controls at 50 Hz; reaching that limit without success is a failure.",
+   "started_at": "2026-11-24T18:37:47.815225Z",
+   "finished_at": "2026-11-24T18:38:15.292310Z",
+   "session": "co-simulation",
+   "synthetic": false,
+   "scene": "scene.xml",
+   "render": "cpu",
+   "arm_servo": "implicit",
+   "providers": {
+    "atlas": "CapabilityAtlas",
+    "grasp": "ClipGraspProvider",
+    "perception": "DepthPerception",
+    "planner": "TianjiPlanner"
+   },
+   "program_ok": true,
+   "termination_reason": "program_completed",
+   "ticks_used": 327,
+   "tick_budget": 3000,
+   "wall_duration_s": 27.476815478003118,
+   "requests": {
+    "hello": 1,
+    "observe": 9,
+    "execute": 2,
+    "close": 1
+   },
+   "policy": {
+    "bound": false,
+    "manifest": false,
+    "recipe": null,
+    "clips": null,
+    "object_class": null,
+    "tracked_joint": null,
+    "object_pose_from": "simulator",
+    "hand_commands": []
+   },
+   "verdict": {
+    "source": "evaluation/protocol.json",
+    "manifest": "evaluation/protocol.json",
+    "rule": {
+     "kind": "rule file",
+     "name": "s2/benchmark/InHouse/efe_dexhand/jar_lid_open/rule.py"
+    },
+    "status": "NOT_EVALUABLE",
+    "reasons": [
+     "this rule declares no sha256 of the scene hook file (task.json hook.hook_sha256)"
+    ],
+    "file_status": "NOT_EVALUABLE"
+   },
+   "only_moves": true,
+   "calls": [
+    {
+     "label": "0001-move_to_pose",
+     "skill": "move_to_pose",
+     "kind": "skill",
+     "arm": "left",
+     "ok": false,
+     "declares_contact": false,
+     "result": {
+      "text": "refused: ik_unreachable",
+      "ok": false,
+      "code": "ik_unreachable",
+      "kind": null,
+      "moved": false
+     },
+     "planner_modes": null,
+     "planning_time_s": 0.21461798300151713,
+     "rows": null,
+     "duration_s": null,
+     "ticks_charged": null,
+     "ticks_charged_source": null,
+     "api_latency_ticks": null,
+     "hand_commands": [],
+     "guards": 0,
+     "planned": null,
+     "executed": null,
+     "palm_error": null,
+     "contacts": null,
+     "policy_ran": null,
+     "reference_mode": null,
+     "refusal": {
+      "configuration": "reported",
+      "pair": null,
+      "pair_from": null,
+      "link": null,
+      "robot_pair": null,
+      "hand_posture": null,
+      "lines": [
+       "refused before anything moved",
+       "ik_unreachable, best residual 242 mm"
+      ]
+     },
+     "clip": {
+      "kind": "still",
+      "video": "0001-move_to_pose.mp4",
+      "poster": "0001-move_to_pose.png",
+      "video_bytes": 45741,
+      "recompressed": false,
+      "frames": 75,
+      "duration_s": 3.0,
+      "codec": "h264",
+      "size": [
+       1444,
+       508
+      ],
+      "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+      "footer": [
+       "0001-move_to_pose   \u00b7   move_to_pose(arm=left)   \u00b7   refused: ik_unreachable",
+       "",
+       "",
+       "nothing moved   \u00b7   verdict: NOT_EVALUABLE",
+       "contacts: nothing moved"
+      ],
+      "execution_shown": false,
+      "why_no_execution": "no tick of this call in the record",
+      "video_file": "r2run_jar_left_reach__20261124T183747Z-234d24a7__0001-move_to_pose.mp4",
+      "video_file_bytes": 45741,
+      "poster_file": "r2run_jar_left_reach__20261124T183747Z-234d24a7__0001-move_to_pose.png",
+      "poster_file_bytes": 64971
+     },
+     "clip_problems": []
+    },
+    {
+     "label": "0002-move_to_pose",
+     "skill": "move_to_pose",
+     "kind": "skill",
+     "arm": "left",
+     "ok": true,
+     "declares_contact": false,
+     "result": {
+      "text": "ok",
+      "ok": true,
+      "code": null,
+      "kind": null,
+      "moved": true
+     },
+     "planner_modes": [
+      "direct"
+     ],
+     "planning_time_s": 0.06719044098281302,
+     "rows": 138,
+     "duration_s": 2.7600000000000002,
+     "ticks_charged": 30,
+     "ticks_charged_source": "flight record",
+     "api_latency_ticks": 30,
+     "hand_commands": [],
+     "guards": 0,
+     "planned": {
+      "planner_m": 0.1,
+      "planner_is_lower_bound": true,
+      "planner_link": null,
+      "planner_row": null,
+      "planner_obstacle": null,
+      "replay_m": 0.1,
+      "replay_is_lower_bound": true,
+      "replay_margin_m": 0.1,
+      "replay_link": null,
+      "replay_row": null,
+      "replay_box": null,
+      "replay_links": "arm links, flange, palm shell and fingers",
+      "replayed": true,
+      "shown_m": 0.1,
+      "shown_is_lower_bound": true,
+      "source": "replay",
+      "link": null,
+      "row": null,
+      "agree": null
+     },
+     "executed": {
+      "shown_m": 0.1,
+      "shown_is_lower_bound": true,
+      "margin_m": 0.1,
+      "link": null,
+      "other": null,
+      "tick": null,
+      "link_class": null,
+      "no_contact_links_m": null,
+      "no_contact_links_pair": null,
+      "fingers_undeclared_m": null,
+      "fingers_undeclared_pair": null,
+      "declared_bodies": [],
+      "counts": "arm links, flange and palm shell against everything; fingers against what the call did not declare"
+     },
+     "palm_error": {
+      "mean_m": 0.0011292404551704845,
+      "p95_m": 0.0037633929375924147,
+      "max_m": 0.004733822882468686,
+      "samples": 138
+     },
+     "contacts": {
+      "counted": {
+       "rows": 0,
+       "force_max_n": 0.0,
+       "groups": [],
+       "robot_groups": 0
+      },
+      "robot": [],
+      "scene_rows": 336,
+      "declared": {
+       "declared": {
+        "target_excluded": false,
+        "holding": false,
+        "policy_fingers": false,
+        "hand_modes": [],
+        "reference_modes": [],
+        "contact_links": [],
+        "fingers_may_touch_target": false,
+        "fingers_may_touch_held": false
+       },
+       "names": [],
+       "target": [],
+       "held": [],
+       "tracked": [],
+       "matched_with": "the true scene's geoms",
+       "complete": true
+      }
+     },
+     "policy_ran": false,
+     "reference_mode": "none",
+     "refusal": null,
+     "clip": {
+      "kind": "video",
+      "video": "0002-move_to_pose.mp4",
+      "poster": "0002-move_to_pose.png",
+      "video_bytes": 212204,
+      "recompressed": false,
+      "frames": 85,
+      "duration_s": 3.4,
+      "codec": "h264",
+      "size": [
+       1444,
+       508
+      ],
+      "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+      "footer": [
+       "0002-move_to_pose   \u00b7   move_to_pose(arm=left)   \u00b7   planner: direct   \u00b7   rows 138 (2.76 s)   \u00b7   planning 0.07 s (+30 ticks charged)",
+       "planned clearance >= 100 mm (by replay of the saved rows; the planner said >= 100 mm)",
+       "executed clearance >= 100 mm",
+       "palm error mean 1.1 / p95 3.8 / max 4.7 mm   \u00b7   verdict: NOT_EVALUABLE",
+       "contacts in the call's ticks: none by the robot"
+      ],
+      "execution_shown": true,
+      "why_no_execution": null,
+      "video_file": "r2run_jar_left_reach__20261124T183747Z-234d24a7__0002-move_to_pose.mp4",
+      "video_file_bytes": 212204,
+      "poster_file": "r2run_jar_left_reach__20261124T183747Z-234d24a7__0002-move_to_pose.png",
+      "poster_file_bytes": 123478
+     },
+     "clip_problems": []
+    },
+    {
+     "label": "0003-go_home",
+     "skill": "go_home",
+     "kind": "skill",
+     "arm": "left",
+     "ok": true,
+     "declares_contact": false,
+     "result": {
+      "text": "ok",
+      "ok": true,
+      "code": null,
+      "kind": null,
+      "moved": true
+     },
+     "planner_modes": [
+      "direct"
+     ],
+     "planning_time_s": 0.21001028100727126,
+     "rows": 138,
+     "duration_s": 2.7600000000000002,
+     "ticks_charged": 21,
+     "ticks_charged_source": "flight record",
+     "api_latency_ticks": 21,
+     "hand_commands": [],
+     "guards": 0,
+     "planned": {
+      "planner_m": 0.1,
+      "planner_is_lower_bound": true,
+      "planner_link": null,
+      "planner_row": null,
+      "planner_obstacle": null,
+      "replay_m": 0.1,
+      "replay_is_lower_bound": true,
+      "replay_margin_m": 0.1,
+      "replay_link": null,
+      "replay_row": null,
+      "replay_box": null,
+      "replay_links": "arm links, flange, palm shell and fingers",
+      "replayed": true,
+      "shown_m": 0.1,
+      "shown_is_lower_bound": true,
+      "source": "replay",
+      "link": null,
+      "row": null,
+      "agree": null
+     },
+     "executed": {
+      "shown_m": 0.1,
+      "shown_is_lower_bound": true,
+      "margin_m": 0.1,
+      "link": null,
+      "other": null,
+      "tick": null,
+      "link_class": null,
+      "no_contact_links_m": null,
+      "no_contact_links_pair": null,
+      "fingers_undeclared_m": null,
+      "fingers_undeclared_pair": null,
+      "declared_bodies": [],
+      "counts": "arm links, flange and palm shell against everything; fingers against what the call did not declare"
+     },
+     "palm_error": {
+      "mean_m": 0.0010935214797495423,
+      "p95_m": 0.003994507761936522,
+      "max_m": 0.004306141639250289,
+      "samples": 138
+     },
+     "contacts": {
+      "counted": {
+       "rows": 0,
+       "force_max_n": 0.0,
+       "groups": [],
+       "robot_groups": 0
+      },
+      "robot": [],
+      "scene_rows": 318,
+      "declared": {
+       "declared": {
+        "target_excluded": false,
+        "holding": false,
+        "policy_fingers": false,
+        "hand_modes": [],
+        "reference_modes": [],
+        "contact_links": [],
+        "fingers_may_touch_target": false,
+        "fingers_may_touch_held": false
+       },
+       "names": [],
+       "target": [],
+       "held": [],
+       "tracked": [],
+       "matched_with": "the true scene's geoms",
+       "complete": true
+      }
+     },
+     "policy_ran": false,
+     "reference_mode": "none",
+     "refusal": null,
+     "clip": {
+      "kind": "video",
+      "video": "0003-go_home.mp4",
+      "poster": "0003-go_home.png",
+      "video_bytes": 212035,
+      "recompressed": false,
+      "frames": 80,
+      "duration_s": 3.2,
+      "codec": "h264",
+      "size": [
+       1444,
+       508
+      ],
+      "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+      "footer": [
+       "0003-go_home   \u00b7   go_home(arm=left)   \u00b7   planner: direct   \u00b7   rows 138 (2.76 s)   \u00b7   planning 0.21 s (+21 ticks charged)",
+       "planned clearance >= 100 mm (by replay of the saved rows; the planner said >= 100 mm)",
+       "executed clearance >= 100 mm",
+       "palm error mean 1.1 / p95 4.0 / max 4.3 mm   \u00b7   verdict: NOT_EVALUABLE",
+       "contacts in the call's ticks: none by the robot"
+      ],
+      "execution_shown": true,
+      "why_no_execution": null,
+      "video_file": "r2run_jar_left_reach__20261124T183747Z-234d24a7__0003-go_home.mp4",
+      "video_file_bytes": 212035,
+      "poster_file": "r2run_jar_left_reach__20261124T183747Z-234d24a7__0003-go_home.png",
+      "poster_file_bytes": 126176
+     },
+     "clip_problems": []
+    }
+   ],
+   "calls_without_folder": [],
+   "clips_built": "2026-11-24T13:40:51-0500",
+   "clips_build": {
+    "wall_s": 102.86,
+    "peak_resident_mib": 945.5,
+    "clips": 3
+   },
+   "problems": []
+  },
+  {
+   "run": "s2/dexharness/runs/r2run_cube_idle/20261124T183649Z-11b2ba69",
+   "run_dir": "s2/dexharness/runs/r2run_cube_idle/20261124T183649Z-11b2ba69",
+   "clips_dir": "s2/dexharness/runs/r2run_cube_idle/20261124T183649Z-11b2ba69/media/skills",
+   "slug": "r2run_cube_idle__20261124T183649Z-11b2ba69",
+   "title": "Start with the object in the hand: an idle session keeps the cube (essential_cube_layer)",
+   "what": "A session started from the ported task folder efe_dexhand/essential_cube_layer (version 1), whose start has the cube in the right hand: the simulator holds the folder's start finger targets until the first hand command. Before the program runs, the runner takes one observation and the session's belief of a held object is set from its depth images. The program then only waits 150 ticks without a hand command. Not an attempt at the task (turning the cube's top layer needs finger motion no skill has). No tracking policy used; hand: the folder's start finger targets, held.",
+   "task_id": "r2run_cube_idle",
+   "prompt": "With the wrist locked, turn only the top layer +90 degrees, return it to zero, and turn it +90 degrees again. Stabilize the free cube body with other fingers; no external support or object actuation is allowed.",
+   "started_at": "2026-11-24T18:36:49.124021Z",
+   "finished_at": "2026-11-24T18:37:04.512945Z",
+   "session": "co-simulation",
+   "synthetic": false,
+   "scene": "scene.xml",
+   "render": "cpu",
+   "arm_servo": "implicit",
+   "providers": {
+    "atlas": "CapabilityAtlas",
+    "grasp": "ClipGraspProvider",
+    "perception": "DepthPerception",
+    "planner": "TianjiPlanner"
+   },
+   "program_ok": true,
+   "termination_reason": "program_completed",
+   "ticks_used": 179,
+   "tick_budget": 50000,
+   "wall_duration_s": 15.388644811988343,
+   "requests": {
+    "hello": 1,
+    "observe": 8,
+    "execute": 1,
+    "close": 1
+   },
+   "policy": {
+    "bound": false,
+    "manifest": false,
+    "recipe": null,
+    "clips": null,
+    "object_class": null,
+    "tracked_joint": null,
+    "object_pose_from": "simulator",
+    "hand_commands": []
+   },
+   "verdict": {
+    "source": "evaluation/protocol.json",
+    "manifest": "evaluation/protocol.json",
+    "rule": {
+     "kind": "rule file",
+     "name": "s2/benchmark/InHouse/efe_dexhand/essential_cube_layer/rule.py"
+    },
+    "status": "NOT_EVALUABLE",
+    "reasons": [
+     "this rule declares no sha256 of the scene hook file (task.json hook.hook_sha256)"
+    ],
+    "file_status": "NOT_EVALUABLE"
+   },
+   "only_moves": false,
+   "calls": [
+    {
+     "label": "0001-plan_motion",
+     "skill": "plan_motion",
+     "kind": "plan",
+     "arm": "right",
+     "ok": false,
+     "declares_contact": true,
+     "result": {
+      "text": "plan made; executed by 0002-execute_plan",
+      "ok": false,
+      "code": null,
+      "kind": null,
+      "moved": false
+     },
+     "planner_modes": [
+      "dwell"
+     ],
+     "planning_time_s": 0.2026469729898963,
+     "rows": 150,
+     "duration_s": 3.0,
+     "ticks_charged": null,
+     "ticks_charged_source": null,
+     "api_latency_ticks": null,
+     "hand_commands": [],
+     "guards": 0,
+     "planned": {
+      "planner_m": 0.1,
+      "planner_is_lower_bound": true,
+      "planner_link": null,
+      "planner_row": null,
+      "planner_obstacle": null,
+      "replay_m": 0.1,
+      "replay_is_lower_bound": true,
+      "replay_margin_m": 0.1,
+      "replay_link": null,
+      "replay_row": null,
+      "replay_box": null,
+      "replay_links": "arm links, flange, palm shell and fingers",
+      "replayed": true,
+      "shown_m": 0.1,
+      "shown_is_lower_bound": true,
+      "source": "replay",
+      "link": null,
+      "row": null,
+      "agree": null
+     },
+     "executed": null,
+     "palm_error": null,
+     "contacts": null,
+     "policy_ran": null,
+     "reference_mode": null,
+     "refusal": null,
+     "clip": {
+      "kind": "video",
+      "video": "0001-plan_motion.mp4",
+      "poster": "0001-plan_motion.png",
+      "video_bytes": 67834,
+      "recompressed": false,
+      "frames": 76,
+      "duration_s": 3.04,
+      "codec": "h264",
+      "size": [
+       1444,
+       508
+      ],
+      "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+      "footer": [
+       "0001-plan_motion   \u00b7   plan_motion(arm=right)   \u00b7   planner: dwell   \u00b7   rows 150 (3.00 s)   \u00b7   planning 0.20 s   \u00b7   plan made; executed by 0002-execute_plan",
+       "planned clearance >= 100 mm (by replay of the saved rows; the planner said >= 100 mm)",
+       "",
+       "nothing was executed in this call   \u00b7   verdict: NOT_EVALUABLE",
+       "contacts: nothing was executed in this call"
+      ],
+      "execution_shown": false,
+      "why_no_execution": "this call only planned; the plan was executed by 0002-execute_plan",
+      "video_file": "r2run_cube_idle__20261124T183649Z-11b2ba69__0001-plan_motion.mp4",
+      "video_file_bytes": 67834,
+      "poster_file": "r2run_cube_idle__20261124T183649Z-11b2ba69__0001-plan_motion.png",
+      "poster_file_bytes": 91415
+     },
+     "clip_problems": []
+    },
+    {
+     "label": "0002-execute_plan",
+     "skill": "execute_plan",
+     "kind": "execution",
+     "arm": "right",
+     "ok": true,
+     "declares_contact": true,
+     "result": {
+      "text": "ok",
+      "ok": true,
+      "code": null,
+      "kind": null,
+      "moved": true
+     },
+     "planner_modes": [
+      "dwell"
+     ],
+     "planning_time_s": 0.2026469729898963,
+     "rows": 150,
+     "duration_s": 3.0,
+     "ticks_charged": 29,
+     "ticks_charged_source": "flight record",
+     "api_latency_ticks": 29,
+     "hand_commands": [],
+     "guards": 0,
+     "planned": {
+      "planner_m": 0.1,
+      "planner_is_lower_bound": true,
+      "planner_link": null,
+      "planner_row": null,
+      "planner_obstacle": null,
+      "replay_m": 0.1,
+      "replay_is_lower_bound": true,
+      "replay_margin_m": 0.1,
+      "replay_link": null,
+      "replay_row": null,
+      "replay_box": null,
+      "replay_links": "arm links, flange, palm shell and fingers",
+      "replayed": true,
+      "shown_m": 0.1,
+      "shown_is_lower_bound": true,
+      "source": "replay",
+      "link": null,
+      "row": null,
+      "agree": null
+     },
+     "executed": {
+      "shown_m": 1.596935439794611e-05,
+      "shown_is_lower_bound": false,
+      "margin_m": 0.1,
+      "link": "right_wuji2_wrist_link",
+      "other": "object",
+      "tick": 178,
+      "link_class": "palm",
+      "no_contact_links_m": 1.596935439794611e-05,
+      "no_contact_links_pair": [
+       "right_wuji2_wrist_link",
+       "object"
+      ],
+      "fingers_undeclared_m": null,
+      "fingers_undeclared_pair": null,
+      "declared_bodies": [
+       "object",
+       "task_cube_top"
+      ],
+      "counts": "arm links, flange and palm shell against everything; fingers against what the call did not declare"
+     },
+     "palm_error": {
+      "mean_m": 0.0003942716542723622,
+      "p95_m": 0.00039429447109828186,
+      "max_m": 0.0003942960082486507,
+      "samples": 150
+     },
+     "contacts": {
+      "counted": {
+       "rows": 0,
+       "force_max_n": 0.0,
+       "groups": [],
+       "robot_groups": 1
+      },
+      "robot": [
+       {
+        "pair": "right fingers | object",
+        "rows": 358,
+        "ticks": 179,
+        "force_max_n": 0.8193324208259583,
+        "dist_min_m": -3.012936758750584e-05,
+        "status": "declared",
+        "forbidden": false,
+        "undeclared": false,
+        "unjudged": false,
+        "own_hand": false,
+        "plan_reported": null,
+        "rows_undeclared": 0,
+        "ticks_undeclared": 0,
+        "force_max_undeclared_n": 0.0,
+        "others": [
+         "object"
+        ]
+       }
+      ],
+      "scene_rows": 0,
+      "declared": {
+       "declared": {
+        "target_excluded": false,
+        "holding": true,
+        "policy_fingers": false,
+        "hand_modes": [],
+        "reference_modes": [],
+        "contact_links": [],
+        "fingers_may_touch_target": false,
+        "fingers_may_touch_held": true
+       },
+       "names": [
+        "object",
+        "task_cube_top"
+       ],
+       "target": [],
+       "held": [
+        "object",
+        "task_cube_top"
+       ],
+       "tracked": [],
+       "matched_with": "the true scene's geoms",
+       "complete": true
+      }
+     },
+     "policy_ran": false,
+     "reference_mode": "none",
+     "refusal": null,
+     "clip": {
+      "kind": "video",
+      "video": "0002-execute_plan.mp4",
+      "poster": "0002-execute_plan.png",
+      "video_bytes": 107840,
+      "recompressed": false,
+      "frames": 90,
+      "duration_s": 3.6,
+      "codec": "h264",
+      "size": [
+       1444,
+       508
+      ],
+      "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+      "footer": [
+       "0002-execute_plan   \u00b7   execute_plan(arm=right)   \u00b7   planner: dwell   \u00b7   rows 150 (3.00 s)   \u00b7   planning 0.20 s (+29 ticks charged)",
+       "planned clearance >= 100 mm (by replay of the saved rows; the planner said >= 100 mm)",
+       "executed clearance 0.0 mm (right_wuji2_wrist_link / object)",
+       "palm error mean 0.4 / p95 0.4 / max 0.4 mm   \u00b7   verdict: NOT_EVALUABLE",
+       "contacts in the call's ticks: right fingers | object: 358 rows in 179 ticks, up to 0.8 N (declared: object)"
+      ],
+      "execution_shown": true,
+      "why_no_execution": null,
+      "video_file": "r2run_cube_idle__20261124T183649Z-11b2ba69__0002-execute_plan.mp4",
+      "video_file_bytes": 107840,
+      "poster_file": "r2run_cube_idle__20261124T183649Z-11b2ba69__0002-execute_plan.png",
+      "poster_file_bytes": 163967
+     },
+     "clip_problems": []
+    }
+   ],
+   "calls_without_folder": [],
+   "clips_built": "2026-11-24T13:42:41-0500",
+   "clips_build": {
+    "wall_s": 74.31,
+    "peak_resident_mib": 936.1,
+    "clips": 2
+   },
+   "problems": []
+  },
+  {
+   "run": "s2/dexharness/runs/r2run_cube_hold/20261124T183705Z-f1976279",
+   "run_dir": "s2/dexharness/runs/r2run_cube_hold/20261124T183705Z-f1976279",
+   "clips_dir": "s2/dexharness/runs/r2run_cube_hold/20261124T183705Z-f1976279/media/skills",
+   "slug": "r2run_cube_hold__20261124T183705Z-f1976279",
+   "title": "Start with the object in the hand: the hold skill for 2 s (essential_cube_layer)",
+   "what": "Same start. The hold skill plans a 2 s dwell with the held object attached (the belief from the first observation) and commands the hand mode firm. The skill reports grasp_slip: its own check wants the fingers stalled at least 0.02 rad short of their targets and measures 0.012 rad on this light grasp. By the simulator's record the cube stayed in the hand (two finger links touch it in every tick; it moved 2.5 mm in the palm frame when firm tightened the fingers, and the wrist link touched it). So the skill's result is a false alarm here, and it is shown as it is. Not an attempt at the task. No tracking policy used; hand: scripted (firm without a policy: the measured closure plus a squeeze).",
+   "task_id": "r2run_cube_hold",
+   "prompt": "With the wrist locked, turn only the top layer +90 degrees, return it to zero, and turn it +90 degrees again. Stabilize the free cube body with other fingers; no external support or object actuation is allowed.",
+   "started_at": "2026-11-24T18:37:05.231376Z",
+   "finished_at": "2026-11-24T18:37:17.864949Z",
+   "session": "co-simulation",
+   "synthetic": false,
+   "scene": "scene.xml",
+   "render": "cpu",
+   "arm_servo": "implicit",
+   "providers": {
+    "atlas": "CapabilityAtlas",
+    "grasp": "ClipGraspProvider",
+    "perception": "DepthPerception",
+    "planner": "TianjiPlanner"
+   },
+   "program_ok": true,
+   "termination_reason": "program_completed",
+   "ticks_used": 129,
+   "tick_budget": 50000,
+   "wall_duration_s": 12.633316086023115,
+   "requests": {
+    "hello": 1,
+    "observe": 7,
+    "execute": 1,
+    "close": 1
+   },
+   "policy": {
+    "bound": false,
+    "manifest": false,
+    "recipe": null,
+    "clips": null,
+    "object_class": null,
+    "tracked_joint": null,
+    "object_pose_from": "simulator",
+    "hand_commands": [
+     "firm"
+    ]
+   },
+   "verdict": {
+    "source": "evaluation/protocol.json",
+    "manifest": "evaluation/protocol.json",
+    "rule": {
+     "kind": "rule file",
+     "name": "s2/benchmark/InHouse/efe_dexhand/essential_cube_layer/rule.py"
+    },
+    "status": "NOT_EVALUABLE",
+    "reasons": [
+     "this rule declares no sha256 of the scene hook file (task.json hook.hook_sha256)"
+    ],
+    "file_status": "NOT_EVALUABLE"
+   },
+   "only_moves": false,
+   "calls": [
+    {
+     "label": "0001-hold",
+     "skill": "hold",
+     "kind": "skill",
+     "arm": "right",
+     "ok": false,
+     "declares_contact": true,
+     "result": {
+      "text": "failed after moving: grasp_slip",
+      "ok": false,
+      "code": "grasp_slip",
+      "kind": null,
+      "moved": true
+     },
+     "planner_modes": [
+      "dwell"
+     ],
+     "planning_time_s": 0.18304639298003167,
+     "rows": 100,
+     "duration_s": 2.0,
+     "ticks_charged": 29,
+     "ticks_charged_source": "flight record",
+     "api_latency_ticks": 29,
+     "hand_commands": [
+      "firm"
+     ],
+     "guards": 0,
+     "planned": {
+      "planner_m": 0.1,
+      "planner_is_lower_bound": true,
+      "planner_link": null,
+      "planner_row": null,
+      "planner_obstacle": null,
+      "replay_m": 0.1,
+      "replay_is_lower_bound": true,
+      "replay_margin_m": 0.1,
+      "replay_link": null,
+      "replay_row": null,
+      "replay_box": null,
+      "replay_links": "arm links, flange and palm shell",
+      "replayed": true,
+      "shown_m": 0.1,
+      "shown_is_lower_bound": true,
+      "source": "replay",
+      "link": null,
+      "row": null,
+      "agree": null
+     },
+     "executed": {
+      "shown_m": -3.245482373709363e-06,
+      "shown_is_lower_bound": false,
+      "margin_m": 0.1,
+      "link": "right_wuji2_wrist_link",
+      "other": "object",
+      "tick": 45,
+      "link_class": "palm",
+      "no_contact_links_m": -3.245482373709363e-06,
+      "no_contact_links_pair": [
+       "right_wuji2_wrist_link",
+       "object"
+      ],
+      "fingers_undeclared_m": null,
+      "fingers_undeclared_pair": null,
+      "declared_bodies": [
+       "object",
+       "task_cube_top"
+      ],
+      "counts": "arm links, flange and palm shell against everything; fingers against what the call did not declare"
+     },
+     "palm_error": {
+      "mean_m": 0.0003934341535341003,
+      "p95_m": 0.00040067736625959736,
+      "max_m": 0.0007259101362688443,
+      "samples": 100
+     },
+     "contacts": {
+      "counted": {
+       "rows": 97,
+       "force_max_n": 0.9837120175361633,
+       "groups": [
+        "right palm | object"
+       ],
+       "robot_groups": 2
+      },
+      "robot": [
+       {
+        "pair": "right fingers | object",
+        "rows": 258,
+        "ticks": 129,
+        "force_max_n": 1.832746982574463,
+        "dist_min_m": -6.437392585212365e-05,
+        "status": "declared",
+        "forbidden": false,
+        "undeclared": false,
+        "unjudged": false,
+        "own_hand": false,
+        "plan_reported": null,
+        "rows_undeclared": 0,
+        "ticks_undeclared": 0,
+        "force_max_undeclared_n": 0.0,
+        "others": [
+         "object"
+        ]
+       },
+       {
+        "pair": "right palm | object",
+        "rows": 97,
+        "ticks": 97,
+        "force_max_n": 0.9837120175361633,
+        "dist_min_m": -2.4861450583557598e-05,
+        "status": "forbidden",
+        "forbidden": true,
+        "undeclared": false,
+        "unjudged": false,
+        "own_hand": false,
+        "plan_reported": null,
+        "rows_undeclared": 0,
+        "ticks_undeclared": 0,
+        "force_max_undeclared_n": 0.0,
+        "others": []
+       }
+      ],
+      "scene_rows": 0,
+      "declared": {
+       "declared": {
+        "target_excluded": false,
+        "holding": true,
+        "policy_fingers": true,
+        "hand_modes": [
+         "firm"
+        ],
+        "reference_modes": [],
+        "contact_links": [],
+        "fingers_may_touch_target": false,
+        "fingers_may_touch_held": true
+       },
+       "names": [
+        "object",
+        "task_cube_top"
+       ],
+       "target": [],
+       "held": [
+        "object",
+        "task_cube_top"
+       ],
+       "tracked": [],
+       "matched_with": "the true scene's geoms",
+       "complete": true
+      }
+     },
+     "policy_ran": false,
+     "reference_mode": "none",
+     "refusal": null,
+     "clip": {
+      "kind": "video",
+      "video": "0001-hold.mp4",
+      "poster": "0001-hold.png",
+      "video_bytes": 114516,
+      "recompressed": false,
+      "frames": 65,
+      "duration_s": 2.6,
+      "codec": "h264",
+      "size": [
+       1444,
+       508
+      ],
+      "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+      "footer": [
+       "0001-hold   \u00b7   hold(arm=right)   \u00b7   planner: dwell   \u00b7   rows 100 (2.00 s)   \u00b7   planning 0.18 s (+29 ticks charged)   \u00b7   hand: firm   \u00b7   failed after moving: grasp_slip",
+       "planned clearance >= 100 mm (by replay of the saved rows; the planner said >= 100 mm)",
+       "executed clearance -0.0 mm: IN CONTACT (right_wuji2_wrist_link / object)",
+       "palm error mean 0.4 / p95 0.4 / max 0.7 mm   \u00b7   verdict: NOT_EVALUABLE",
+       "contacts in the call's ticks: right fingers | object: 258 rows in 129 ticks, up to 1.8 N (declared: object); right palm | object: 97 rows in 97 ticks, up to 1.0 N (NOT ALLOWED)"
+      ],
+      "execution_shown": true,
+      "why_no_execution": null,
+      "video_file": "r2run_cube_hold__20261124T183705Z-f1976279__0001-hold.mp4",
+      "video_file_bytes": 114516,
+      "poster_file": "r2run_cube_hold__20261124T183705Z-f1976279__0001-hold.png",
+      "poster_file_bytes": 165770
+     },
+     "clip_problems": []
+    }
+   ],
+   "calls_without_folder": [],
+   "clips_built": "2026-11-24T13:41:26-0500",
+   "clips_build": {
+    "wall_s": 34.25,
+    "peak_resident_mib": 919.2,
+    "clips": 1
+   },
+   "problems": []
   }
  ],
  "not_done": [
   {
    "key": "skills_without_a_call",
-   "text": "10 of the 14 skills have no call on this page.",
+   "text": "9 of the 14 skills have no call on this page.",
    "items": [
     "acquire",
     "guarded_press",
-    "hold",
     "place_release",
     "pour",
     "push",
@@ -2912,18 +4199,15 @@
    ]
   },
   {
+   "key": "skills_never_completed",
+   "text": "1 skill(s) were called here and never returned ok.",
+   "items": [
+    "hold"
+   ]
+  },
+  {
    "key": "no_policy",
    "text": "No run on this page used the tracking policy: every finger motion here is a scripted posture.",
-   "items": []
-  },
-  {
-   "key": "no_contact_declared",
-   "text": "No call on this page declares a contact (no target taken out of its collision world, no held object, no policy-driven fingers): no grasp, carry, placement, push or press was attempted.",
-   "items": []
-  },
-  {
-   "key": "left_arm_unused",
-   "text": "No call on this page moves the left arm.",
    "items": []
   },
   {
@@ -2932,9 +4216,14 @@
    "items": []
   },
   {
-   "key": "no_task_verdict",
-   "text": "No run on this page declared a rule, so none has a verdict: none of them is an attempt at a task.",
-   "items": []
+   "key": "task_verdicts",
+   "text": "4 of 9 run(s) were judged by a rule of their own: 4 NOT_EVALUABLE. One judged episode is one episode, not a success rate.",
+   "items": [
+    "Ported task jar_lid_open: one planned move above the perceived jar, then home: NOT_EVALUABLE",
+    "Left arm: one planned move and home (jar_lid_open scene): NOT_EVALUABLE",
+    "Start with the object in the hand: an idle session keeps the cube (essential_cube_layer): NOT_EVALUABLE",
+    "Start with the object in the hand: the hold skill for 2 s (essential_cube_layer): NOT_EVALUABLE"
+   ]
   },
   {
    "key": "ok_with_contacts",
@@ -2945,14 +4234,15 @@
   },
   {
    "key": "ended_on_a_refusal",
-   "text": "1 run(s) ended on a call that was refused or failed.",
+   "text": "2 run(s) ended on a call that was refused or failed.",
    "items": [
-    "Probes: refusals, the program's own plan, a fist beside the ball (scene 1): the last 2 call(s) were refused or failed (refused: planning_failed / self_collision)"
+    "Probes: refusals, the program's own plan, a fist beside the ball (scene 1): the last 2 call(s) were refused or failed (refused: planning_failed / self_collision)",
+    "Start with the object in the hand: the hold skill for 2 s (essential_cube_layer): the last 1 call(s) were refused or failed (failed after moving: grasp_slip)"
    ]
   },
   {
    "key": "planning_time_not_charged",
-   "text": "In 14 of 14 executions the session charged 1 tick(s) for planning while the API's own measurement of the same interval was 23 to 114 ticks: planning time was not charged in those runs.",
+   "text": "In 14 of 20 executions the session charged 1 tick(s) for planning while the API's own measurement of the same interval was 23 to 114 ticks: planning time was not charged in those runs.",
    "items": [
     "Probes: refusals, the program's own plan, a fist beside the ball (scene 1)",
     "Reach above the ball, lift, go home (scene 1)",
@@ -2963,7 +4253,7 @@
   },
   {
    "key": "planner_clearance_is_a_bound",
-   "text": "In 15 of 15 plans the planner stated only a lower bound for its minimum clearance (the distance it looked to). The planned clearance shown for those is this page's own replay of the saved rows against the saved boxes.",
+   "text": "In 20 of 22 plans the planner stated only a lower bound for its minimum clearance (the distance it looked to). The planned clearance shown for those is this page's own replay of the saved rows against the saved boxes.",
    "items": []
   },
   {
@@ -2977,23 +4267,25 @@
   }
  ],
  "totals": {
-  "runs": 5,
-  "calls": 22,
-  "calls_ok": 14,
-  "calls_refused_or_failed": 7,
-  "plans_only": 1,
+  "runs": 9,
+  "calls": 30,
+  "calls_ok": 19,
+  "calls_refused_or_failed": 9,
+  "plans_only": 2,
   "calls_without_folder": 2,
-  "clips": 22,
+  "clips": 30,
   "skills_on_the_page": [
    "go_home",
+   "hold",
    "lift",
    "move_to_pose",
    "retreat"
   ],
   "tools_called_by_programs": [
+   "execute_plan",
    "plan_motion"
   ],
-  "media_bytes": 8130016,
+  "media_bytes": 10557139,
   "media_budget_bytes": 40000000,
   "clip_target_bytes": 400000,
   "clips_over_target": []
@@ -3218,8 +4510,88 @@
    "name": "scout_s3b_probes__20261124T122134Z-da7d0b00__0009-go_home.png",
    "bytes": 112444,
    "sha256": "45a231b36fb8ea1c59bc5f870f3c7c6624bd94e01fd1d854d35b7d7e851c83a4"
+  },
+  {
+   "name": "r2run_jar_reach_lid__20261124T183321Z-6eb3c09d__0001-move_to_pose.mp4",
+   "bytes": 302877,
+   "sha256": "2883dc36cc8c2367c6590674d3ee1ebdd86223a6d13296a9a12eafb84b08de88"
+  },
+  {
+   "name": "r2run_jar_reach_lid__20261124T183321Z-6eb3c09d__0001-move_to_pose.png",
+   "bytes": 150858,
+   "sha256": "5b8276bfa31afdd9bc35cff67fae873a7d2beb1988f7d2549d88d9f0cc522705"
+  },
+  {
+   "name": "r2run_jar_reach_lid__20261124T183321Z-6eb3c09d__0002-go_home.mp4",
+   "bytes": 307855,
+   "sha256": "e485c3a4bd5e14fce297da8ccbcf2f37f4fdc44fcca76ea7ae939f6e15155231"
+  },
+  {
+   "name": "r2run_jar_reach_lid__20261124T183321Z-6eb3c09d__0002-go_home.png",
+   "bytes": 169586,
+   "sha256": "79a3815ce2033833c33d4642ee87676b5ae68dc2387076b0b4fe7e50b99d19c9"
+  },
+  {
+   "name": "r2run_jar_left_reach__20261124T183747Z-234d24a7__0001-move_to_pose.mp4",
+   "bytes": 45741,
+   "sha256": "cf103dd4baefeacd94c9ddaba716e369915e6c8d25be316913794cc9085f2292"
+  },
+  {
+   "name": "r2run_jar_left_reach__20261124T183747Z-234d24a7__0001-move_to_pose.png",
+   "bytes": 64971,
+   "sha256": "17bfe43fb8ac7e84dd3ad6ad649889f4baa1530959559cb1fb6e76c5c3f69565"
+  },
+  {
+   "name": "r2run_jar_left_reach__20261124T183747Z-234d24a7__0002-move_to_pose.mp4",
+   "bytes": 212204,
+   "sha256": "40bf4f364128b4c6b7445990c9245a5f36e5380163780b274d10d4c8a35aaa28"
+  },
+  {
+   "name": "r2run_jar_left_reach__20261124T183747Z-234d24a7__0002-move_to_pose.png",
+   "bytes": 123478,
+   "sha256": "50840642cd80a2fa6d9f1bdff978bbde411ab59254c0fc37538d54c7b37560c0"
+  },
+  {
+   "name": "r2run_jar_left_reach__20261124T183747Z-234d24a7__0003-go_home.mp4",
+   "bytes": 212035,
+   "sha256": "17cf2e3239b125864e7ac1951f92cc56db3837adeb56b73c0d7bab8beb52ad36"
+  },
+  {
+   "name": "r2run_jar_left_reach__20261124T183747Z-234d24a7__0003-go_home.png",
+   "bytes": 126176,
+   "sha256": "8b6fb0556a3e37293649ced4ef772af453cddac2b2275ec8f9f79ddec2c59fa3"
+  },
+  {
+   "name": "r2run_cube_idle__20261124T183649Z-11b2ba69__0001-plan_motion.mp4",
+   "bytes": 67834,
+   "sha256": "42350c9e6b0a46f73015bb8433807a731929d9d91cc9bba9115d5be13aa8b02d"
+  },
+  {
+   "name": "r2run_cube_idle__20261124T183649Z-11b2ba69__0001-plan_motion.png",
+   "bytes": 91415,
+   "sha256": "49b7efe927dee6ae749e4ec48bbb0069d4e5bc6b7f2a6dfaeff2f900d9924cd3"
+  },
+  {
+   "name": "r2run_cube_idle__20261124T183649Z-11b2ba69__0002-execute_plan.mp4",
+   "bytes": 107840,
+   "sha256": "5196e8816d40384e91c3d2588c1ad73aeace0b8dec4f1a500189294385f6317b"
+  },
+  {
+   "name": "r2run_cube_idle__20261124T183649Z-11b2ba69__0002-execute_plan.png",
+   "bytes": 163967,
+   "sha256": "44e396cb9dbf84381783861d59a09f24767548ae71cde28db48c77d15865b192"
+  },
+  {
+   "name": "r2run_cube_hold__20261124T183705Z-f1976279__0001-hold.mp4",
+   "bytes": 114516,
+   "sha256": "152d29145be3d70124a7b83ba57c68e6076c705648135620aa46bb2e4c261c5d"
+  },
+  {
+   "name": "r2run_cube_hold__20261124T183705Z-f1976279__0001-hold.png",
+   "bytes": 165770,
+   "sha256": "40f62adae34274929a72d18c958bfa2f570089473e410a43dbf65b379ed26a8a"
   }
  ],
- "generated": "2026-11-24 12:29 EST",
- "page_sha256": "cf4f465cb6847cb51f7a293d07102629f15be08a4f55edc1077b6679bb3e9133"
+ "generated": "2026-11-24 13:45 EST",
+ "page_sha256": "bee4a33bf3f630a7985215f7039e9a24662a3bae505ccaa73a45767d49991625"
 }
