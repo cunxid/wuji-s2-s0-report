@@ -96,7 +96,7 @@ runs hold up as demos and two do not</b>; the captions say which and why.</p>
 
 
 <h2>In-hand rotation suite — 10 real-world tasks</h2>
-<p>Ten rotation tasks over the S0 training-dataset objects in semantically dressed scenes — graded on <b>in-hand rotation only</b> (≥55° while held); tool-on-target engagement (tip-down screwdriving, lid-on-jar) is a separate, harder contract — the engaged screwdriving version was attempted with criteria declared up front and failed them (shown below), each in a semantically
+<p>Ten rotation tasks in semantically dressed scenes. <b>Correction:</b> these are not training-dataset objects — the screwdriver, hammer and bulb are from the dataset's held-out evaluation set, and the rest were authored by this project with synthetic clips — graded on <b>in-hand rotation only</b> (≥55° while held); tool-on-target engagement (tip-down screwdriving, lid-on-jar) is a separate, harder contract — the engaged screwdriving version was attempted with criteria declared up front and failed them (shown below), each in a semantically
 dressed scene (socket fixture, wood block + nail, jar, paint pot, cutting board, saucer, bolt,
 pipe, tray) on the shipped rig: calibrated acquire → <b>in-hand</b> spin/flip (S0 finger
 dexterity, wrist frozen) → graded ≥55° achieved while still held at the end.
@@ -188,7 +188,7 @@ ground-truth-measured and disclosed (<code>s2/s2loop/ratchet_demo.json</code>).<
 <div class="kpi"><div class="big" style="color:#d8343c">0</div>official HandsOn predicate passes (the 9 earlier labels are withdrawn)</div>
 <div class="kpi"><div class="big">4</div>behaviours that hold up as demos (box into bucket, mouse click, screwdriver roll, cone turn)</div>
 <div class="kpi"><div class="big">50</div>task scenes envelope-probed</div>
-<div class="kpi"><div class="big">24</div>V21 objects envelope-requalified (shipped rig)</div>
+<div class="kpi"><div class="big">24</div>objects envelope-probed on the shipped rig (2 held-out dataset objects, 22 authored by this project; none from the training split)</div>
 <p class="na">Scope: HandsOn only (the one native-wuji2 benchmark). Requalification finding: the mount is part of the capability boundary — the shipped rig qualifies capture on 18/25 objects and rescues 6 outright (sph60/rod/cyl70 0→10/11; rotation envelopes wide: yaw tracks at 120°/s), while long objects lose horizontal-reach primitives (far anchor at the arm's x/y reach edge) — measured both directions, 938 new cells in the atlas. Scoring: the audit found that the ported "official" predicates were being fed fixed values for the terms the harness could not measure, so no official pass is supported, and the earlier statements here about requalified official passes (mouse, bucket, bowl, hammer–nail, cup-on-plate, peg) are withdrawn. The probing results above are tracking measurements and were not part of this audit. Details in the <a href="agentic-dexterity.pdf">paper</a>; per-verb boundary in the
 <a href="capability.html">capability page</a>; every task scene in the
 <a href="wuji2_tasks.html">gallery</a>.</p>
