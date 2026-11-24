@@ -9,5 +9,6 @@ S0 dexterous-hand policy (AUTO3 Mixed `model_8000.pt`, Object-only).
 - `archive/<YYYY-MM-DD>/` - frozen snapshots of earlier reports.
 
 Source of truth: the `s2/` tree on branch `jd/mixed-s0-s2` of the (private) training repo; this repo holds
-only rendered report assets. Published from there with `s2/harness/publish_report.sh` - regenerate via
-`pixi run python s2/harness/make_dashboard.py`, then publish.
+only rendered report assets. Published from there with `s2/harness/publish_report.sh`, which copies `s2/reports/dashboard/` here as it is.
+Each page is written by its own script under `s2/` (for example `efe.html` by
+`s2/benchmark/InHouse/tools/efe/make_page.py`); there is no single regenerate command.
