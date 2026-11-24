@@ -6,8 +6,8 @@
   "tasks_attempted": 4,
   "tasks_with_a_counted_test_episode": 0,
   "tasks_with_a_pass": 0,
-  "episodes_listed": 7,
-  "probe_episodes": 7,
+  "episodes_listed": 8,
+  "probe_episodes": 8,
   "test_episodes_listed": 0,
   "test_episodes_excluded": 0,
   "episodes_without_series": 0,
@@ -308,20 +308,26 @@
    "task": "t19_jar_drawer",
    "prompt": "Put the cream jar in the drawer and close it.",
    "version": 2,
-   "status": "probe only: 1 development episode(s), nothing counted",
+   "status": "probe only: 2 development episode(s), nothing counted",
    "passed": false,
    "episodes": [
-    "s2/dexharness/runs/live/daily50_t19_jar_drawer/20261124T204539Z-45d41bfc"
+    "s2/dexharness/runs/live/daily50_t19_jar_drawer/20261124T204539Z-45d41bfc",
+    "s2/dexharness/runs/live/daily50_t19_jar_drawer/20261124T205453Z-b111253a"
    ],
    "best": null,
-   "failure": "s2/dexharness/runs/live/daily50_t19_jar_drawer/20261124T204539Z-45d41bfc",
+   "failure": "s2/dexharness/runs/live/daily50_t19_jar_drawer/20261124T205453Z-b111253a",
    "failure_role": "a probe episode (development, the latest; not counted)",
-   "note": null,
+   "note": {
+    "file": "s2/outputs/harness_round/daily50/tasks/t19_jar_drawer/NOTES.md",
+    "sha256": "e2be5beb69885a1e90913cf463af64d146b770945b5b14bdecfe2ea1b84431a9",
+    "chars": 5489,
+    "text": "# t19_jar_drawer: notes for a fresh S2 agent (from pilot s2_t19, 2 probe episodes: FAIL then PASS)\n\nInstruction: \"Put the cream jar in the drawer and close it.\"\n\n## What the scene looks like\n- [seen] A small wooden one-drawer cabinet stands on the table with its drawer pulled OPEN toward the robot's right-hand side (world -y). The jar lies on a white cloth just beyond the open drawer front, on the same side. `close` and `hero` show jar, drawer and inside of the drawer best; `top` gives the layout; `wrist_right` was useless (blocked by the hand).\n- [seen] `locate_objects` (with DEX_EYES_SOCKET=default): cabinet+drawer is the LARGEST object (object 0), one merged box, elongated along the slide. Its \"mask part\" entries split it: one part is the whole thing, one part is the cabinet body only, one small part is a piece of the drawer front. The difference between the merged box's end and the body part's end on the open side is how far the drawer is open.\n- [seen] Jar and cloth are merged into one object by depth; the \"mask part 2/2\" entry of it (roughly square footprint a bit over 7 cm, about 5 cm high) is the jar. Take that part as the grasp target, not the merged box (that is jar+cloth).\n- [seen] Class names are meaningless here (mug/cone/hammer...). Choose by size and position.\n\n## What the task turned out to require (from the verdict after close)\n- [seen] Jar resting inside the drawer, on its floor, at rest, no hand on it; drawer shut essentially FULLY (a visible 1-4 cm gap fails; it must be pushed to its stop); and the jar must have been genuinely carried by one hand for a moment (so pushing/sweeping it in would presumably not count - guess).\n- [seen] The tick budget is tight (30 s). The passing episode used nearly all of it. Do not waste ticks: no go_home at the end (it cost over 400 ticks with latency in episode 0), combine perception+motion in a step, keep 300 ticks for settling.\n\n## Sequence that passed (episode 1)\n1. [seen] `grasp_scripted(view, jar_part, lift_m=0.14)` with defaults (approach from above, cup -> close). It REPORTS `capture_missed` (\"target still seen where it was\") both times, but the jar WAS in the hand: look at `close_rgb` - cloth empty = held. Do not retry. ~390 ticks.\n2. [seen] Because the skill said \"missed\", the session does not believe anything is held: call `estimate_in_hand(view)` (it found the jar, source depth) and then `transport(view, Pose(point over the middle of the open part of the drawer, at rim height), hover_m=0.05)`. The point: x of the cabinet, y midway between the drawer's open end and the body's near end (a bit toward the body), z = top of the cabinet.\n3. [seen] Let go with a plain dwell: `plan_motion(obs, [MotionSegment('dwell', duration_ticks=45, hand=HandCommand('open', ramp_ticks=20))])` + `execute_plan`. The jar dropped a few cm into the drawer and came to rest inside; both episodes satisfied the jar terms. `place_release` was not needed.\n4. [seen] Closing the drawer: the `push` skill does NOT work here (see below). What worked is an own `plan_motion` of four segments, executed with `execute_plan`:\n   free move (hand still open) to a palm-down pose (yaw 0) beside the drawer front on its outer side, about 10 cm above the working height; a dwell that makes a `fist` (ramp 25, 45 ticks); a linear descent to working height (palm origin a few cm above the cabinet top so that the fist/flange stay above the cloth but overlap the top of the drawer front); a linear segment along the slide direction toward the cabinet with `contact_links=('fingers',), exclude=<merged cabinet object>.point_cloud`.\n   The side of the fist pushes the drawer front. ~210-260 ticks.\n5. [seen] How far to push: in episode 0 the palm stopped about 6.5 cm short of the body's near end and the drawer stayed ~4 cm open -> FAIL. In episode 1 the goal was put 5 cm further (about 1.5 cm short of the body's near end): the palm stalled ~1 cm before its goal (the drawer hit its stop) and the drawer was fully shut -> PASS. So aim to slightly over-push; the stall is harmless at this size.\n6. [seen] `retreat(view, distance_m=0.15)` then the open dwell, then close.\n\n## What failed and why\n- [seen] `push(view, cabinet_object, to_xy=..., max_stroke_m=...)`: `planning_failed / path_scene_collision` in the descent (finger 5 mm from the scene): the fist must go to 1 cm above the table and the cloth lies exactly where the fist has to come down. With the small drawer-front mask part as target (further from the cloth): `ik_unreachable`, joint 1 at limit, at the same low height.\n- [seen] `guarded_press(view, Pose on the drawer front, direction=(0,1,0), max_travel_m=0.15)`: `ik_unreachable` (155 degrees off): the right arm cannot point the index finger along the closing direction here.\n- [seen] `solve_ik` for the fist pose with the hand still open says `goal_scene_collision` (open thumb/fingers hang into the scene); the same pose is fine once the plan makes the fist first, higher up. A fist commanded right after dropping the jar (hand low over the drawer) is refused `start_scene_collision`: rise first, then fist.\n\n## Guesses, not tested\n- [guess] `acquire` (policy grasp) was not tried; no clip options were given. The scripted grasp sufficed.\n- [guess] The scene was identical in both episodes (same perceived positions); it may not be in a counted series - perceive every time.\n- [guess] A guard on the last linear segment (MotionSegment has a `guard` field) would make the over-push gentler; not tried.\n"
+   },
    "media": {
     "failure": {
-     "video": "t19_jar_drawer__probe0__580697d8.mp4",
-     "poster": "t19_jar_drawer__probe0__580697d8.jpg",
-     "run": "s2/dexharness/runs/live/daily50_t19_jar_drawer/20261124T204539Z-45d41bfc"
+     "video": "t19_jar_drawer__probe1__d8f9ac5e.mp4",
+     "poster": "t19_jar_drawer__probe1__d8f9ac5e.jpg",
+     "run": "s2/dexharness/runs/live/daily50_t19_jar_drawer/20261124T205453Z-b111253a"
     }
    }
   },
@@ -793,7 +799,9 @@
     "object_in_training_recipe": "yes"
    },
    "task_version": 2,
-   "excluded": [],
+   "excluded": [
+    "the task's scene.xml changed after this episode (or the card gives no digest)"
+   ],
    "problems": [],
    "video": {
     "dir": "s2/dexharness/runs/live/daily50_t27_paperweight/20261124T200253Z-c16ec82c/media/episode",
@@ -1107,6 +1115,57 @@
     "problems": []
    },
    "card_sha256": "9e9af3fc201faa138f241730c6292f61e9e1104ccee72ed871e4c8f720f0cb5c"
+  },
+  {
+   "run": "s2/dexharness/runs/live/daily50_t19_jar_drawer/20261124T205453Z-b111253a",
+   "run_name": "daily50_t19_jar_drawer/20261124T205453Z-b111253a",
+   "task": "t19_jar_drawer",
+   "series": "probe",
+   "episode_index": 1,
+   "mode": "live",
+   "agent": "s2_t19",
+   "prompt": "Put the cream jar in the drawer and close it.",
+   "turns": 6,
+   "ticks_used": 1470,
+   "tick_budget": 1500,
+   "verdict": "PASS",
+   "terms": [
+    "[yes] jar centre inside the drawer footprint (within 85 mm along the slide, 80 mm across): 0.0490, 0.0065; true for 890 ticks; jar origin in the chest_drawer0 frame, |x| and |y| in m",
+    "[yes] jar centre 12 to 42 mm above the inside floor of the drawer: 0.025; true for 1111 ticks; jar origin in the chest_drawer0 frame, height above the inside floor in m",
+    "[yes] drawer closed to within 5 mm: -1.608e-06; true for 492 ticks; chest_drawer0_slide position in m (0 = closed)",
+    "[yes] no part of either hand touches the jar: 0; true for 1006 ticks; recorded contacts of the jar with hand links and palm surfaces, number of hand bodies",
+    "[yes] jar at rest (0.02 m/s, 0.5 rad/s): 0.0001 m/s, 0.002 rad/s; true for 1242 ticks; recorded joint velocity of the jar",
+    "[yes] the jar has been carried by a hand (two or more links of one hand on it, nothing else touching it, for 0.2 s without a break): longest carry 8.44 s (422 such ticks in the episode); true for 1189 ticks; recorded contacts of the jar: ticks with >= 2 links of one hand on it and no contact with anything that is not the robot; longest unbroken run so far, against 10 ticks (0.2 s)"
+   ],
+   "policy": {
+    "bound": false,
+    "engine": null,
+    "clip": null,
+    "object_in_training_recipe": "unknown"
+   },
+   "task_version": 2,
+   "excluded": [
+    "the task's scene.xml changed after this episode (or the card gives no digest)",
+    "the scene the simulator recorded has another digest than the card's scene.xml"
+   ],
+   "problems": [],
+   "video": {
+    "dir": "s2/dexharness/runs/live/daily50_t19_jar_drawer/20261124T205453Z-b111253a/media/episode",
+    "bytes": 582140,
+    "sha256": "4c7f8574504ecd305f740807f92011183900cc75f1234d77a7792f2f46f3211a",
+    "poster_bytes": 71969,
+    "poster_sha256": "003787d81ef9c89e5780854ca368e042ec4a795c4aefd21d28b3c9ccbf8643ff",
+    "duration_s": 40.1,
+    "speed": 1.0,
+    "size": [
+     848,
+     602
+    ],
+    "turns_source": "s2_turns.jsonl",
+    "never_touch_events": 2,
+    "problems": []
+   },
+   "card_sha256": "a8a47093920fcc48f48f35222475f1d6c647f6b56aa4ba0c83b3bb8570e9bee3"
   }
  ],
  "other_episodes": [],
@@ -1114,14 +1173,14 @@
  "videos_left_out_for_size": [],
  "files": [
   {
-   "name": "t19_jar_drawer__probe0__580697d8.mp4",
-   "bytes": 795003,
-   "sha256": "ae8cabf170db6435896b9af5389b6cbfbd3a5ecb409eed8ba805524a346e5f90"
+   "name": "t19_jar_drawer__probe1__d8f9ac5e.mp4",
+   "bytes": 582140,
+   "sha256": "4c7f8574504ecd305f740807f92011183900cc75f1234d77a7792f2f46f3211a"
   },
   {
-   "name": "t19_jar_drawer__probe0__580697d8.jpg",
-   "bytes": 73320,
-   "sha256": "9d1ae9826085cc77cdbadb568f46c52c744bdf9424bbca9e94bf0b33109a4ce1"
+   "name": "t19_jar_drawer__probe1__d8f9ac5e.jpg",
+   "bytes": 71969,
+   "sha256": "003787d81ef9c89e5780854ca368e042ec4a795c4aefd21d28b3c9ccbf8643ff"
   },
   {
    "name": "t27_paperweight__probe0__4959e6b7.mp4",
@@ -1154,7 +1213,7 @@
    "sha256": "73ca8a99dbce99f339e4b038d8ead51063977268921374646785ff4328f64b0f"
   }
  ],
- "media_bytes": 2339621,
+ "media_bytes": 2125407,
  "media_budget_bytes": 250000000,
  "not_done": [
   {
@@ -1218,15 +1277,17 @@
    ]
   },
   {
-   "text": "4 other episode(s) have files that do not hold together.",
+   "text": "6 other episode(s) have files that do not hold together.",
    "items": [
+    "daily50_t27_paperweight/20261124T200253Z-c16ec82c: the task's scene.xml changed after this episode (or the card gives no digest)",
     "daily50_t19_jar_drawer/20261124T204539Z-45d41bfc: the task's scene.xml changed after this episode (or the card gives no digest)",
     "daily50_t41_power_strip/20261124T204536Z-b8a2799b: the task's scene.xml changed after this episode (or the card gives no digest)",
     "daily50_t41_power_strip/20261124T205103Z-5a7c46a8: the task's scene.xml changed after this episode (or the card gives no digest)",
-    "daily50_t41_power_strip/20261124T205435Z-2c5d6c28: the task's scene.xml changed after this episode (or the card gives no digest)"
+    "daily50_t41_power_strip/20261124T205435Z-2c5d6c28: the task's scene.xml changed after this episode (or the card gives no digest)",
+    "daily50_t19_jar_drawer/20261124T205453Z-b111253a: the task's scene.xml changed after this episode (or the card gives no digest); the scene the simulator recorded has another digest than the card's scene.xml"
    ]
   }
  ],
- "generated": "2026-11-24 16:02 EST",
- "page_sha256": "b688501b758d33fa30ebb288fba51e56b1e62b8dfe5e0775268c48dbda33338c"
+ "generated": "2026-11-24 16:05 EST",
+ "page_sha256": "784bb74ed4ed9deda1d642c5e8c0d0fe942e47fc6e5d83205a1bed2e6852aacb"
 }
