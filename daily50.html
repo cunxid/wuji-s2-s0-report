@@ -21,7 +21,7 @@ details{margin:6px 0 0;font-size:12.5px;color:#444} summary{cursor:pointer;color
 ul.pr{margin:6px 0 0;padding-left:18px} ul.pr li.no{color:#9b1c14} .links{font-size:12.5px;margin:8px 0 0}
 a.thumb{position:relative;display:block} a.thumb .trials{position:absolute;left:8px;bottom:10px;background:#1f5fbf;color:#fff;font-size:12px;font-weight:600;padding:3px 8px;border-radius:4px}
 </style></head><body>
-<p class="na2"><a href="index.html">dashboard</a> · page generated 2026-11-25 11:40 EST from the files of the run; it is rewritten as the work goes on</p>
+<p class="na2"><a href="index.html">dashboard</a> · page generated 2026-11-25 12:06 EST from the files of the run; it is rewritten as the work goes on</p>
 <h1>daily50 — fifty real-life tabletop tasks, photorealistic, in MuJoCo</h1>
 <p class="sub"><b>Success rate of S2 on these 50 &rarr; <a href="daily50_trials.html">trials</a>.</b> A task whose picture carries the mark "S2 trials" opens its own trials page.</p>
 <p class="sub">Started 2026-11-24 01:30; the photoreal round ended 23:20 the same day and the 50 task folders are frozen (<code>daily50/FROZEN</code>). In every task the object in the robot's hand is an object mesh from the
@@ -30,7 +30,7 @@ project's shipped Tianji dual-arm rig with Wuji 2 hands, and the dynamics run in
 physics: a bulb screwed into its holder lights up, a hammered nail goes in, a spray bottle sprays. The pictures are path-traced
 from the same MuJoCo scene and state.</p>
 
-<div class="zh"><b>现在的进度（2026-11-25 11:40 EST）</b>：50 个任务的场景都已搭好并有照片级主图。<b>50</b> 个已通过独立终审，
+<div class="zh"><b>现在的进度（2026-11-25 12:06 EST）</b>：50 个任务的场景都已搭好并有照片级主图。<b>50</b> 个已通过独立终审，
 <b>0</b> 个终审查出问题、正在返修或等待再评审，<b>0</b> 个等待独立评审，<b>0</b> 个还在第一轮（搭建、初审、返修）。
 “通过”的含义见下方说明；这些都是机器人按脚本在场景里做动作的检查，不是策略完成任务的成功率。<b>照片级返修轮（16:10 起）</b>：50 个任务此前都已通过物理、功能、判据终审，但主图只有 7/10；现在逐个只改外观（扫描资产、磨损、抓握、构图，不动物理和判据），由独立评审按 8/10 的标准重新打分，目前 50 个已评、50 个达到 8 分。“返修中”的任务多数是在这一轮里。工作记录全文在仓库的 <code>s2/benchmark/InHouse/task.md</code>。</div>
 
@@ -367,7 +367,7 @@ The hero is a different picture from the one judge9 scored 7. The 90 mm framing 
  </div>
 </div>
 <div class="card passed" id="t19">
- <a class="thumb" href="daily50/t19_jar_drawer_hero.jpg"><img loading="lazy" src="daily50/t19_jar_drawer_hero.jpg" alt="Put the cream jar in the drawer and close it."></a>
+ <a class="thumb" href="daily50_task/t19_jar_drawer.html"><img loading="lazy" src="daily50/t19_jar_drawer_hero.jpg" alt="Put the cream jar in the drawer and close it."><span class="trials">S2 trials &rarr;</span></a>
  <div class="txt">
   <h3>t19 · 把面霜罐放进抽屉</h3>
   <p class="prompt">“Put the cream jar in the drawer and close it.”</p>
@@ -381,7 +381,7 @@ The hero is a different picture from the one judge9 scored 7. The 90 mm framing 
 - The probe report (17:18) says physics PASS and function PASS, with no assist welds. Its scene_sha256 (2c6d2093...) equals the sha256 of scene.xml.
 - The same 24 checks and 24 phases as in the earlier reports all pass. Both wrong-way episodes still fail under the rule, and rule.py has not been modified since 09:59.
 - The jar is unaltered: cylinder collider 0.025 x 0.0212, friction 1 / 0.005 / 0.001, mass 0.0415964 and inerti</p></details>
-  <p class="links"><a href="daily50/t19_jar_drawer_front.jpg">whole table</a> · <a href="daily50/t19_jar_drawer_close.jpg">close-up</a> · <a href="daily50/t19_jar_drawer.mp4">clip of the action</a></p>
+  <p class="links"><a href="daily50_task/t19_jar_drawer.html"><b>S2 trials on this task</b></a> · <a href="daily50/t19_jar_drawer_hero.jpg">main picture</a> · <a href="daily50/t19_jar_drawer_front.jpg">whole table</a> · <a href="daily50/t19_jar_drawer_close.jpg">close-up</a> · <a href="daily50/t19_jar_drawer.mp4">clip of the action</a></p>
  </div>
 </div>
 <div class="card passed" id="t20">
@@ -397,7 +397,7 @@ The hero is a different picture from the one judge9 scored 7. The 90 mm framing 
  </div>
 </div>
 <div class="card passed" id="t21">
- <a class="thumb" href="daily50/t21_calendar_cube_hero.jpg"><img loading="lazy" src="daily50/t21_calendar_cube_hero.jpg" alt="Set the calendar to the 7th: turn the day cube so that 7 faces the front and put it back in the tray."></a>
+ <a class="thumb" href="daily50_task/t21_calendar_cube.html"><img loading="lazy" src="daily50/t21_calendar_cube_hero.jpg" alt="Set the calendar to the 7th: turn the day cube so that 7 faces the front and put it back in the tray."><span class="trials">S2 trials &rarr;</span></a>
  <div class="txt">
   <h3>t21 · 摆正日历方块</h3>
   <p class="prompt">“Set the calendar to the 7th: turn the day cube so that 7 faces the front and put it back in the tray.”</p>
@@ -411,7 +411,7 @@ Step 1:
 - report.json: physics PASS, function PASS; its scene_sha256 (cf6e6367d148...) equals the sha256 of scene.xml.
 - The 22 checks have the same names as in the pre-polish report (order differs); all pass. Rule verdicts: run PASS at 24.7 s, run_wrong_way FAIL, run_idle FAIL. There are 20 phases against 19 before; the added one is the unaided hero-still phase after the verdict.
 - scene.xml differs from the pre-polish copy in the front and h</p></details>
-  <p class="links"><a href="daily50/t21_calendar_cube_front.jpg">whole table</a> · <a href="daily50/t21_calendar_cube_close.jpg">close-up</a> · <a href="daily50/t21_calendar_cube.mp4">clip of the action</a></p>
+  <p class="links"><a href="daily50_task/t21_calendar_cube.html"><b>S2 trials on this task</b></a> · <a href="daily50/t21_calendar_cube_hero.jpg">main picture</a> · <a href="daily50/t21_calendar_cube_front.jpg">whole table</a> · <a href="daily50/t21_calendar_cube_close.jpg">close-up</a> · <a href="daily50/t21_calendar_cube.mp4">clip of the action</a></p>
  </div>
 </div>
 <div class="card passed" id="t22">
@@ -499,7 +499,7 @@ Step 1 holds in full. check_task --final reports 0 errors; the probe report belo
  </div>
 </div>
 <div class="card passed" id="t28">
- <a class="thumb" href="daily50/t28_can_bin_hero.jpg"><img loading="lazy" src="daily50/t28_can_bin_hero.jpg" alt="Throw the empty can into the swing-lid bin."></a>
+ <a class="thumb" href="daily50_task/t28_can_bin.html"><img loading="lazy" src="daily50/t28_can_bin_hero.jpg" alt="Throw the empty can into the swing-lid bin."><span class="trials">S2 trials &rarr;</span></a>
  <div class="txt">
   <h3>t28 · 把易拉罐扔进翻盖垃圾桶</h3>
   <p class="prompt">“Throw the empty can into the swing-lid bin.”</p>
@@ -510,7 +510,7 @@ Step 1 holds in full. check_task --final reports 0 errors; the probe report belo
 
 - **Files:** `check_task --final` reports 0 errors; the probe is PASS with the same 17 checks as before the polish, and its scene hash matches `scene.xml`. Only three visual-only bodies were added (mug, scissors, desk marks).
 - **Hero:** it shows the task moment (the hand holding the lemon can over the PUSH flap, unaided), with the idle hand out of frame and a smudged steel bin. A close look finds the frosted-glass liner hem, chalk-like scratches on the st</p></details>
-  <p class="links"><a href="daily50/t28_can_bin_front.jpg">whole table</a> · <a href="daily50/t28_can_bin_close.jpg">close-up</a> · <a href="daily50/t28_can_bin.mp4">clip of the action</a></p>
+  <p class="links"><a href="daily50_task/t28_can_bin.html"><b>S2 trials on this task</b></a> · <a href="daily50/t28_can_bin_hero.jpg">main picture</a> · <a href="daily50/t28_can_bin_front.jpg">whole table</a> · <a href="daily50/t28_can_bin_close.jpg">close-up</a> · <a href="daily50/t28_can_bin.mp4">clip of the action</a></p>
  </div>
 </div>
 <div class="card passed" id="t29">
@@ -558,7 +558,7 @@ What still separates these from photographs on a close look is the straight-fing
  </div>
 </div>
 <div class="card passed" id="t32">
- <a class="thumb" href="daily50/t32_umbrella_stand_hero.jpg"><img loading="lazy" src="daily50/t32_umbrella_stand_hero.jpg" alt="Put the umbrella in the stand by the door."></a>
+ <a class="thumb" href="daily50_task/t32_umbrella_stand.html"><img loading="lazy" src="daily50/t32_umbrella_stand_hero.jpg" alt="Put the umbrella in the stand by the door."><span class="trials">S2 trials &rarr;</span></a>
  <div class="txt">
   <h3>t32 · 把雨伞放进伞架</h3>
   <p class="prompt">“Put the umbrella in the stand by the door.”</p>
@@ -572,7 +572,7 @@ What still separates these from photographs on a close look is the straight-fing
 - `report.json` (20:21) has verdict, physics and function PASS, and its `scene_sha256` (a37390f22595...) equals the sha256 of scene.xml.
 - The 20 checks have the same names, order and assisted flags as the pre-round report, and identical measured values; there are 17 phases, as before.
 - scene.xml differs from the last judged scene (ffe53e93...) only in the pose lines of the cameras &quot;h</p><ul class="pr"><li>The stand is still a project-made lathe mesh with painted stoneware textures, not a scanned or dataset model, so the owner&#x27;s dataset-asset requirement is not me</li><li>The umbrella is paint on the pack cylinder and the weakest object in every still. Its outline is a ruler-straight 40 mm tube with a flat cap. In close.png (x 90</li></ul></details>
-  <p class="links"><a href="daily50/t32_umbrella_stand_front.jpg">whole table</a> · <a href="daily50/t32_umbrella_stand_close.jpg">close-up</a> · <a href="daily50/t32_umbrella_stand.mp4">clip of the action</a></p>
+  <p class="links"><a href="daily50_task/t32_umbrella_stand.html"><b>S2 trials on this task</b></a> · <a href="daily50/t32_umbrella_stand_hero.jpg">main picture</a> · <a href="daily50/t32_umbrella_stand_front.jpg">whole table</a> · <a href="daily50/t32_umbrella_stand_close.jpg">close-up</a> · <a href="daily50/t32_umbrella_stand.mp4">clip of the action</a></p>
  </div>
 </div>
 <div class="card passed" id="t33">
@@ -607,7 +607,7 @@ Scores: hero 8, front 7, close 7.
  </div>
 </div>
 <div class="card passed" id="t35">
- <a class="thumb" href="daily50/t35_flashlight_hero.jpg"><img loading="lazy" src="daily50/t35_flashlight_hero.jpg" alt="Switch on the flashlight and shine it on the label."></a>
+ <a class="thumb" href="daily50_task/t35_flashlight.html"><img loading="lazy" src="daily50/t35_flashlight_hero.jpg" alt="Switch on the flashlight and shine it on the label."><span class="trials">S2 trials &rarr;</span></a>
  <div class="txt">
   <h3>t35 · 打开手电筒照亮标签</h3>
   <p class="prompt">“Switch on the flashlight and shine it on the label.”</p>
@@ -615,7 +615,7 @@ Scores: hero 8, front 7, close 7.
   <p><span class="b ok">passed the final pass (judge 9)</span><span class="b ok">robot-action physics check PASS</span><span class="b ok">functional outcome PASS</span><span class="b ok">photo-likeness of the main picture, by the last judge: 8/10</span><span class="b warn">object held by a test weld in some phases</span></p>
   <details><summary>what the robot did and what was measured (24 checks)</summary><ul class="pr"><li class="ok">a gentle touch (fingertips down onto the lying torch, 80 N guard) leaves it where it lies: moved at most 20 mm (its radius), rolled at most 30 deg, switch not operated: moved 4.1 mm, rolled +4.1 deg about its axis, presses 0; the touch: {&#x27;stopped&#x27;: False, &#x27;against&#x27;: None, &#x27;why&#x27;: &#x27;&#x27;, &#x27;max_force_N&#x27;: 7.9, &#x27;travelled_m&#x27;: 0.1191, &#x27;asked_m&#x27;: 0.1201}</li><li class="ok">rule.py on the probe episode &quot;run_idle&quot; says FAIL: FAIL [&#x27;rule not satisfied for 50 consecutive ticks; false at the end: torch switched on (state joint m_torch_on = 1), beam axis within 10 deg of the label, whole label inside the beam (every corner within 14 deg of the a</li><li class="ok">grasping the torch does not operate the switch (hand alone): presses 0, largest force on the switch zone while the hand closed 0.00 N (20 ms mean), at or above 1.0 N for 0.00 s at most (a press takes 1.0 N for 0.1 s); other hand links on the patch (bridged, not counted): 0.00 N ; </li><li class="ok">the hand alone lifts the dark torch at least 80 mm, holds it, and lifting does not operate the switch: 114 mm, presses 0, largest zone force during the lift 0.00 N (at or above 1.0 N for 0.00 s; bridged 0.00 N ), hand links on the torch: [&#x27;attachment_right&#x27;, &#x27;finger2_link4&#x27;, &#x27;finger3_link4&#x27;, &#x27;finger4_link4&#x27;, &#x27;finger5_link</li><li class="ok">one deliberate thumb press switches the torch on (lamp lit, lens glowing), in the air, by the hand alone: presses 1, 2.9 N on the switch zone (20 ms mean), thumb flexed to 0.65 of its stroke, thumb contacts at the press (link, deg, mm, N): [(&#x27;finger1_link3&#x27;, -44, 108, 0.43), (&#x27;finger1_link3&#x27;, -44, 108, 0.43), (&#x27;finger1_link3</li><li class="ok">the lit torch pointing past the label does not count: axis 30.6 deg off the label (tolerance 10; 29.0 before the press), lamp level 1.0, criterion met: False, m_beam_on_label 0</li><li class="ok">DECLARED OUTCOME: torch on, axis within 10 deg of the label, whole label inside the 14 deg cone, nothing between lens and label, held by the hand alone, for at least 1 s: all six terms true for 2.00 s of 2.00 s; worst axis error 0.99 deg, farthest label corner 8.09 deg off the axis, label points hidden from the lens 0 of 5, lens 544 mm from the label, grip lost: None, torch in the palm fr</li><li class="ok">10 s lit hold by the hand alone: the switch is not touched, the torch stays on the label: further presses 0, largest zone force in 10 s 0.00 N (bridged 0.00 N ), criterion true 10.00 s of 10.00 s, worst axis error 1.01 deg, grip lost: None, torch in the palm frame [36.8, -38.3, 58.1] mm</li><li class="ok">shaking the lit torch (+-30 mm at 2.5 Hz, 2 s) does not operate the switch; it stays held, lit and on the label: shaken up-down; further presses 0, largest zone force 0.00 N (bridged 0.00 N ), torch speed up to 0.62 m/s, IK residual 0.3 mm, afterwards axis 0.94 deg off the label, criterion met True, torch in the palm frame [36.8, -</li><li class="ok">a second deliberate thumb press switches the torch off; the dark torch aimed at the label does not count: presses 1, 2.1 N on the zone, thumb flexed to 0.65 of its stroke; lamp level 0.0, m_torch_on 0; axis 0.89 deg off the label for 1.2 s, criterion met False, still held True</li><li class="ok">rule.py on the probe episode &quot;run&quot; says PASS: PASS [&#x27;rule satisfied at 15.7 s (budget 30.0 s)&#x27;]</li><li class="ok">wrong way (assisted hold): lit, axis on the label, whole label inside the cone, cabinet clear, held, but the robot&#x27;s own left hand hangs in the beam: label points are in its shadow and the criterion is not met: left hand 0.35 of the way from lens to label; axis 0.91 deg off the label centre, farthest corner 8.12 deg, lamp level 1.0, held True; label points hidden from the lens: 4 of 5 ({&#x27;centre&#x27;: &#x27;left_finger4_link3&#x27;, &#x27;corner -</li><li class="ok">rule.py on the probe episode &quot;run_shadow&quot; says FAIL: FAIL [&quot;rule not satisfied for 50 consecutive ticks; false at the end: line of sight from the lens to the label (centre and four corners) clear of the cabinet, its door, the meter and the robot&#x27;s own arms and hands&quot;]</li><li class="ok">after the shadow episode the hand alone still holds the torch, it is off, and the left arm is back at rest: hand links on the torch: [&#x27;attachment_right&#x27;, &#x27;finger2_link4&#x27;, &#x27;finger3_link4&#x27;, &#x27;finger4_link2&#x27;, &#x27;finger4_link4&#x27;, &#x27;finger5_link1&#x27;, &#x27;finger5_link2&#x27;, &#x27;finger5_link4&#x27;, &#x27;wuji2_wrist_link&#x27;], presses in this phase 2, lamp leve</li><li class="ok">wrong way (assisted hold): lit, axis on the label, lens near, but aimed from above the hood: the cabinet roof is in the light and the criterion is not met: lens at [-0.345, 0.156, 1.44], axis 0.05 deg off the label centre, 360 mm from it, lamp level 1.0; label points hidden from the lens: 5 of 5 ({&#x27;centre&#x27;: &#x27;meter_box_shell&#x27;, &#x27;corner -y low&#x27;: &#x27;meter_box_shell&#x27;, &#x27;corner -y h</li><li class="ok">rule.py on the probe episode &quot;run_blocked&quot; says FAIL: FAIL [&quot;rule not satisfied for 50 consecutive ticks; false at the end: line of sight from the lens to the label (centre and four corners) clear of the cabinet, its door, the meter and the robot&#x27;s own arms and hands&quot;]</li><li class="ok">after the weld is released the hand alone still holds the torch, and it is off: hand links on the torch: [&#x27;attachment_right&#x27;, &#x27;finger2_link4&#x27;, &#x27;finger3_link4&#x27;, &#x27;finger4_link2&#x27;, &#x27;finger4_link4&#x27;, &#x27;finger5_link1&#x27;, &#x27;finger5_link2&#x27;, &#x27;finger5_link4&#x27;, &#x27;wuji2_wrist_link&#x27;], torch in the palm frame [37.0, -38</li><li class="ok">the hand carried the torch back and laid it on the table; it lies there free of the hand; letting go did not operate the switch: held until the put-down: True (torch in the palm frame [37.0, -38.4, 58.1] mm); height -0.3 mm from where it lay, axis 0.1 deg from level, 27 mm from its start, hand links touching: [], presses 0, largest zone force 0.00</li><li class="ok">picking the torch up a second time, lifting it, laying it down and letting go does not operate the switch: presses 0 (the bar lay rolled -30 deg from its authored roll), zone force: closing 0.00 N (at or above 1.0 N for 0.00 s at most; a press takes 0.1 s; other hand links on the patch, bridged and not counted: 0.00 N ), lift</li><li class="ok">the tool&#x27;s generic top-down grasp (thumb closing with the fingers), lift, shake and put-down never operates the switch, at four rolls of the bar (0 / 90 / 180 / 270 deg; the torch lifted each time): roll 0: presses 0, lifted True, digit ends on the patch up to 0.00 N , zone (20 ms mean) 0.00 N, edges ignored while unarmed 0; roll 90: presses 0, lifted True, digit ends on the patch up to 16.11 N [&#x27;finger1_link4&#x27;], zo</li><li class="ok">the generic grasp, sweep and push each really met the torch (lifted; shifted by more than 2 mm): {&#x27;grasp_lift (four times)&#x27;: [True, True, True, True], &#x27;sweep_moved_mm&#x27;: 323.8, &#x27;push_moved_mm&#x27;: 53.4}</li><li class="ok">abuse of the fixture: hand pressed on the cabinet, torch pushed into its foot, torch dropped on its hood: every phase within the tool&#x27;s limits, the switch not operated: {&#x27;press_side_wall&#x27;: {&#x27;guard&#x27;: {&#x27;stopped&#x27;: True, &#x27;against&#x27;: &#x27;meter_box&#x27;, &#x27;why&#x27;: &#x27;135 N from meter_box&#x27;, &#x27;max_force_N&#x27;: 135.2, &#x27;travelled_m&#x27;: 0.2193, &#x27;asked_m&#x27;: 0.2701}, &#x27;verdict&#x27;: &#x27;PASS&#x27;, &#x27;deepest_scene_contact_mm&#x27;: {&#x27;sce</li><li class="ok">the lamp is lit exactly when the switch is on (after the generic grasps, sweep, push, drop): switch on False: 0 press(es) by sweep, push, hand on the cabinet, push into the cabinet and drop; 6 in the whole probe (the task 2, the two wrong-way episodes 2 each), 4 rising edges ignored because the switch was not ar</li><li class="ok">the torch has come to rest (it does not roll on: rolling resistance on table and floor): on the roof of the cabinet at [-0.311, 0.359, 1.253]: speed 0.0000 m/s, spin 0.000 rad/s, 3 s after the drop phase ended</li></ul></details>
   <details><summary>what the last independent judge wrote</summary><p class="op">PASS for this round (must_fix false). Hero 8 (low end), front 7, close 7. Step 1 is clean: check_task --final reports 0 errors, the probe is PASS for physics and function with a scene hash equal to scene.xml, the same 24 checks and four rule verdicts as before the polish, every non-visual element of scene.xml is identical to the pre-pass copy, and the pack object matches object.json. The hero now shows the lit lens and the label in the light in one frame with a real finger wrap on the torch; what remains is a lens without glare, thick slab cabinet walls, a plain door panel and the thumb tip ha</p></details>
-  <p class="links"><a href="daily50/t35_flashlight_front.jpg">whole table</a> · <a href="daily50/t35_flashlight_close.jpg">close-up</a> · <a href="daily50/t35_flashlight.mp4">clip of the action</a></p>
+  <p class="links"><a href="daily50_task/t35_flashlight.html"><b>S2 trials on this task</b></a> · <a href="daily50/t35_flashlight_hero.jpg">main picture</a> · <a href="daily50/t35_flashlight_front.jpg">whole table</a> · <a href="daily50/t35_flashlight_close.jpg">close-up</a> · <a href="daily50/t35_flashlight.mp4">clip of the action</a></p>
  </div>
 </div>
 <div class="card passed" id="t36">
@@ -650,7 +650,7 @@ Scores: hero 8, front 7, close 7.
  </div>
 </div>
 <div class="card passed" id="t38">
- <a class="thumb" href="daily50/t38_tv_remote_hero.jpg"><img loading="lazy" src="daily50/t38_tv_remote_hero.jpg" alt="Turn on the TV with the remote."></a>
+ <a class="thumb" href="daily50_task/t38_tv_remote.html"><img loading="lazy" src="daily50/t38_tv_remote_hero.jpg" alt="Turn on the TV with the remote."><span class="trials">S2 trials &rarr;</span></a>
  <div class="txt">
   <h3>t38 · 用遥控器打开电视</h3>
   <p class="prompt">“Turn on the TV with the remote.”</p>
@@ -661,7 +661,7 @@ Scores: hero 8, front 7, close 7.
 
 - **Files:** `check_task.py --final` reports 0 errors and 0 warnings. The probe report&#x27;s scene hash equals `scene.xml` (30e0687d...). Physics is PASS over 17 phases and function PASS over 22 checks, with check names, measured values and phase monitors identical to the pre-polish report. The pack object&#x27;s mesh hashes, mass and friction match `object.json`, and `rule.py` and `probe.py` predate the polish.
 - **hero.png (8, borderline):** it reads as a photograph at a glance. </p><ul class="pr"><li>hero.png, x 0-640, y 0-720: the white forearm fills about a quarter of the frame as a mirror-gloss, porcelain-like mass. Its cover shells overlap in wavy folds </li></ul></details>
-  <p class="links"><a href="daily50/t38_tv_remote_front.jpg">whole table</a> · <a href="daily50/t38_tv_remote_close.jpg">close-up</a> · <a href="daily50/t38_tv_remote.mp4">clip of the action</a></p>
+  <p class="links"><a href="daily50_task/t38_tv_remote.html"><b>S2 trials on this task</b></a> · <a href="daily50/t38_tv_remote_hero.jpg">main picture</a> · <a href="daily50/t38_tv_remote_front.jpg">whole table</a> · <a href="daily50/t38_tv_remote_close.jpg">close-up</a> · <a href="daily50/t38_tv_remote.mp4">clip of the action</a></p>
  </div>
 </div>
 <div class="card passed" id="t39">

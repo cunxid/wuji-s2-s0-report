@@ -1,7 +1,7 @@
 {
  "schema": "s2loop.reason_video/1",
- "version": 2,
- "built": "2026-11-25 11:44:25 EST",
+ "version": 3,
+ "built": "2026-11-25 11:50:54 EST",
  "made_by": "s2/s2loop/reason_video.py: the head-camera film with the trial's reason loop, colour-coded by phase",
  "task": "t27_paperweight",
  "status": "FAIL",
@@ -242,5 +242,5 @@
   "record turn 8 (check) is no turn of the session's log: shown as a card at tick 841",
   "3 record turn(s) carry another number than the session's turn log gives the same turn (joined by ticks, phase word, sentence and skill, in order)"
  ],
- "build_seconds": 2.15
+ "build_seconds": 2.49
 }

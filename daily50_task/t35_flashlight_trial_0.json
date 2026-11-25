@@ -1,7 +1,7 @@
 {
  "schema": "s2loop.reason_video/1",
- "version": 2,
- "built": "2026-11-25 11:47:32 EST",
+ "version": 3,
+ "built": "2026-11-25 11:50:57 EST",
  "made_by": "s2/s2loop/reason_video.py: the head-camera film with the trial's reason loop, colour-coded by phase",
  "task": "t35_flashlight",
  "status": "FAIL",
@@ -12,7 +12,7 @@
   "trial_sha256": "29371fb222f734777f57590322ee99b7bbd4b3273fad441ae7dd2dd2d52b330b",
   "turn_log_sha256": "cc420ef96ae77a1d82fdbc5eb8ea376f2220b024b5f9bad7d17646937a4dff3a",
   "head_film_sha256": "1fa281ddfef7724ae30260ef17043e7cd1868ae60e57de820e2b84666752c14a",
-  "head_film_built_now": true,
+  "head_film_built_now": false,
   "head_film_in_run_folder": false
  },
  "video": {
@@ -169,5 +169,5 @@
   }
  ],
  "problems": [],
- "build_seconds": 186.49
+ "build_seconds": 2.25
 }

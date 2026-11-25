@@ -1,34 +1,59 @@
 {
  "schema": "daily50.trials_page/1",
- "generated": "2026-11-25 11:47 EST",
+ "generated": "2026-11-25 12:06 EST",
  "headline": {
   "tasks_total": 50,
-  "tasks_attempted": 4,
+  "tasks_attempted": 8,
   "tasks_passed": 0,
   "tasks_passed_names": [],
-  "trials": 5,
+  "trials": 10,
   "trials_by_status": {
-   "FAIL": 5
+   "FAIL": 10
   },
-  "words": "success rate: 0 of 4 tasks passed (played by session agents, probe series \u2014 not a counted test series)"
+  "words": "success rate: 0 of 8 tasks passed (played by session agents, probe series \u2014 not a counted test series)",
+  "practice_tasks_total": 40,
+  "first_attempt": {
+   "tasks": 8,
+   "passed": 0,
+   "names": []
+  },
+  "after_practice": {
+   "tasks": 8,
+   "passed": 0,
+   "passed_at_attempt": {}
+  },
+  "held_out": {
+   "tasks_total": 10,
+   "tasks": 0,
+   "passed": 0
+  }
  },
  "media": {
-  "files": 5,
-  "bytes": 2951875,
+  "files": 10,
+  "bytes": 5379837,
   "budget_bytes": 150000000
  },
  "judge_reason_shown": true,
+ "held_out_from": "PROTOCOL.md of the trials folder",
  "tasks": [
   {
    "task": "t19_jar_drawer",
    "in_benchmark": true,
+   "held_out": false,
    "best_status": "FAIL",
+   "first_attempt": {
+    "trial": "0",
+    "status": "FAIL"
+   },
+   "passed_at_attempt": null,
    "trials": [
     {
      "file": "trial_0.json",
      "number": "0",
      "status": "FAIL",
      "written": "2026-11-25 11:34",
+     "attempt": 1,
+     "read_task_notes": false,
      "run": "20261125T161139Z-dfdc17fe",
      "turns": 16,
      "phase_counts": {
@@ -39,7 +64,7 @@
      },
      "replans": 2,
      "video": "t19_jar_drawer_trial_0.mp4",
-     "video_sha256": "b1d76c7d8497e8645e90f662ff280cbabb4f200691228fc3d5a2907b1c5e8304",
+     "video_sha256": "869f16473301055f399ae89f8b07a4d04c7341f3830651b3dd2b0082d851c682",
      "problems": [
       "record turn 0 (look) is no turn of the session's log: shown as a card at tick 0"
      ]
@@ -47,15 +72,58 @@
    ]
   },
   {
+   "task": "t21_calendar_cube",
+   "in_benchmark": true,
+   "held_out": false,
+   "best_status": "FAIL",
+   "first_attempt": {
+    "trial": "0",
+    "status": "FAIL"
+   },
+   "passed_at_attempt": null,
+   "trials": [
+    {
+     "file": "trial_0.json",
+     "number": "0",
+     "status": "FAIL",
+     "written": "2026-11-25 11:59",
+     "attempt": 1,
+     "read_task_notes": false,
+     "run": "20261125T164454Z-0f412191",
+     "turns": 8,
+     "phase_counts": {
+      "plan": 2,
+      "act": 6
+     },
+     "replans": 0,
+     "video": "t21_calendar_cube_trial_0.mp4",
+     "video_sha256": "f89b96aaf93a48e8f1770698d8830cdaaf72a838a09b31388f764c20ed7103c9",
+     "problems": [
+      "logged turn 3 (plan, ticks 0-0) is not in the trial record: shown with the phase its own sentence names",
+      "5 record turn(s) carry another number than the session's turn log gives the same turn (joined by ticks, phase word, sentence and skill, in order)",
+      "the record lists 1 replan(s) and has 0 turn(s) of phase replan"
+     ]
+    }
+   ]
+  },
+  {
    "task": "t27_paperweight",
    "in_benchmark": true,
+   "held_out": false,
    "best_status": "FAIL",
+   "first_attempt": {
+    "trial": "3",
+    "status": "FAIL"
+   },
+   "passed_at_attempt": null,
    "trials": [
     {
      "file": "trial_0.json",
      "number": "0",
      "status": "FAIL",
      "written": "2026-11-25 11:30",
+     "attempt": null,
+     "read_task_notes": null,
      "run": "20261125T161016Z-5bd7c6d7",
      "turns": 17,
      "phase_counts": {
@@ -70,10 +138,31 @@
      "problems": []
     },
     {
+     "file": "trial_3.json",
+     "number": "3",
+     "status": "FAIL",
+     "written": "2026-11-25 11:43",
+     "attempt": 3,
+     "read_task_notes": true,
+     "run": "20261125T162234Z-3be38783",
+     "turns": 9,
+     "phase_counts": {
+      "plan": 2,
+      "act": 6,
+      "replan": 1
+     },
+     "replans": 1,
+     "video": "t27_paperweight_trial_3.mp4",
+     "video_sha256": "abceedba6c966f1ff324e73fd6e21597f51717bf24f99062a9e3782f1e243b99",
+     "problems": []
+    },
+    {
      "file": "trial_20.json",
      "number": "20",
      "status": "FAIL",
      "written": "2026-11-25 11:25",
+     "attempt": null,
+     "read_task_notes": null,
      "run": "20261125T160927Z-2286e74a",
      "turns": 11,
      "phase_counts": {
@@ -94,15 +183,92 @@
    ]
   },
   {
+   "task": "t28_can_bin",
+   "in_benchmark": true,
+   "held_out": false,
+   "best_status": "FAIL",
+   "first_attempt": {
+    "trial": "0",
+    "status": "FAIL"
+   },
+   "passed_at_attempt": null,
+   "trials": [
+    {
+     "file": "trial_0.json",
+     "number": "0",
+     "status": "FAIL",
+     "written": "2026-11-25 11:50",
+     "attempt": 1,
+     "read_task_notes": false,
+     "run": "20261125T163749Z-548f3dd0",
+     "turns": 11,
+     "phase_counts": {
+      "look": 2,
+      "plan": 1,
+      "act": 8
+     },
+     "replans": 0,
+     "video": "t28_can_bin_trial_0.mp4",
+     "video_sha256": "9c7c0271096cf3f6524ef21782405b2e4dde2d60d4daecdeb101b4cc3efc0d00",
+     "problems": [
+      "the record lists 1 replan(s) and has 0 turn(s) of phase replan"
+     ]
+    }
+   ]
+  },
+  {
+   "task": "t32_umbrella_stand",
+   "in_benchmark": true,
+   "held_out": false,
+   "best_status": "FAIL",
+   "first_attempt": {
+    "trial": "0",
+    "status": "FAIL"
+   },
+   "passed_at_attempt": null,
+   "trials": [
+    {
+     "file": "trial_0.json",
+     "number": "0",
+     "status": "FAIL",
+     "written": "2026-11-25 11:55",
+     "attempt": 1,
+     "read_task_notes": false,
+     "run": "20261125T164108Z-d8556415",
+     "turns": 11,
+     "phase_counts": {
+      "plan": 1,
+      "look": 4,
+      "act": 5,
+      "check": 1
+     },
+     "replans": 0,
+     "video": "t32_umbrella_stand_trial_0.mp4",
+     "video_sha256": "b0fdff06b54d5d2330bbae957dc6cf047606c894c11a7a4ed2643fa81c152d4d",
+     "problems": [
+      "the record lists 1 replan(s) and has 0 turn(s) of phase replan"
+     ]
+    }
+   ]
+  },
+  {
    "task": "t35_flashlight",
    "in_benchmark": true,
+   "held_out": false,
    "best_status": "FAIL",
+   "first_attempt": {
+    "trial": "0",
+    "status": "FAIL"
+   },
+   "passed_at_attempt": null,
    "trials": [
     {
      "file": "trial_0.json",
      "number": "0",
      "status": "FAIL",
      "written": "2026-11-25 11:39",
+     "attempt": 1,
+     "read_task_notes": false,
      "run": "20261125T162335Z-57406c7a",
      "turns": 7,
      "phase_counts": {
@@ -120,15 +286,60 @@
    ]
   },
   {
+   "task": "t38_tv_remote",
+   "in_benchmark": true,
+   "held_out": false,
+   "best_status": "FAIL",
+   "first_attempt": {
+    "trial": "0",
+    "status": "FAIL"
+   },
+   "passed_at_attempt": null,
+   "trials": [
+    {
+     "file": "trial_0.json",
+     "number": "0",
+     "status": "FAIL",
+     "written": "2026-11-25 11:47",
+     "attempt": null,
+     "read_task_notes": null,
+     "run": "20261125T163101Z-bfa8c821",
+     "turns": 16,
+     "phase_counts": {
+      "plan": 1,
+      "act": 15
+     },
+     "replans": 0,
+     "video": "t38_tv_remote_trial_0.mp4",
+     "video_sha256": "080ba76b4c3f06fa6c94b58ccfa1ba9dd5591d1640f1a68d87230b1831a7230f",
+     "problems": [
+      "logged turn 11 (act, ticks 326-326) is not in the trial record: shown with the phase its own sentence names",
+      "logged turn 12 (act, ticks 326-326) is not in the trial record: shown with the phase its own sentence names",
+      "logged turn 13 (act, ticks 326-326) is not in the trial record: shown with the phase its own sentence names",
+      "logged turn 14 (act, ticks 326-326) is not in the trial record: shown with the phase its own sentence names",
+      "2 record turn(s) carry another number than the session's turn log gives the same turn (joined by ticks, phase word, sentence and skill, in order)"
+     ]
+    }
+   ]
+  },
+  {
    "task": "t41_power_strip",
    "in_benchmark": true,
+   "held_out": false,
    "best_status": "FAIL",
+   "first_attempt": {
+    "trial": "0",
+    "status": "FAIL"
+   },
+   "passed_at_attempt": null,
    "trials": [
     {
      "file": "trial_0.json",
      "number": "0",
      "status": "FAIL",
      "written": "2026-11-25 11:24",
+     "attempt": null,
+     "read_task_notes": null,
      "run": "20261125T161138Z-51096310",
      "turns": 7,
      "phase_counts": {
@@ -146,10 +357,14 @@
  ],
  "other_tasks": [],
  "pages_sha256": {
-  "daily50_task/t19_jar_drawer.html": "03e78ee16befd9e544d6fe39b9abc2f161b3fc14824c17163c46bb463d29a34c",
-  "daily50_task/t27_paperweight.html": "bb2a0e75929ee6e1b87bfe4d64a248b8190c3af9ecfba443039c9aa067dd5d5c",
-  "daily50_task/t35_flashlight.html": "bce3e7aa6ba48239ef924b5d630ce3654cd5b57b49e0e0751d67e26ba1eb8253",
-  "daily50_task/t41_power_strip.html": "5b291ad201b74761306d49287b3c1c7b3aad40498d988480e5cd7eaed0e12567",
-  "daily50_trials.html": "4bc1283d34fe8af4d9a50c0afac78050803bc3dd0c99d6c9534aae3419ec5f7b"
+  "daily50_task/t19_jar_drawer.html": "2713026fe6e78c1aacf951d5d48a60184fd9ab62a194e9d3c36986b759d02b27",
+  "daily50_task/t21_calendar_cube.html": "5ffa20f5981acc4d0160598e4b97e48f18b234f352ea61b95cdac85b3c71fcce",
+  "daily50_task/t27_paperweight.html": "7712ef3ea1ed40c5e756639511399c99a6fd8d0dfb1e2dacaaa224490fc178dd",
+  "daily50_task/t28_can_bin.html": "cc77a1fda0fe2d05f63fe089b507d28bfd52cfd4968d5cf7ea390b2256ebc841",
+  "daily50_task/t32_umbrella_stand.html": "f81d0e345fdf672921430e66718da80bbd58a5f226c6e725edeab6b2b7a286f1",
+  "daily50_task/t35_flashlight.html": "d5ed7c5a0be2caf9d7dcb5434bf6a3b3b15e618d31b9eb6d3fffb73695e0b2b5",
+  "daily50_task/t38_tv_remote.html": "29934061321d7856087ba4752aa0f40a9cd35b7c245a8198f760047d9f284ac1",
+  "daily50_task/t41_power_strip.html": "9e5be59fef75c177bbdfdb50a2cfb1c24f55723d084bffe75d0e1a614a6dda7e",
+  "daily50_trials.html": "e2d53d8a67749b24f02821bfff6872357fcbe8640d96ba683de44d0ec53c6935"
  }
 }
