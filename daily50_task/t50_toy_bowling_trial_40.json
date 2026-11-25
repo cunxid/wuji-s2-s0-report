@@ -1,24 +1,24 @@
 {
  "schema": "s2loop.reason_video/1",
  "version": 3,
- "built": "2026-11-25 14:07:13 EST",
+ "built": "2026-11-25 16:41:49 EST",
  "made_by": "s2/s2loop/reason_video.py: the head-camera film with the trial's reason loop, colour-coded by phase",
  "task": "t50_toy_bowling",
- "status": "PASS",
+ "status": "FLAGGED",
  "episode_index": 40,
  "run": "20261125T181154Z-26e0614a",
  "trial": "trial_40.json",
  "inputs": {
-  "trial_sha256": "210711b9ea9f2de92ea80520cdbad0a4821a1bc043e674fc87a7312ecddc36dd",
+  "trial_sha256": "da3826948ec39a9e961aad4891fc8b5afd7ea1048435f340e40a0dd137aa322e",
   "turn_log_sha256": "5b7606dbb2532ff77dc4f7c53dbe901375efd70e9f1295829c25fdd729fd61d9",
   "head_film_sha256": "ac09a15d5e80cb55fa3eabc911d99cf30c0ff36a06592a6e95f16e229932aa4c",
-  "head_film_built_now": true,
+  "head_film_built_now": false,
   "head_film_in_run_folder": false
  },
  "video": {
   "file": "t50_toy_bowling_trial_40.mp4",
   "poster": "t50_toy_bowling_trial_40.jpg",
-  "bytes": 738663,
+  "bytes": 738657,
   "frames": 913,
   "fps": 16.666666666666668,
   "duration_s": 54.78,
@@ -442,5 +442,5 @@
   }
  ],
  "problems": [],
- "build_seconds": 233.26
+ "build_seconds": 3.16
 }
