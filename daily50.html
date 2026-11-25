@@ -1,5 +1,5 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>daily50 — 50 real-life tabletop tasks, photorealistic, in MuJoCo (in progress)</title>
+<title>daily50 — 50 real-life tabletop tasks, photorealistic, in MuJoCo</title>
 <style>
 body{font:15.5px/1.6 -apple-system,"Segoe UI","PingFang SC","Noto Sans CJK SC","Microsoft YaHei",sans-serif;color:#0b0b0b;background:#fcfcfb;max-width:1280px;margin:26px auto;padding:0 18px}
 h1{font-size:25px;margin-bottom:2px} h2{font-size:18px;margin-top:34px;border-bottom:1px solid #e1e0d9;padding-bottom:5px}
@@ -20,15 +20,15 @@ ul.log{padding-left:20px;font-size:13.5px} ul.log li{margin:6px 0}
 details{margin:6px 0 0;font-size:12.5px;color:#444} summary{cursor:pointer;color:#333} .op{margin:6px 0 2px;line-height:1.5}
 ul.pr{margin:6px 0 0;padding-left:18px} ul.pr li.no{color:#9b1c14} .links{font-size:12.5px;margin:8px 0 0}
 </style></head><body>
-<p class="na2"><a href="index.html">dashboard</a> · page generated 2026-11-24 23:20 EST from the files of the run; it is rewritten as the work goes on</p>
+<p class="na2"><a href="index.html">dashboard</a> · page generated 2026-11-24 23:21 EST from the files of the run; it is rewritten as the work goes on</p>
 <h1>daily50 — fifty real-life tabletop tasks, photorealistic, in MuJoCo</h1>
-<p class="sub">Work in progress, started 2026-11-24 01:30. In every task the object in the robot's hand is an object mesh from the
+<p class="sub">Started 2026-11-24 01:30; the photoreal round ended 23:20 the same day and the 50 task folders are frozen (<code>daily50/FROZEN</code>). In every task the object in the robot's hand is an object mesh from the
 owner's hand-object interaction data pack, with its shape unchanged. The scene stands on a table in a real room, the robot is the
 project's shipped Tianji dual-arm rig with Wuji 2 hands, and the dynamics run in the project's MuJoCo 3.8. Outcomes happen in the
 physics: a bulb screwed into its holder lights up, a hammered nail goes in, a spray bottle sprays. The pictures are path-traced
 from the same MuJoCo scene and state.</p>
 
-<div class="zh"><b>现在的进度（2026-11-24 23:20 EST）</b>：50 个任务的场景都已搭好并有照片级主图。<b>50</b> 个已通过独立终审，
+<div class="zh"><b>现在的进度（2026-11-24 23:21 EST）</b>：50 个任务的场景都已搭好并有照片级主图。<b>50</b> 个已通过独立终审，
 <b>0</b> 个终审查出问题、正在返修或等待再评审，<b>0</b> 个等待独立评审，<b>0</b> 个还在第一轮（搭建、初审、返修）。
 “通过”的含义见下方说明；这些都是机器人按脚本在场景里做动作的检查，不是策略完成任务的成功率。<b>照片级返修轮（16:10 起）</b>：50 个任务此前都已通过物理、功能、判据终审，但主图只有 7/10；现在逐个只改外观（扫描资产、磨损、抓握、构图，不动物理和判据），由独立评审按 8/10 的标准重新打分，目前 50 个已评、50 个达到 8 分。“返修中”的任务多数是在这一轮里。工作记录全文在仓库的 <code>s2/benchmark/InHouse/task.md</code>。</div>
 
@@ -52,7 +52,7 @@ anything that does not come to rest. <b>Functional outcome</b>: the outcome the 
 measured, and episodes done the wrong way must NOT produce it. <b>Final pass</b>: an agent that did not build the task rebuilds it,
 re-runs the robot, writes its own abuse test, compares the declared criterion with the scoring rule term by term, and scores the
 main picture against photographs of the real robot; the task is fixed and judged again until the judge has no physics, function
-or criterion finding and the picture scores at least 7 of 10. Where a badge says the object was <b>held by a test weld</b>, the
+or criterion finding and the picture scores at least 7 of 10. <b>Photoreal round</b> (judges numbered 8 and up): only looks, cameras and the hero pose were changed, and a new independent judge re-checked the physics files and scored the main picture; the bar is 8 of 10 (taken for a photograph at a glance, doubted only on inspection). Where a badge says the object was <b>held by a test weld</b>, the
 hand did not hold the object by itself in those phases: the weld is a test aid for the mechanism, and it is declared in the
 task's files. Everything here is scripted probing of the scenes. <b>No tracking-policy episode has been run on these tasks yet</b>,
 so nothing on this page is a success rate; the nine named tools of the pack are not in the policy's training recipe, the 34
@@ -66,7 +66,7 @@ primitive shapes are.</div>
 <h2>All fifty main pictures</h2>
 <div class="sheets"><a href="daily50/sheet_1.jpg"><img loading="lazy" src="daily50/sheet_1.jpg" alt="main pictures of tasks t01 to t25"></a>
 <a href="daily50/sheet_2.jpg"><img loading="lazy" src="daily50/sheet_2.jpg" alt="main pictures of tasks t26 to t50"></a></div>
-<p class="na2">Some pictures still show an earlier state of their scene (an older look of the robot, an arm stretched out sideways): each is rendered again when its task goes through the final pass.</p>
+<p class="na2">Each picture is the final still its last judge scored.</p>
 
 <h2>The tasks</h2>
 <div class="grid">
