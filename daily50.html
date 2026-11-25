@@ -21,7 +21,7 @@ details{margin:6px 0 0;font-size:12.5px;color:#444} summary{cursor:pointer;color
 ul.pr{margin:6px 0 0;padding-left:18px} ul.pr li.no{color:#9b1c14} .links{font-size:12.5px;margin:8px 0 0}
 a.thumb{position:relative;display:block} a.thumb .trials{position:absolute;left:8px;bottom:10px;background:#1f5fbf;color:#fff;font-size:12px;font-weight:600;padding:3px 8px;border-radius:4px}
 </style></head><body>
-<p class="na2"><a href="index.html">dashboard</a> · page generated 2026-11-25 15:33 EST from the files of the run; it is rewritten as the work goes on</p>
+<p class="na2"><a href="index.html">dashboard</a> · page generated 2026-11-25 17:31 EST from the files of the run; it is rewritten as the work goes on</p>
 <h1>daily50 — fifty real-life tabletop tasks, photorealistic, in MuJoCo</h1>
 <p class="sub"><b>Success rate of S2 on these 50 &rarr; <a href="daily50_trials.html">trials</a>.</b> A task whose picture carries the mark "S2 trials" opens its own trials page.</p>
 <p class="sub">Started 2026-11-24 01:30; the photoreal round ended 23:20 the same day and the 50 task folders are frozen (<code>daily50/FROZEN</code>). In every task the object in the robot's hand is an object mesh from the
@@ -30,7 +30,7 @@ project's shipped Tianji dual-arm rig with Wuji 2 hands, and the dynamics run in
 physics: a bulb screwed into its holder lights up, a hammered nail goes in, a spray bottle sprays. The pictures are path-traced
 from the same MuJoCo scene and state.</p>
 
-<div class="zh"><b>现在的进度（2026-11-25 15:33 EST）</b>：50 个任务的场景都已搭好并有照片级主图。<b>50</b> 个已通过独立终审，
+<div class="zh"><b>现在的进度（2026-11-25 17:31 EST）</b>：50 个任务的场景都已搭好并有照片级主图。<b>50</b> 个已通过独立终审，
 <b>0</b> 个终审查出问题、正在返修或等待再评审，<b>0</b> 个等待独立评审，<b>0</b> 个还在第一轮（搭建、初审、返修）。
 “通过”的含义见下方说明；这些都是机器人按脚本在场景里做动作的检查，不是策略完成任务的成功率。<b>照片级返修轮（16:10 起）</b>：50 个任务此前都已通过物理、功能、判据终审，但主图只有 7/10；现在逐个只改外观（扫描资产、磨损、抓握、构图，不动物理和判据），由独立评审按 8/10 的标准重新打分，目前 50 个已评、50 个达到 8 分。“返修中”的任务多数是在这一轮里。工作记录全文在仓库的 <code>s2/benchmark/InHouse/task.md</code>。</div>
 
@@ -73,7 +73,7 @@ primitive shapes are.</div>
 <h2>The tasks</h2>
 <div class="grid">
 <div class="card passed" id="t01">
- <a class="thumb" href="daily50/t01_hammer_nail_hero.jpg"><img loading="lazy" src="daily50/t01_hammer_nail_hero.jpg" alt="Hammer the nail into the board."></a>
+ <a class="thumb" href="daily50_task/t01_hammer_nail.html"><img loading="lazy" src="daily50/t01_hammer_nail_hero.jpg" alt="Hammer the nail into the board."><span class="trials">S2 trials &rarr;</span></a>
  <div class="txt">
   <h3>t01 · 锤子敲钉子</h3>
   <p class="prompt">“Hammer the nail into the board.”</p>
@@ -87,11 +87,11 @@ primitive shapes are.</div>
 - report.json (2026-11-24 16:34) is PASS for physics and function, with 39 phases and 49 checks, all passing, and 10 rule verdicts as expected (1 PASS, 9 FAIL on the wrong ways).
 - Its scene_sha256 `b69696c3...` equals the sha256 of scene.xml.
 - The check and phase counts match what judge 7 recorded (39 / 49). I could not diff check names against the pre-polish run, because the only earlier report on disk is the 13:5</p></details>
-  <p class="links"><a href="daily50/t01_hammer_nail_front.jpg">whole table</a> · <a href="daily50/t01_hammer_nail_close.jpg">close-up</a> · <a href="daily50/t01_hammer_nail.mp4">clip of the action</a></p>
+  <p class="links"><a href="daily50_task/t01_hammer_nail.html"><b>S2 trials on this task</b></a> · <a href="daily50/t01_hammer_nail_hero.jpg">main picture</a> · <a href="daily50/t01_hammer_nail_front.jpg">whole table</a> · <a href="daily50/t01_hammer_nail_close.jpg">close-up</a> · <a href="daily50/t01_hammer_nail.mp4">clip of the action</a></p>
  </div>
 </div>
 <div class="card passed" id="t02">
- <a class="thumb" href="daily50/t02_crack_walnut_hero.jpg"><img loading="lazy" src="daily50/t02_crack_walnut_hero.jpg" alt="Crack the walnut with the hammer."></a>
+ <a class="thumb" href="daily50_task/t02_crack_walnut.html"><img loading="lazy" src="daily50/t02_crack_walnut_hero.jpg" alt="Crack the walnut with the hammer."><span class="trials">S2 trials &rarr;</span></a>
  <div class="txt">
   <h3>t02 · 锤子敲核桃</h3>
   <p class="prompt">“Crack the walnut with the hammer.”</p>
@@ -101,7 +101,7 @@ primitive shapes are.</div>
   <details><summary>what the last independent judge wrote</summary><p class="op">PASS, with hero a borderline 8: hero 8, front 7, close 7. All step 1 checks hold: 0 errors, probe PASS for physics and function on the current scene hash with the same 28 checks, pack object and rule untouched, and only cameras and visuals changed.
 
 - **hero.png (8):** at a glance it reads as a photograph. The scanned walnuts, shell litter, real granite, metal hand, depth of field and grain carry it, and the grey column is gone. On inspection the doubts are the factory-perfect, razor-edged nut board, the thumb pod that does not wrap the handle, the white arm melting into the white wall, and th</p><ul class="pr"><li>The nut board is the strongest remaining tell in all three stills. It is still a procedural box: razor-sharp outer edges and corners, no chamfer, no visible joi</li></ul></details>
-  <p class="links"><a href="daily50/t02_crack_walnut_front.jpg">whole table</a> · <a href="daily50/t02_crack_walnut_close.jpg">close-up</a> · <a href="daily50/t02_crack_walnut.mp4">clip of the action</a></p>
+  <p class="links"><a href="daily50_task/t02_crack_walnut.html"><b>S2 trials on this task</b></a> · <a href="daily50/t02_crack_walnut_hero.jpg">main picture</a> · <a href="daily50/t02_crack_walnut_front.jpg">whole table</a> · <a href="daily50/t02_crack_walnut_close.jpg">close-up</a> · <a href="daily50/t02_crack_walnut.mp4">clip of the action</a></p>
  </div>
 </div>
 <div class="card passed" id="t03">
@@ -139,7 +139,7 @@ The hero now reads as a photograph at a glance. The new angle shows the head tow
  </div>
 </div>
 <div class="card passed" id="t05">
- <a class="thumb" href="daily50/t05_hang_hammer_hero.jpg"><img loading="lazy" src="daily50/t05_hang_hammer_hero.jpg" alt="Hang the hammer back on the pegboard."></a>
+ <a class="thumb" href="daily50_task/t05_hang_hammer.html"><img loading="lazy" src="daily50/t05_hang_hammer_hero.jpg" alt="Hang the hammer back on the pegboard."><span class="trials">S2 trials &rarr;</span></a>
  <div class="txt">
   <h3>t05 · 把锤子挂回工具墙</h3>
   <p class="prompt">“Hang the hammer back on the pegboard.”</p>
@@ -154,7 +154,7 @@ The hero now reads as a photograph at a glance. The new angle shows the head tow
 - The 28 checks are identical in name and result to the pre-polish report; the 27 phases, assist welds and rule verdicts also match.
 - rule.py and probe.py are byte-identical to the pre-polish copies.
 - All 58 changed lines in scene.xml are textures, materials, cameras or visual geoms with contype 0 and co</p></details>
-  <p class="links"><a href="daily50/t05_hang_hammer_front.jpg">whole table</a> · <a href="daily50/t05_hang_hammer_close.jpg">close-up</a> · <a href="daily50/t05_hang_hammer.mp4">clip of the action</a></p>
+  <p class="links"><a href="daily50_task/t05_hang_hammer.html"><b>S2 trials on this task</b></a> · <a href="daily50/t05_hang_hammer_hero.jpg">main picture</a> · <a href="daily50/t05_hang_hammer_front.jpg">whole table</a> · <a href="daily50/t05_hang_hammer_close.jpg">close-up</a> · <a href="daily50/t05_hang_hammer.mp4">clip of the action</a></p>
  </div>
 </div>
 <div class="card passed" id="t06">
@@ -812,7 +812,7 @@ Files and physics:
  </div>
 </div>
 <div class="card passed" id="t48">
- <a class="thumb" href="daily50/t48_wheel_chock_hero.jpg"><img loading="lazy" src="daily50/t48_wheel_chock_hero.jpg" alt="Chock the paint drum so it does not roll down the ramp."></a>
+ <a class="thumb" href="daily50_task/t48_wheel_chock.html"><img loading="lazy" src="daily50/t48_wheel_chock_hero.jpg" alt="Chock the paint drum so it does not roll down the ramp."><span class="trials">S2 trials &rarr;</span></a>
  <div class="txt">
   <h3>t48 · 用三角木挡住滚筒</h3>
   <p class="prompt">“Chock the paint drum so it does not roll down the ramp.”</p>
@@ -822,11 +822,11 @@ Files and physics:
   <details><summary>what the last independent judge wrote</summary><p class="op">No fix is forced: hero 8 (marginal), front 7, close 7, and every step 1 check holds.
 
 **Step 1.** `check_task --final` reports 0 errors and 0 warnings. The probe report has physics PASS and function PASS, with the same 12 phases and 11 checks and the same values as before the polish. Its scene hash equals the sha256 of `scene.xml` (fa81613e...). Compared with the pre-polish scene, all colliders, joints, equalities, defaults, the mechanism block and body inertials are identical; only visual geoms and one collision-free decal body changed. `rule.py` is untouched, and the pack chock&#x27;s collider, m</p><ul class="pr"><li>hero.png does not show the task&#x27;s moment. The chock lies mid-ramp, 86 mm short of the tin (x 770-1000, y 500-820), the bolt is still in, and the hand arches ove</li><li>The dried paint on the lid is the first thing that fails on inspection (hero x 1160-1530, y 330-700). It is a uniform, saturated cyan band of constant width wit</li><li>No scanned or dataset model is in the task&#x27;s own fixtures. The tin, ramp, stop batten, latch post, bolt and knob are all procedural. The latch post is the one a</li></ul></details>
-  <p class="links"><a href="daily50/t48_wheel_chock_front.jpg">whole table</a> · <a href="daily50/t48_wheel_chock_close.jpg">close-up</a> · <a href="daily50/t48_wheel_chock.mp4">clip of the action</a></p>
+  <p class="links"><a href="daily50_task/t48_wheel_chock.html"><b>S2 trials on this task</b></a> · <a href="daily50/t48_wheel_chock_hero.jpg">main picture</a> · <a href="daily50/t48_wheel_chock_front.jpg">whole table</a> · <a href="daily50/t48_wheel_chock_close.jpg">close-up</a> · <a href="daily50/t48_wheel_chock.mp4">clip of the action</a></p>
  </div>
 </div>
 <div class="card passed" id="t49">
- <a class="thumb" href="daily50/t49_weigh_orange_hero.jpg"><img loading="lazy" src="daily50/t49_weigh_orange_hero.jpg" alt="Weigh the orange on the kitchen scale."></a>
+ <a class="thumb" href="daily50_task/t49_weigh_orange.html"><img loading="lazy" src="daily50/t49_weigh_orange_hero.jpg" alt="Weigh the orange on the kitchen scale."><span class="trials">S2 trials &rarr;</span></a>
  <div class="txt">
   <h3>t49 · 称橙子</h3>
   <p class="prompt">“Weigh the orange on the kitchen scale.”</p>
@@ -840,7 +840,7 @@ Files and physics:
 - The probe is PASS for physics and function on the scene.xml that is on disk (sha256 matches), with 17 unassisted phases and the same 25 checks as before the polish.
 - Only the hero-state check&#x27;s measured text changed, by intent: the nearest finger is 5.1 mm from the peel, with 0 robot contacts.
 - The scene has the same 209 colliders and 89 bodies as the pre-polish scene, with identical joints, equality constraints, actuato</p></details>
-  <p class="links"><a href="daily50/t49_weigh_orange_front.jpg">whole table</a> · <a href="daily50/t49_weigh_orange_close.jpg">close-up</a> · <a href="daily50/t49_weigh_orange.mp4">clip of the action</a></p>
+  <p class="links"><a href="daily50_task/t49_weigh_orange.html"><b>S2 trials on this task</b></a> · <a href="daily50/t49_weigh_orange_hero.jpg">main picture</a> · <a href="daily50/t49_weigh_orange_front.jpg">whole table</a> · <a href="daily50/t49_weigh_orange_close.jpg">close-up</a> · <a href="daily50/t49_weigh_orange.mp4">clip of the action</a></p>
  </div>
 </div>
 <div class="card passed" id="t50">
