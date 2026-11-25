@@ -1,0 +1,99 @@
+{
+ "schema": "daily50.trials_page/1",
+ "generated": "2026-11-25 11:40 EST",
+ "headline": {
+  "tasks_total": 50,
+  "tasks_attempted": 2,
+  "tasks_passed": 0,
+  "tasks_passed_names": [],
+  "trials": 3,
+  "trials_by_status": {
+   "FAIL": 3
+  },
+  "words": "success rate: 0 of 2 tasks passed (played by session agents, probe series \u2014 not a counted test series)"
+ },
+ "media": {
+  "files": 3,
+  "bytes": 1874978,
+  "budget_bytes": 150000000
+ },
+ "tasks": [
+  {
+   "task": "t27_paperweight",
+   "in_benchmark": true,
+   "best_status": "FAIL",
+   "trials": [
+    {
+     "file": "trial_0.json",
+     "number": "0",
+     "status": "FAIL",
+     "written": "2026-11-25 11:30",
+     "run": "20261125T161016Z-5bd7c6d7",
+     "turns": 17,
+     "phase_counts": {
+      "look": 2,
+      "plan": 1,
+      "act": 12,
+      "replan": 2
+     },
+     "replans": 2,
+     "video": "t27_paperweight_trial_0.mp4",
+     "video_sha256": "35454873a9315121d18747bc8561b9a8e326009dd81371612f254b69c61d2848",
+     "problems": []
+    },
+    {
+     "file": "trial_20.json",
+     "number": "20",
+     "status": "FAIL",
+     "written": "2026-11-25 11:25",
+     "run": "20261125T160927Z-2286e74a",
+     "turns": 11,
+     "phase_counts": {
+      "look": 1,
+      "plan": 1,
+      "act": 6,
+      "check": 2,
+      "replan": 1
+     },
+     "replans": 1,
+     "video": "t27_paperweight_trial_20.mp4",
+     "video_sha256": "e8f7f9a7160526dc7b71fcd42bd99ba57db69ef3fec4b4553c77a3212b5a9230",
+     "problems": [
+      "record turn 8 (check) is no turn of the session's log: shown as a card at tick 841",
+      "3 record turn(s) carry another number than the session's turn log gives the same turn (joined by ticks, phase word, sentence and skill, in order)"
+     ]
+    }
+   ]
+  },
+  {
+   "task": "t41_power_strip",
+   "in_benchmark": true,
+   "best_status": "FAIL",
+   "trials": [
+    {
+     "file": "trial_0.json",
+     "number": "0",
+     "status": "FAIL",
+     "written": "2026-11-25 11:24",
+     "run": "20261125T161138Z-51096310",
+     "turns": 7,
+     "phase_counts": {
+      "plan": 1,
+      "act": 3,
+      "check": 3
+     },
+     "replans": 0,
+     "video": "t41_power_strip_trial_0.mp4",
+     "video_sha256": "2f492b8291ba347585669900f2f8c65bbddbf762f2bc45fd5512505ba4dc9c55",
+     "problems": []
+    }
+   ]
+  }
+ ],
+ "other_tasks": [],
+ "pages_sha256": {
+  "daily50_task/t27_paperweight.html": "75cad5ce3999bb509679835250e8afe31f82dfd6721df6386cbf5497b8215b6d",
+  "daily50_task/t41_power_strip.html": "c507876eac5e43af79162948dee9215209cb5106b7f3c0157cb754bf3cb24f93",
+  "daily50_trials.html": "275655854bac1462f4fad1c4e1c33eb3072e63ac8d6a4e75c7403d2394cfd23b"
+ }
+}
