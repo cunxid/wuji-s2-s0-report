@@ -1,0 +1,202 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>S2 skill library (discovered from trials)</title>
+<style>body{font:15px/1.5 system-ui,sans-serif;max-width:1100px;margin:24px auto;padding:0 16px;color:#1a1a1a;background:#fafafa}
+pre{white-space:pre-wrap;word-wrap:break-word;font:13.5px/1.55 ui-monospace,Menlo,Consolas,monospace;background:#fff;border:1px solid #ddd;border-radius:8px;padding:18px}
+.na{color:#666;font-size:13px} a{color:#0b57d0}
+@media (prefers-color-scheme:dark){body{background:#121212;color:#e6e6e6}pre{background:#1b1b1b;border-color:#333}.na{color:#aaa}a{color:#8ab4f8}}</style></head><body>
+<p class="na"><a href="index.html">dashboard</a> · <a href="status.html">status</a> · <a href="daily50_trials.html">trials on the 50 tasks</a> · <a href="capability_card.html">capability card</a> · page built 2026-11-25 16:20</p>
+<h1>S2 skill library</h1>
+<p>Skill knowledge discovered from the plan-first trials, in ASPIRE's form: a situation, what to do, what must be seen afterwards, and the evidence
+(the trials in which exactly that worked or failed). <b>Supported</b> = worked at least twice on at least two tasks; <b>proposed</b> = worked once;
+<b>contradicted</b> = failed where it was expected to work. Every S2 player reads this before planning. It is rewritten whole by a librarian after each wave of trials.</p>
+<pre># S2 skill library: which situation, what to do, what was seen to work (daily50 trial program, probe series)
+
+Written by the librarian from the 27 trial records on 20 tasks present on 2026-11-25 at 16:08 EST (5 PASS), their notes, EXPERIENCE.md and the capability card. Rewritten whole each round.
+An entry names a situation as the head camera and the skill replies show it, what to do, what must be seen afterwards, and the trials in which exactly that sub-goal worked or failed (`t19/40` = task t19, trial 40; PASS and FAIL are status words).
+STATUS: **supported** = worked at least twice on at least two tasks; **proposed** = worked once; **contradicted** = failed where it was expected to work (DO then says what to do instead). The counts are small: &quot;k of n&quot; says what to try first, it is no guarantee.
+In fragments `PART`, `obj`, `pre`, `goal`, `cloud` stand for what you measured; every tool is one of the S2 guide. When a plan step rests on an entry, name it in `envelope_note` (`LIB S6`).
+
+## Supported
+
+### S1. Measure, then dry-run the whole program
+- WHEN: before the first motion, and before any program of your own (grasp, carry, press, stroke): poses, hand turn and heights are still guesses.
+- DO: spend zero-tick steps first: `point_at` grids, `propose_grasps` in a step of its own, `solve_ik` sweeps over hand turn and height (a refusal names the nearest link and its millimetres: a free ruler), then `plan_motion(view, segs)` WITHOUT `execute_plan`, in a step of its own; execute the same segments in the next step, before the hand has moved.
+```python
+p = plan_motion(view, segs)                       # dry run: nothing moves, 0 ticks
+result = {&quot;ok&quot;: p.ok, &quot;rows&quot;: p.diagnostics.get(&quot;rows&quot;), &quot;why&quot;: None if p.ok else p.error.message[:300]}
+```
+- CHECK: `p.ok` and rows that fit the budget; after `execute_plan(p)`: `ok`, and `steps_executed` equal to the rows.
+- EVIDENCE: worked in 8 of 8 trials on 7 tasks: a program accepted in a dry run ran to its end (t49/40, t50/40, t40/40, t40/41, t02/40, t03/40, t34/40, t48/40); both ball carries that passed ran at the first try after zero-tick steps only. Dry runs threw out a fist tap (t03/40), a side approach (t42/41) and an uphill push (t48/40) for 0 ticks. Traps: dry runs in the SAME step as an execute cost the 150-tick latency cap; a dry run made before the hand moved over the target did not carry over (both t34/40). **STATUS: supported**
+### S2. Choose the grasp by the place
+- WHEN: the thing must end on, in or over something else, and that place has walls, neighbours or a raised edge, or lies far from the robot.
+- DO: before grasping ask `solve_ik` for the hover and the touch height at the PLACE with the palm orientation each feasible grasp ends in (position and quaternion in `grasp.diagnostics[&#x27;palm_at_f_cut&#x27;]`); keep a grasp whose wrist-flange side ends over free space there; if none reaches, change skill (scripted grasp, pinch, push) before a tick is spent. `ok = solve_ik(view, Pose(place_xyz, quat_of_grasp, &#x27;world&#x27;), hand=&#x27;close&#x27;).ok`
+- CHECK: the carry reaches the hover it was planned for; the set-down reports no `line_capped_m` of centimetres.
+- EVIDENCE: worked 6 of 6 on 6 tasks: the place was reached as the zero-tick check said (t18/40, t19/40, t49/40, t50/40, t42/40, t34/40). Skipped and paid for in 3 trials (t27/0: flange over the target, descent capped 5.8 cm; t21/0: set-down refused over an occupied holder; t28/0: a 426-tick push before any check). In t32/0 the check showed the destination out of reach of the only usable hand: nothing to carry there. **STATUS: supported**
+### S3. Grasp the part, not the cluster
+- WHEN: the thing to take touches or stands on another thing (a cloth, a plate, a board, other tools): the marked picture gives one big box, words return the whole cluster, `propose_grasps` answers `no_grasp` or offers a clip for another rest pose.
+- DO: take the thing&#x27;s own mask part from `numbered` (its label contains &#x27;mask part&#x27;; choose by place and size) and ask for grasps on that part in a step of its own; the part is also the target for `grasp_scripted`. `parts = [(n, o.label) for n, o in numbered.items() if o.label and &#x27;mask part&#x27; in o.label]; g = propose_grasps(view, numbered[PART])`
+- CHECK: `g.grasps` is not empty; each grasp&#x27;s `diagnostics[&#x27;shape_match&#x27;]` and `[&#x27;trained&#x27;]`; the part has the thing&#x27;s size, not the cluster&#x27;s.
+- EVIDENCE: worked 2 of 2 on 2 tasks: asked on the part, feasible grasps came back (t19/40, where the grasp then held, PASS; t49/40); a scripted grasp also took a tool by its handle part (t02/40). Asked on the cluster or by words: `no_grasp` or a wrong clip in 5 trials on 4 tasks (t19/0, t40/40, t40/41, t03/40, t27/40). **STATUS: supported**
+### S4. Policy grasp: ask first, read the grip, carry level at once
+- WHEN: one free thing with a feasible clip as it rests (its own shape, or another shape the provider offers) must be lifted and carried.
+- DO: `propose_grasps` in a step of its own; prefer a trained clip whose `palm_at_f_cut` lies over the thing&#x27;s middle (a long thing gripped at one end pivots out) and whose `raise_m` is 0; ask listed size alternatives by name (`object_class=`) BEFORE binding: one clip per session. `acquire` in the next step with `lift_m` 0.06 to 0.10; then ONE level `transport` in the grasp&#x27;s own orientation: no hand command, no turn, no waiting. `r = acquire(view, obj, grasp=g.grasps[0], lift_m=0.08); f = r.execution.final_observation.robot_state.fingertip_force_n[&#x27;right&#x27;]`
+- CHECK: `held: yes` (place seen empty, thing seen in the hand) with `grip_opposed` True. With `grip_opposed` False go on only if at least three fingertips read 2 N or more, and at once; fingertips near 1 N: `hold(view, duration_s=0.4)` and look again. `capture_missed` with loaded fingers: one end still stands on the support; do not lift it yourself.
+- EVIDENCE: worked 11 of 16 on 8 of 12 tasks: lifted and still in the hand at the next skill (t27/0, t27/3, t27/20, t27/40, t35/0, t33/0, t34/40, t42/40, t21/0, t32/0, t19/40; not t19/0, t38/0, t02/40, t48/40, t01/40). `grip_opposed` True: 9 of 9, two of them other-shape clips (t21/0, t32/0). False: kept 2 of 4 (t19/40, t42/40: fingertips of 2 to 7 N; t19/0 empty; t02/40 falling at about 1 N). `transport` right after the grasp kept the thing in 7 of 9 calls on 4 tasks; lost: a 3 cm rod (t33/0), a block after a quarter turn (t27/40). **STATUS: supported**
+### S5. Believe the fingertips and the picture, not the held word
+- WHEN: after any grasp, carry, descent, turn or press with something in the hand: `held` says `unknown`, or `yes` / `grasp_slip` against the forces; the arm hides the hand, or the hand is low over something raised.
+- DO: in the same step read the fingertip forces from the skill&#x27;s `final_observation`: three or more loaded = something is gripped; all near zero with the fingers on their targets = empty; in doubt a `hold` of 0.4 s or `lift(view, height_m=0.03)` and look, before a skill that costs hundreds of ticks. `f = [round(float(x), 2) for x in r.execution.final_observation.robot_state.fingertip_force_n[&#x27;right&#x27;]]`
+- CHECK: forces and a clean picture agree (place empty, thing between the fingers); for `release_in_place` compare `landed_size` and `landed_top_z` with the thing itself.
+- EVIDENCE: worked 3 of 4 on 4 tasks: read at once, the forces gave the true state (t27/40: empty after a carry; t34/40: empty after a lift; t18/40: still held although the skill said slip). Not t48/40: one loaded little finger read as an empty hand still pinched the thing&#x27;s end, and the retreat pulled it off the table. The held word was wrong or silent 6 times in 5 trials (t19/0, t27/0, t27/40, t02/40 twice, t18/40); each unnoticed loss cost about 270 to 900 ticks. `landed: yes` described what lay under the hand, not the released thing, twice (t27/40, t19/40). **STATUS: supported**
+### S6. One-plan pinch for a ball
+- WHEN: a ball or round fruit of 6 to 7 cm on a low support (a stand, a plate); `propose_grasps` gives `no_grasp` or only an untrained clip; the scripted grasp does not hold balls.
+- DO: ONE plan, dry-run first (S1): open hand straight down, palm origin 7.5 cm behind the ball&#x27;s centre along the fingers and 2.5 cm above its top; a dwell that closes and keeps `&#x27;close&#x27;` (no `firm`); lift; a level linear carry without a pause; `&#x27;open&#x27;` over the goal; rise; a free move back to the start joints. Aim the let-go with the ball&#x27;s centre 5 cm ahead of the palm origin and 2 to 3 cm to the thumb side of the goal, or with a rim on the little-finger side.
+```python
+c = numbered[N].point_cloud; q0 = view.robot_state.arm_joint_positions[&#x27;right&#x27;]      # N: the object that holds the ball
+segs = [MotionSegment(&#x27;free&#x27;, goal=palm_down_pose(pre, yaw), hand=HandCommand(&#x27;open&#x27;, ramp_ticks=30)),
+        MotionSegment(&#x27;linear&#x27;, goal=palm_down_pose(grasp, yaw), exclude=c, contact_links=(&#x27;fingers&#x27;,)),
+        MotionSegment(&#x27;dwell&#x27;, duration_ticks=65, hand=HandCommand(&#x27;close&#x27;, ramp_ticks=40), exclude=c, contact_links=(&#x27;fingers&#x27;,)),
+        MotionSegment(&#x27;linear&#x27;, goal=palm_down_pose(up, yaw), exclude=c, contact_links=(&#x27;fingers&#x27;,)),
+        MotionSegment(&#x27;linear&#x27;, goal=palm_down_pose(over_goal, yaw)),
+        MotionSegment(&#x27;dwell&#x27;, duration_ticks=30, hand=HandCommand(&#x27;open&#x27;, ramp_ticks=5)),
+        MotionSegment(&#x27;linear&#x27;, goal=palm_down_pose(above, yaw)), MotionSegment(&#x27;free&#x27;, goal=q0)]
+p = plan_motion(view, segs); e = execute_plan(p) if p.ok else None
+```
+- CHECK: the step&#x27;s own picture (arm parked): the support is empty, the ball lies at the goal; the same measurement after a dwell of 2 to 3 s says it is at rest.
+- EVIDENCE: worked 2 of 2 on 2 tasks, both PASS (t50/40: 6 cm ball, lift 8 cm, carry 0.23 m, 420 ticks; t49/40: 7 cm fruit, lift 17 cm, carry 0.26 m, 459 ticks). The same closure held a lying 3.6 cm rod through its lift (t34/40); it was lost in a later free, turning carry (N2). A closure made of separate dwells never came to a lift (N4). **STATUS: supported**
+### S7. Let go above a walled or rimmed receptacle
+- WHEN: the thing must end inside something the hand cannot enter (a drawer, a rimmed pan, a channel): `solve_ik` refuses the low poses over it.
+- DO: before grasping find the lowest hover `solve_ik` accepts over the middle of the opening; carry there (`transport(view, goal, hover_m=h)` or the pinch plan) and let go from the hover: `release_in_place(view, back_m=0.03, rise_m=0.08, look=False)` for a skill grasp, the `&#x27;open&#x27;` dwell for a pinch. Expect 1 to 5 cm of sideways travel: aim at the middle.
+- CHECK: by the picture or `point_at`, not by `landed_seen_xy`: the thing lies inside; the receptacle&#x27;s `top_z` rose by the thing&#x27;s height; the same numbers after a short dwell.
+- EVIDENCE: worked 3 of 3 on 3 tasks, all PASS: the thing ended inside (t19/40: a fall of 10 cm into 6.5 cm walls, 4 cm from the aim; t49/40: 3 cm onto a pan whose 9 mm rim stopped a 5 cm roll; t50/40: 6 cm into a 4.5 cm channel, 1.8 cm off its centre line). On a flat or narrow target the same let-go missed (N6). **STATUS: supported**
+### S8. Set down on a bare spot; `release_in_place` when wedged
+- WHEN: a held thing goes back onto free table (also a tall thing that must stand), or the hand is stuck holding it among neighbours.
+- DO: `set_down(view, spot, onto=spot, approach_height_m=0.04)` on a bare spot whose surroundings are seen; reach the hover with `transport` first when a neighbour stands near the straight approach; if `set_down` or `clear_view` are refused for millimetres while holding, `release_in_place(view)` lets go where the hand is.
+- CHECK: `touch: felt`, `landed: yes`, then a clean picture of how the thing lies or stands.
+- EVIDENCE: worked 3 of 4 on 3 tasks: `set_down` put the thing where aimed (t35/0: 1.6 mm; t42/40: a 20 cm bottle left standing; t21/0: within 2 cm; t32/0: refused twice among clutter). `release_in_place` let go of a held thing in 6 of 7 calls on 4 tasks, 2 to 3 cm from where the hand held it (t27/0, t27/3, t27/20, t21/0, t19/40, t32/0); refused once the session had lost its held belief (t18/40: only a plain `&#x27;open&#x27;` dwell worked). **STATUS: supported**
+### S9. Plan contact from a clean view and keep the whole cloud
+- WHEN: a contact skill or a contact program of your own is refused ON its own target (`planning_failed` with `path_scene_collision` or `start_scene_collision`, a finger 1 to 2 mm from the target, &quot;starts closer than the margin&quot;, a &quot;remembered&quot; place) while the hand stands over or on it, or after the thing moved.
+- DO: save `cloud = obj.point_cloud` in a variable at a view that shows the thing whole; move the hand beside the target (S10) and make the same call again; your own segments carry `exclude=cloud, contact_links=(&#x27;fingers&#x27;,)`. `seg = MotionSegment(&#x27;linear&#x27;, goal=pose, exclude=cloud, contact_links=(&#x27;fingers&#x27;,), guard=ContactGuard(&#x27;arm_torque&#x27;, 0.3, 0.05))`
+- CHECK: in the view the plan is made from the target is listed whole and not `remembered`; the same call is now accepted.
+- EVIDENCE: worked 4 of 5 on 4 tasks: the refused contact was accepted afterwards (t19/40: a fist stroke after a 90-tick move beside; t40/41: a push from a hover that showed the tool whole; t34/40: an own closure with the cloud of the last whole view; t48/40: a scripted grasp after a 129-tick move aside); descents with a tool hanging in the hand passed the same way (t02/40). Not once the fingers had dragged the thing 10 cm inside the closed hand (t42/41: 32 plans refused). **STATUS: supported**
+### S10. Cheap clean view and ending
+- WHEN: you must see what the hand did, or end with the hand open and away; `clear_view` costs 90 to 310 ticks and is refused when the hand is boxed in or rests on something.
+- DO: a short `move_to_pose` to a palm-down pose beside the target (palm at least 9 cm above any surface); for the ending the same call with the hand opening; a program of your own ends with a free segment to the arm&#x27;s start joints, so that the step&#x27;s own picture is the check; from a contact rise straight up first (a linear segment or a short `retreat`), then move free. `r = move_to_pose(view, palm_down_pose(beside_xyz, 0.0), hand=HandCommand(&#x27;open&#x27;, ramp_ticks=20))`
+- CHECK: the target is seen whole with no arm or shadow over it; hand joints near zero (open).
+- EVIDENCE: worked 7 of 7 on 7 tasks for 70 to 190 ticks a call: the clean picture or the open-and-away ending (t19/40: 90 and 77; t18/40: 96 and 70; t48/40: 78; t01/40: 82; t49/40: 77 rows inside the program; t03/40: 117 and 139; t07/40: 189). `clear_view` cost 91 to 310 ticks in 18 calls and was refused in 3 trials (t42/40, t38/0, t32/0). **STATUS: supported**
+### S11. Fingertip push for a small free thing
+- WHEN: a small or low free thing must be tipped over or moved a few centimetres, and the fist is refused (&quot;fist would pass over the target&quot;, out of reach) or would knock it the wrong way.
+- DO: open hand, fingers pointing down (palm quaternion (0, 1, 0, 0)): the backs of the fingers tip a thin upright bar over backward, the index and ring fingertips push a lying thing straight ahead; write it as linear strokes of your own with the object&#x27;s cloud excluded (S9), 5 cm/s up to the touch, a centimetre of margin. For millimetres up to 3 cm: `guarded_press` with a direction, aimed from a depth fit. `r = guarded_press(view, Pose(corner, palm_down_pose(corner).quaternion_wxyz, &#x27;world&#x27;), direction=(dx, dy, dz), max_travel_m=0.007, speed_m_s=0.03)`
+- CHECK: from a clean view the thing lies where planned (pushes ended 3 to 7 mm short), not turned, and nothing else moved.
+- EVIDENCE: worked 3 of 3 on 2 tasks: the thing moved as planned (t40/40, t40/41: tip-back in about 210 ticks, a push of 11 cm in 280 to 340, only fingertips touching at 1 to 2 N; t18/40: two directed presses of 3 cm and 7 mm, 325 and 261 ticks). Out of reach toward the robot (t18/40); refused next to a tall round thing whose depth boxes stand 1.3 cm in front of it (t48/40, dry run). Not for a part that something holds (N1). **STATUS: supported**
+### S12. Scripted grasp with a chosen palm turn
+- WHEN: no clip fits or the one clip is bound elsewhere; the thing has upright or flat faces at least about 4 cm high, is at most about 8 cm across the fingers, is no ball, and need not go far or fast; also to grip a mounted part.
+- DO: `solve_ik` the pose it will take; choose `palm_yaw_deg` so that the wrist flange hangs over free space and the fingers meet a FLAT face (on a corner the thing turns in the grip); refused for a neighbour or a joint limit: change the turn once or twice, then change skill. `r = grasp_scripted(view, part, palm_yaw_deg=0, palm_gap_m=0.035, lift_m=0.06)`
+- CHECK: the thing has left its place; several fingertips loaded; right after the lift measure whether it turned in the grip (line fit of a visible side face).
+- EVIDENCE: worked 3 of 3 closures on 2 tasks: the thing was taken and kept (t27/0: `palm_yaw_deg=0` after the default turn was refused for a neighbour; t18/40 twice: a loose prism, which turned 37 degrees because the fingers met a corner, then a seated one on its flat faces). Refused five times for 2 to 4 mm where a rod lay against a rim (t34/40); ruled out by `solve_ik` for an upright 9 cm can (t28/0). On low things lying flat it fails: N9. **STATUS: supported**
+### S13. Small level orbit with a held thing
+- WHEN: a held thing leans or has turned in the grip and must be straightened, or must be carried and turned by less than about 40 degrees.
+- DO: one `orbit` about an axis through a measured point: to stand a leaning thing upright, the horizontal axis through its lower end (for a lean along d the axis is (d_y, -d_x, 0)); to carry and turn back at once, a vertical axis far away on the perpendicular bisector of pick and place. `r = orbit(view, axis_point=(ax, ay, az), axis_dir=(0, 0, 1), angle_deg=38, turn_hand=True)`
+- CHECK: fingertip forces as before; measure the lean or turn again right before the set-down (the thing also turns in the grip).
+- EVIDENCE: worked 3 of 3 orbits on 2 tasks: the thing stayed in the hand (t42/40: 12 and 16 degrees about a bottle&#x27;s lower end with a policy grasp; the second took the lean from 14 to 2 degrees and the bottle was set down standing; t18/40: 38 degrees at 0.35 m radius with a scripted grasp, 337 rows). Larger turns lost the thing (N2). **STATUS: supported**
+
+## Proposed (worked once)
+
+### P1. Colour-aimed shallow press on a flush switch
+- WHEN: a small painted or flush control with no depth relief must be pressed; a pixel read by eye can lie beside it.
+- DO: in a zero-tick step mask its colour in the head picture, take the centroid pixel, `point_at` it and check that its height is the object&#x27;s top; `solve_ik` above it with `hand=&#x27;point&#x27;`; ONE press of 3 mm at 0.03 m/s that stays 0.3 s; look; never press again once the effect shows (it may be a toggle).
+```python
+rgb = view.cameras[&#x27;head&#x27;].rgb; R = rgb[:, :, 0].astype(float); G = rgb[:, :, 1].astype(float); B = rgb[:, :, 2].astype(float)
+vs, us = ((R &gt; 120) &amp; (G &lt; 0.62 * R) &amp; (B &lt; 0.62 * R)).nonzero()        # a red patch; keep only pixels inside the object&#x27;s box
+p = point_at(view, float(us.mean()), float(vs.mean()))
+r = guarded_press(view, Pose(p.point, palm_down_pose(p.point).quaternion_wxyz, &#x27;world&#x27;), max_travel_m=0.003, speed_m_s=0.03, stay_s=0.3)
+```
+- CHECK: `picture_brightness_change` clearly positive, or region means of the rgb array before and after (the guard never stops and the index force reads 0 on a light thing); from a clean view the thing was not shoved.
+- EVIDENCE: worked 1 of 1 (t41/40, PASS: the first 3 mm press, 465 ticks for the whole task). Aimed by eye 6 mm below the top, presses of 3 and 8 mm did nothing (t41/0); a shallow press on the body of a lying torch did not switch it (t35/0). **STATUS: proposed**
+### P2. Shut a drawer with one fist stroke
+- WHEN: an open drawer must be pushed shut; the hand is empty.
+- DO: move the hand beside the drawer front first (S10), then one `slide` on the cabinet object along the closing direction, 2 to 3 cm longer than the opening seen, the fist 1 cm above the handle (`height_m` = handle top + 5.5 cm); do not shorten the stroke to save ticks. `r = slide(view, cabinet, direction=(dx, dy), distance_m=opening + 0.025, height_m=h, guard_threshold=0.5)`
+- CHECK: after moving the hand aside: the front flush with the cabinet, the handle further in by the opening&#x27;s depth, table seen where the drawer floor was (the skill itself answers `passed: None`: the arm hides the place).
+- EVIDENCE: worked 1 of 2 on 1 task (t19/40, PASS: 414 ticks, the drawer reached its stop with under 1 cm of stroke left; t19/0: refused, the session believed the hand full). About 500 ticks from a parked arm. **STATUS: proposed**
+### P3. Seat a part in a close-fitting socket with fingertip pushes
+- WHEN: a part must sit in a hole only millimetres wider than itself; it lies tipped in the hole or leans on its rim.
+- DO: let it end SHORT on the robot&#x27;s side (a push toward the robot is out of reach); fit its top plane, outline and lowest corner from depth (zero ticks); press down on the high end to rock it back; then push its low near corner a few millimetres toward the far wall, about 30 degrees below horizontal (the `guarded_press` of S11).
+- CHECK: the top level within a degree at the height of an identical mounted twin; the centre on the socket&#x27;s centre.
+- EVIDENCE: worked 1 of 1 (t18/40, PASS: 3 cm down, then 7 mm; 325 and 261 ticks) after a 3.5 cm drop had toppled the part. **STATUS: proposed**
+### P4. Turn a seated rotary part
+- WHEN: a mounted knob or lid must be turned by up to a quarter turn.
+- DO: `grasp_scripted` on a Pose at its middle with `size_m`, `lift_m=0`, a `palm_gap_m` large enough for the flange to clear the collar, `palm_yaw_deg` on a flat face; ONE `orbit` about its axis; a plain `&#x27;open&#x27;` dwell; move aside. About 7 ticks a degree. `r = orbit(view, axis_point=centre, axis_dir=(0, 0, 1), angle_deg=95, turn_hand=True)`
+- CHECK: five fingertips loaded at 2 to 3 N before the turn; afterwards its mark points where intended and it still sits level.
+- EVIDENCE: worked 1 of 1 (t18/40, PASS: 95 degrees in one call, 700 ticks). **STATUS: proposed**
+### P5. Press with a held tool, then do not lift
+- WHEN: a tool held by a policy grasp must press on something that gives way under it.
+- DO: carry level; lower in a guarded linear segment of your own (`guard=ContactGuard(&#x27;arm_torque&#x27;, 0.10, travel)`, the pressed object excluded) until the guard stops; read EVERY fingertip force; if a finger that carried load reads about zero, do the rest of the contact work without leaving contact, or let go on purpose and grasp again.
+- CHECK: the picture of the pressed place changed; before any lift all gripping fingertips still loaded.
+- EVIDENCE: worked 1 of 1 (t34/40: one guarded press changed the whole row under the tool); the 3.5 cm lift after it left the tool behind (two fingertips had fallen to 0.0 and 2.4 N while `grip_loaded` still read true). `strike` has never run with a tool in the hand (t02/40: empty hand; t01/40: never reached). **STATUS: proposed**
+### P6. Back out along the fingers when boxed in
+- WHEN: after a set-down with a side grasp the open hand stands beside a tall thin thing, and `clear_view`, `retreat` and a sideways move are refused for 1 to 4 mm.
+- DO: one linear move back along the fingers&#x27; own axis plus 3 cm up, then S10. `p = plan_motion(view, [MotionSegment(&#x27;linear&#x27;, goal=back_and_up_pose)])`
+- CHECK: the thing still stands in the next picture.
+- EVIDENCE: worked 1 of 1 (t42/40: 61 ticks; three other directions refused). **STATUS: proposed**
+
+## Contradicted: what did not work, and what to do instead
+
+### N1. Bare finger where a tool lies beside the work
+- WHEN: the instruction names a tool action (strike, tap, unscrew, scrape, crush) or a tool lies next to the part, and the part is held by something (a screw in its thread, a pressed-on lid).
+- DO instead: in the first zero-tick steps ask a grasp for the tool&#x27;s own mask part (S3) and `solve_ik` its working pose with every candidate&#x27;s hand orientation; count the tool route&#x27;s ticks before anything else. At most ONE probe: `guarded_press(view, target, max_travel_m=0.003, retract=False)` (palm height against the plan and the arm&#x27;s joint lag show whether the part yields). After one contact without effect change the skill, never the depth, speed or sense.
+- CHECK: the part&#x27;s pose from depth before and after (plane fit, axis of a slot): equal pixel for pixel means nothing moved.
+- EVIDENCE: worked 0 of 4 on 3 tasks (t07/40: four fingertip programs on a screw at 2 to 14 N, 2864 ticks; t03/40: presses to 60 N, taps at 0.28 m/s and a sideways pull, 1301 ticks; t40/40, t40/41: a tool tipped flat and pushed with the fingertips did the visible job, status FAIL twice). 8 repeats of a contact that had changed nothing changed nothing (t07/40: 3; t03/40: 4; t41/0: 1). The tool route has not passed either: no grasp held a hammer (N9; its pick clip with a 1.9 cm flange raise lost it as the lift ended in t02/40 and t01/40, the other offered clip is untried), a held rod was lost after its first press (P5). **STATUS: contradicted**
+### N2. Quarter turn of a loaded hand, then carry
+- WHEN: the held thing sits wrongly for the place and a turn of the hand by 60 degrees or more before or during the carry looks like the fix; also `strike`, which turns the hand until the tool&#x27;s long axis points along the blow.
+- DO instead: choose the grasp turn for the place before grasping (S2); carry in the grasp&#x27;s own orientation; a needed turn stays under 40 degrees as one level orbit (S13), else set down and grasp again; a pinch of your own is carried by linear segments at 0.12 m/s without turning.
+- CHECK: fingertip forces after the turn; contact that moved from the fingertips to the inner finger links: do not carry.
+- EVIDENCE: worked 0 of 3 on 3 tasks (t27/40: `wrist_reorient` by 90 degrees kept the thing, the `transport` after it lost it within 0.5 s; t34/40: a free carry with a 75 degree turn at 0.20 m/s lost a pinch off the table; t02/40: a 25 degree roll in a fast descent threw the tool out). `transport` keeps the hand&#x27;s orientation only at its end (28 degrees of pitch on the way, t27/40). **STATUS: contradicted**
+### N3. Fist push or slide to nudge a small block
+- WHEN: a free block of about hand size landed short of its place or stands cornered, and one `push` or `slide` looks cheaper than a grasp.
+- DO instead: check the destination first (`solve_ik`, `propose_grasps`: zero ticks); use a fingertip push (S11) or budget a fresh grasp-and-place (450 to 800 ticks); push only toward open table.
+- CHECK: before spending: the fist&#x27;s lowest point is more than 1 cm below the thing&#x27;s top, and nothing as tall as the thing lies under the stroke.
+- EVIDENCE: worked 0 of 3 on 2 tasks (t27/20: refused, &quot;fist would pass over the target&quot; beside an edge as tall as the block; t27/40: `push` out of reach, `slide` passed over the block: 9 mm for 373 ticks; t28/0: 7.7 cm for 426 ticks toward a neighbour, the grasp still refused). **STATUS: contradicted**
+### N4. Closing the hand in separate steps on a free-standing thing
+- WHEN: you want to close gently by repeated `firm` or `close` dwells and lift afterwards.
+- DO instead: closure, lift and carry in ONE plan made from the view before contact, with the untouched object&#x27;s cloud excluded (S6), or a skill&#x27;s own grasp; fix the number of closing steps beforehand and stop at the first fingertip force (&quot;the fingers stopped advancing&quot; never comes on a thing that gives way).
+- CHECK: a dry run of the next arm move is accepted BEFORE the hand command runs.
+- EVIDENCE: worked 0 of 1 (t42/41: nine weak closing dwells dragged a standing 20 cm bottle 10 cm into the hand; then 32 plans for any arm move were refused, `estimate_in_hand` would not call it held while it stood on the table, and opening the hand let it fall over). **STATUS: contradicted**
+### N5. Leaving after a missed grasp while the fingers still touch the thing
+- WHEN: `acquire` or `grasp_scripted` answered `capture_missed` or `grasp_slip` and the closed fingers rest on or around the thing (a loaded fingertip, the thing seen at the hand).
+- DO instead (untested as a whole): look before moving: the forces, and where the thing lies against the fingers. A thing caught in the closed hand: open with a plain dwell where the hand stands, then leave. Fingers resting on it and every skill refused for a millimetre: a short linear rise of your own with the thing&#x27;s cloud from the last clean view excluded. Keep the thing 10 cm from a table edge before any second closure. `p = plan_motion(view, [MotionSegment(&#x27;linear&#x27;, goal=up_pose, exclude=cloud, contact_links=(&#x27;fingers&#x27;,))])`
+- CHECK: the thing lies free in the next picture and the hand is off it.
+- EVIDENCE: worked 0 of 2 on 2 tasks (t38/0: fingers on a 1.2 cm flat thing: `clear_view` and `retreat` refused, opening put a fingertip inside the seen surface, `go_home` and `lift` refused, the hand stayed stuck; t48/40: a `retreat` with the hand still closed carried the thing&#x27;s caught end over the table edge and it fell to the floor). With a really empty hand leaving was no problem (t01/40, t19/0). **STATUS: contradicted**
+### N6. Set-down aimed at the middle of a narrow raised edge
+- WHEN: a policy-held block must end exactly on a raised edge or lip a few centimetres wide (a curled sheet edge, a rail).
+- DO instead (untested as a whole): before the carry measure where the thing sits in the hand (`palm_at_f_cut`, `estimate_in_hand`, `point_at`: it can sit 7 to 9 cm beside the palm, tilted); aim the thing&#x27;s SEEN centre at the raised lip itself; `set_down(view, pose, onto=edge_object, release=False)`; look; `release_in_place`; be there with 450 ticks left.
+- CHECK: a clean picture after the set-down and again after the release: the thing on the lip, the lip down.
+- EVIDENCE: worked 0 of 4 on 1 task (t27/0: lost unseen in the descent, re-placed too late; t27/3: 2 cm short; t27/20: 6 cm short; t27/40: lost after a turn, N2). What held: `onto=&lt;the raised object&gt;` is accepted where a Pose beside a hidden raised edge is refused (t27/3); a 4 cm drop onto the lip flattened it (t27/0). **STATUS: contradicted**
+### N7. The bound clip on a thing that fell
+- WHEN: the held thing dropped and lies turned, tilted, against a neighbour or on a rim.
+- DO instead: do not count on `propose_grasps` for the bound clip; from a clean view `grasp_scripted` with a chosen turn (S12) or a closure of your own with the cloud of the last whole view (S9); run the `solve_ik` scan of the grasp AND the use poses again (a fall turns the thing). A recovery costs 450 to 900 ticks: on a 1500-tick task verify the grip after every carry (S5) rather than plan to recover.
+- CHECK: where the thing rests and whether it still moves (a round thing keeps rolling toward the table edge: measure twice).
+- EVIDENCE: worked 0 of 3 on 2 tasks: the bound clip had no placement (t27/0: raise limit; t27/40: merged with a neighbour; t34/40: turned and tilted on a rim). Of 7 trials in which a held thing was dropped or lost, one recovered in time (t18/40, by fingertip pushes, P3); too late or lost again: t27/0, t27/40, t33/0, t34/40, t02/40, t01/40. **STATUS: contradicted**
+### N8. No grasp for the thing as it rests
+- WHEN: `propose_grasps` refuses the thing as it stands (an upright can-sized cylinder), offers only a clip for another rest pose or one that grips far from its middle, or the thing is flat and under 1.5 cm thick.
+- DO instead: finish the zero-tick checks before any motion (the part, classes by name with `object_class=`, `solve_ik` for the scripted pose); change the rest pose on open table first (tip it over: untested) or take another skill (S6, S11, S12); never `transport` on `held: unknown`.
+- CHECK: the offered clip rests as the thing does and its `palm_at_f_cut` lies over the thing&#x27;s middle.
+- EVIDENCE: worked 0 of 4 on 4 tasks (t28/0: an upright 5 x 9 cm can: no policy grasp, no top-down scripted grasp, a push changed nothing; t19/0: a lying-pose clip on a standing jar missed and tipped it; t38/0: an own-shape clip missed a 1.2 cm flat thing; t48/40: a cylinder&#x27;s clip took a three-sided bar 7 cm from its middle and it pivoted out). **STATUS: contradicted**
+### N9. Scripted grasp from above on a low thing lying flat
+- WHEN: the thing is under about 4 cm high where it lies (a tool handle, a low bar with sloped faces) and `grasp_scripted` from above looks like the fallback.
+- DO instead (untested): a clip that takes it from higher up with no flange raise (read `raise_m` and `palm_at_f_cut` of every candidate before binding); or no grasp at all (S11). If you still try: `palm_gap_m` near 0.055 so that the flange clears the table, ONE closure, a 0.4 s hold and a look; after one miss change the method.
+- CHECK: after the lift at least three fingertips loaded and the thing seen off the table in a second look.
+- EVIDENCE: worked 0 of 5 closures on 3 tasks (t02/40: a 1.7 cm handle hung in a two-finger pinch that carried it but passed no blow on; t01/40: a 2.3 cm handle slipped out 0.4 to 0.5 s into the lift, twice; t48/40: a 3.75 cm three-sided bar was pressed onto the table, twice). Each miss dragged or turned the thing by centimetres and cost 370 to 570 ticks. **STATUS: contradicted**
+### N10. Choosing by words, or looking at a thing in the hand
+- WHEN: you rely on `localize_object(&#x27;&lt;words&gt;&#x27;)` alone to pick the object, want to read a face or mark of a thing while it is held, or let a carry end a few centimetres above a raised object.
+- DO instead: choose by the picture, the depth profile and `numbered` (numbers change between views: re-identify by place and size); read faces and marks BEFORE grasping, from clean views; keep `point_at` measurements of everything you may need as a pose; plan the lowering before a carry ends low over a raised object.
+- CHECK: the chosen object&#x27;s size and height profile are those of the thing meant.
+- EVIDENCE: worked 3 of 9 on 7 tasks at best: of the 9 trials that asked by words, 6 on 5 tasks got a wrong or merged object (t49/40: both things wrong; t42/41 after a fall; t03/40; t40/40; t40/41; t19/40: thing plus cloth) and 3 raised no complaint (t42/40, t27/40, t01/40). A held cube was hidden by the fingers (t21/0). Low over a raised appliance the held check gave a false slip, the belief was lost and only an open dwell, a 3.5 cm drop, was left (t18/40). **STATUS: contradicted**
+### N11. Firm grip on a dispenser away from its target
+- WHEN: a squeezable container must give something out onto a target.
+- DO instead (untested): find the outlet first (it can be the lower end of an upright bottle); have the outlet over the target BEFORE a firm grip closes (shorten the way, or carry with a weak grip and squeeze only there); read the first picture after the grasp for anything that came out.
+- CHECK: where the first drops landed (`point_at` on them gives the landing point under the palm to 1 to 2 cm).
+- EVIDENCE: worked 0 of 2 on 1 task (t42/40: the policy grasp&#x27;s own grip emptied the bottle from the tick the fingers closed, and nearly half fell on the table on the way; t42/41: N4). **STATUS: contradicted**
+
+## Ticks seen in the skill replies (plan with them)
+`acquire` 230 to 430 · `transport` 90 to 180 · `set_down` 130 to 250 · `release_in_place` 160 to 360 (`look=True` adds about 100) · `grasp_scripted` 330 to 570 · `slide` 370 to 415 · `push` 426 · `guarded_press` 180 to 350, about 100 again from its own hover · `clear_view` 90 to 310 · `move_to_pose` 70 to 190 · `orbit` 7 to 10 a degree · pinch program 420 to 460 · a refused plan and a step that executes nothing: 0.
+One grasp-carry-place cycle is about 840 of 1500 ticks; the five passes used 465, 624, 624, 1316 and 2703 ticks. After the FIRST failed grasp count [next grasp + use + ending] before trying again (three grasps left no room for the use in t01/40).
+</pre></body></html>
