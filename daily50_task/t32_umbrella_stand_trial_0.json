@@ -1,7 +1,7 @@
 {
  "schema": "s2loop.reason_video/1",
  "version": 3,
- "built": "2026-11-25 12:06:52 EST",
+ "built": "2026-11-25 12:08:02 EST",
  "made_by": "s2/s2loop/reason_video.py: the head-camera film with the trial's reason loop, colour-coded by phase",
  "task": "t32_umbrella_stand",
  "status": "FAIL",
@@ -238,5 +238,5 @@
   }
  ],
  "problems": [],
- "build_seconds": 132.38
+ "build_seconds": 131.15
 }
