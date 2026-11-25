@@ -1,23 +1,51 @@
 {
  "schema": "daily50.trials_page/1",
- "generated": "2026-11-25 11:40 EST",
+ "generated": "2026-11-25 11:47 EST",
  "headline": {
   "tasks_total": 50,
-  "tasks_attempted": 2,
+  "tasks_attempted": 4,
   "tasks_passed": 0,
   "tasks_passed_names": [],
-  "trials": 3,
+  "trials": 5,
   "trials_by_status": {
-   "FAIL": 3
+   "FAIL": 5
   },
-  "words": "success rate: 0 of 2 tasks passed (played by session agents, probe series \u2014 not a counted test series)"
+  "words": "success rate: 0 of 4 tasks passed (played by session agents, probe series \u2014 not a counted test series)"
  },
  "media": {
-  "files": 3,
-  "bytes": 1874978,
+  "files": 5,
+  "bytes": 2951875,
   "budget_bytes": 150000000
  },
+ "judge_reason_shown": true,
  "tasks": [
+  {
+   "task": "t19_jar_drawer",
+   "in_benchmark": true,
+   "best_status": "FAIL",
+   "trials": [
+    {
+     "file": "trial_0.json",
+     "number": "0",
+     "status": "FAIL",
+     "written": "2026-11-25 11:34",
+     "run": "20261125T161139Z-dfdc17fe",
+     "turns": 16,
+     "phase_counts": {
+      "look": 2,
+      "plan": 1,
+      "act": 11,
+      "replan": 2
+     },
+     "replans": 2,
+     "video": "t19_jar_drawer_trial_0.mp4",
+     "video_sha256": "b1d76c7d8497e8645e90f662ff280cbabb4f200691228fc3d5a2907b1c5e8304",
+     "problems": [
+      "record turn 0 (look) is no turn of the session's log: shown as a card at tick 0"
+     ]
+    }
+   ]
+  },
   {
    "task": "t27_paperweight",
    "in_benchmark": true,
@@ -38,7 +66,7 @@
      },
      "replans": 2,
      "video": "t27_paperweight_trial_0.mp4",
-     "video_sha256": "35454873a9315121d18747bc8561b9a8e326009dd81371612f254b69c61d2848",
+     "video_sha256": "70c9217fd06a211d5dcc7bb2dca63732f8604f21d1db0cd895f4220de4a3a0e4",
      "problems": []
     },
     {
@@ -57,10 +85,36 @@
      },
      "replans": 1,
      "video": "t27_paperweight_trial_20.mp4",
-     "video_sha256": "e8f7f9a7160526dc7b71fcd42bd99ba57db69ef3fec4b4553c77a3212b5a9230",
+     "video_sha256": "744e35a385b6d0f51d5f40089867e615895eab1b19ec0072b177b57261d7ab5f",
      "problems": [
       "record turn 8 (check) is no turn of the session's log: shown as a card at tick 841",
       "3 record turn(s) carry another number than the session's turn log gives the same turn (joined by ticks, phase word, sentence and skill, in order)"
+     ]
+    }
+   ]
+  },
+  {
+   "task": "t35_flashlight",
+   "in_benchmark": true,
+   "best_status": "FAIL",
+   "trials": [
+    {
+     "file": "trial_0.json",
+     "number": "0",
+     "status": "FAIL",
+     "written": "2026-11-25 11:39",
+     "run": "20261125T162335Z-57406c7a",
+     "turns": 7,
+     "phase_counts": {
+      "plan": 1,
+      "look": 2,
+      "act": 4
+     },
+     "replans": 0,
+     "video": "t35_flashlight_trial_0.mp4",
+     "video_sha256": "716ef5a790bb0e0b83f9f9fa253949741b39ae55a5d895387ad5ebe7ac214091",
+     "problems": [
+      "the record lists 1 replan(s) and has 0 turn(s) of phase replan"
      ]
     }
    ]
@@ -92,8 +146,10 @@
  ],
  "other_tasks": [],
  "pages_sha256": {
-  "daily50_task/t27_paperweight.html": "75cad5ce3999bb509679835250e8afe31f82dfd6721df6386cbf5497b8215b6d",
-  "daily50_task/t41_power_strip.html": "c507876eac5e43af79162948dee9215209cb5106b7f3c0157cb754bf3cb24f93",
-  "daily50_trials.html": "275655854bac1462f4fad1c4e1c33eb3072e63ac8d6a4e75c7403d2394cfd23b"
+  "daily50_task/t19_jar_drawer.html": "03e78ee16befd9e544d6fe39b9abc2f161b3fc14824c17163c46bb463d29a34c",
+  "daily50_task/t27_paperweight.html": "bb2a0e75929ee6e1b87bfe4d64a248b8190c3af9ecfba443039c9aa067dd5d5c",
+  "daily50_task/t35_flashlight.html": "bce3e7aa6ba48239ef924b5d630ce3654cd5b57b49e0e0751d67e26ba1eb8253",
+  "daily50_task/t41_power_strip.html": "5b291ad201b74761306d49287b3c1c7b3aad40498d988480e5cd7eaed0e12567",
+  "daily50_trials.html": "4bc1283d34fe8af4d9a50c0afac78050803bc3dd0c99d6c9534aae3419ec5f7b"
  }
 }

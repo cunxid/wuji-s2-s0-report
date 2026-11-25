@@ -1,7 +1,7 @@
 {
  "schema": "s2loop.reason_video/1",
- "version": 1,
- "built": "2026-11-25 11:37:09 EST",
+ "version": 3,
+ "built": "2026-11-25 11:47:52 EST",
  "made_by": "s2/s2loop/reason_video.py: the head-camera film with the trial's reason loop, colour-coded by phase",
  "task": "t27_paperweight",
  "status": "FAIL",
@@ -12,13 +12,13 @@
   "trial_sha256": "442d5e1be8b24f2fd58b2cc22e1e0b15afe1915827cf6af014daaffc0ddfd503",
   "turn_log_sha256": "09a197bb5e8771b500fa364003918c155541ea3f496c0e53e9ff658d5e61978f",
   "head_film_sha256": "c0372782ce3789a3dfa604db7e27cfeae1f0cc7daeffa196f1b19d63e99596e2",
-  "head_film_built_now": true,
+  "head_film_built_now": false,
   "head_film_in_run_folder": false
  },
  "video": {
   "file": "t27_paperweight_trial_0.mp4",
   "poster": "t27_paperweight_trial_0.jpg",
-  "bytes": 883971,
+  "bytes": 885044,
   "frames": 995,
   "fps": 16.666666666666668,
   "duration_s": 59.7,
@@ -340,5 +340,5 @@
   }
  ],
  "problems": [],
- "build_seconds": 245.06
+ "build_seconds": 3.28
 }

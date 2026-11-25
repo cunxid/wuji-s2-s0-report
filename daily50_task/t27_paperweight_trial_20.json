@@ -1,7 +1,7 @@
 {
  "schema": "s2loop.reason_video/1",
- "version": 1,
- "built": "2026-11-25 11:40:07 EST",
+ "version": 2,
+ "built": "2026-11-25 11:44:25 EST",
  "made_by": "s2/s2loop/reason_video.py: the head-camera film with the trial's reason loop, colour-coded by phase",
  "task": "t27_paperweight",
  "status": "FAIL",
@@ -12,13 +12,13 @@
   "trial_sha256": "97a1af078274f58c5870c31c5712edc079ce75f90e6eeff2b868156d4ccfdecb",
   "turn_log_sha256": "4b8ca13ee56bcf9885a046ee1e7190145338c337206a9234323b0f7fcc3a1721",
   "head_film_sha256": "75a17ae5c1f6ef19f49b56535badd2766aeb3d42e11d2ba2071018e785433b24",
-  "head_film_built_now": true,
+  "head_film_built_now": false,
   "head_film_in_run_folder": false
  },
  "video": {
   "file": "t27_paperweight_trial_20.mp4",
   "poster": "t27_paperweight_trial_20.jpg",
-  "bytes": 639675,
+  "bytes": 639338,
   "frames": 696,
   "fps": 16.666666666666668,
   "duration_s": 41.76,
@@ -242,5 +242,5 @@
   "record turn 8 (check) is no turn of the session's log: shown as a card at tick 841",
   "3 record turn(s) carry another number than the session's turn log gives the same turn (joined by ticks, phase word, sentence and skill, in order)"
  ],
- "build_seconds": 178.56
+ "build_seconds": 2.15
 }
