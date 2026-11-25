@@ -1,24 +1,24 @@
 {
  "schema": "s2loop.reason_video/1",
  "version": 3,
- "built": "2026-11-25 15:16:28 EST",
+ "built": "2026-11-25 16:45:26 EST",
  "made_by": "s2/s2loop/reason_video.py: the head-camera film with the trial's reason loop, colour-coded by phase",
  "task": "t18_hob_knob",
- "status": "PASS",
+ "status": "FLAGGED",
  "episode_index": 40,
  "run": "20261125T184936Z-700f3119",
  "trial": "trial_40.json",
  "inputs": {
-  "trial_sha256": "b230ff3c4fc8af8a191c5808b1cb175fc377fb83c05e20562da493d2bdccaf48",
+  "trial_sha256": "a633f94f5f51f90d0e0069368ac0b4a60cd2cce69d40083e8c0646a27f220b11",
   "turn_log_sha256": "bc7b5a52716e3744a7fb9365d80f315a8e2ff796fe75d0b42c0df98fdc8cf060",
   "head_film_sha256": "99310b6465465117be74c5c04718130456ebf3f051d60f28fb79c0ff8b1bafea",
-  "head_film_built_now": true,
+  "head_film_built_now": false,
   "head_film_in_run_folder": false
  },
  "video": {
   "file": "t18_hob_knob_trial_40.mp4",
   "poster": "t18_hob_knob_trial_40.jpg",
-  "bytes": 1997053,
+  "bytes": 1997134,
   "frames": 2061,
   "fps": 16.666666666666668,
   "duration_s": 123.66,
@@ -715,5 +715,5 @@
   }
  ],
  "problems": [],
- "build_seconds": 579.39
+ "build_seconds": 8.6
 }

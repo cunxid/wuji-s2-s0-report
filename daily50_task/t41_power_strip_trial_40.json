@@ -1,7 +1,7 @@
 {
  "schema": "s2loop.reason_video/1",
  "version": 3,
- "built": "2026-11-25 13:12:45 EST",
+ "built": "2026-11-25 16:45:33 EST",
  "made_by": "s2/s2loop/reason_video.py: the head-camera film with the trial's reason loop, colour-coded by phase",
  "task": "t41_power_strip",
  "status": "PASS",
@@ -9,10 +9,10 @@
  "run": "20261125T175634Z-08e66bba",
  "trial": "trial_40.json",
  "inputs": {
-  "trial_sha256": "3fb2e1ac9e38f3c9bd9a8426bd52f09db63c143e2afc84c22c4a1295b32c243b",
+  "trial_sha256": "bacd37fd8893334e541bc1811c06800d78799429d0c42db11c1a8e098b312477",
   "turn_log_sha256": "4072995b399ff0fbc0301e1102cafb17a4a56f939c7597d14bca458c7fcbed70",
   "head_film_sha256": "f9fa92cd8df65ca062bc040cf0eaa836d8354b4ab16e4ae050d575565b40c3c4",
-  "head_film_built_now": true,
+  "head_film_built_now": false,
   "head_film_in_run_folder": false
  },
  "video": {
@@ -204,5 +204,5 @@
   }
  ],
  "problems": [],
- "build_seconds": 106.09
+ "build_seconds": 1.97
 }
