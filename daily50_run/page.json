@@ -114,6 +114,9 @@
    "best": null,
    "failure": null,
    "failure_role": null,
+   "failure_verdict": null,
+   "second_pass": null,
+   "second_pass_role": null,
    "note": null,
    "media": {}
   },
@@ -130,6 +133,9 @@
    "best": null,
    "failure": null,
    "failure_role": null,
+   "failure_verdict": null,
+   "second_pass": null,
+   "second_pass_role": null,
    "note": null,
    "media": {}
   },
@@ -146,6 +152,9 @@
    "best": null,
    "failure": null,
    "failure_role": null,
+   "failure_verdict": null,
+   "second_pass": null,
+   "second_pass_role": null,
    "note": null,
    "media": {}
   },
@@ -162,6 +171,9 @@
    "best": null,
    "failure": null,
    "failure_role": null,
+   "failure_verdict": null,
+   "second_pass": null,
+   "second_pass_role": null,
    "note": null,
    "media": {}
   },
@@ -178,6 +190,9 @@
    "best": null,
    "failure": null,
    "failure_role": null,
+   "failure_verdict": null,
+   "second_pass": null,
+   "second_pass_role": null,
    "note": null,
    "media": {}
   },
@@ -194,6 +209,9 @@
    "best": null,
    "failure": null,
    "failure_role": null,
+   "failure_verdict": null,
+   "second_pass": null,
+   "second_pass_role": null,
    "note": null,
    "media": {}
   },
@@ -210,6 +228,9 @@
    "best": null,
    "failure": null,
    "failure_role": null,
+   "failure_verdict": null,
+   "second_pass": null,
+   "second_pass_role": null,
    "note": null,
    "media": {}
   },
@@ -226,6 +247,9 @@
    "best": null,
    "failure": null,
    "failure_role": null,
+   "failure_verdict": null,
+   "second_pass": null,
+   "second_pass_role": null,
    "note": null,
    "media": {}
   },
@@ -242,6 +266,9 @@
    "best": null,
    "failure": null,
    "failure_role": null,
+   "failure_verdict": null,
+   "second_pass": null,
+   "second_pass_role": null,
    "note": null,
    "media": {}
   },
@@ -258,6 +285,9 @@
    "best": null,
    "failure": null,
    "failure_role": null,
+   "failure_verdict": null,
+   "second_pass": null,
+   "second_pass_role": null,
    "note": null,
    "media": {}
   },
@@ -274,6 +304,9 @@
    "best": null,
    "failure": null,
    "failure_role": null,
+   "failure_verdict": null,
+   "second_pass": null,
+   "second_pass_role": null,
    "note": null,
    "media": {}
   },
@@ -290,6 +323,9 @@
    "best": null,
    "failure": null,
    "failure_role": null,
+   "failure_verdict": null,
+   "second_pass": null,
+   "second_pass_role": null,
    "note": null,
    "media": {}
   },
@@ -306,6 +342,9 @@
    "best": null,
    "failure": null,
    "failure_role": null,
+   "failure_verdict": null,
+   "second_pass": null,
+   "second_pass_role": null,
    "note": null,
    "media": {}
   },
@@ -322,6 +361,9 @@
    "best": null,
    "failure": null,
    "failure_role": null,
+   "failure_verdict": null,
+   "second_pass": null,
+   "second_pass_role": null,
    "note": null,
    "media": {}
   },
@@ -338,6 +380,9 @@
    "best": null,
    "failure": null,
    "failure_role": null,
+   "failure_verdict": null,
+   "second_pass": null,
+   "second_pass_role": null,
    "note": null,
    "media": {}
   },
@@ -354,6 +399,9 @@
    "best": null,
    "failure": null,
    "failure_role": null,
+   "failure_verdict": null,
+   "second_pass": null,
+   "second_pass_role": null,
    "note": null,
    "media": {}
   },
@@ -370,6 +418,9 @@
    "best": null,
    "failure": null,
    "failure_role": null,
+   "failure_verdict": null,
+   "second_pass": null,
+   "second_pass_role": null,
    "note": null,
    "media": {}
   },
@@ -386,6 +437,9 @@
    "best": null,
    "failure": null,
    "failure_role": null,
+   "failure_verdict": null,
+   "second_pass": null,
+   "second_pass_role": null,
    "note": null,
    "media": {}
   },
@@ -407,8 +461,11 @@
    "episodes_with_switches": [],
    "apart": "s2/dexharness/runs/live/daily50_t19_jar_drawer/20261124T205453Z-b111253a",
    "best": null,
-   "failure": "s2/dexharness/runs/live/daily50_t19_jar_drawer/20261124T222859Z-dd362b9b",
-   "failure_role": "a probe episode (development, the latest; not counted)",
+   "failure": "s2/dexharness/runs/live/daily50_t19_jar_drawer/20261124T214949Z-40eb5e48",
+   "failure_role": "a probe episode (development, the latest that did not pass; not counted)",
+   "failure_verdict": "FAIL",
+   "second_pass": "s2/dexharness/runs/live/daily50_t19_jar_drawer/20261124T222859Z-dd362b9b",
+   "second_pass_role": "a probe episode that passed (development, the latest; not counted)",
    "note": {
     "file": "s2/outputs/harness_round/daily50/tasks/t19_jar_drawer/NOTES.md",
     "sha256": "b3d5bd89aaca8fd6a3a2975074f20cfe66947779c8030b5d09faba6425a67250",
@@ -417,6 +474,11 @@
    },
    "media": {
     "failure": {
+     "video": "t19_jar_drawer__probe0__d40f5b5d.mp4",
+     "poster": "t19_jar_drawer__probe0__d40f5b5d.jpg",
+     "run": "s2/dexharness/runs/live/daily50_t19_jar_drawer/20261124T214949Z-40eb5e48"
+    },
+    "pass": {
      "video": "t19_jar_drawer__probe1__77b89ff2.mp4",
      "poster": "t19_jar_drawer__probe1__77b89ff2.jpg",
      "run": "s2/dexharness/runs/live/daily50_t19_jar_drawer/20261124T222859Z-dd362b9b"
@@ -441,6 +503,9 @@
    "best": null,
    "failure": null,
    "failure_role": null,
+   "failure_verdict": null,
+   "second_pass": null,
+   "second_pass_role": null,
    "note": null,
    "media": {}
   },
@@ -457,6 +522,9 @@
    "best": null,
    "failure": null,
    "failure_role": null,
+   "failure_verdict": null,
+   "second_pass": null,
+   "second_pass_role": null,
    "note": null,
    "media": {}
   },
@@ -473,6 +541,9 @@
    "best": null,
    "failure": null,
    "failure_role": null,
+   "failure_verdict": null,
+   "second_pass": null,
+   "second_pass_role": null,
    "note": null,
    "media": {}
   },
@@ -489,6 +560,9 @@
    "best": null,
    "failure": null,
    "failure_role": null,
+   "failure_verdict": null,
+   "second_pass": null,
+   "second_pass_role": null,
    "note": null,
    "media": {}
   },
@@ -505,6 +579,9 @@
    "best": null,
    "failure": null,
    "failure_role": null,
+   "failure_verdict": null,
+   "second_pass": null,
+   "second_pass_role": null,
    "note": null,
    "media": {}
   },
@@ -521,6 +598,9 @@
    "best": null,
    "failure": null,
    "failure_role": null,
+   "failure_verdict": null,
+   "second_pass": null,
+   "second_pass_role": null,
    "note": null,
    "media": {}
   },
@@ -537,6 +617,9 @@
    "best": null,
    "failure": null,
    "failure_role": null,
+   "failure_verdict": null,
+   "second_pass": null,
+   "second_pass_role": null,
    "note": null,
    "media": {}
   },
@@ -559,7 +642,10 @@
    "apart": "s2/dexharness/runs/live/daily50_t27_paperweight/20261124T200253Z-c16ec82c",
    "best": null,
    "failure": "s2/dexharness/runs/live/daily50_t27_paperweight/20261124T224624Z-294c1f97",
-   "failure_role": "a probe episode (development, the latest; not counted)",
+   "failure_role": "a probe episode (development, the latest that did not pass; not counted)",
+   "failure_verdict": "FAIL",
+   "second_pass": null,
+   "second_pass_role": null,
    "note": {
     "file": "s2/outputs/harness_round/daily50/tasks/t27_paperweight/NOTES.md",
     "sha256": "0e60208a9ba0cc306a0717cec706174ebb16a8e587c2b57c5f949bdb65e2f345",
@@ -592,6 +678,9 @@
    "best": null,
    "failure": null,
    "failure_role": null,
+   "failure_verdict": null,
+   "second_pass": null,
+   "second_pass_role": null,
    "note": null,
    "media": {}
   },
@@ -608,6 +697,9 @@
    "best": null,
    "failure": null,
    "failure_role": null,
+   "failure_verdict": null,
+   "second_pass": null,
+   "second_pass_role": null,
    "note": null,
    "media": {}
   },
@@ -624,6 +716,9 @@
    "best": null,
    "failure": null,
    "failure_role": null,
+   "failure_verdict": null,
+   "second_pass": null,
+   "second_pass_role": null,
    "note": null,
    "media": {}
   },
@@ -640,6 +735,9 @@
    "best": null,
    "failure": null,
    "failure_role": null,
+   "failure_verdict": null,
+   "second_pass": null,
+   "second_pass_role": null,
    "note": null,
    "media": {}
   },
@@ -656,6 +754,9 @@
    "best": null,
    "failure": null,
    "failure_role": null,
+   "failure_verdict": null,
+   "second_pass": null,
+   "second_pass_role": null,
    "note": null,
    "media": {}
   },
@@ -672,6 +773,9 @@
    "best": null,
    "failure": null,
    "failure_role": null,
+   "failure_verdict": null,
+   "second_pass": null,
+   "second_pass_role": null,
    "note": null,
    "media": {}
   },
@@ -688,6 +792,9 @@
    "best": null,
    "failure": null,
    "failure_role": null,
+   "failure_verdict": null,
+   "second_pass": null,
+   "second_pass_role": null,
    "note": null,
    "media": {}
   },
@@ -704,6 +811,9 @@
    "best": null,
    "failure": null,
    "failure_role": null,
+   "failure_verdict": null,
+   "second_pass": null,
+   "second_pass_role": null,
    "note": null,
    "media": {}
   },
@@ -720,6 +830,9 @@
    "best": null,
    "failure": null,
    "failure_role": null,
+   "failure_verdict": null,
+   "second_pass": null,
+   "second_pass_role": null,
    "note": null,
    "media": {}
   },
@@ -736,6 +849,9 @@
    "best": null,
    "failure": null,
    "failure_role": null,
+   "failure_verdict": null,
+   "second_pass": null,
+   "second_pass_role": null,
    "note": null,
    "media": {}
   },
@@ -752,6 +868,9 @@
    "best": null,
    "failure": null,
    "failure_role": null,
+   "failure_verdict": null,
+   "second_pass": null,
+   "second_pass_role": null,
    "note": null,
    "media": {}
   },
@@ -768,6 +887,9 @@
    "best": null,
    "failure": null,
    "failure_role": null,
+   "failure_verdict": null,
+   "second_pass": null,
+   "second_pass_role": null,
    "note": null,
    "media": {}
   },
@@ -784,6 +906,9 @@
    "best": null,
    "failure": null,
    "failure_role": null,
+   "failure_verdict": null,
+   "second_pass": null,
+   "second_pass_role": null,
    "note": null,
    "media": {}
   },
@@ -807,8 +932,11 @@
    "episodes_with_switches": [],
    "apart": "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T205103Z-5a7c46a8",
    "best": null,
-   "failure": "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T222959Z-ce62d45d",
-   "failure_role": "a probe episode (development, the latest; not counted)",
+   "failure": "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T221809Z-a1b917a9",
+   "failure_role": "a probe episode (development, the latest that did not pass; not counted)",
+   "failure_verdict": "FAIL",
+   "second_pass": "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T222959Z-ce62d45d",
+   "second_pass_role": "a probe episode that passed (development, the latest; not counted)",
    "note": {
     "file": "s2/outputs/harness_round/daily50/tasks/t41_power_strip/NOTES.md",
     "sha256": "c77b656503b9edf6b61fdfc68ae97cad166ed67dde1fcb3e998824226138f39d",
@@ -817,6 +945,11 @@
    },
    "media": {
     "failure": {
+     "video": "t41_power_strip__probe0__ebb9b360.mp4",
+     "poster": "t41_power_strip__probe0__ebb9b360.jpg",
+     "run": "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T221809Z-a1b917a9"
+    },
+    "pass": {
      "video": "t41_power_strip__probe2__b86aca95.mp4",
      "poster": "t41_power_strip__probe2__b86aca95.jpg",
      "run": "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T222959Z-ce62d45d"
@@ -841,6 +974,9 @@
    "best": null,
    "failure": null,
    "failure_role": null,
+   "failure_verdict": null,
+   "second_pass": null,
+   "second_pass_role": null,
    "note": null,
    "media": {}
   },
@@ -857,6 +993,9 @@
    "best": null,
    "failure": null,
    "failure_role": null,
+   "failure_verdict": null,
+   "second_pass": null,
+   "second_pass_role": null,
    "note": null,
    "media": {}
   },
@@ -873,6 +1012,9 @@
    "best": null,
    "failure": null,
    "failure_role": null,
+   "failure_verdict": null,
+   "second_pass": null,
+   "second_pass_role": null,
    "note": null,
    "media": {}
   },
@@ -889,6 +1031,9 @@
    "best": null,
    "failure": null,
    "failure_role": null,
+   "failure_verdict": null,
+   "second_pass": null,
+   "second_pass_role": null,
    "note": null,
    "media": {}
   },
@@ -905,6 +1050,9 @@
    "best": null,
    "failure": null,
    "failure_role": null,
+   "failure_verdict": null,
+   "second_pass": null,
+   "second_pass_role": null,
    "note": null,
    "media": {}
   },
@@ -921,6 +1069,9 @@
    "best": null,
    "failure": null,
    "failure_role": null,
+   "failure_verdict": null,
+   "second_pass": null,
+   "second_pass_role": null,
    "note": null,
    "media": {}
   },
@@ -937,6 +1088,9 @@
    "best": null,
    "failure": null,
    "failure_role": null,
+   "failure_verdict": null,
+   "second_pass": null,
+   "second_pass_role": null,
    "note": null,
    "media": {}
   },
@@ -958,6 +1112,9 @@
    "best": null,
    "failure": null,
    "failure_role": null,
+   "failure_verdict": null,
+   "second_pass": null,
+   "second_pass_role": null,
    "note": null,
    "media": {
     "apart": {
@@ -980,6 +1137,9 @@
    "best": null,
    "failure": null,
    "failure_role": null,
+   "failure_verdict": null,
+   "second_pass": null,
+   "second_pass_role": null,
    "note": null,
    "media": {}
   }
@@ -1012,7 +1172,7 @@
    "policy": {
     "bound": true,
     "engine": "m8000",
-    "clip": "/home/jimmy/workspace/wuji-rl-gmt/data/recipes_local/hoi_pack_v1/c154.recipe.json",
+    "clip": "c154.recipe.json",
     "object_in_training_recipe": "yes"
    },
    "task_version": 2,
@@ -1022,11 +1182,11 @@
    "problems": [],
    "video": {
     "dir": "s2/dexharness/runs/live/daily50_t27_paperweight/20261124T200253Z-c16ec82c/media/episode",
-    "bytes": 417499,
-    "sha256": "f4cbf22bde3f695b5d051e2058aa26ccf6e430af5366fd9bd6dd97ce4ed40eec",
-    "poster_bytes": 106052,
-    "poster_sha256": "fb797a454fe3ad7ddd749fe0aea2a621ae86d7e1026e3b1bd244888f9df1faf8",
-    "duration_s": 19.35,
+    "bytes": 469483,
+    "sha256": "af2994db01a440a9609d30b42e53aacb1bea473be220a1cbbbf08c231e1621eb",
+    "poster_bytes": 105707,
+    "poster_sha256": "cc8c99a8bd839f66b125c0dfff878318c46ed1b0b3f8bd5a1ffd6d634ec176cc",
+    "duration_s": 25.4,
     "speed": 1.0,
     "size": [
      848,
@@ -1035,6 +1195,10 @@
     "turns_source": "s2_turns.jsonl",
     "picture": "head camera",
     "looks_redrawn": true,
+    "head_frames_per_s": 16.69,
+    "ticks": 677,
+    "ticks_shown": 677,
+    "ticks_after_close": 300,
     "never_touch_events": 0,
     "problems": []
    },
@@ -1081,11 +1245,11 @@
    "problems": [],
    "video": {
     "dir": "s2/dexharness/runs/live/daily50_t19_jar_drawer/20261124T204539Z-45d41bfc/media/episode",
-    "bytes": 1049535,
-    "sha256": "e58ee428f77fe7eb39e824b5a8cc7f552fb76496c360b3cf6edfbb689dc0fc41",
-    "poster_bytes": 101775,
-    "poster_sha256": "3dfaf1199800ecd1a135ea10b17233cf095e865f5a916c8484c279474c6107ea",
-    "duration_s": 55.4,
+    "bytes": 1148291,
+    "sha256": "d1a59b3a53ec2b96f4c2af01a59645d1eca5b707550b3b4607ed4860c3a9b44a",
+    "poster_bytes": 102211,
+    "poster_sha256": "56aaccf0569828e188205c6c0d96f4ae5a04c1a8269d4d9716ff9713ce6d722b",
+    "duration_s": 61.2,
     "speed": 1.0,
     "size": [
      848,
@@ -1094,6 +1258,10 @@
     "turns_source": "s2_turns.jsonl",
     "picture": "head camera",
     "looks_redrawn": true,
+    "head_frames_per_s": 16.67,
+    "ticks": 1500,
+    "ticks_shown": 1500,
+    "ticks_after_close": 287,
     "never_touch_events": 2,
     "problems": []
    },
@@ -1141,11 +1309,11 @@
    "problems": [],
    "video": {
     "dir": "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T204536Z-b8a2799b/media/episode",
-    "bytes": 542976,
-    "sha256": "34542ca6d0a8e8941f8129c781f60d555bcc0e24d50dbfa1213b46fe5801dbc1",
-    "poster_bytes": 84079,
-    "poster_sha256": "4e6c3dd1b473c28d10976680bbbc7633f6f823f67ada92b43fc838231b7ac9cd",
-    "duration_s": 30.35,
+    "bytes": 573144,
+    "sha256": "fc24d795a2d33054fd76a77a26c2442b3fefadfdcea829780fbbaf71ec92cfb3",
+    "poster_bytes": 84771,
+    "poster_sha256": "71fa30316154304df2043065bfecbaa91f228e9d89157ea8ee87855a7be9ac7d",
+    "duration_s": 36.4,
     "speed": 1.0,
     "size": [
      848,
@@ -1154,6 +1322,10 @@
     "turns_source": "s2_turns.jsonl",
     "picture": "head camera",
     "looks_redrawn": true,
+    "head_frames_per_s": 16.69,
+    "ticks": 905,
+    "ticks_shown": 905,
+    "ticks_after_close": 300,
     "never_touch_events": 0,
     "problems": []
    },
@@ -1201,11 +1373,11 @@
    "problems": [],
    "video": {
     "dir": "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T205103Z-5a7c46a8/media/episode",
-    "bytes": 463490,
-    "sha256": "2d64c08a8bdb4a0796fe4769a5547e1621b530e2584793ffa8940439b16fbc46",
-    "poster_bytes": 100692,
-    "poster_sha256": "72b50587fc1da3436c70a1c6ef891e13a1ae4e5024c2e5e5a7a7f337db0fd7c5",
-    "duration_s": 22.75,
+    "bytes": 553800,
+    "sha256": "1f7dcad74c8a3ffe07f0fc2b877e446de890cd20995b2f55d59a30fc68d1a021",
+    "poster_bytes": 101204,
+    "poster_sha256": "e5906726c137ddc450bc617be48c9200e382fce896d394093664a0335aa4dcde",
+    "duration_s": 28.8,
     "speed": 1.0,
     "size": [
      848,
@@ -1214,6 +1386,10 @@
     "turns_source": "s2_turns.jsonl",
     "picture": "head camera",
     "looks_redrawn": true,
+    "head_frames_per_s": 16.71,
+    "ticks": 766,
+    "ticks_shown": 766,
+    "ticks_after_close": 300,
     "never_touch_events": 0,
     "problems": []
    },
@@ -1258,11 +1434,11 @@
    "problems": [],
    "video": {
     "dir": "s2/dexharness/runs/live/daily50_t49_weigh_orange/20261124T204539Z-71b6fd22/media/episode",
-    "bytes": 1061041,
-    "sha256": "40e3bdab842aef79853a8fd18ccb19d08822b363c95ae9c7ea11e4da84d07500",
-    "poster_bytes": 140366,
-    "poster_sha256": "075e8d061c90f45c458f3d6a11d2b7a2e44b8e01e2f90b62847a84e8b2e1cc59",
-    "duration_s": 42.75,
+    "bytes": 1099973,
+    "sha256": "4ac0585e52e06b01ecda6b53b947c28d2bbec6e66bf1e62965f801423b37f37a",
+    "poster_bytes": 140984,
+    "poster_sha256": "10d4385ab19a326cfe7d014aca0778f2a9786dfbc96285fc80c6ed6e91808b7b",
+    "duration_s": 48.8,
     "speed": 1.0,
     "size": [
      848,
@@ -1271,6 +1447,10 @@
     "turns_source": "s2_turns.jsonl",
     "picture": "head camera",
     "looks_redrawn": true,
+    "head_frames_per_s": 16.68,
+    "ticks": 1283,
+    "ticks_shown": 1283,
+    "ticks_after_close": 300,
     "never_touch_events": 2,
     "problems": []
    },
@@ -1315,11 +1495,11 @@
    "problems": [],
    "video": {
     "dir": "s2/dexharness/runs/live/daily50_t49_weigh_orange/20261124T205218Z-ad5c5872/media/episode",
-    "bytes": 772389,
-    "sha256": "d5860cc2b879463d0fb03ca0c0bfce2c5cbc69e7a5ec84dadd7190af9078a297",
-    "poster_bytes": 138910,
-    "poster_sha256": "6c9cbd4bcf0a196e0b6ba84661056f64fe4ed73052178f809cf4ecbc60bf8c15",
-    "duration_s": 29.2,
+    "bytes": 805968,
+    "sha256": "bb1010ecedafd6a14dc4f46d381575319f6036b10827e2ceae4e2b41d73f6423",
+    "poster_bytes": 139477,
+    "poster_sha256": "ea6a2964492d13b629b7cb83720a5ccb1302aab13188b8c402682d4d66beddb4",
+    "duration_s": 35.25,
     "speed": 1.0,
     "size": [
      848,
@@ -1328,6 +1508,10 @@
     "turns_source": "s2_turns.jsonl",
     "picture": "head camera",
     "looks_redrawn": true,
+    "head_frames_per_s": 16.67,
+    "ticks": 1008,
+    "ticks_shown": 1008,
+    "ticks_after_close": 300,
     "never_touch_events": 2,
     "problems": []
    },
@@ -1375,11 +1559,11 @@
    "problems": [],
    "video": {
     "dir": "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T205435Z-2c5d6c28/media/episode",
-    "bytes": 541348,
-    "sha256": "2ac96a2ef19543347f51b1bb50e6be2e9c37659271dad0606fed3e282eaab393",
-    "poster_bytes": 100353,
-    "poster_sha256": "e60c5f6961571addd9d213a39ac3ff765b2ad1c625cbc4d012994f8748354001",
-    "duration_s": 28.1,
+    "bytes": 572065,
+    "sha256": "d5631a46dadf484f1f3279224572181a5907574ba831fc4bda2adc5ee1d35b8e",
+    "poster_bytes": 100896,
+    "poster_sha256": "144749e7caabf99092d0f2463279bb9286f9246e33f7c9317b022a6f2e4af42a",
+    "duration_s": 34.15,
     "speed": 1.0,
     "size": [
      848,
@@ -1388,6 +1572,10 @@
     "turns_source": "s2_turns.jsonl",
     "picture": "head camera",
     "looks_redrawn": true,
+    "head_frames_per_s": 16.67,
+    "ticks": 1113,
+    "ticks_shown": 1113,
+    "ticks_after_close": 300,
     "never_touch_events": 0,
     "problems": []
    },
@@ -1435,11 +1623,11 @@
    "problems": [],
    "video": {
     "dir": "s2/dexharness/runs/live/daily50_t19_jar_drawer/20261124T205453Z-b111253a/media/episode",
-    "bytes": 818086,
-    "sha256": "ec62dbce9c377d830a7e0b852d031242137d0fb6b61a6e596663a83003e0e65d",
-    "poster_bytes": 102781,
-    "poster_sha256": "c867ed23216745bc8015bb282b3f9f0feabac36b615f657b6c96758ae0538226",
-    "duration_s": 40.1,
+    "bytes": 848954,
+    "sha256": "81ddbd6cfa94ec3239b5b0d2fc80be4ace5b34159090786510464e9d8697f417",
+    "poster_bytes": 103167,
+    "poster_sha256": "b5e28e13ec373f5e21500ecc2f7c90b177c59db69dc32582f24529438cdef234",
+    "duration_s": 46.15,
     "speed": 1.0,
     "size": [
      848,
@@ -1448,6 +1636,10 @@
     "turns_source": "s2_turns.jsonl",
     "picture": "head camera",
     "looks_redrawn": true,
+    "head_frames_per_s": 16.67,
+    "ticks": 1470,
+    "ticks_shown": 1470,
+    "ticks_after_close": 300,
     "never_touch_events": 2,
     "problems": []
    },
@@ -1493,11 +1685,11 @@
    "problems": [],
    "video": {
     "dir": "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T214742Z-c213e570/media/episode",
-    "bytes": 202385,
-    "sha256": "4e54efdce88b93f8be786b83edfd2d6d4ec3799e783aecf1898e20a82a503ae3",
-    "poster_bytes": 69774,
-    "poster_sha256": "246025e7f78a53c6045096a836ac1f0bbe1b48e528c958f815d45fc99a7c1f79",
-    "duration_s": 14.65,
+    "bytes": 231405,
+    "sha256": "92512012e3ec7616060421d91421cd65bff4ae275e91fc02a910c68d196cc497",
+    "poster_bytes": 68042,
+    "poster_sha256": "e5da4bb1b5fdc3b92851703b3316a933d4c65c786f45f3c5b01530d148dc0796",
+    "duration_s": 20.7,
     "speed": 1.0,
     "size": [
      848,
@@ -1506,6 +1698,10 @@
     "turns_source": "s2_turns.jsonl",
     "picture": "head camera",
     "looks_redrawn": false,
+    "head_frames_per_s": 16.74,
+    "ticks": 442,
+    "ticks_shown": 442,
+    "ticks_after_close": 300,
     "never_touch_events": 0,
     "problems": []
    },
@@ -1556,11 +1752,11 @@
    "problems": [],
    "video": {
     "dir": "s2/dexharness/runs/live/daily50_t19_jar_drawer/20261124T214949Z-40eb5e48/media/episode",
-    "bytes": 252204,
-    "sha256": "9815e04ad33fc10d76f7f6a04c501b06df9009fca5dbbf72c19424f90fd5a9cd",
-    "poster_bytes": 89024,
-    "poster_sha256": "a132b657175d86148468f517d6d2d92cfe804266ae09bf98fa48b6c3a821401e",
-    "duration_s": 17.1,
+    "bytes": 294267,
+    "sha256": "1d46f732b9c4bbbda348fce5cd2bab3d426b25a9fddaebf25907739f281a71c2",
+    "poster_bytes": 87827,
+    "poster_sha256": "e39668035a413f00c4853707ffbdd10f38b2212e0637ef0a997a9f73bf1a0046",
+    "duration_s": 23.15,
     "speed": 1.0,
     "size": [
      848,
@@ -1569,6 +1765,10 @@
     "turns_source": "s2_turns.jsonl",
     "picture": "head camera",
     "looks_redrawn": true,
+    "head_frames_per_s": 16.7,
+    "ticks": 563,
+    "ticks_shown": 563,
+    "ticks_after_close": 300,
     "never_touch_events": 0,
     "problems": []
    },
@@ -1619,11 +1819,11 @@
    "problems": [],
    "video": {
     "dir": "s2/dexharness/runs/live/daily50_t19_jar_drawer/20261124T221816Z-a1edb7cf/media/episode",
-    "bytes": 981044,
-    "sha256": "f85e04311af71b1d375ae5fa3f6629abcbc693eaa8e27036365c9863c81e4fbd",
+    "bytes": 1012768,
+    "sha256": "495f3b52c73c06af7027073498ed3723302f31e82bd094dfac50db47b08b0733",
     "poster_bytes": 99445,
     "poster_sha256": "fd7282552edf0fa32e54d020c62e703241ca33b61a75d7b23bc351548279004e",
-    "duration_s": 49.0,
+    "duration_s": 53.1,
     "speed": 1.0,
     "size": [
      848,
@@ -1632,6 +1832,10 @@
     "turns_source": "s2_turns.jsonl",
     "picture": "head camera",
     "looks_redrawn": false,
+    "head_frames_per_s": 16.67,
+    "ticks": 1500,
+    "ticks_shown": 1500,
+    "ticks_after_close": 203,
     "never_touch_events": 1,
     "problems": []
    },
@@ -1682,11 +1886,11 @@
    "problems": [],
    "video": {
     "dir": "s2/dexharness/runs/live/daily50_t19_jar_drawer/20261124T222859Z-dd362b9b/media/episode",
-    "bytes": 847025,
-    "sha256": "93af48a1f144de75a7c0e3fd9ddefb9594356ba3232be61519a4d13106399abc",
+    "bytes": 862554,
+    "sha256": "2cfb349f597f95e5e414291018a0546131ac55727887b8593821b0925d261e3a",
     "poster_bytes": 101398,
     "poster_sha256": "3372779f904f7429e6ed097885ece51c5bf2cc9ed5830762a8d43ff2071636c5",
-    "duration_s": 45.45,
+    "duration_s": 46.75,
     "speed": 1.0,
     "size": [
      848,
@@ -1695,6 +1899,10 @@
     "turns_source": "s2_turns.jsonl",
     "picture": "head camera",
     "looks_redrawn": false,
+    "head_frames_per_s": 16.67,
+    "ticks": 1500,
+    "ticks_shown": 1500,
+    "ticks_after_close": 62,
     "never_touch_events": 1,
     "problems": []
    },
@@ -1738,7 +1946,7 @@
    "policy": {
     "bound": true,
     "engine": "m8000",
-    "clip": "/home/jimmy/workspace/wuji-rl-gmt/data/recipes_local/hoi_pack_v1/c129.recipe.json",
+    "clip": "c129.recipe.json",
     "object_in_training_recipe": "yes"
    },
    "task_version": 2,
@@ -1748,11 +1956,11 @@
    "problems": [],
    "video": {
     "dir": "s2/dexharness/runs/live/daily50_t27_paperweight/20261124T221828Z-12c4163f/media/episode",
-    "bytes": 727890,
-    "sha256": "18bf3403f6aa35dfb2ebe4f9729ad5d4957e34dbcde91dce230335fb7b319205",
-    "poster_bytes": 99230,
-    "poster_sha256": "ec432640198c8e1b40511fcef778653cb53bdb955318a866139955336b0c0eeb",
-    "duration_s": 31.85,
+    "bytes": 749503,
+    "sha256": "1cc9f200dcf6d13f6e195ed06c2def2b74b0d5bf6e4d779920c6045b7424269b",
+    "poster_bytes": 97715,
+    "poster_sha256": "95c18a462b13886b7a50fb646badef38572a3cbb11abe60f53eac4b87002111a",
+    "duration_s": 37.9,
     "speed": 1.0,
     "size": [
      848,
@@ -1761,6 +1969,10 @@
     "turns_source": "s2_turns.jsonl",
     "picture": "head camera",
     "looks_redrawn": false,
+    "head_frames_per_s": 16.67,
+    "ticks": 1059,
+    "ticks_shown": 1059,
+    "ticks_after_close": 300,
     "never_touch_events": 2,
     "problems": []
    },
@@ -1804,7 +2016,7 @@
    "policy": {
     "bound": true,
     "engine": "m8000",
-    "clip": "/home/jimmy/workspace/wuji-rl-gmt/data/recipes_local/hoi_pack_v1/c129.recipe.json",
+    "clip": "c129.recipe.json",
     "object_in_training_recipe": "yes"
    },
    "task_version": 2,
@@ -1814,11 +2026,11 @@
    "problems": [],
    "video": {
     "dir": "s2/dexharness/runs/live/daily50_t27_paperweight/20261124T222536Z-cd2cdc19/media/episode",
-    "bytes": 1092887,
-    "sha256": "ec6e7bc6de5706eaa5252dab65fd7348df325c2c6319d1b94841986ef82409cd",
-    "poster_bytes": 98124,
-    "poster_sha256": "7780f93fbbe57b57a3b5142e487f20101abf2cf5576382a18f8288c33c5d9c61",
-    "duration_s": 54.2,
+    "bytes": 1121121,
+    "sha256": "0d68239d6ce87e563e0c85712de21c3de3d55b148376f65fbe6c8c236f884c15",
+    "poster_bytes": 96609,
+    "poster_sha256": "21fbe8af9ee167b420c06425766138dd9c57511bb56b23f225d507f49de9f54f",
+    "duration_s": 57.95,
     "speed": 1.0,
     "size": [
      848,
@@ -1827,6 +2039,10 @@
     "turns_source": "s2_turns.jsonl",
     "picture": "head camera",
     "looks_redrawn": false,
+    "head_frames_per_s": 16.67,
+    "ticks": 1500,
+    "ticks_shown": 1500,
+    "ticks_after_close": 185,
     "never_touch_events": 1,
     "problems": []
    },
@@ -1876,11 +2092,11 @@
    "problems": [],
    "video": {
     "dir": "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T221809Z-a1b917a9/media/episode",
-    "bytes": 829926,
-    "sha256": "5597dffbcd57b0387018f95cec4f9432d8a9ad40d5112c7f02e6f1ec1fda2477",
+    "bytes": 857678,
+    "sha256": "18d9aa9b1e0dd423076ae125f877b2ccf59eab9778c1400ccf6f76c6f73ff174",
     "poster_bytes": 77390,
     "poster_sha256": "9d296d6287b221795da4dc1e048d9926c9628fd71fe20a696afe324e18b6f34e",
-    "duration_s": 39.2,
+    "duration_s": 45.25,
     "speed": 1.0,
     "size": [
      848,
@@ -1889,6 +2105,10 @@
     "turns_source": "s2_turns.jsonl",
     "picture": "head camera",
     "looks_redrawn": false,
+    "head_frames_per_s": 16.68,
+    "ticks": 1424,
+    "ticks_shown": 1424,
+    "ticks_after_close": 300,
     "never_touch_events": 0,
     "problems": []
    },
@@ -1938,11 +2158,11 @@
    "problems": [],
    "video": {
     "dir": "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T222635Z-3bb61900/media/episode",
-    "bytes": 394019,
-    "sha256": "d98caa7b74acf354b6feacead55fdb763715da2a03b55c85ad777f72734ade85",
+    "bytes": 418453,
+    "sha256": "87bcb9dd42b6fcc0a8bb3e767da84fa883de93b5e99526aa2012b5b4221ff457",
     "poster_bytes": 97150,
     "poster_sha256": "24cfa320334ce83a0d2956703f88b5a1fc1e19a272d9806a3adbe4d204b356a0",
-    "duration_s": 20.0,
+    "duration_s": 26.05,
     "speed": 1.0,
     "size": [
      848,
@@ -1951,6 +2171,10 @@
     "turns_source": "s2_turns.jsonl",
     "picture": "head camera",
     "looks_redrawn": false,
+    "head_frames_per_s": 16.69,
+    "ticks": 788,
+    "ticks_shown": 788,
+    "ticks_after_close": 300,
     "never_touch_events": 0,
     "problems": []
    },
@@ -2000,11 +2224,11 @@
    "problems": [],
    "video": {
     "dir": "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T222959Z-ce62d45d/media/episode",
-    "bytes": 390316,
-    "sha256": "fc466ed64e87f4964f790763d7b0361dbcb10c42ea4534ac970b3125af8c4420",
+    "bytes": 417023,
+    "sha256": "5eccc8e7c65f1f8c98212fc8cbe2e91aa3172e86f55f63c606fe367e38131a1c",
     "poster_bytes": 92616,
     "poster_sha256": "b31b4b19fdc5a2fdb0b6855c07d7cb719286aec287a38e66ad66899ca87cee3d",
-    "duration_s": 20.2,
+    "duration_s": 26.25,
     "speed": 1.0,
     "size": [
      848,
@@ -2013,6 +2237,10 @@
     "turns_source": "s2_turns.jsonl",
     "picture": "head camera",
     "looks_redrawn": false,
+    "head_frames_per_s": 16.71,
+    "ticks": 796,
+    "ticks_shown": 796,
+    "ticks_after_close": 300,
     "never_touch_events": 0,
     "problems": []
    },
@@ -2061,11 +2289,11 @@
    "problems": [],
    "video": {
     "dir": "s2/dexharness/runs/live/daily50_t49_weigh_orange/20261124T205737Z-893d9f45/media/episode",
-    "bytes": 1119502,
-    "sha256": "e3362aa0dd0d6ddb14a9baff76db078ef5f14190c48a17e645c1b5957a9d65fb",
-    "poster_bytes": 142340,
-    "poster_sha256": "4bd0c196e92c0eaf1580980ab0bbd1356047f84b51ef98fe4b4d77d2b0e76dc2",
-    "duration_s": 46.1,
+    "bytes": 1252559,
+    "sha256": "33a839ba585324aaf048632b10bb2f90e6752a06d933f89e5d3383042124c141",
+    "poster_bytes": 142923,
+    "poster_sha256": "f7da12071872575380d5741f2a5132346b5f19b234ac9c35017ec691504acfed",
+    "duration_s": 52.15,
     "speed": 1.0,
     "size": [
      848,
@@ -2074,6 +2302,10 @@
     "turns_source": "s2_turns.jsonl",
     "picture": "head camera",
     "looks_redrawn": true,
+    "head_frames_per_s": 16.67,
+    "ticks": 1371,
+    "ticks_shown": 1371,
+    "ticks_after_close": 300,
     "never_touch_events": 2,
     "problems": []
    },
@@ -2119,11 +2351,11 @@
    "problems": [],
    "video": {
     "dir": "s2/dexharness/runs/live/daily50_t49_weigh_orange/20261124T210752Z-288d033a/media/episode",
-    "bytes": 521060,
-    "sha256": "63dc97218ac912e618e710bc5d45b44569603f6a6be23d857c5d77f295f3b9e1",
-    "poster_bytes": 138814,
-    "poster_sha256": "350faf08c5e3e6006b6c24ab3944dc8cb171dcbcead8f4103f659f75df708af9",
-    "duration_s": 22.45,
+    "bytes": 552508,
+    "sha256": "0938f84e4fe9a4a56821fa5d863764391a877b3c7c236de5259581c1d33ae11a",
+    "poster_bytes": 139387,
+    "poster_sha256": "9494274b75d3cf328a1beae1540db3aa5dd227572b57e7bfeaba46a50767f2a4",
+    "duration_s": 28.5,
     "speed": 1.0,
     "size": [
      848,
@@ -2132,6 +2364,10 @@
     "turns_source": "s2_turns.jsonl",
     "picture": "head camera",
     "looks_redrawn": true,
+    "head_frames_per_s": 16.67,
+    "ticks": 912,
+    "ticks_shown": 912,
+    "ticks_after_close": 300,
     "never_touch_events": 1,
     "problems": []
    },
@@ -2171,7 +2407,7 @@
    "policy": {
     "bound": true,
     "engine": "m8000",
-    "clip": "/home/jimmy/workspace/wuji-rl-gmt/data/recipes_local/hoi_pack_v1/c129.recipe.json",
+    "clip": "c129.recipe.json",
     "object_in_training_recipe": "yes"
    },
    "task_version": 2,
@@ -2179,10 +2415,10 @@
    "problems": [],
    "video": {
     "dir": "s2/dexharness/runs/live/daily50_t27_paperweight/20261124T223525Z-c0bf3f43/media/episode",
-    "bytes": 1229727,
-    "sha256": "910c3cf248757f164fe9477d157b7110e0afb6e44d710f7f7ccf99b272a54d44",
-    "poster_bytes": 97169,
-    "poster_sha256": "93320b41a5fc81f6d0c73703fbf532433d38bd8d6e6c0385b99650cf11e469da",
+    "bytes": 1220504,
+    "sha256": "85600487c765d3870af14a39cf8636c33f7d02ef96d0d14722a8e385635f89c8",
+    "poster_bytes": 95623,
+    "poster_sha256": "cd9e53334245fbab1479750ae94e315fc5d52c5c0be75b197af7e860a2801673",
     "duration_s": 61.2,
     "speed": 1.0,
     "size": [
@@ -2192,6 +2428,10 @@
     "turns_source": "s2_turns.jsonl",
     "picture": "head camera",
     "looks_redrawn": false,
+    "head_frames_per_s": 16.67,
+    "ticks": 1500,
+    "ticks_shown": 1500,
+    "ticks_after_close": 0,
     "never_touch_events": 0,
     "problems": []
    },
@@ -2235,7 +2475,7 @@
    "policy": {
     "bound": true,
     "engine": "m8000",
-    "clip": "/home/jimmy/workspace/wuji-rl-gmt/data/recipes_local/hoi_pack_v1/c129.recipe.json",
+    "clip": "c129.recipe.json",
     "object_in_training_recipe": "yes"
    },
    "task_version": 2,
@@ -2243,11 +2483,11 @@
    "problems": [],
    "video": {
     "dir": "s2/dexharness/runs/live/daily50_t27_paperweight/20261124T224624Z-294c1f97/media/episode",
-    "bytes": 882335,
-    "sha256": "cc77561ff1c4c64db162e53f50979a7764f2adc843c053812046d313967fb496",
-    "poster_bytes": 103555,
-    "poster_sha256": "a2ab1227639ab1aa09a31a762dbcfa7fa4975ac0bacc20ea0a26a63c93d3e95f",
-    "duration_s": 40.85,
+    "bytes": 969831,
+    "sha256": "22a7ea57939bf6f7ccaa2b3dc76c23353bb023c774bb2d3474e86f1bba610421",
+    "poster_bytes": 102080,
+    "poster_sha256": "54775e9c4ec7c0f9134bd0c09a0d87cbe8c2c8b3dadeb2d2ee386f0f54830ca0",
+    "duration_s": 46.9,
     "speed": 1.0,
     "size": [
      848,
@@ -2256,6 +2496,10 @@
     "turns_source": "s2_turns.jsonl",
     "picture": "head camera",
     "looks_redrawn": false,
+    "head_frames_per_s": 16.69,
+    "ticks": 1186,
+    "ticks_shown": 1186,
+    "ticks_after_close": 300,
     "never_touch_events": 0,
     "problems": []
    },
@@ -2274,362 +2518,23 @@
   }
  ],
  "other_episodes": [],
- "unlisted_on_disk": [
-  {
-   "run": "s2/dexharness/runs/live/daily50_t01_hammer_nail/20261124T201227Z-6e497725",
-   "task": "t01_hammer_nail",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t02_crack_walnut/20261124T201227Z-d3900b37",
-   "task": "t02_crack_walnut",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t03_paint_lid_shut/20261124T201333Z-05918f18",
-   "task": "t03_paint_lid_shut",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t04_pull_nail/20261124T201347Z-f08a1ea2",
-   "task": "t04_pull_nail",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t05_hang_hammer/20261124T201447Z-f8af4506",
-   "task": "t05_hang_hammer",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t06_hinge_screw/20261124T201449Z-e0cc2172",
-   "task": "t06_hinge_screw",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t07_battery_cover/20261124T201550Z-c55f48e2",
-   "task": "t07_battery_cover",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t08_pry_paint_lid/20261124T201554Z-5c44d804",
-   "task": "t08_pry_paint_lid",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t09_valve_key/20261124T201703Z-dbefbc06",
-   "task": "t09_valve_key",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t10_mist_plant/20261124T201712Z-c31ba7a5",
-   "task": "t10_mist_plant",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t11_spray_mirror/20261124T201809Z-143978d2",
-   "task": "t11_spray_mirror",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t12_bulb_table_lamp/20261124T195611Z-a18ff905",
-   "task": "t12_bulb_table_lamp",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t13_bulb_vanity/20261124T201816Z-2869ba73",
-   "task": "t13_bulb_vanity",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t14_bulb_remove/20261124T201939Z-1ee67147",
-   "task": "t14_bulb_remove",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t15_bulb_pendant/20261124T202008Z-d74a0070",
-   "task": "t15_bulb_pendant",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t16_block_tower/20261124T202046Z-249bb8ff",
-   "task": "t16_block_tower",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t17_shape_sorter/20261124T202116Z-ab2a727e",
-   "task": "t17_shape_sorter",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t18_hob_knob/20261124T202155Z-e0fdfe7b",
-   "task": "t18_hob_knob",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t19_jar_drawer/20261124T202227Z-0b2f9ab2",
-   "task": "t19_jar_drawer",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t20_sink_plug/20261124T195611Z-8bdc8ec3",
-   "task": "t20_sink_plug",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t21_calendar_cube/20261124T202301Z-0547795c",
-   "task": "t21_calendar_cube",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t22_seal_stamp/20261124T202328Z-33b82057",
-   "task": "t22_seal_stamp",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t23_milk_microwave/20261124T202403Z-0be28070",
-   "task": "t23_milk_microwave",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t24_salt_shaker/20261124T202428Z-d6b297ec",
-   "task": "t24_salt_shaker",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t25_fish_food/20261124T202457Z-6e760d86",
-   "task": "t25_fish_food",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t26_can_rack/20261124T202534Z-5f7a3367",
-   "task": "t26_can_rack",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t27_paperweight/20261124T195611Z-620c5d90",
-   "task": "t27_paperweight",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t27_paperweight/20261124T200614Z-9cb9052d",
-   "task": "t27_paperweight",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t27_paperweight/20261124T230535Z-d7fb3987",
-   "task": "t27_paperweight",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t27_paperweight/20261124T231314Z-8bb2d69f",
-   "task": "t27_paperweight",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t27_paperweight/20261125T010327Z-73a9b3c2",
-   "task": "t27_paperweight",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t27_paperweight/20261125T010348Z-e8f62fdd",
-   "task": "t27_paperweight",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t28_can_bin/20261124T202554Z-5e19ff35",
-   "task": "t28_can_bin",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t29_lighter_candle/20261124T202641Z-2f108bf9",
-   "task": "t29_lighter_candle",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t30_toggle_clamp/20261124T202653Z-e1c91fd4",
-   "task": "t30_toggle_clamp",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t31_tube_lamp/20261124T202746Z-517c55de",
-   "task": "t31_tube_lamp",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t32_umbrella_stand/20261124T202754Z-28e17dad",
-   "task": "t32_umbrella_stand",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t33_candle_holder/20261124T202854Z-650173c6",
-   "task": "t33_candle_holder",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t34_crush_crackers/20261124T202856Z-71f949c4",
-   "task": "t34_crush_crackers",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t35_flashlight/20261124T203001Z-09d7fef3",
-   "task": "t35_flashlight",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t36_thermos_pour/20261124T203002Z-93903c9f",
-   "task": "t36_thermos_pour",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t37_box_cutter/20261124T203058Z-14bb648a",
-   "task": "t37_box_cutter",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t38_tv_remote/20261124T203121Z-5763ff27",
-   "task": "t38_tv_remote",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t39_whiteboard_erase/20261124T203204Z-15258105",
-   "task": "t39_whiteboard_erase",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t40_scrape_crumbs/20261124T203238Z-b026388f",
-   "task": "t40_scrape_crumbs",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T203345Z-02a48d09",
-   "task": "t41_power_strip",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t42_dish_soap/20261124T203447Z-8fd8a3f1",
-   "task": "t42_dish_soap",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t43_chalk_line/20261124T203458Z-806eab67",
-   "task": "t43_chalk_line",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t44_crush_garlic/20261124T203602Z-3407e09d",
-   "task": "t44_crush_garlic",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t45_pepper_mill/20261124T203606Z-0f19f13a",
-   "task": "t45_pepper_mill",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t46_table_leg/20261124T203702Z-10db0224",
-   "task": "t46_table_leg",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t47_level_shelf/20261124T203710Z-6d45c1b4",
-   "task": "t47_level_shelf",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t48_wheel_chock/20261124T203755Z-17933f1b",
-   "task": "t48_wheel_chock",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t49_weigh_orange/20261124T203816Z-1ef69be5",
-   "task": "t49_weigh_orange",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/daily50_t50_toy_bowling/20261124T203859Z-ed719cd5",
-   "task": "t50_toy_bowling",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/srv_captest_live_idle/20261124T200928Z-cb9d88cd",
-   "task": "t27_paperweight",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/srv_captest_live_idle/20261124T220440Z-6544e703",
-   "task": "t27_paperweight",
-   "series": "probe",
-   "verdict": "FAIL"
-  },
-  {
-   "run": "s2/dexharness/runs/live/srv_captest_live_idle/20261124T220546Z-4bc949a9",
-   "task": "t27_paperweight",
-   "series": "probe",
-   "verdict": "FAIL"
-  }
- ],
+ "unlisted_on_disk": [],
  "videos_left_out_for_size": [],
  "files": [
   {
+   "name": "t19_jar_drawer__probe0__d40f5b5d.mp4",
+   "bytes": 294267,
+   "sha256": "1d46f732b9c4bbbda348fce5cd2bab3d426b25a9fddaebf25907739f281a71c2"
+  },
+  {
+   "name": "t19_jar_drawer__probe0__d40f5b5d.jpg",
+   "bytes": 87827,
+   "sha256": "e39668035a413f00c4853707ffbdd10f38b2212e0637ef0a997a9f73bf1a0046"
+  },
+  {
    "name": "t19_jar_drawer__probe1__77b89ff2.mp4",
-   "bytes": 847025,
-   "sha256": "93af48a1f144de75a7c0e3fd9ddefb9594356ba3232be61519a4d13106399abc"
+   "bytes": 862554,
+   "sha256": "2cfb349f597f95e5e414291018a0546131ac55727887b8593821b0925d261e3a"
   },
   {
    "name": "t19_jar_drawer__probe1__77b89ff2.jpg",
@@ -2638,38 +2543,48 @@
   },
   {
    "name": "t19_jar_drawer__probe1__d8f9ac5e.mp4",
-   "bytes": 818086,
-   "sha256": "ec62dbce9c377d830a7e0b852d031242137d0fb6b61a6e596663a83003e0e65d"
+   "bytes": 848954,
+   "sha256": "81ddbd6cfa94ec3239b5b0d2fc80be4ace5b34159090786510464e9d8697f417"
   },
   {
    "name": "t19_jar_drawer__probe1__d8f9ac5e.jpg",
-   "bytes": 102781,
-   "sha256": "c867ed23216745bc8015bb282b3f9f0feabac36b615f657b6c96758ae0538226"
+   "bytes": 103167,
+   "sha256": "b5e28e13ec373f5e21500ecc2f7c90b177c59db69dc32582f24529438cdef234"
   },
   {
    "name": "t27_paperweight__probe3__a4ffff33.mp4",
-   "bytes": 882335,
-   "sha256": "cc77561ff1c4c64db162e53f50979a7764f2adc843c053812046d313967fb496"
+   "bytes": 969831,
+   "sha256": "22a7ea57939bf6f7ccaa2b3dc76c23353bb023c774bb2d3474e86f1bba610421"
   },
   {
    "name": "t27_paperweight__probe3__a4ffff33.jpg",
-   "bytes": 103555,
-   "sha256": "a2ab1227639ab1aa09a31a762dbcfa7fa4975ac0bacc20ea0a26a63c93d3e95f"
+   "bytes": 102080,
+   "sha256": "54775e9c4ec7c0f9134bd0c09a0d87cbe8c2c8b3dadeb2d2ee386f0f54830ca0"
   },
   {
    "name": "t27_paperweight__probe0__4959e6b7.mp4",
-   "bytes": 417499,
-   "sha256": "f4cbf22bde3f695b5d051e2058aa26ccf6e430af5366fd9bd6dd97ce4ed40eec"
+   "bytes": 469483,
+   "sha256": "af2994db01a440a9609d30b42e53aacb1bea473be220a1cbbbf08c231e1621eb"
   },
   {
    "name": "t27_paperweight__probe0__4959e6b7.jpg",
-   "bytes": 106052,
-   "sha256": "fb797a454fe3ad7ddd749fe0aea2a621ae86d7e1026e3b1bd244888f9df1faf8"
+   "bytes": 105707,
+   "sha256": "cc8c99a8bd839f66b125c0dfff878318c46ed1b0b3f8bd5a1ffd6d634ec176cc"
+  },
+  {
+   "name": "t41_power_strip__probe0__ebb9b360.mp4",
+   "bytes": 857678,
+   "sha256": "18d9aa9b1e0dd423076ae125f877b2ccf59eab9778c1400ccf6f76c6f73ff174"
+  },
+  {
+   "name": "t41_power_strip__probe0__ebb9b360.jpg",
+   "bytes": 77390,
+   "sha256": "9d296d6287b221795da4dc1e048d9926c9628fd71fe20a696afe324e18b6f34e"
   },
   {
    "name": "t41_power_strip__probe2__b86aca95.mp4",
-   "bytes": 390316,
-   "sha256": "fc466ed64e87f4964f790763d7b0361dbcb10c42ea4534ac970b3125af8c4420"
+   "bytes": 417023,
+   "sha256": "5eccc8e7c65f1f8c98212fc8cbe2e91aa3172e86f55f63c606fe367e38131a1c"
   },
   {
    "name": "t41_power_strip__probe2__b86aca95.jpg",
@@ -2678,26 +2593,26 @@
   },
   {
    "name": "t41_power_strip__probe1__f614b895.mp4",
-   "bytes": 463490,
-   "sha256": "2d64c08a8bdb4a0796fe4769a5547e1621b530e2584793ffa8940439b16fbc46"
+   "bytes": 553800,
+   "sha256": "1f7dcad74c8a3ffe07f0fc2b877e446de890cd20995b2f55d59a30fc68d1a021"
   },
   {
    "name": "t41_power_strip__probe1__f614b895.jpg",
-   "bytes": 100692,
-   "sha256": "72b50587fc1da3436c70a1c6ef891e13a1ae4e5024c2e5e5a7a7f337db0fd7c5"
+   "bytes": 101204,
+   "sha256": "e5906726c137ddc450bc617be48c9200e382fce896d394093664a0335aa4dcde"
   },
   {
    "name": "t49_weigh_orange__probe3__a707b8b4.mp4",
-   "bytes": 521060,
-   "sha256": "63dc97218ac912e618e710bc5d45b44569603f6a6be23d857c5d77f295f3b9e1"
+   "bytes": 552508,
+   "sha256": "0938f84e4fe9a4a56821fa5d863764391a877b3c7c236de5259581c1d33ae11a"
   },
   {
    "name": "t49_weigh_orange__probe3__a707b8b4.jpg",
-   "bytes": 138814,
-   "sha256": "350faf08c5e3e6006b6c24ab3944dc8cb171dcbcead8f4103f659f75df708af9"
+   "bytes": 139387,
+   "sha256": "9494274b75d3cf328a1beae1540db3aa5dd227572b57e7bfeaba46a50767f2a4"
   }
  ],
- "media_bytes": 5085719,
+ "media_bytes": 6736874,
  "media_budget_bytes": 250000000,
  "not_done": [
   {
@@ -2788,69 +2703,6 @@
    ]
   },
   {
-   "text": "58 episode card(s) are on disk under the runs folder and NOT on this page.",
-   "items": [
-    "s2/dexharness/runs/live/daily50_t01_hammer_nail/20261124T201227Z-6e497725 (t01_hammer_nail, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t02_crack_walnut/20261124T201227Z-d3900b37 (t02_crack_walnut, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t03_paint_lid_shut/20261124T201333Z-05918f18 (t03_paint_lid_shut, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t04_pull_nail/20261124T201347Z-f08a1ea2 (t04_pull_nail, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t05_hang_hammer/20261124T201447Z-f8af4506 (t05_hang_hammer, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t06_hinge_screw/20261124T201449Z-e0cc2172 (t06_hinge_screw, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t07_battery_cover/20261124T201550Z-c55f48e2 (t07_battery_cover, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t08_pry_paint_lid/20261124T201554Z-5c44d804 (t08_pry_paint_lid, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t09_valve_key/20261124T201703Z-dbefbc06 (t09_valve_key, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t10_mist_plant/20261124T201712Z-c31ba7a5 (t10_mist_plant, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t11_spray_mirror/20261124T201809Z-143978d2 (t11_spray_mirror, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t12_bulb_table_lamp/20261124T195611Z-a18ff905 (t12_bulb_table_lamp, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t13_bulb_vanity/20261124T201816Z-2869ba73 (t13_bulb_vanity, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t14_bulb_remove/20261124T201939Z-1ee67147 (t14_bulb_remove, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t15_bulb_pendant/20261124T202008Z-d74a0070 (t15_bulb_pendant, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t16_block_tower/20261124T202046Z-249bb8ff (t16_block_tower, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t17_shape_sorter/20261124T202116Z-ab2a727e (t17_shape_sorter, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t18_hob_knob/20261124T202155Z-e0fdfe7b (t18_hob_knob, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t19_jar_drawer/20261124T202227Z-0b2f9ab2 (t19_jar_drawer, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t20_sink_plug/20261124T195611Z-8bdc8ec3 (t20_sink_plug, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t21_calendar_cube/20261124T202301Z-0547795c (t21_calendar_cube, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t22_seal_stamp/20261124T202328Z-33b82057 (t22_seal_stamp, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t23_milk_microwave/20261124T202403Z-0be28070 (t23_milk_microwave, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t24_salt_shaker/20261124T202428Z-d6b297ec (t24_salt_shaker, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t25_fish_food/20261124T202457Z-6e760d86 (t25_fish_food, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t26_can_rack/20261124T202534Z-5f7a3367 (t26_can_rack, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t27_paperweight/20261124T195611Z-620c5d90 (t27_paperweight, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t27_paperweight/20261124T200614Z-9cb9052d (t27_paperweight, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t27_paperweight/20261124T230535Z-d7fb3987 (t27_paperweight, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t27_paperweight/20261124T231314Z-8bb2d69f (t27_paperweight, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t27_paperweight/20261125T010327Z-73a9b3c2 (t27_paperweight, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t27_paperweight/20261125T010348Z-e8f62fdd (t27_paperweight, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t28_can_bin/20261124T202554Z-5e19ff35 (t28_can_bin, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t29_lighter_candle/20261124T202641Z-2f108bf9 (t29_lighter_candle, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t30_toggle_clamp/20261124T202653Z-e1c91fd4 (t30_toggle_clamp, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t31_tube_lamp/20261124T202746Z-517c55de (t31_tube_lamp, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t32_umbrella_stand/20261124T202754Z-28e17dad (t32_umbrella_stand, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t33_candle_holder/20261124T202854Z-650173c6 (t33_candle_holder, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t34_crush_crackers/20261124T202856Z-71f949c4 (t34_crush_crackers, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t35_flashlight/20261124T203001Z-09d7fef3 (t35_flashlight, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t36_thermos_pour/20261124T203002Z-93903c9f (t36_thermos_pour, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t37_box_cutter/20261124T203058Z-14bb648a (t37_box_cutter, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t38_tv_remote/20261124T203121Z-5763ff27 (t38_tv_remote, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t39_whiteboard_erase/20261124T203204Z-15258105 (t39_whiteboard_erase, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t40_scrape_crumbs/20261124T203238Z-b026388f (t40_scrape_crumbs, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t41_power_strip/20261124T203345Z-02a48d09 (t41_power_strip, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t42_dish_soap/20261124T203447Z-8fd8a3f1 (t42_dish_soap, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t43_chalk_line/20261124T203458Z-806eab67 (t43_chalk_line, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t44_crush_garlic/20261124T203602Z-3407e09d (t44_crush_garlic, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t45_pepper_mill/20261124T203606Z-0f19f13a (t45_pepper_mill, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t46_table_leg/20261124T203702Z-10db0224 (t46_table_leg, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t47_level_shelf/20261124T203710Z-6d45c1b4 (t47_level_shelf, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t48_wheel_chock/20261124T203755Z-17933f1b (t48_wheel_chock, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t49_weigh_orange/20261124T203816Z-1ef69be5 (t49_weigh_orange, probe, FAIL)",
-    "s2/dexharness/runs/live/daily50_t50_toy_bowling/20261124T203859Z-ed719cd5 (t50_toy_bowling, probe, FAIL)",
-    "s2/dexharness/runs/live/srv_captest_live_idle/20261124T200928Z-cb9d88cd (t27_paperweight, probe, FAIL)",
-    "s2/dexharness/runs/live/srv_captest_live_idle/20261124T220440Z-6544e703 (t27_paperweight, probe, FAIL)",
-    "s2/dexharness/runs/live/srv_captest_live_idle/20261124T220546Z-4bc949a9 (t27_paperweight, probe, FAIL)"
-   ]
-  },
-  {
    "text": "11 video(s) are drawn on the task's scene file as it is now, which is not the file the episode ran on (the scenes have been re-dressed since; no copy of the old file was kept): scene looks re-drawn from the present scene file; the recorded motion is the episode's.",
    "items": [
     "daily50_t27_paperweight/20261124T200253Z-c16ec82c",
@@ -2867,6 +2719,6 @@
    ]
   }
  ],
- "generated": "2026-11-24 20:07 EST",
- "page_sha256": "71dfbfe3f6cc482683a69bee4b18dc709c16d84a43e3c3d62456880d5c244e42"
+ "generated": "2026-11-24 20:31 EST",
+ "page_sha256": "96269a5c1a34bcb7d654c05f1f4d0168c53cd3b03ecc84c4d715251e8d8c110b"
 }
