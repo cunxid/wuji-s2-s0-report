@@ -1,6 +1,6 @@
 {
  "schema": "daily50.trials_page/1",
- "generated": "2026-11-25 13:44 EST",
+ "generated": "2026-11-25 13:51 EST",
  "headline": {
   "tasks_total": 50,
   "tasks_attempted": 9,
@@ -9,9 +9,9 @@
    "t19_jar_drawer",
    "t41_power_strip"
   ],
-  "trials": 13,
+  "trials": 14,
   "trials_by_status": {
-   "FAIL": 11,
+   "FAIL": 12,
    "PASS": 2
   },
   "words": "success rate: 2 of 9 tasks passed (played by session agents, probe series \u2014 not a counted test series)",
@@ -36,8 +36,8 @@
   }
  },
  "media": {
-  "files": 13,
-  "bytes": 7588630,
+  "files": 14,
+  "bytes": 8765573,
   "budget_bytes": 150000000
  },
  "judge_reason_shown": true,
@@ -207,6 +207,27 @@
       "record turn 8 (check) is no turn of the session's log: shown as a card at tick 841",
       "3 record turn(s) carry another number than the session's turn log gives the same turn (joined by ticks, phase word, sentence and skill, in order)"
      ]
+    },
+    {
+     "file": "trial_40.json",
+     "number": "40",
+     "status": "FAIL",
+     "written": "2026-11-25 13:41",
+     "attempt": 4,
+     "read_task_notes": true,
+     "run": "20261125T175855Z-06d19424",
+     "turns": 25,
+     "phase_counts": {
+      "look": 3,
+      "plan": 1,
+      "check": 12,
+      "act": 7,
+      "replan": 2
+     },
+     "replans": 2,
+     "video": "t27_paperweight_trial_40.mp4",
+     "video_sha256": "c7cac3b5ded7a4a53b451146cf68c4e9a2ac058546aa6741c49ff061b044a547",
+     "problems": []
     }
    ]
   },
@@ -438,15 +459,15 @@
  ],
  "other_tasks": [],
  "pages_sha256": {
-  "daily50_task/t19_jar_drawer.html": "ca241aa284dee1c7b6d576fda1561d525cd16aa8a284d2f22fdb163a29c6c72e",
-  "daily50_task/t21_calendar_cube.html": "0abdd5aa85a2db99bb1e918157245bf4d8d12920e35a285a9c16a67ff1bedf85",
-  "daily50_task/t27_paperweight.html": "aa540c71dd81665094f86812af39ffe773a6887888ca689e4f11c040af5f2a24",
-  "daily50_task/t28_can_bin.html": "aaae6dd14c8b796e97776ba07f7c50f86a333842fbb194ae23e53b3f1ca310c1",
-  "daily50_task/t32_umbrella_stand.html": "31ec6ad9c86a43f51a74d66046472cc392b0d3e85afa3b1bef4e6af5e0dd6b4a",
-  "daily50_task/t33_candle_holder.html": "e5b40f49311c5928d7cfe572901af0ab1cceb795321d72aee3f3640475bea82a",
-  "daily50_task/t35_flashlight.html": "4d72ae7a3e9eee54129b6744f85f3f3a7dc00c6d21728509dcefef7e0fba7cd8",
-  "daily50_task/t38_tv_remote.html": "c131cf21b94cc4669d8e35f72f0984e9de6800477e705610ec20a9c216fad38c",
-  "daily50_task/t41_power_strip.html": "66c24c63f2b99c427947a454bfb44d6765ebf1a90a28b9ec46c5db1f32026901",
-  "daily50_trials.html": "c8079cd42f8ebeafcf6cae676b2b371040b4bf20b0049f2bdaa382efe35ae529"
+  "daily50_task/t19_jar_drawer.html": "921442f6e225363f81bc2c8fa6e71f5552f0d245b742f19b395f163016afba3b",
+  "daily50_task/t21_calendar_cube.html": "422030150e07c376882ff0a400888d0d5b9315c75d7d19101e32f367555f50a4",
+  "daily50_task/t27_paperweight.html": "b004c5b65eb00fc4b41ee444e76bf0c2ccdb90b24db41490753eaac7703b2616",
+  "daily50_task/t28_can_bin.html": "92283ee10f5fe4e182a39fe4b0099f140010ee86e96da8972e5666dce790fcaa",
+  "daily50_task/t32_umbrella_stand.html": "221bec6cccbc5a1bee0db1ec28a64d706275c1d9deac7155790e0af8381026a1",
+  "daily50_task/t33_candle_holder.html": "de5a15cdb094bbe3ca3ba7b1b9cfd16d94747023d507f3c8d808cc43b976595c",
+  "daily50_task/t35_flashlight.html": "a00cb9a585124ef4e554a9818407cfb821af53907b7891bc431954971975c578",
+  "daily50_task/t38_tv_remote.html": "b39fc0c021e2bae7668da2ed075579c5795c60428dc157e224a8e175e2ee0ced",
+  "daily50_task/t41_power_strip.html": "9f194f6b71933544fa9cc52378ec2231a7523e6a96fb11354a2dbdb32aed1e97",
+  "daily50_trials.html": "15e7819b542c451583c7fbbe45cbeff12dd0a378071afc072274fa486ca4c40d"
  }
 }
