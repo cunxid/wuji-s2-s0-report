@@ -1,31 +1,31 @@
 {
  "schema": "daily50.trials_page/1",
- "generated": "2026-11-25 14:17 EST",
+ "generated": "2026-11-25 14:39 EST",
  "headline": {
   "tasks_total": 50,
-  "tasks_attempted": 12,
+  "tasks_attempted": 13,
   "tasks_passed": 3,
   "tasks_passed_names": [
    "t19_jar_drawer",
    "t41_power_strip",
    "t50_toy_bowling"
   ],
-  "trials": 17,
+  "trials": 18,
   "trials_by_status": {
-   "FAIL": 14,
+   "FAIL": 15,
    "PASS": 3
   },
-  "words": "success rate: 3 of 12 tasks passed (played by session agents, probe series \u2014 not a counted test series)",
+  "words": "success rate: 3 of 13 tasks passed (played by session agents, probe series \u2014 not a counted test series)",
   "practice_tasks_total": 40,
   "first_attempt": {
-   "tasks": 12,
+   "tasks": 13,
    "passed": 1,
    "names": [
     "t50_toy_bowling"
    ]
   },
   "after_practice": {
-   "tasks": 12,
+   "tasks": 13,
    "passed": 3,
    "passed_at_attempt": {
     "t19_jar_drawer": 2,
@@ -40,13 +40,49 @@
   }
  },
  "media": {
-  "files": 17,
-  "bytes": 12432971,
+  "files": 18,
+  "bytes": 14025465,
   "budget_bytes": 150000000
  },
  "judge_reason_shown": true,
  "held_out_from": "PROTOCOL.md of the trials folder",
  "tasks": [
+  {
+   "task": "t07_battery_cover",
+   "in_benchmark": true,
+   "held_out": false,
+   "best_status": "FAIL",
+   "first_attempt": {
+    "trial": "40",
+    "status": "FAIL"
+   },
+   "passed_at_attempt": null,
+   "trials": [
+    {
+     "file": "trial_40.json",
+     "number": "40",
+     "status": "FAIL",
+     "written": "2026-11-25 14:28",
+     "attempt": 1,
+     "read_task_notes": false,
+     "run": "20261125T184353Z-7be302a9",
+     "turns": 23,
+     "phase_counts": {
+      "look": 12,
+      "plan": 1,
+      "act": 6,
+      "replan": 3,
+      "check": 1
+     },
+     "replans": 3,
+     "video": "t07_battery_cover_trial_40.mp4",
+     "video_sha256": "5cba0a5e19fb4e4f33599de8ea5da93a6f90698d4ef4ffe575a5ac96ee37f96e",
+     "problems": [
+      "record turn 23 (look) is no turn of the session's log: shown as a card at tick 2864; the 136 ticks it claims are not shown as its own"
+     ]
+    }
+   ]
+  },
   {
    "task": "t19_jar_drawer",
    "in_benchmark": true,
@@ -565,18 +601,19 @@
  ],
  "other_tasks": [],
  "pages_sha256": {
-  "daily50_task/t19_jar_drawer.html": "2c2b7051c809db7b00ba3fc0595ed674ccf25a8d3a686662c20771b22ad49cd4",
-  "daily50_task/t21_calendar_cube.html": "ec78a5003e729719b888d5d4b25ca341ad2e1cf24894858accae523663ffbd5c",
-  "daily50_task/t27_paperweight.html": "fdb7bac35369b0873b71a01e8a9f3ca3123c0c2d1f0e702bf51eb5dbe8e969d3",
-  "daily50_task/t28_can_bin.html": "519fae8b79d905deb6ce8edb6efd0f2ea3cce2d68ee3ead44691df9519f14abb",
-  "daily50_task/t32_umbrella_stand.html": "17535fb6b77079ecfaaccea0e934ca00082b5fc229d297dedabf709d993f7c41",
-  "daily50_task/t33_candle_holder.html": "310eebff2741b8025014e1baae9b381eb77c9c87f5524ef103d47f23fbd8e698",
-  "daily50_task/t35_flashlight.html": "f6ff3c53cc4d046b0e2edef981859c288824fca86263227b48601cbc913896d0",
-  "daily50_task/t38_tv_remote.html": "59fd74050a2d7084d55f31fe4277dd8936f276ab2e710e51e2fa248d3d7e66c3",
-  "daily50_task/t40_scrape_crumbs.html": "b9e03efa3ed9ecc02b21013c86429ad3602c52fcbc18aaaa3858f64a89181eef",
-  "daily50_task/t41_power_strip.html": "4450fe9a6a441e2452927d21758ff1161efa7bb6592fd204148dabab9fe82d10",
-  "daily50_task/t42_dish_soap.html": "50e2a0de6c5b2b5c8b2fd0a08cb0ff4cbe7998b236dcdca7f033698dda21f8b6",
-  "daily50_task/t50_toy_bowling.html": "e85a233eefe0717da50f10365f7dcba09709625c2c4daedcf3bbe605a63e00fe",
-  "daily50_trials.html": "0b517438672376550607d0b1844ffcedac2723d5179b2b2d2d63910bb93f9088"
+  "daily50_task/t07_battery_cover.html": "c6e1d5a5bd6b93a7f25be8943bcc67a9b20cbfda9cd50e1d0365e034ccbb0513",
+  "daily50_task/t19_jar_drawer.html": "b691350db475102296bb86cf50f01305e57bda993b2e4f390e7dc36007dd7108",
+  "daily50_task/t21_calendar_cube.html": "7db19902c10040cdd5e73f97ee95a3788a1e8d54608b18bc5053ce2bde53ff0a",
+  "daily50_task/t27_paperweight.html": "f2ec5e9d0a4dc8b7a966faa26d1b4e5989eaf7713276f975377e39da144c1dd2",
+  "daily50_task/t28_can_bin.html": "1f9583a78c30ace70798dba871500e4defd4856ac6dd77372dbcf4c275042100",
+  "daily50_task/t32_umbrella_stand.html": "8bcfdccfd6f6edd7a6d9691258004bc1d92a26fe731162cd73b9755339da3598",
+  "daily50_task/t33_candle_holder.html": "3bf83835d3f7a12837186df373794d6c5e8073c150738fbfe4d1f0f7f33a6ace",
+  "daily50_task/t35_flashlight.html": "fa33fb4bcb5ddd30e0bb1ac8b85039bb26143dea4194422396352be228291a8a",
+  "daily50_task/t38_tv_remote.html": "7998174cce69a1369c8f61c44b7216917b9034069416db7ebafac24aac5412e6",
+  "daily50_task/t40_scrape_crumbs.html": "2bb579c5e89b45503ddb48146f750dc7004b1bbf7fdca6d34265ea0018ba4240",
+  "daily50_task/t41_power_strip.html": "015ad9ee6da42ee8445aed17a011bda2fdbd84a5b3aa0d86896cd91b27619389",
+  "daily50_task/t42_dish_soap.html": "6c2bb3024cf831b35a62bd344125e666e9c6dd1017b7c06a30fa6aa836b46fff",
+  "daily50_task/t50_toy_bowling.html": "e14c59f2d3665fbeb63c95400d664afe90c588a5939c88f309bf3b3b7620a9a6",
+  "daily50_trials.html": "8c4770d2612def06874276d9727ee512c10bb877e5d2cb5919af00bf8e402018"
  }
 }
