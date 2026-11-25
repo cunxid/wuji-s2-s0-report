@@ -1,33 +1,36 @@
 {
  "schema": "daily50.trials_page/1",
- "generated": "2026-11-25 14:54 EST",
+ "generated": "2026-11-25 15:16 EST",
  "headline": {
   "tasks_total": 50,
-  "tasks_attempted": 13,
-  "tasks_passed": 3,
+  "tasks_attempted": 14,
+  "tasks_passed": 4,
   "tasks_passed_names": [
+   "t18_hob_knob",
    "t19_jar_drawer",
    "t41_power_strip",
    "t50_toy_bowling"
   ],
-  "trials": 19,
+  "trials": 20,
   "trials_by_status": {
    "FAIL": 16,
-   "PASS": 3
+   "PASS": 4
   },
-  "words": "success rate: 3 of 13 tasks passed (played by session agents, probe series \u2014 not a counted test series)",
+  "words": "success rate: 4 of 14 tasks passed (played by session agents, probe series \u2014 not a counted test series)",
   "practice_tasks_total": 40,
   "first_attempt": {
-   "tasks": 13,
-   "passed": 1,
+   "tasks": 14,
+   "passed": 2,
    "names": [
+    "t18_hob_knob",
     "t50_toy_bowling"
    ]
   },
   "after_practice": {
-   "tasks": 13,
-   "passed": 3,
+   "tasks": 14,
+   "passed": 4,
    "passed_at_attempt": {
+    "t18_hob_knob": 1,
     "t19_jar_drawer": 2,
     "t41_power_strip": 2,
     "t50_toy_bowling": 1
@@ -40,8 +43,8 @@
   }
  },
  "media": {
-  "files": 19,
-  "bytes": 15409865,
+  "files": 20,
+  "bytes": 17406918,
   "budget_bytes": 150000000
  },
  "judge_reason_shown": true,
@@ -79,6 +82,42 @@
      "video_sha256": "5cba0a5e19fb4e4f33599de8ea5da93a6f90698d4ef4ffe575a5ac96ee37f96e",
      "problems": [
       "record turn 23 (look) is no turn of the session's log: shown as a card at tick 2864; the 136 ticks it claims are not shown as its own"
+     ]
+    }
+   ]
+  },
+  {
+   "task": "t18_hob_knob",
+   "in_benchmark": true,
+   "held_out": false,
+   "best_status": "PASS",
+   "first_attempt": {
+    "trial": "40",
+    "status": "PASS"
+   },
+   "passed_at_attempt": 1,
+   "trials": [
+    {
+     "file": "trial_40.json",
+     "number": "40",
+     "status": "PASS",
+     "written": "2026-11-25 15:05",
+     "attempt": 1,
+     "read_task_notes": false,
+     "run": "20261125T184936Z-700f3119",
+     "turns": 39,
+     "phase_counts": {
+      "look": 6,
+      "plan": 6,
+      "act": 12,
+      "check": 13,
+      "replan": 2
+     },
+     "replans": 2,
+     "video": "t18_hob_knob_trial_40.mp4",
+     "video_sha256": "30b05c790bdf7efd3278ba9d291d620dc2999f8515d76e43f1fcbfc7c23971d4",
+     "problems": [
+      "the record lists 4 replan(s) and has 2 turn(s) of phase replan"
      ]
     }
    ]
@@ -624,19 +663,20 @@
  ],
  "other_tasks": [],
  "pages_sha256": {
-  "daily50_task/t07_battery_cover.html": "1658243e61b0624af4d8f9e4eb9ec2806e5a4eed7f661de67e688f9d971dad8d",
-  "daily50_task/t19_jar_drawer.html": "5ca48fc4f7bd6466cd59e75c5e905ba8127e87a17cf75a6710cec5954bf9361a",
-  "daily50_task/t21_calendar_cube.html": "61f8e7cdafedf3e357026116ff02ecef60e6771a43a3b09f3b97acaef04b12a1",
-  "daily50_task/t27_paperweight.html": "71f1e36887648c2107067dd01757baf719800a313ce5d2e60fe40d07cff2b8f7",
-  "daily50_task/t28_can_bin.html": "d57dd6416c396950cebcf03d8139205b780df834f9ff7bdc5450b10c4022fbea",
-  "daily50_task/t32_umbrella_stand.html": "7f26a00d623ba8113ecd7c8ba6053c0b9b66b95a29fb22685dd253eddcf08df3",
-  "daily50_task/t33_candle_holder.html": "c777f225c6208cab1af2e0dc82e6bcdc20fcd077772f0eb846eb7eff8ec4a386",
-  "daily50_task/t35_flashlight.html": "7fc049957229571465ef8657e2da6943b2102d29f56e2841ce78e2b0c0029d47",
-  "daily50_task/t38_tv_remote.html": "d86544fb14a56ce84243ba74dd76121bd082681585774995fbe4946290a99bf1",
-  "daily50_task/t40_scrape_crumbs.html": "1bac4f4b74a1751a1c2f84b9bafbeb1fe3516583a9e0836d669954d5e6d03bd2",
-  "daily50_task/t41_power_strip.html": "62b354967d54315e8ed504a2d5cbc7ac819f7671e72291d059f5c6a87e5488f4",
-  "daily50_task/t42_dish_soap.html": "a1bb47665dba8935df4e4332777dcee9f8084b691df9a2ec56ecbe670d6d777a",
-  "daily50_task/t50_toy_bowling.html": "e5213dd15d6ad8ab5df13d5b43e3067c45a17fb4551645c7253dd6655c3872fa",
-  "daily50_trials.html": "c010b590f9fe9bdb0d098483ad5ab19dfd83336411dcd0abb0766d5366362252"
+  "daily50_task/t07_battery_cover.html": "4cdf5e8be9149ff798e6516c130fe4ab82c1e831588582e307dd0a3d688dd54f",
+  "daily50_task/t18_hob_knob.html": "43254a312f31521d2282fe852715d7564edd268a1ea8fe343a90badc7b77c48a",
+  "daily50_task/t19_jar_drawer.html": "8d96e1024a4db59ba8ef243ae2820c0442c0dd6fa4f2723ae296062b689f2d97",
+  "daily50_task/t21_calendar_cube.html": "34e0980373e132a5caf9871a32ebf3007c0d911f0ad1ccfa101a2caebeab1ab4",
+  "daily50_task/t27_paperweight.html": "498086bc1618faa5c8ce4356ab762ffffd27ed375e63edde4daa37ea2a17b39b",
+  "daily50_task/t28_can_bin.html": "572ac44c94621aa6725814aca3724e71af02ff45929bd9743c33dd6cb99210bd",
+  "daily50_task/t32_umbrella_stand.html": "6ade10fd37062104857a5d5db77665a77a137728a14cc32b854dd0b1676979a2",
+  "daily50_task/t33_candle_holder.html": "d1ac7e39be541114c3c8cbff22aa9b763a2cea72e622f7e8a897e1e5d3ff8a62",
+  "daily50_task/t35_flashlight.html": "d4a9319340bd31bc4b807cb0639f47a311e5bd7e860f1a710db4157f91152874",
+  "daily50_task/t38_tv_remote.html": "d7810df5da648652f9105cd7a3bdc31b1ba55fa36c07d64a2bb25c1094e29c80",
+  "daily50_task/t40_scrape_crumbs.html": "0ea3e1e4e28c1711f91928dbe3ff810bc2a7e10d1d46f325f287b6d8e4ee7ae6",
+  "daily50_task/t41_power_strip.html": "7e8f39b9988968d6b5099c306b6853d15ae4fa15f38729cffdf855fde7ae0231",
+  "daily50_task/t42_dish_soap.html": "9b230fa20a18fa9596a5eb023e877eb00f28269542868b9fd48ade5e06fcd484",
+  "daily50_task/t50_toy_bowling.html": "1911b5cda68339308bde20ed21990d9818c65f26b21b80581fc20d397dcc755e",
+  "daily50_trials.html": "47252d007a0322d3d331be6f853e24a0bd16e457e90ea47941dff29470ab54eb"
  }
 }
