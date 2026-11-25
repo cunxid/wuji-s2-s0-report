@@ -1,16 +1,19 @@
 {
  "schema": "daily50.trials_page/1",
- "generated": "2026-11-25 12:50 EST",
+ "generated": "2026-11-25 13:12 EST",
  "headline": {
   "tasks_total": 50,
   "tasks_attempted": 9,
-  "tasks_passed": 0,
-  "tasks_passed_names": [],
-  "trials": 11,
+  "tasks_passed": 1,
+  "tasks_passed_names": [
+   "t41_power_strip"
+  ],
+  "trials": 12,
   "trials_by_status": {
-   "FAIL": 11
+   "FAIL": 11,
+   "PASS": 1
   },
-  "words": "success rate: 0 of 9 tasks passed (played by session agents, probe series \u2014 not a counted test series)",
+  "words": "success rate: 1 of 9 tasks passed (played by session agents, probe series \u2014 not a counted test series)",
   "practice_tasks_total": 40,
   "first_attempt": {
    "tasks": 9,
@@ -19,8 +22,10 @@
   },
   "after_practice": {
    "tasks": 9,
-   "passed": 0,
-   "passed_at_attempt": {}
+   "passed": 1,
+   "passed_at_attempt": {
+    "t41_power_strip": 2
+   }
   },
   "held_out": {
    "tasks_total": 10,
@@ -29,8 +34,8 @@
   }
  },
  "media": {
-  "files": 11,
-  "bytes": 5920355,
+  "files": 12,
+  "bytes": 6410505,
   "budget_bytes": 150000000
  },
  "judge_reason_shown": true,
@@ -359,12 +364,12 @@
    "task": "t41_power_strip",
    "in_benchmark": true,
    "held_out": false,
-   "best_status": "FAIL",
+   "best_status": "PASS",
    "first_attempt": {
     "trial": "0",
     "status": "FAIL"
    },
-   "passed_at_attempt": null,
+   "passed_at_attempt": 2,
    "trials": [
     {
      "file": "trial_0.json",
@@ -384,21 +389,41 @@
      "video": "t41_power_strip_trial_0.mp4",
      "video_sha256": "2f492b8291ba347585669900f2f8c65bbddbf762f2bc45fd5512505ba4dc9c55",
      "problems": []
+    },
+    {
+     "file": "trial_40.json",
+     "number": "40",
+     "status": "PASS",
+     "written": "2026-11-25 13:10",
+     "attempt": 2,
+     "read_task_notes": true,
+     "run": "20261125T175634Z-08e66bba",
+     "turns": 9,
+     "phase_counts": {
+      "look": 4,
+      "plan": 2,
+      "act": 2,
+      "check": 1
+     },
+     "replans": 0,
+     "video": "t41_power_strip_trial_40.mp4",
+     "video_sha256": "1e4b46145b3f6f6748554298adbd6e28a42e6632f218bfb3343d51eca50cfcdb",
+     "problems": []
     }
    ]
   }
  ],
  "other_tasks": [],
  "pages_sha256": {
-  "daily50_task/t19_jar_drawer.html": "52668de069fbbf02230bb381c6037cb013b4dc437f0eb72d012bbced9142777a",
-  "daily50_task/t21_calendar_cube.html": "2dd73616b9d1b88789daebd922edc229ec8c87a293dba3c75705b162a49e243a",
-  "daily50_task/t27_paperweight.html": "4a6a52a526158688c1ed50c690035f7b2fa69a5b4d7893420d8e5f04ba104bd9",
-  "daily50_task/t28_can_bin.html": "e1d2ee70e95a8664f92f114edd6b605679b23be4588f9b825d74850989da12da",
-  "daily50_task/t32_umbrella_stand.html": "d675c308e29af9a9d959863b48218130323b7e5b2825b37c6c1e432f052a344d",
-  "daily50_task/t33_candle_holder.html": "368c0bec478fd56081d128cdfedebba38458648ce9e02afa84eee5046c28ca06",
-  "daily50_task/t35_flashlight.html": "2a722b7dd5c72d4e23b94b514c8cad9f1b0a8be230c2e35b7e2c15ddd627f49c",
-  "daily50_task/t38_tv_remote.html": "8dbaca9095eb315b217c505f8ea22ace98f673568853c1a5da16981a87633371",
-  "daily50_task/t41_power_strip.html": "004b202bdbe9d11bb8183b968b9534aad8d5256ab7ef4af4da9670018eb1f2e1",
-  "daily50_trials.html": "2c5490544362f4eaab00b4a08fe289d6df59426672b3f3341f1d104435111104"
+  "daily50_task/t19_jar_drawer.html": "3500f42e00b8a9c8239791f6498813d30be9022456149567b5abfe29c2875476",
+  "daily50_task/t21_calendar_cube.html": "f7acd36557ec49b5c16cf9d68d34ab5b6983af963d7ae3d1cc25b2fff656fc84",
+  "daily50_task/t27_paperweight.html": "9e63f596a639db09da0268406691fb484aa524fd22ee513efe179766d6ec0521",
+  "daily50_task/t28_can_bin.html": "5811d16f133c61a0c47dc5748b1fed2c1584975430f34fcfee7c0d4f6c1129a3",
+  "daily50_task/t32_umbrella_stand.html": "b4841910efed85ed921579f0c3b214d889c3d8c7d5ce78f44caa5cd759aeac00",
+  "daily50_task/t33_candle_holder.html": "03203e50e6d8c27b950494454c6adf3a96a3eaf522713d3996685dcf0dd49227",
+  "daily50_task/t35_flashlight.html": "a34ce9b24ee18433df0b47cad5a83eb386d065e4e815b7ff8f3c41ad86c17664",
+  "daily50_task/t38_tv_remote.html": "b674cb9b5562b159f49d8ba235390a9fefff13e963474f0c2a5230f77ce73c34",
+  "daily50_task/t41_power_strip.html": "a196b6979f6c2624ce5c063431817442fe99f5f76f40a3620ad3420088f414cc",
+  "daily50_trials.html": "328f76f2a643b825f8c7eb9af634da7e9f8dd4c04d11f90cf654a7094a2b468b"
  }
 }
