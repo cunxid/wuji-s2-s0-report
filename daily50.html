@@ -19,16 +19,18 @@ ul.log{padding-left:20px;font-size:13.5px} ul.log li{margin:6px 0}
 .b.ok{background:#dff3e0;color:#1c6b25} .b.no{background:#fbe1df;color:#9b1c14} .b.na{background:#ececea;color:#555} .b.warn{background:#fff0cc;color:#7a5200}
 details{margin:6px 0 0;font-size:12.5px;color:#444} summary{cursor:pointer;color:#333} .op{margin:6px 0 2px;line-height:1.5}
 ul.pr{margin:6px 0 0;padding-left:18px} ul.pr li.no{color:#9b1c14} .links{font-size:12.5px;margin:8px 0 0}
+a.thumb{position:relative;display:block} a.thumb .trials{position:absolute;left:8px;bottom:10px;background:#1f5fbf;color:#fff;font-size:12px;font-weight:600;padding:3px 8px;border-radius:4px}
 </style></head><body>
-<p class="na2"><a href="index.html">dashboard</a> · page generated 2026-11-24 23:21 EST from the files of the run; it is rewritten as the work goes on</p>
+<p class="na2"><a href="index.html">dashboard</a> · page generated 2026-11-25 11:12 EST from the files of the run; it is rewritten as the work goes on</p>
 <h1>daily50 — fifty real-life tabletop tasks, photorealistic, in MuJoCo</h1>
+
 <p class="sub">Started 2026-11-24 01:30; the photoreal round ended 23:20 the same day and the 50 task folders are frozen (<code>daily50/FROZEN</code>). In every task the object in the robot's hand is an object mesh from the
 owner's hand-object interaction data pack, with its shape unchanged. The scene stands on a table in a real room, the robot is the
 project's shipped Tianji dual-arm rig with Wuji 2 hands, and the dynamics run in the project's MuJoCo 3.8. Outcomes happen in the
 physics: a bulb screwed into its holder lights up, a hammered nail goes in, a spray bottle sprays. The pictures are path-traced
 from the same MuJoCo scene and state.</p>
 
-<div class="zh"><b>现在的进度（2026-11-24 23:21 EST）</b>：50 个任务的场景都已搭好并有照片级主图。<b>50</b> 个已通过独立终审，
+<div class="zh"><b>现在的进度（2026-11-25 11:12 EST）</b>：50 个任务的场景都已搭好并有照片级主图。<b>50</b> 个已通过独立终审，
 <b>0</b> 个终审查出问题、正在返修或等待再评审，<b>0</b> 个等待独立评审，<b>0</b> 个还在第一轮（搭建、初审、返修）。
 “通过”的含义见下方说明；这些都是机器人按脚本在场景里做动作的检查，不是策略完成任务的成功率。<b>照片级返修轮（16:10 起）</b>：50 个任务此前都已通过物理、功能、判据终审，但主图只有 7/10；现在逐个只改外观（扫描资产、磨损、抓握、构图，不动物理和判据），由独立评审按 8/10 的标准重新打分，目前 50 个已评、50 个达到 8 分。“返修中”的任务多数是在这一轮里。工作记录全文在仓库的 <code>s2/benchmark/InHouse/task.md</code>。</div>
 
@@ -71,7 +73,7 @@ primitive shapes are.</div>
 <h2>The tasks</h2>
 <div class="grid">
 <div class="card passed" id="t01">
- <a href="daily50/t01_hammer_nail_hero.jpg"><img loading="lazy" src="daily50/t01_hammer_nail_hero.jpg" alt="Hammer the nail into the board."></a>
+ <a class="thumb" href="daily50/t01_hammer_nail_hero.jpg"><img loading="lazy" src="daily50/t01_hammer_nail_hero.jpg" alt="Hammer the nail into the board."></a>
  <div class="txt">
   <h3>t01 · 锤子敲钉子</h3>
   <p class="prompt">“Hammer the nail into the board.”</p>
@@ -89,7 +91,7 @@ primitive shapes are.</div>
  </div>
 </div>
 <div class="card passed" id="t02">
- <a href="daily50/t02_crack_walnut_hero.jpg"><img loading="lazy" src="daily50/t02_crack_walnut_hero.jpg" alt="Crack the walnut with the hammer."></a>
+ <a class="thumb" href="daily50/t02_crack_walnut_hero.jpg"><img loading="lazy" src="daily50/t02_crack_walnut_hero.jpg" alt="Crack the walnut with the hammer."></a>
  <div class="txt">
   <h3>t02 · 锤子敲核桃</h3>
   <p class="prompt">“Crack the walnut with the hammer.”</p>
@@ -103,7 +105,7 @@ primitive shapes are.</div>
  </div>
 </div>
 <div class="card passed" id="t03">
- <a href="daily50/t03_paint_lid_shut_hero.jpg"><img loading="lazy" src="daily50/t03_paint_lid_shut_hero.jpg" alt="Tap the lid of the paint tin shut."></a>
+ <a class="thumb" href="daily50/t03_paint_lid_shut_hero.jpg"><img loading="lazy" src="daily50/t03_paint_lid_shut_hero.jpg" alt="Tap the lid of the paint tin shut."></a>
  <div class="txt">
   <h3>t03 · 锤子敲紧油漆桶盖</h3>
   <p class="prompt">“Tap the lid of the paint tin shut.”</p>
@@ -119,7 +121,7 @@ The hero now reads as a photograph at a glance. The new angle shows the head tow
  </div>
 </div>
 <div class="card passed" id="t04">
- <a href="daily50/t04_pull_nail_hero.jpg"><img loading="lazy" src="daily50/t04_pull_nail_hero.jpg" alt="Pull the nail out of the board with the claw of the hammer."></a>
+ <a class="thumb" href="daily50/t04_pull_nail_hero.jpg"><img loading="lazy" src="daily50/t04_pull_nail_hero.jpg" alt="Pull the nail out of the board with the claw of the hammer."></a>
  <div class="txt">
   <h3>t04 · 羊角锤拔钉子</h3>
   <p class="prompt">“Pull the nail out of the board with the claw of the hammer.”</p>
@@ -137,7 +139,7 @@ The hero now reads as a photograph at a glance. The new angle shows the head tow
  </div>
 </div>
 <div class="card passed" id="t05">
- <a href="daily50/t05_hang_hammer_hero.jpg"><img loading="lazy" src="daily50/t05_hang_hammer_hero.jpg" alt="Hang the hammer back on the pegboard."></a>
+ <a class="thumb" href="daily50/t05_hang_hammer_hero.jpg"><img loading="lazy" src="daily50/t05_hang_hammer_hero.jpg" alt="Hang the hammer back on the pegboard."></a>
  <div class="txt">
   <h3>t05 · 把锤子挂回工具墙</h3>
   <p class="prompt">“Hang the hammer back on the pegboard.”</p>
@@ -156,7 +158,7 @@ The hero now reads as a photograph at a glance. The new angle shows the head tow
  </div>
 </div>
 <div class="card passed" id="t06">
- <a href="daily50/t06_hinge_screw_hero.jpg"><img loading="lazy" src="daily50/t06_hinge_screw_hero.jpg" alt="Tighten the loose screw on the door hinge."></a>
+ <a class="thumb" href="daily50/t06_hinge_screw_hero.jpg"><img loading="lazy" src="daily50/t06_hinge_screw_hero.jpg" alt="Tighten the loose screw on the door hinge."></a>
  <div class="txt">
   <h3>t06 · 螺丝刀拧紧合页螺丝</h3>
   <p class="prompt">“Tighten the loose screw on the door hinge.”</p>
@@ -174,7 +176,7 @@ The hero now reads as a photograph at a glance. The new angle shows the head tow
  </div>
 </div>
 <div class="card passed" id="t07">
- <a href="daily50/t07_battery_cover_hero.jpg"><img loading="lazy" src="daily50/t07_battery_cover_hero.jpg" alt="Unscrew the toy&#x27;s battery cover and open it."></a>
+ <a class="thumb" href="daily50/t07_battery_cover_hero.jpg"><img loading="lazy" src="daily50/t07_battery_cover_hero.jpg" alt="Unscrew the toy&#x27;s battery cover and open it."></a>
  <div class="txt">
   <h3>t07 · 螺丝刀拧开玩具电池盖</h3>
   <p class="prompt">“Unscrew the toy&#x27;s battery cover and open it.”</p>
@@ -191,7 +193,7 @@ The hero now reads as a photograph at a glance. The new angle shows the head tow
  </div>
 </div>
 <div class="card passed" id="t08">
- <a href="daily50/t08_pry_paint_lid_hero.jpg"><img loading="lazy" src="daily50/t08_pry_paint_lid_hero.jpg" alt="Pry open the lid of the paint tin with the screwdriver."></a>
+ <a class="thumb" href="daily50/t08_pry_paint_lid_hero.jpg"><img loading="lazy" src="daily50/t08_pry_paint_lid_hero.jpg" alt="Pry open the lid of the paint tin with the screwdriver."></a>
  <div class="txt">
   <h3>t08 · 螺丝刀撬开油漆桶盖</h3>
   <p class="prompt">“Pry open the lid of the paint tin with the screwdriver.”</p>
@@ -209,7 +211,7 @@ The hero now reads as a photograph at a glance. The new angle shows the head tow
  </div>
 </div>
 <div class="card passed" id="t09">
- <a href="daily50/t09_valve_key_hero.jpg"><img loading="lazy" src="daily50/t09_valve_key_hero.jpg" alt="Turn on the tap with the valve key and fill the bucket."></a>
+ <a class="thumb" href="daily50/t09_valve_key_hero.jpg"><img loading="lazy" src="daily50/t09_valve_key_hero.jpg" alt="Turn on the tap with the valve key and fill the bucket."></a>
  <div class="txt">
   <h3>t09 · T形钥匙打开水阀</h3>
   <p class="prompt">“Turn on the tap with the valve key and fill the bucket.”</p>
@@ -226,7 +228,7 @@ The hero now reads as a photograph at a glance. The new angle shows the head tow
  </div>
 </div>
 <div class="card passed" id="t10">
- <a href="daily50/t10_mist_plant_hero.jpg"><img loading="lazy" src="daily50/t10_mist_plant_hero.jpg" alt="Mist the leaves of the houseplant."></a>
+ <a class="thumb" href="daily50/t10_mist_plant_hero.jpg"><img loading="lazy" src="daily50/t10_mist_plant_hero.jpg" alt="Mist the leaves of the houseplant."></a>
  <div class="txt">
   <h3>t10 · 给绿植喷水</h3>
   <p class="prompt">“Mist the leaves of the houseplant.”</p>
@@ -240,7 +242,7 @@ The hero now reads as a photograph at a glance. The new angle shows the head tow
  </div>
 </div>
 <div class="card passed" id="t11">
- <a href="daily50/t11_spray_mirror_hero.jpg"><img loading="lazy" src="daily50/t11_spray_mirror_hero.jpg" alt="Spray glass cleaner on the mirror."></a>
+ <a class="thumb" href="daily50/t11_spray_mirror_hero.jpg"><img loading="lazy" src="daily50/t11_spray_mirror_hero.jpg" alt="Spray glass cleaner on the mirror."></a>
  <div class="txt">
   <h3>t11 · 给镜子喷清洁剂</h3>
   <p class="prompt">“Spray glass cleaner on the mirror.”</p>
@@ -259,7 +261,7 @@ The hero now reads as a photograph at a glance. The new angle shows the head tow
  </div>
 </div>
 <div class="card passed" id="t12">
- <a href="daily50/t12_bulb_table_lamp_hero.jpg"><img loading="lazy" src="daily50/t12_bulb_table_lamp_hero.jpg" alt="Screw the bulb into the table lamp; it should light up."></a>
+ <a class="thumb" href="daily50/t12_bulb_table_lamp_hero.jpg"><img loading="lazy" src="daily50/t12_bulb_table_lamp_hero.jpg" alt="Screw the bulb into the table lamp; it should light up."></a>
  <div class="txt">
   <h3>t12 · 把灯泡拧进台灯</h3>
   <p class="prompt">“Screw the bulb into the table lamp; it should light up.”</p>
@@ -277,7 +279,7 @@ The hero now reads as a photograph at a glance. The new angle shows the head tow
  </div>
 </div>
 <div class="card passed" id="t13">
- <a href="daily50/t13_bulb_vanity_hero.jpg"><img loading="lazy" src="daily50/t13_bulb_vanity_hero.jpg" alt="Screw the missing bulb into the mirror light."></a>
+ <a class="thumb" href="daily50/t13_bulb_vanity_hero.jpg"><img loading="lazy" src="daily50/t13_bulb_vanity_hero.jpg" alt="Screw the missing bulb into the mirror light."></a>
  <div class="txt">
   <h3>t13 · 把灯泡拧进化妆镜灯</h3>
   <p class="prompt">“Screw the missing bulb into the mirror light.”</p>
@@ -289,7 +291,7 @@ The hero now reads as a photograph at a glance. The new angle shows the head tow
  </div>
 </div>
 <div class="card passed" id="t14">
- <a href="daily50/t14_bulb_remove_hero.jpg"><img loading="lazy" src="daily50/t14_bulb_remove_hero.jpg" alt="Take the burnt-out bulb out of the desk lamp and put it in the box."></a>
+ <a class="thumb" href="daily50/t14_bulb_remove_hero.jpg"><img loading="lazy" src="daily50/t14_bulb_remove_hero.jpg" alt="Take the burnt-out bulb out of the desk lamp and put it in the box."></a>
  <div class="txt">
   <h3>t14 · 拧下坏灯泡</h3>
   <p class="prompt">“Take the burnt-out bulb out of the desk lamp and put it in the box.”</p>
@@ -303,7 +305,7 @@ Files: check_task --final reports 0 errors and 0 warnings. The probe report (20:
  </div>
 </div>
 <div class="card passed" id="t15">
- <a href="daily50/t15_bulb_pendant_hero.jpg"><img loading="lazy" src="daily50/t15_bulb_pendant_hero.jpg" alt="Screw the bulb into the pendant lamp."></a>
+ <a class="thumb" href="daily50/t15_bulb_pendant_hero.jpg"><img loading="lazy" src="daily50/t15_bulb_pendant_hero.jpg" alt="Screw the bulb into the pendant lamp."></a>
  <div class="txt">
   <h3>t15 · 把灯泡拧进吊灯</h3>
   <p class="prompt">“Screw the bulb into the pendant lamp.”</p>
@@ -317,7 +319,7 @@ The hero is a different picture from the one judge9 scored 7. The 90 mm framing 
  </div>
 </div>
 <div class="card passed" id="t16">
- <a href="daily50/t16_block_tower_hero.jpg"><img loading="lazy" src="daily50/t16_block_tower_hero.jpg" alt="Put the block on top of the tower."></a>
+ <a class="thumb" href="daily50/t16_block_tower_hero.jpg"><img loading="lazy" src="daily50/t16_block_tower_hero.jpg" alt="Put the block on top of the tower."></a>
  <div class="txt">
   <h3>t16 · 搭积木</h3>
   <p class="prompt">“Put the block on top of the tower.”</p>
@@ -329,7 +331,7 @@ The hero is a different picture from the one judge9 scored 7. The 90 mm framing 
  </div>
 </div>
 <div class="card passed" id="t17">
- <a href="daily50/t17_shape_sorter_hero.jpg"><img loading="lazy" src="daily50/t17_shape_sorter_hero.jpg" alt="Post the triangle block through the matching hole."></a>
+ <a class="thumb" href="daily50/t17_shape_sorter_hero.jpg"><img loading="lazy" src="daily50/t17_shape_sorter_hero.jpg" alt="Post the triangle block through the matching hole."></a>
  <div class="txt">
   <h3>t17 · 形状配对玩具</h3>
   <p class="prompt">“Post the triangle block through the matching hole.”</p>
@@ -347,7 +349,7 @@ The hero is a different picture from the one judge9 scored 7. The 90 mm framing 
  </div>
 </div>
 <div class="card passed" id="t18">
- <a href="daily50/t18_hob_knob_hero.jpg"><img loading="lazy" src="daily50/t18_hob_knob_hero.jpg" alt="Put the knob back on the hob and turn the burner on."></a>
+ <a class="thumb" href="daily50/t18_hob_knob_hero.jpg"><img loading="lazy" src="daily50/t18_hob_knob_hero.jpg" alt="Put the knob back on the hob and turn the burner on."></a>
  <div class="txt">
   <h3>t18 · 装回灶台旋钮并点火</h3>
   <p class="prompt">“Put the knob back on the hob and turn the burner on.”</p>
@@ -365,7 +367,7 @@ The hero is a different picture from the one judge9 scored 7. The 90 mm framing 
  </div>
 </div>
 <div class="card passed" id="t19">
- <a href="daily50/t19_jar_drawer_hero.jpg"><img loading="lazy" src="daily50/t19_jar_drawer_hero.jpg" alt="Put the cream jar in the drawer and close it."></a>
+ <a class="thumb" href="daily50/t19_jar_drawer_hero.jpg"><img loading="lazy" src="daily50/t19_jar_drawer_hero.jpg" alt="Put the cream jar in the drawer and close it."></a>
  <div class="txt">
   <h3>t19 · 把面霜罐放进抽屉</h3>
   <p class="prompt">“Put the cream jar in the drawer and close it.”</p>
@@ -383,7 +385,7 @@ The hero is a different picture from the one judge9 scored 7. The 90 mm framing 
  </div>
 </div>
 <div class="card passed" id="t20">
- <a href="daily50/t20_sink_plug_hero.jpg"><img loading="lazy" src="daily50/t20_sink_plug_hero.jpg" alt="Put the plug in the sink so the water stops running away."></a>
+ <a class="thumb" href="daily50/t20_sink_plug_hero.jpg"><img loading="lazy" src="daily50/t20_sink_plug_hero.jpg" alt="Put the plug in the sink so the water stops running away."></a>
  <div class="txt">
   <h3>t20 · 塞上水槽塞子</h3>
   <p class="prompt">“Put the plug in the sink so the water stops running away.”</p>
@@ -395,7 +397,7 @@ The hero is a different picture from the one judge9 scored 7. The 90 mm framing 
  </div>
 </div>
 <div class="card passed" id="t21">
- <a href="daily50/t21_calendar_cube_hero.jpg"><img loading="lazy" src="daily50/t21_calendar_cube_hero.jpg" alt="Set the calendar to the 7th: turn the day cube so that 7 faces the front and put it back in the tray."></a>
+ <a class="thumb" href="daily50/t21_calendar_cube_hero.jpg"><img loading="lazy" src="daily50/t21_calendar_cube_hero.jpg" alt="Set the calendar to the 7th: turn the day cube so that 7 faces the front and put it back in the tray."></a>
  <div class="txt">
   <h3>t21 · 摆正日历方块</h3>
   <p class="prompt">“Set the calendar to the 7th: turn the day cube so that 7 faces the front and put it back in the tray.”</p>
@@ -413,7 +415,7 @@ Step 1:
  </div>
 </div>
 <div class="card passed" id="t22">
- <a href="daily50/t22_seal_stamp_hero.jpg"><img loading="lazy" src="daily50/t22_seal_stamp_hero.jpg" alt="Stamp the seal on the document."></a>
+ <a class="thumb" href="daily50/t22_seal_stamp_hero.jpg"><img loading="lazy" src="daily50/t22_seal_stamp_hero.jpg" alt="Stamp the seal on the document."></a>
  <div class="txt">
   <h3>t22 · 盖章</h3>
   <p class="prompt">“Stamp the seal on the document.”</p>
@@ -429,7 +431,7 @@ Scores: hero 8 (low edge), front 7, close 7.
  </div>
 </div>
 <div class="card passed" id="t23">
- <a href="daily50/t23_milk_microwave_hero.jpg"><img loading="lazy" src="daily50/t23_milk_microwave_hero.jpg" alt="Put the milk carton in the microwave and close the door."></a>
+ <a class="thumb" href="daily50/t23_milk_microwave_hero.jpg"><img loading="lazy" src="daily50/t23_milk_microwave_hero.jpg" alt="Put the milk carton in the microwave and close the door."></a>
  <div class="txt">
   <h3>t23 · 把牛奶放进微波炉</h3>
   <p class="prompt">“Put the milk carton in the microwave and close the door.”</p>
@@ -443,7 +445,7 @@ Step 1 holds in full. check_task --final reports 0 errors; the probe report belo
  </div>
 </div>
 <div class="card passed" id="t24">
- <a href="daily50/t24_salt_shaker_hero.jpg"><img loading="lazy" src="daily50/t24_salt_shaker_hero.jpg" alt="Shake salt over the steak."></a>
+ <a class="thumb" href="daily50/t24_salt_shaker_hero.jpg"><img loading="lazy" src="daily50/t24_salt_shaker_hero.jpg" alt="Shake salt over the steak."></a>
  <div class="txt">
   <h3>t24 · 撒盐</h3>
   <p class="prompt">“Shake salt over the steak.”</p>
@@ -455,7 +457,7 @@ Step 1 holds in full. check_task --final reports 0 errors; the probe report belo
  </div>
 </div>
 <div class="card passed" id="t25">
- <a href="daily50/t25_fish_food_hero.jpg"><img loading="lazy" src="daily50/t25_fish_food_hero.jpg" alt="Shake some fish food into the fish bowl."></a>
+ <a class="thumb" href="daily50/t25_fish_food_hero.jpg"><img loading="lazy" src="daily50/t25_fish_food_hero.jpg" alt="Shake some fish food into the fish bowl."></a>
  <div class="txt">
   <h3>t25 · 喂鱼</h3>
   <p class="prompt">“Shake some fish food into the fish bowl.”</p>
@@ -470,7 +472,7 @@ Step 1 holds in full. check_task --final reports 0 errors; the probe report belo
  </div>
 </div>
 <div class="card passed" id="t26">
- <a href="daily50/t26_can_rack_hero.jpg"><img loading="lazy" src="daily50/t26_can_rack_hero.jpg" alt="Load the can that lies on its side (chopped tomatoes) into the empty lane of the can rack; it should roll to the front."></a>
+ <a class="thumb" href="daily50/t26_can_rack_hero.jpg"><img loading="lazy" src="daily50/t26_can_rack_hero.jpg" alt="Load the can that lies on its side (chopped tomatoes) into the empty lane of the can rack; it should roll to the front."></a>
  <div class="txt">
   <h3>t26 · 把罐头放进罐头架</h3>
   <p class="prompt">“Load the can that lies on its side (chopped tomatoes) into the empty lane of the can rack; it should roll to the front.”</p>
@@ -485,7 +487,7 @@ Step 1 holds in full. check_task --final reports 0 errors; the probe report belo
  </div>
 </div>
 <div class="card passed" id="t27">
- <a href="daily50/t27_paperweight_hero.jpg"><img loading="lazy" src="daily50/t27_paperweight_hero.jpg" alt="Put the paperweight on the poster so it stops rolling back up."></a>
+ <a class="thumb" href="daily50/t27_paperweight_hero.jpg"><img loading="lazy" src="daily50/t27_paperweight_hero.jpg" alt="Put the paperweight on the poster so it stops rolling back up."></a>
  <div class="txt">
   <h3>t27 · 用镇纸压住卷起的纸</h3>
   <p class="prompt">“Put the paperweight on the poster so it stops rolling back up.”</p>
@@ -497,7 +499,7 @@ Step 1 holds in full. check_task --final reports 0 errors; the probe report belo
  </div>
 </div>
 <div class="card passed" id="t28">
- <a href="daily50/t28_can_bin_hero.jpg"><img loading="lazy" src="daily50/t28_can_bin_hero.jpg" alt="Throw the empty can into the swing-lid bin."></a>
+ <a class="thumb" href="daily50/t28_can_bin_hero.jpg"><img loading="lazy" src="daily50/t28_can_bin_hero.jpg" alt="Throw the empty can into the swing-lid bin."></a>
  <div class="txt">
   <h3>t28 · 把易拉罐扔进翻盖垃圾桶</h3>
   <p class="prompt">“Throw the empty can into the swing-lid bin.”</p>
@@ -512,7 +514,7 @@ Step 1 holds in full. check_task --final reports 0 errors; the probe report belo
  </div>
 </div>
 <div class="card passed" id="t29">
- <a href="daily50/t29_lighter_candle_hero.jpg"><img loading="lazy" src="daily50/t29_lighter_candle_hero.jpg" alt="Light the candle with the lighter, then put the lighter back down on the table."></a>
+ <a class="thumb" href="daily50/t29_lighter_candle_hero.jpg"><img loading="lazy" src="daily50/t29_lighter_candle_hero.jpg" alt="Light the candle with the lighter, then put the lighter back down on the table."></a>
  <div class="txt">
   <h3>t29 · 点蜡烛</h3>
   <p class="prompt">“Light the candle with the lighter, then put the lighter back down on the table.”</p>
@@ -526,7 +528,7 @@ Step 1 holds in full. check_task --final reports 0 errors; the probe report belo
  </div>
 </div>
 <div class="card passed" id="t30">
- <a href="daily50/t30_toggle_clamp_hero.jpg"><img loading="lazy" src="daily50/t30_toggle_clamp_hero.jpg" alt="Lock the wood strip under the hold-down clamp of the jig."></a>
+ <a class="thumb" href="daily50/t30_toggle_clamp_hero.jpg"><img loading="lazy" src="daily50/t30_toggle_clamp_hero.jpg" alt="Lock the wood strip under the hold-down clamp of the jig."></a>
  <div class="txt">
   <h3>t30 · 用快速夹钳压住木条</h3>
   <p class="prompt">“Lock the wood strip under the hold-down clamp of the jig.”</p>
@@ -542,7 +544,7 @@ Scores: hero 8 (borderline), front 7, close 7.
  </div>
 </div>
 <div class="card passed" id="t31">
- <a href="daily50/t31_tube_lamp_hero.jpg"><img loading="lazy" src="daily50/t31_tube_lamp_hero.jpg" alt="Fit the tube lamp into its holder; it should light up."></a>
+ <a class="thumb" href="daily50/t31_tube_lamp_hero.jpg"><img loading="lazy" src="daily50/t31_tube_lamp_hero.jpg" alt="Fit the tube lamp into its holder; it should light up."></a>
  <div class="txt">
   <h3>t31 · 把灯管卡进灯座</h3>
   <p class="prompt">“Fit the tube lamp into its holder; it should light up.”</p>
@@ -556,7 +558,7 @@ What still separates these from photographs on a close look is the straight-fing
  </div>
 </div>
 <div class="card passed" id="t32">
- <a href="daily50/t32_umbrella_stand_hero.jpg"><img loading="lazy" src="daily50/t32_umbrella_stand_hero.jpg" alt="Put the umbrella in the stand by the door."></a>
+ <a class="thumb" href="daily50/t32_umbrella_stand_hero.jpg"><img loading="lazy" src="daily50/t32_umbrella_stand_hero.jpg" alt="Put the umbrella in the stand by the door."></a>
  <div class="txt">
   <h3>t32 · 把雨伞放进伞架</h3>
   <p class="prompt">“Put the umbrella in the stand by the door.”</p>
@@ -574,7 +576,7 @@ What still separates these from photographs on a close look is the straight-fing
  </div>
 </div>
 <div class="card passed" id="t33">
- <a href="daily50/t33_candle_holder_hero.jpg"><img loading="lazy" src="daily50/t33_candle_holder_hero.jpg" alt="Stand the candle in the candlestick."></a>
+ <a class="thumb" href="daily50/t33_candle_holder_hero.jpg"><img loading="lazy" src="daily50/t33_candle_holder_hero.jpg" alt="Stand the candle in the candlestick."></a>
  <div class="txt">
   <h3>t33 · 把蜡烛插上烛台</h3>
   <p class="prompt">“Stand the candle in the candlestick.”</p>
@@ -589,7 +591,7 @@ What still separates these from photographs on a close look is the straight-fing
  </div>
 </div>
 <div class="card passed" id="t34">
- <a href="daily50/t34_crush_crackers_hero.jpg"><img loading="lazy" src="daily50/t34_crush_crackers_hero.jpg" alt="Crush the crackers in the bag with the rolling pin."></a>
+ <a class="thumb" href="daily50/t34_crush_crackers_hero.jpg"><img loading="lazy" src="daily50/t34_crush_crackers_hero.jpg" alt="Crush the crackers in the bag with the rolling pin."></a>
  <div class="txt">
   <h3>t34 · 用擀面杖压碎饼干</h3>
   <p class="prompt">“Crush the crackers in the bag with the rolling pin.”</p>
@@ -605,7 +607,7 @@ Scores: hero 8, front 7, close 7.
  </div>
 </div>
 <div class="card passed" id="t35">
- <a href="daily50/t35_flashlight_hero.jpg"><img loading="lazy" src="daily50/t35_flashlight_hero.jpg" alt="Switch on the flashlight and shine it on the label."></a>
+ <a class="thumb" href="daily50/t35_flashlight_hero.jpg"><img loading="lazy" src="daily50/t35_flashlight_hero.jpg" alt="Switch on the flashlight and shine it on the label."></a>
  <div class="txt">
   <h3>t35 · 打开手电筒照亮标签</h3>
   <p class="prompt">“Switch on the flashlight and shine it on the label.”</p>
@@ -617,7 +619,7 @@ Scores: hero 8, front 7, close 7.
  </div>
 </div>
 <div class="card passed" id="t36">
- <a href="daily50/t36_thermos_pour_hero.jpg"><img loading="lazy" src="daily50/t36_thermos_pour_hero.jpg" alt="Pour hot water from the thermos into the mug."></a>
+ <a class="thumb" href="daily50/t36_thermos_pour_hero.jpg"><img loading="lazy" src="daily50/t36_thermos_pour_hero.jpg" alt="Pour hot water from the thermos into the mug."></a>
  <div class="txt">
   <h3>t36 · 用保温杯往杯子里倒水</h3>
   <p class="prompt">“Pour hot water from the thermos into the mug.”</p>
@@ -633,7 +635,7 @@ Scores: hero 8, front 7, close 7.
  </div>
 </div>
 <div class="card passed" id="t37">
- <a href="daily50/t37_box_cutter_hero.jpg"><img loading="lazy" src="daily50/t37_box_cutter_hero.jpg" alt="Open the parcel with the box cutter."></a>
+ <a class="thumb" href="daily50/t37_box_cutter_hero.jpg"><img loading="lazy" src="daily50/t37_box_cutter_hero.jpg" alt="Open the parcel with the box cutter."></a>
  <div class="txt">
   <h3>t37 · 用美工刀划开快递箱</h3>
   <p class="prompt">“Open the parcel with the box cutter.”</p>
@@ -648,7 +650,7 @@ Scores: hero 8, front 7, close 7.
  </div>
 </div>
 <div class="card passed" id="t38">
- <a href="daily50/t38_tv_remote_hero.jpg"><img loading="lazy" src="daily50/t38_tv_remote_hero.jpg" alt="Turn on the TV with the remote."></a>
+ <a class="thumb" href="daily50/t38_tv_remote_hero.jpg"><img loading="lazy" src="daily50/t38_tv_remote_hero.jpg" alt="Turn on the TV with the remote."></a>
  <div class="txt">
   <h3>t38 · 用遥控器打开电视</h3>
   <p class="prompt">“Turn on the TV with the remote.”</p>
@@ -663,7 +665,7 @@ Scores: hero 8, front 7, close 7.
  </div>
 </div>
 <div class="card passed" id="t39">
- <a href="daily50/t39_whiteboard_erase_hero.jpg"><img loading="lazy" src="daily50/t39_whiteboard_erase_hero.jpg" alt="Wipe the writing off the whiteboard."></a>
+ <a class="thumb" href="daily50/t39_whiteboard_erase_hero.jpg"><img loading="lazy" src="daily50/t39_whiteboard_erase_hero.jpg" alt="Wipe the writing off the whiteboard."></a>
  <div class="txt">
   <h3>t39 · 擦白板</h3>
   <p class="prompt">“Wipe the writing off the whiteboard.”</p>
@@ -681,7 +683,7 @@ Scores: hero 8, front 7, close 7.
  </div>
 </div>
 <div class="card passed" id="t40">
- <a href="daily50/t40_scrape_crumbs_hero.jpg"><img loading="lazy" src="daily50/t40_scrape_crumbs_hero.jpg" alt="Scrape the crumbs off the board into the tray."></a>
+ <a class="thumb" href="daily50/t40_scrape_crumbs_hero.jpg"><img loading="lazy" src="daily50/t40_scrape_crumbs_hero.jpg" alt="Scrape the crumbs off the board into the tray."></a>
  <div class="txt">
   <h3>t40 · 把碎屑刮进托盘</h3>
   <p class="prompt">“Scrape the crumbs off the board into the tray.”</p>
@@ -702,7 +704,7 @@ The pictures:
  </div>
 </div>
 <div class="card passed" id="t41">
- <a href="daily50/t41_power_strip_hero.jpg"><img loading="lazy" src="daily50/t41_power_strip_hero.jpg" alt="Switch on the power strip; the desk lamp should light."></a>
+ <a class="thumb" href="daily50/t41_power_strip_hero.jpg"><img loading="lazy" src="daily50/t41_power_strip_hero.jpg" alt="Switch on the power strip; the desk lamp should light."></a>
  <div class="txt">
   <h3>t41 · 按下插线板开关</h3>
   <p class="prompt">“Switch on the power strip; the desk lamp should light.”</p>
@@ -717,7 +719,7 @@ The pictures:
  </div>
 </div>
 <div class="card passed" id="t42">
- <a href="daily50/t42_dish_soap_hero.jpg"><img loading="lazy" src="daily50/t42_dish_soap_hero.jpg" alt="Squeeze some dish soap onto the sponge."></a>
+ <a class="thumb" href="daily50/t42_dish_soap_hero.jpg"><img loading="lazy" src="daily50/t42_dish_soap_hero.jpg" alt="Squeeze some dish soap onto the sponge."></a>
  <div class="txt">
   <h3>t42 · 挤洗洁精</h3>
   <p class="prompt">“Squeeze some dish soap onto the sponge.”</p>
@@ -729,7 +731,7 @@ The pictures:
  </div>
 </div>
 <div class="card passed" id="t43">
- <a href="daily50/t43_chalk_line_hero.jpg"><img loading="lazy" src="daily50/t43_chalk_line_hero.jpg" alt="Join the two dots on the chalkboard with a chalk line."></a>
+ <a class="thumb" href="daily50/t43_chalk_line_hero.jpg"><img loading="lazy" src="daily50/t43_chalk_line_hero.jpg" alt="Join the two dots on the chalkboard with a chalk line."></a>
  <div class="txt">
   <h3>t43 · 用粉笔连线</h3>
   <p class="prompt">“Join the two dots on the chalkboard with a chalk line.”</p>
@@ -743,7 +745,7 @@ The pictures:
  </div>
 </div>
 <div class="card passed" id="t44">
- <a href="daily50/t44_crush_garlic_hero.jpg"><img loading="lazy" src="daily50/t44_crush_garlic_hero.jpg" alt="Crush the garlic in the mortar with the pestle."></a>
+ <a class="thumb" href="daily50/t44_crush_garlic_hero.jpg"><img loading="lazy" src="daily50/t44_crush_garlic_hero.jpg" alt="Crush the garlic in the mortar with the pestle."></a>
  <div class="txt">
   <h3>t44 · 捣蒜</h3>
   <p class="prompt">“Crush the garlic in the mortar with the pestle.”</p>
@@ -761,7 +763,7 @@ The pictures:
  </div>
 </div>
 <div class="card passed" id="t45">
- <a href="daily50/t45_pepper_mill_hero.jpg"><img loading="lazy" src="daily50/t45_pepper_mill_hero.jpg" alt="Grind pepper over the soup."></a>
+ <a class="thumb" href="daily50/t45_pepper_mill_hero.jpg"><img loading="lazy" src="daily50/t45_pepper_mill_hero.jpg" alt="Grind pepper over the soup."></a>
  <div class="txt">
   <h3>t45 · 用电动研磨器撒胡椒</h3>
   <p class="prompt">“Grind pepper over the soup.”</p>
@@ -779,7 +781,7 @@ The pictures:
  </div>
 </div>
 <div class="card passed" id="t46">
- <a href="daily50/t46_table_leg_hero.jpg"><img loading="lazy" src="daily50/t46_table_leg_hero.jpg" alt="Screw the last leg onto the stool."></a>
+ <a class="thumb" href="daily50/t46_table_leg_hero.jpg"><img loading="lazy" src="daily50/t46_table_leg_hero.jpg" alt="Screw the last leg onto the stool."></a>
  <div class="txt">
   <h3>t46 · 把桌腿拧上</h3>
   <p class="prompt">“Screw the last leg onto the stool.”</p>
@@ -796,7 +798,7 @@ Files and physics:
  </div>
 </div>
 <div class="card passed" id="t47">
- <a href="daily50/t47_level_shelf_hero.jpg"><img loading="lazy" src="daily50/t47_level_shelf_hero.jpg" alt="Level the shelf: lay the level on it and turn the adjusting wheel until the bubble is centred."></a>
+ <a class="thumb" href="daily50/t47_level_shelf_hero.jpg"><img loading="lazy" src="daily50/t47_level_shelf_hero.jpg" alt="Level the shelf: lay the level on it and turn the adjusting wheel until the bubble is centred."></a>
  <div class="txt">
   <h3>t47 · 用水平尺调平搁板</h3>
   <p class="prompt">“Level the shelf: lay the level on it and turn the adjusting wheel until the bubble is centred.”</p>
@@ -810,7 +812,7 @@ Files and physics:
  </div>
 </div>
 <div class="card passed" id="t48">
- <a href="daily50/t48_wheel_chock_hero.jpg"><img loading="lazy" src="daily50/t48_wheel_chock_hero.jpg" alt="Chock the paint drum so it does not roll down the ramp."></a>
+ <a class="thumb" href="daily50/t48_wheel_chock_hero.jpg"><img loading="lazy" src="daily50/t48_wheel_chock_hero.jpg" alt="Chock the paint drum so it does not roll down the ramp."></a>
  <div class="txt">
   <h3>t48 · 用三角木挡住滚筒</h3>
   <p class="prompt">“Chock the paint drum so it does not roll down the ramp.”</p>
@@ -824,7 +826,7 @@ Files and physics:
  </div>
 </div>
 <div class="card passed" id="t49">
- <a href="daily50/t49_weigh_orange_hero.jpg"><img loading="lazy" src="daily50/t49_weigh_orange_hero.jpg" alt="Weigh the orange on the kitchen scale."></a>
+ <a class="thumb" href="daily50/t49_weigh_orange_hero.jpg"><img loading="lazy" src="daily50/t49_weigh_orange_hero.jpg" alt="Weigh the orange on the kitchen scale."></a>
  <div class="txt">
   <h3>t49 · 称橙子</h3>
   <p class="prompt">“Weigh the orange on the kitchen scale.”</p>
@@ -842,7 +844,7 @@ Files and physics:
  </div>
 </div>
 <div class="card passed" id="t50">
- <a href="daily50/t50_toy_bowling_hero.jpg"><img loading="lazy" src="daily50/t50_toy_bowling_hero.jpg" alt="Roll the ball and knock down the pins."></a>
+ <a class="thumb" href="daily50/t50_toy_bowling_hero.jpg"><img loading="lazy" src="daily50/t50_toy_bowling_hero.jpg" alt="Roll the ball and knock down the pins."></a>
  <div class="txt">
   <h3>t50 · 桌面保龄球</h3>
   <p class="prompt">“Roll the ball and knock down the pins.”</p>
