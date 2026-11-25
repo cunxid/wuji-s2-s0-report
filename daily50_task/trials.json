@@ -1,31 +1,31 @@
 {
  "schema": "daily50.trials_page/1",
- "generated": "2026-11-25 14:07 EST",
+ "generated": "2026-11-25 14:17 EST",
  "headline": {
   "tasks_total": 50,
-  "tasks_attempted": 11,
+  "tasks_attempted": 12,
   "tasks_passed": 3,
   "tasks_passed_names": [
    "t19_jar_drawer",
    "t41_power_strip",
    "t50_toy_bowling"
   ],
-  "trials": 16,
+  "trials": 17,
   "trials_by_status": {
-   "FAIL": 13,
+   "FAIL": 14,
    "PASS": 3
   },
-  "words": "success rate: 3 of 11 tasks passed (played by session agents, probe series \u2014 not a counted test series)",
+  "words": "success rate: 3 of 12 tasks passed (played by session agents, probe series \u2014 not a counted test series)",
   "practice_tasks_total": 40,
   "first_attempt": {
-   "tasks": 11,
+   "tasks": 12,
    "passed": 1,
    "names": [
     "t50_toy_bowling"
    ]
   },
   "after_practice": {
-   "tasks": 11,
+   "tasks": 12,
    "passed": 3,
    "passed_at_attempt": {
     "t19_jar_drawer": 2,
@@ -40,8 +40,8 @@
   }
  },
  "media": {
-  "files": 16,
-  "bytes": 11467765,
+  "files": 17,
+  "bytes": 12432971,
   "budget_bytes": 150000000
  },
  "judge_reason_shown": true,
@@ -409,6 +409,39 @@
    ]
   },
   {
+   "task": "t40_scrape_crumbs",
+   "in_benchmark": true,
+   "held_out": false,
+   "best_status": "FAIL",
+   "first_attempt": {
+    "trial": "40",
+    "status": "FAIL"
+   },
+   "passed_at_attempt": null,
+   "trials": [
+    {
+     "file": "trial_40.json",
+     "number": "40",
+     "status": "FAIL",
+     "written": "2026-11-25 14:12",
+     "attempt": 1,
+     "read_task_notes": false,
+     "run": "20261125T182423Z-f7a133c7",
+     "turns": 22,
+     "phase_counts": {
+      "look": 9,
+      "plan": 1,
+      "act": 4,
+      "check": 8
+     },
+     "replans": 0,
+     "video": "t40_scrape_crumbs_trial_40.mp4",
+     "video_sha256": "734dfb0e1c64b484a13ea85c322837dd556a64027bf499779ca6095cbead29b9",
+     "problems": []
+    }
+   ]
+  },
+  {
    "task": "t41_power_strip",
    "in_benchmark": true,
    "held_out": false,
@@ -532,17 +565,18 @@
  ],
  "other_tasks": [],
  "pages_sha256": {
-  "daily50_task/t19_jar_drawer.html": "b481e445c4d4c6f4ac80c05afb437f98a319934c0619e598434f9a1e15a5c72c",
-  "daily50_task/t21_calendar_cube.html": "66f4077d840f265269f1e389669e4bca8e2edd58ae9767995c44e4a452660f5d",
-  "daily50_task/t27_paperweight.html": "c6080950cda0d5c55440635f7cfe67a86213597d7ac965d088b1890f3c065852",
-  "daily50_task/t28_can_bin.html": "16fa96357c69691d7e77c39f28692b37c2f9337bf77d826e9579ac3dd5cea8a7",
-  "daily50_task/t32_umbrella_stand.html": "1cffb2889d47dc2907d6e45e93db04e58c1d95a469b0edca3f020e1f209fe481",
-  "daily50_task/t33_candle_holder.html": "946a698805eaa4aef6c6fbfa04ace7e27531ab1b8eff877d408b97f97a09e2b8",
-  "daily50_task/t35_flashlight.html": "35bd136cf6a3a571fba957c21b476f73b2d1c2fbe5d2467e89756f839eb4ef96",
-  "daily50_task/t38_tv_remote.html": "e4c5603a95bb965d8a8eceb853b42d572acd55928145d00b26c0ee1ad0f5d25e",
-  "daily50_task/t41_power_strip.html": "a8f5ba5c684b2e6a73b3dc4ebc5e6f24110ba1931dc8ea549eea532f13015344",
-  "daily50_task/t42_dish_soap.html": "9da1bb0cb8e74453f9c615b7f7643a42904864acd8cfd6a2815fb4cfe01d4792",
-  "daily50_task/t50_toy_bowling.html": "b82e6711e50fc9a957e15caeaeea9284b8a6e1daf4515056decdf392edc216e4",
-  "daily50_trials.html": "18acb99aee23176fbe5b6a6f3873fae23d0a2426932ba09108a8324c5a8365bf"
+  "daily50_task/t19_jar_drawer.html": "2c2b7051c809db7b00ba3fc0595ed674ccf25a8d3a686662c20771b22ad49cd4",
+  "daily50_task/t21_calendar_cube.html": "ec78a5003e729719b888d5d4b25ca341ad2e1cf24894858accae523663ffbd5c",
+  "daily50_task/t27_paperweight.html": "fdb7bac35369b0873b71a01e8a9f3ca3123c0c2d1f0e702bf51eb5dbe8e969d3",
+  "daily50_task/t28_can_bin.html": "519fae8b79d905deb6ce8edb6efd0f2ea3cce2d68ee3ead44691df9519f14abb",
+  "daily50_task/t32_umbrella_stand.html": "17535fb6b77079ecfaaccea0e934ca00082b5fc229d297dedabf709d993f7c41",
+  "daily50_task/t33_candle_holder.html": "310eebff2741b8025014e1baae9b381eb77c9c87f5524ef103d47f23fbd8e698",
+  "daily50_task/t35_flashlight.html": "f6ff3c53cc4d046b0e2edef981859c288824fca86263227b48601cbc913896d0",
+  "daily50_task/t38_tv_remote.html": "59fd74050a2d7084d55f31fe4277dd8936f276ab2e710e51e2fa248d3d7e66c3",
+  "daily50_task/t40_scrape_crumbs.html": "b9e03efa3ed9ecc02b21013c86429ad3602c52fcbc18aaaa3858f64a89181eef",
+  "daily50_task/t41_power_strip.html": "4450fe9a6a441e2452927d21758ff1161efa7bb6592fd204148dabab9fe82d10",
+  "daily50_task/t42_dish_soap.html": "50e2a0de6c5b2b5c8b2fd0a08cb0ff4cbe7998b236dcdca7f033698dda21f8b6",
+  "daily50_task/t50_toy_bowling.html": "e85a233eefe0717da50f10365f7dcba09709625c2c4daedcf3bbe605a63e00fe",
+  "daily50_trials.html": "0b517438672376550607d0b1844ffcedac2723d5179b2b2d2d63910bb93f9088"
  }
 }
