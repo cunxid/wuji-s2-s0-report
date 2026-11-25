@@ -1,6 +1,6 @@
 {
  "schema": "daily50.trials_page/1",
- "generated": "2026-11-25 14:39 EST",
+ "generated": "2026-11-25 14:54 EST",
  "headline": {
   "tasks_total": 50,
   "tasks_attempted": 13,
@@ -10,9 +10,9 @@
    "t41_power_strip",
    "t50_toy_bowling"
   ],
-  "trials": 18,
+  "trials": 19,
   "trials_by_status": {
-   "FAIL": 15,
+   "FAIL": 16,
    "PASS": 3
   },
   "words": "success rate: 3 of 13 tasks passed (played by session agents, probe series \u2014 not a counted test series)",
@@ -40,8 +40,8 @@
   }
  },
  "media": {
-  "files": 18,
-  "bytes": 14025465,
+  "files": 19,
+  "bytes": 15409865,
   "budget_bytes": 150000000
  },
  "judge_reason_shown": true,
@@ -562,6 +562,29 @@
      "problems": [
       "the record lists 2 replan(s) and has 3 turn(s) of phase replan"
      ]
+    },
+    {
+     "file": "trial_41.json",
+     "number": "41",
+     "status": "FAIL",
+     "written": "2026-11-25 14:48",
+     "attempt": 2,
+     "read_task_notes": true,
+     "run": "20261125T190547Z-11348e8e",
+     "turns": 26,
+     "phase_counts": {
+      "look": 4,
+      "plan": 5,
+      "act": 6,
+      "check": 4,
+      "replan": 7
+     },
+     "replans": 7,
+     "video": "t42_dish_soap_trial_41.mp4",
+     "video_sha256": "2658c68439ad25bf95f80d9c722367d1f7a2dc8f8e3570d03d6ed4e68c16def3",
+     "problems": [
+      "the record lists 3 replan(s) and has 7 turn(s) of phase replan"
+     ]
     }
    ]
   },
@@ -601,19 +624,19 @@
  ],
  "other_tasks": [],
  "pages_sha256": {
-  "daily50_task/t07_battery_cover.html": "c6e1d5a5bd6b93a7f25be8943bcc67a9b20cbfda9cd50e1d0365e034ccbb0513",
-  "daily50_task/t19_jar_drawer.html": "b691350db475102296bb86cf50f01305e57bda993b2e4f390e7dc36007dd7108",
-  "daily50_task/t21_calendar_cube.html": "7db19902c10040cdd5e73f97ee95a3788a1e8d54608b18bc5053ce2bde53ff0a",
-  "daily50_task/t27_paperweight.html": "f2ec5e9d0a4dc8b7a966faa26d1b4e5989eaf7713276f975377e39da144c1dd2",
-  "daily50_task/t28_can_bin.html": "1f9583a78c30ace70798dba871500e4defd4856ac6dd77372dbcf4c275042100",
-  "daily50_task/t32_umbrella_stand.html": "8bcfdccfd6f6edd7a6d9691258004bc1d92a26fe731162cd73b9755339da3598",
-  "daily50_task/t33_candle_holder.html": "3bf83835d3f7a12837186df373794d6c5e8073c150738fbfe4d1f0f7f33a6ace",
-  "daily50_task/t35_flashlight.html": "fa33fb4bcb5ddd30e0bb1ac8b85039bb26143dea4194422396352be228291a8a",
-  "daily50_task/t38_tv_remote.html": "7998174cce69a1369c8f61c44b7216917b9034069416db7ebafac24aac5412e6",
-  "daily50_task/t40_scrape_crumbs.html": "2bb579c5e89b45503ddb48146f750dc7004b1bbf7fdca6d34265ea0018ba4240",
-  "daily50_task/t41_power_strip.html": "015ad9ee6da42ee8445aed17a011bda2fdbd84a5b3aa0d86896cd91b27619389",
-  "daily50_task/t42_dish_soap.html": "6c2bb3024cf831b35a62bd344125e666e9c6dd1017b7c06a30fa6aa836b46fff",
-  "daily50_task/t50_toy_bowling.html": "e14c59f2d3665fbeb63c95400d664afe90c588a5939c88f309bf3b3b7620a9a6",
-  "daily50_trials.html": "8c4770d2612def06874276d9727ee512c10bb877e5d2cb5919af00bf8e402018"
+  "daily50_task/t07_battery_cover.html": "1658243e61b0624af4d8f9e4eb9ec2806e5a4eed7f661de67e688f9d971dad8d",
+  "daily50_task/t19_jar_drawer.html": "5ca48fc4f7bd6466cd59e75c5e905ba8127e87a17cf75a6710cec5954bf9361a",
+  "daily50_task/t21_calendar_cube.html": "61f8e7cdafedf3e357026116ff02ecef60e6771a43a3b09f3b97acaef04b12a1",
+  "daily50_task/t27_paperweight.html": "71f1e36887648c2107067dd01757baf719800a313ce5d2e60fe40d07cff2b8f7",
+  "daily50_task/t28_can_bin.html": "d57dd6416c396950cebcf03d8139205b780df834f9ff7bdc5450b10c4022fbea",
+  "daily50_task/t32_umbrella_stand.html": "7f26a00d623ba8113ecd7c8ba6053c0b9b66b95a29fb22685dd253eddcf08df3",
+  "daily50_task/t33_candle_holder.html": "c777f225c6208cab1af2e0dc82e6bcdc20fcd077772f0eb846eb7eff8ec4a386",
+  "daily50_task/t35_flashlight.html": "7fc049957229571465ef8657e2da6943b2102d29f56e2841ce78e2b0c0029d47",
+  "daily50_task/t38_tv_remote.html": "d86544fb14a56ce84243ba74dd76121bd082681585774995fbe4946290a99bf1",
+  "daily50_task/t40_scrape_crumbs.html": "1bac4f4b74a1751a1c2f84b9bafbeb1fe3516583a9e0836d669954d5e6d03bd2",
+  "daily50_task/t41_power_strip.html": "62b354967d54315e8ed504a2d5cbc7ac819f7671e72291d059f5c6a87e5488f4",
+  "daily50_task/t42_dish_soap.html": "a1bb47665dba8935df4e4332777dcee9f8084b691df9a2ec56ecbe670d6d777a",
+  "daily50_task/t50_toy_bowling.html": "e5213dd15d6ad8ab5df13d5b43e3067c45a17fb4551645c7253dd6655c3872fa",
+  "daily50_trials.html": "c010b590f9fe9bdb0d098483ad5ab19dfd83336411dcd0abb0766d5366362252"
  }
 }
