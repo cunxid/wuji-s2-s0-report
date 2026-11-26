@@ -211,7 +211,7 @@
       gl.bindBuffer(gl.ARRAY_BUFFER, g.buf); gl.vertexAttribPointer(L.pos, 3, gl.FLOAT, false, 24, 0); gl.vertexAttribPointer(L.nor, 3, gl.FLOAT, false, 24, 12);
       gl.uniformMatrix4fv(L.m, false, M); gl.uniform4f(L.color, rgb[0], rgb[1], rgb[2], alpha === undefined ? 1 : alpha); gl.drawArrays(gl.TRIANGLES, 0, g.count);
     }
-    function hand(P, q, rgb, alpha) { var H = handPoses(P, q); for (var i = 0; i < links.length; i++) if (self.hand[i]) tri(self.hand[i], matOf(H.R[i], H.p[i]), rgb, alpha); }
+    function hand(P, q, rgb, alpha, palmOnly) { var H = handPoses(P, q); for (var i = 0; i < links.length; i++) if (self.hand[i] && !(palmOnly && links[i].qi !== null)) tri(self.hand[i], matOf(H.R[i], H.p[i]), rgb, alpha); }
     function useLine() { gl.useProgram(self.line); gl.uniformMatrix4fv(N.vp, false, VP); gl.enableVertexAttribArray(N.pos); gl.enableVertexAttribArray(N.col); }
     var OFFS = [[0, 0], [1, 0], [-1, 0], [0, 1], [0, -1]];
     function ln(g, glmode, first, count, width, alpha) {
@@ -227,7 +227,7 @@
     useLit();
     if (d.table) tri(this.cube, matOf(I3, d.table.c, d.table.h), C.table);
     if (thing) tri(res.mesh, matOf(thing.R, thing.p), BLOCK);
-    if (wrist) hand(wrist, q, C.hand);
+    if (wrist) hand(wrist, q, C.hand, undefined, !act);   // the reference holds a wrist pose only: no fingers are drawn for it
     d.keypoints.forEach(function (k) { tri(self.sphere, matOf(I3, k.p, [0.005, 0.005, 0.005]), C.mark); });
     useLine(); gl.enable(gl.BLEND); gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
     ln(res.grid, gl.LINES, 0, res.grid.count, 1, 0.35);
@@ -243,7 +243,7 @@
       useLit(); gl.depthMask(false);                                     // onion skins: the thing and the hand at the keypoints
       d.keypoints.forEach(function (k) {
         var a = pose(d.tc, k.row), b = pose(d.wc, k.row);
-        tri(res.mesh, matOf(a.R, a.p), BLOCK, 0.22); hand(b, d.qf, C.hand, 0.1);
+        tri(res.mesh, matOf(a.R, a.p), BLOCK, 0.22); hand(b, d.qf, C.hand, 0.18, true);
       });
       gl.depthMask(true);
     }
@@ -331,11 +331,11 @@
     var cmp = S.left !== S.right, d = loaded[S.left];
     readout.innerHTML = '<div class="vr1">' + (cmp ? 'left: ' : '') + describe(S.left, S.row) + '</div>' + (cmp ? '<div class="vr1">right: ' + describe(S.right, S.row) + '</div>' : '');
     var info = runInfo(S.left);
-    subs[0].innerHTML = (cmp ? '' : esc(info.title) + '. ') + 'Hand drawn in one fixed finger posture (the record\'s at row ' + d.fixed_posture_row + '): the reference has no finger posture.' +
+    subs[0].innerHTML = (cmp ? '' : esc(info.title) + '. ') + 'Dark body: the palm at the commanded wrist pose. No fingers are drawn: the reference holds none (S0 moves them).' +
       (d.interpolation ? ' Interpolation: ' + esc(d.interpolation) + '.' : '') + ' Keypoints: ' + d.keypoints.length + '.';
     if (cmp) {
       var e = loaded[S.right];
-      subs[1].innerHTML = 'Hand drawn in one fixed finger posture (the record\'s at row ' + e.fixed_posture_row + ').' + (e.interpolation ? ' Interpolation: ' + esc(e.interpolation) + '.' : '') +
+      subs[1].innerHTML = 'Dark body: the palm at the commanded wrist pose; no fingers in the reference.' + (e.interpolation ? ' Interpolation: ' + esc(e.interpolation) + '.' : '') +
         ' Keypoints: ' + e.keypoints.length + '.';
     } else {
       var r = Math.min(S.row, d.rows - 1);
