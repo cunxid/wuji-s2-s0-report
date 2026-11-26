@@ -1,0 +1,122 @@
+{
+ "schema": "s2loop.reason_video/1",
+ "version": 3,
+ "built": "2026-11-26 10:47:02 EST",
+ "made_by": "s2/s2loop/reason_video.py: the head-camera film with the trial's reason loop, colour-coded by phase",
+ "task": "t40_scrape_crumbs",
+ "status": "PASS",
+ "episode_index": 127,
+ "run": "20261126T150532Z-2c3156ee",
+ "trial": "trial_127.json",
+ "inputs": {
+  "trial_sha256": "35c93df53a75795ef68434e676665afa24e9ae5bdb10c232b698a805131aa44a",
+  "turn_log_sha256": "9d85ed0ffe60cca5a8384b92efa1c4657c454696fda7ada60e692538d9899d52",
+  "head_film_sha256": "685cc33b6222f1c9b7c74c5b53941c3cef87d2c15be14374659390bbfc59f2d2",
+  "head_film_built_now": true,
+  "head_film_in_run_folder": false
+ },
+ "video": {
+  "file": "t40_scrape_crumbs_trial_127.mp4",
+  "poster": "t40_scrape_crumbs_trial_127.jpg",
+  "bytes": 767440,
+  "frames": 793,
+  "fps": 16.666666666666668,
+  "duration_s": 47.58,
+  "size": [
+   848,
+   480
+  ],
+  "codec": "h264",
+  "film_speed": 1,
+  "tail_speed": 2,
+  "refit_to_bytes": false,
+  "max_bytes": 3000000
+ },
+ "ticks": 1988,
+ "stride": 3,
+ "looks_redrawn": false,
+ "phase_colours": {
+  "plan": "#2370cd",
+  "look": "#22b8dc",
+  "act": "#f59a0c",
+  "check": "#008a17",
+  "replan": "#ec4647"
+ },
+ "phase_counts": {
+  "plan": 1,
+  "act": 2,
+  "replan": 1
+ },
+ "turns": [
+  {
+   "index": 0,
+   "n": 1,
+   "log_turn": 1,
+   "phase": "plan",
+   "skill": "propose_grasps x5 + attach + carry + detach + reach + check_plan + solve_ik x4 + plan_motion",
+   "say": "measure board, crumbs and the standing scraper's part, ask the grasp provider (named class, plain, synthesized), sweep check_plan for grasp + lay-down behind the crumbs, dry-run the fingertip push; nothing moves",
+   "ok": true,
+   "error": "",
+   "tick_start": 0,
+   "tick_end": 0,
+   "moved": false,
+   "in_log": true,
+   "in_record": true,
+   "video_start_s": 2.52,
+   "video_end_s": 5.52
+  },
+  {
+   "index": 1,
+   "n": 2,
+   "log_turn": 2,
+   "phase": "act",
+   "skill": "commit_plan",
+   "say": "commit the checked plan (attach the standing scraper by the policy, rise, carry 3 cm toward the robot, lower, detach, reach start), plan step 1",
+   "ok": true,
+   "error": "",
+   "tick_start": 0,
+   "tick_end": 673,
+   "moved": true,
+   "in_log": true,
+   "in_record": true,
+   "video_start_s": 5.52,
+   "video_end_s": 19.62
+  },
+  {
+   "index": 2,
+   "n": 3,
+   "log_turn": 3,
+   "phase": "act",
+   "skill": "plan_motion + execute_plan + locate_objects",
+   "say": "scraper lies flat behind the crumbs as expected (check ok); measure it and push it from behind with the open fingertips to the far edge, then rise and go to the start joints with the hand open, plan steps 2 and 3",
+   "ok": true,
+   "error": "",
+   "tick_start": 673,
+   "tick_end": 1213,
+   "moved": true,
+   "in_log": true,
+   "in_record": true,
+   "video_start_s": 19.62,
+   "video_end_s": 31.02
+  },
+  {
+   "index": 3,
+   "n": 4,
+   "log_turn": 4,
+   "phase": "replan",
+   "skill": "plan_motion + execute_plan + locate_objects",
+   "say": "the scraper stopped 3 mm short of the board edge and its far face hides the edge strip (crumbs seen in the tray); ONE more fingertip push, 9 mm further (changed end), then rise and start joints with the hand open: this is also the e",
+   "ok": true,
+   "error": "",
+   "tick_start": 1213,
+   "tick_end": 1688,
+   "moved": true,
+   "in_log": true,
+   "in_record": true,
+   "video_start_s": 31.02,
+   "video_end_s": 41.1
+  }
+ ],
+ "problems": [],
+ "build_seconds": 506.71
+}
