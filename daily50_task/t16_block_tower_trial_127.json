@@ -1,0 +1,87 @@
+{
+ "schema": "s2loop.reason_video/1",
+ "version": 3,
+ "built": "2026-11-26 10:33:19 EST",
+ "made_by": "s2/s2loop/reason_video.py: the head-camera film with the trial's reason loop, colour-coded by phase",
+ "task": "t16_block_tower",
+ "status": "PASS",
+ "episode_index": 127,
+ "run": "20261126T145740Z-35919679",
+ "trial": "trial_127.json",
+ "inputs": {
+  "trial_sha256": "93ebae7ab2fdece435074b0623dc9cc6c4aa8a3559355403864c6696cb6e92f9",
+  "turn_log_sha256": "5122323bdf1f739145828476dbe01c7f0865f3ce459f04b7bf6d029f9a0465a1",
+  "head_film_sha256": "1e85a3944ff808dc5fb7f72188def7c60b3ea609ff414d9dce023bdc7df28fc0",
+  "head_film_built_now": true,
+  "head_film_in_run_folder": false
+ },
+ "video": {
+  "file": "t16_block_tower_trial_127.mp4",
+  "poster": "t16_block_tower_trial_127.jpg",
+  "bytes": 402743,
+  "frames": 454,
+  "fps": 16.666666666666668,
+  "duration_s": 27.24,
+  "size": [
+   848,
+   480
+  ],
+  "codec": "h264",
+  "film_speed": 1,
+  "tail_speed": 2,
+  "refit_to_bytes": false,
+  "max_bytes": 3000000
+ },
+ "ticks": 1032,
+ "stride": 3,
+ "looks_redrawn": false,
+ "phase_colours": {
+  "plan": "#2370cd",
+  "look": "#22b8dc",
+  "act": "#f59a0c",
+  "check": "#008a17",
+  "replan": "#ec4647"
+ },
+ "phase_counts": {
+  "plan": 1,
+  "act": 1
+ },
+ "turns": [
+  {
+   "index": 0,
+   "n": 1,
+   "log_turn": 1,
+   "phase": "plan",
+   "skill": "propose_grasps + attach x2 + carry x2 + detach x2 + reach x4 + check_plan x2",
+   "say": "look and measure (block on the box, column top), sweep the offered grasps through check_plan with the seat-corrected goal, keep the first whole plan accepted",
+   "ok": true,
+   "error": "",
+   "tick_start": 0,
+   "tick_end": 0,
+   "moved": false,
+   "in_log": true,
+   "in_record": true,
+   "video_start_s": 2.52,
+   "video_end_s": 5.52
+  },
+  {
+   "index": 1,
+   "n": 2,
+   "log_turn": 2,
+   "phase": "act",
+   "skill": "commit_plan + get_observation + locate_objects",
+   "say": "commit the checked plan (attach noitom psi 37 under s0, linear carry to the seat-corrected goal 6 mm over the column, detach, reach above the pick place, reach to the start pose with the hand open), plan steps 1 to 3; then measure the",
+   "ok": true,
+   "error": "",
+   "tick_start": 0,
+   "tick_end": 732,
+   "moved": true,
+   "in_log": true,
+   "in_record": true,
+   "video_start_s": 5.52,
+   "video_end_s": 20.76
+  }
+ ],
+ "problems": [],
+ "build_seconds": 270.05
+}
