@@ -1,0 +1,122 @@
+{
+ "schema": "s2loop.reason_video/1",
+ "version": 3,
+ "built": "2026-11-26 09:06:47 EST",
+ "made_by": "s2/s2loop/reason_video.py: the head-camera film with the trial's reason loop, colour-coded by phase",
+ "task": "t39_whiteboard_erase",
+ "status": "PASS",
+ "episode_index": 117,
+ "run": "20261126T120832Z-0d0909a9",
+ "trial": "trial_117.json",
+ "inputs": {
+  "trial_sha256": "e85c31a963fb887c748547005fe79e5adaa6a6390ce112d6cf3d4ad92740887b",
+  "turn_log_sha256": "e2f19de35ffd90a4fd917fa38e3d4fb3b6147233ac2a2a7f3eb1d8aeae38792e",
+  "head_film_sha256": "446f5d435aa76e2c32f734b76f9e122277dd9b6e6adeae23c6633bc9858ef737",
+  "head_film_built_now": true,
+  "head_film_in_run_folder": false
+ },
+ "video": {
+  "file": "t39_whiteboard_erase_trial_117.mp4",
+  "poster": "t39_whiteboard_erase_trial_117.jpg",
+  "bytes": 526007,
+  "frames": 618,
+  "fps": 16.666666666666668,
+  "duration_s": 37.08,
+  "size": [
+   848,
+   480
+  ],
+  "codec": "h264",
+  "film_speed": 1,
+  "tail_speed": 2,
+  "refit_to_bytes": false,
+  "max_bytes": 3000000
+ },
+ "ticks": 1417,
+ "stride": 3,
+ "looks_redrawn": false,
+ "phase_colours": {
+  "plan": "#2370cd",
+  "look": "#22b8dc",
+  "act": "#f59a0c",
+  "check": "#008a17",
+  "replan": "#ec4647"
+ },
+ "phase_counts": {
+  "look": 1,
+  "plan": 1,
+  "act": 2
+ },
+ "turns": [
+  {
+   "index": 0,
+   "n": 1,
+   "log_turn": 1,
+   "phase": "look",
+   "skill": "look",
+   "say": "look",
+   "ok": true,
+   "error": "",
+   "tick_start": 0,
+   "tick_end": 0,
+   "moved": false,
+   "in_log": true,
+   "in_record": true,
+   "video_start_s": 2.52,
+   "video_end_s": 4.02
+  },
+  {
+   "index": 1,
+   "n": 2,
+   "log_turn": 2,
+   "phase": "plan",
+   "skill": "point_at x229 + plan_motion x4",
+   "say": "measure board plane, eraser, marks; dry-run a low pull of the eraser by its far face (open hand, fingers down) at several heights; plan = hover behind eraser, down, one slow pull over the writing, rise, home",
+   "ok": true,
+   "error": "",
+   "tick_start": 0,
+   "tick_end": 0,
+   "moved": false,
+   "in_log": true,
+   "in_record": true,
+   "video_start_s": 4.02,
+   "video_end_s": 7.02
+  },
+  {
+   "index": 2,
+   "n": 3,
+   "log_turn": 3,
+   "phase": "act",
+   "skill": "plan_motion x2 + execute_plan + point_at x221",
+   "say": "own arm program, plan steps 1 to 3: open hand down behind the eraser, one slow low pull of the eraser across the writing to the board's near edge, rise, arm home with the hand open",
+   "ok": true,
+   "error": "",
+   "tick_start": 0,
+   "tick_end": 573,
+   "moved": true,
+   "in_log": true,
+   "in_record": true,
+   "video_start_s": 7.02,
+   "video_end_s": 19.08
+  },
+  {
+   "index": 3,
+   "n": 4,
+   "log_turn": 4,
+   "phase": "act",
+   "skill": "plan_motion x3 + execute_plan + point_at x232",
+   "say": "plan step 4, faint writing remains and the eraser lies flat: one push of the eraser back down the slope across the writing (backs of the open fingers low on its near face), rise, arm home, hand open",
+   "ok": true,
+   "error": "",
+   "tick_start": 573,
+   "tick_end": 1117,
+   "moved": true,
+   "in_log": true,
+   "in_record": true,
+   "video_start_s": 19.08,
+   "video_end_s": 30.6
+  }
+ ],
+ "problems": [],
+ "build_seconds": 480.6
+}
