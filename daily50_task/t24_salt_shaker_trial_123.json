@@ -1,0 +1,105 @@
+{
+ "schema": "s2loop.reason_video/1",
+ "version": 3,
+ "built": "2026-11-26 09:27:52 EST",
+ "made_by": "s2/s2loop/reason_video.py: the head-camera film with the trial's reason loop, colour-coded by phase",
+ "task": "t24_salt_shaker",
+ "status": "PASS",
+ "episode_index": 123,
+ "run": "20261126T134009Z-26cdf073",
+ "trial": "trial_123.json",
+ "inputs": {
+  "trial_sha256": "b34ef31fe4ecd94124c3068f114c4488c9d77628ce172350d631ed2764b25d31",
+  "turn_log_sha256": "3d43dfcadc8651badee559181019f1d227d36b8f400ecdaa80cea9e4a30eacf1",
+  "head_film_sha256": "ae7bf06a2a841fe2ea1f29c952427458c572fe58b3e9f9cd46571291149f5dd7",
+  "head_film_built_now": true,
+  "head_film_in_run_folder": false
+ },
+ "video": {
+  "file": "t24_salt_shaker_trial_123.mp4",
+  "poster": "t24_salt_shaker_trial_123.jpg",
+  "bytes": 763590,
+  "frames": 779,
+  "fps": 16.666666666666668,
+  "duration_s": 46.74,
+  "size": [
+   848,
+   480
+  ],
+  "codec": "h264",
+  "film_speed": 1,
+  "tail_speed": 2,
+  "refit_to_bytes": false,
+  "max_bytes": 3000000
+ },
+ "ticks": 1855,
+ "stride": 3,
+ "looks_redrawn": false,
+ "phase_colours": {
+  "plan": "#2370cd",
+  "look": "#22b8dc",
+  "act": "#f59a0c",
+  "check": "#008a17",
+  "replan": "#ec4647"
+ },
+ "phase_counts": {
+  "plan": 1,
+  "replan": 1,
+  "act": 1
+ },
+ "turns": [
+  {
+   "index": 0,
+   "n": 1,
+   "log_turn": 1,
+   "phase": "plan",
+   "skill": "propose_grasps + carry x2 + attach x2 + detach x2 + reach x4 + check_plan x2",
+   "say": "measure the shaker part and the steak, propose the synthesized grasp, sweep tilt/height/put-down through check_plan at zero ticks, and write the plan",
+   "ok": true,
+   "error": "",
+   "tick_start": 0,
+   "tick_end": 0,
+   "moved": false,
+   "in_log": true,
+   "in_record": true,
+   "video_start_s": 2.52,
+   "video_end_s": 5.52
+  },
+  {
+   "index": 1,
+   "n": 2,
+   "log_turn": 2,
+   "phase": "replan",
+   "skill": "point_at x36 + carry x3 + attach x3 + detach x3 + reach x6 + check_plan x3",
+   "say": "the first plan aimed over the other shaker (my picker took part 11 for the steak); measure the steak with a point_at grid and sweep the same plan again at zero ticks",
+   "ok": true,
+   "error": "",
+   "tick_start": 0,
+   "tick_end": 0,
+   "moved": false,
+   "in_log": true,
+   "in_record": true,
+   "video_start_s": 5.52,
+   "video_end_s": 8.52
+  },
+  {
+   "index": 2,
+   "n": 3,
+   "log_turn": 3,
+   "phase": "act",
+   "skill": "commit_plan",
+   "say": "commit the checked plan (attach the salt shaker, carry to the plate turning 116 deg, 23 short strokes, upright back, guarded lowering into the pick place, detach, reach up and to the start pose), plan steps 1 to 6",
+   "ok": true,
+   "error": "",
+   "tick_start": 0,
+   "tick_end": 1555,
+   "moved": true,
+   "in_log": true,
+   "in_record": true,
+   "video_start_s": 8.52,
+   "video_end_s": 40.26
+  }
+ ],
+ "problems": [],
+ "build_seconds": 631.31
+}
