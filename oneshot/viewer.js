@@ -166,7 +166,7 @@
   })();
 
   // ---------------------------------------------------------------- state
-  var HOME = { target: [-0.37, -0.3, 0.97], az: 20 * Math.PI / 180, el: 38 * Math.PI / 180, dist: 0.95 };
+  var HOME = { target: [-0.37, -0.31, 0.99], az: 32 * Math.PI / 180, el: 30 * Math.PI / 180, dist: 0.82 };
   var cam = JSON.parse(JSON.stringify(HOME));
   var S = { run: 0, tick: 0, playing: false, speed: 1, layers: {} };
   var dirty = true, VP = ident(), eye = [0, 0, 0], viewW = 1, viewH = 1;
@@ -200,6 +200,10 @@
   function readHash() {
     var h = window.location.hash || '', r = /run=(\d+)/.exec(h), t = /tick=(\d+)/.exec(h);
     if (!r && !t) return false;
+    var az = /az=(-?[\d.]+)/.exec(h), el = /el=(-?[\d.]+)/.exec(h), dd = /d=([\d.]+)/.exec(h);      // optional: the camera, in degrees and metres
+    if (az) cam.az = parseFloat(az[1]) * Math.PI / 180;
+    if (el) cam.el = Math.max(-1.5, Math.min(1.5, parseFloat(el[1]) * Math.PI / 180));
+    if (dd) cam.dist = Math.max(0.12, Math.min(5, parseFloat(dd[1])));
     setRun(r ? parseInt(r[1], 10) - 1 : S.run, t ? parseInt(t[1], 10) : 0);
     live = true;
     return true;
@@ -382,7 +386,7 @@
           w = VP[3] * l.p[0] + VP[7] * l.p[1] + VP[11] * l.p[2] + VP[15];
       if (!show || w <= 0) { l.el.style.display = 'none'; return; }
       l.el.style.display = 'block';
-      l.el.style.transform = 'translate(' + ((x / w * 0.5 + 0.5) * viewW + 9).toFixed(1) + 'px,' + ((0.5 - y / w * 0.5) * viewH - 9).toFixed(1) + 'px)';
+      l.el.style.transform = 'translate(' + ((x / w * 0.5 + 0.5) * viewW + 9).toFixed(1) + 'px,' + ((0.5 - y / w * 0.5) * viewH + (l.aim ? 8 : -9)).toFixed(1) + 'px)';
     });
   }
 
@@ -436,7 +440,8 @@
   }
   canvas.addEventListener('contextmenu', function (e) { e.preventDefault(); });
   canvas.addEventListener('pointerdown', function (e) {
-    canvas.setPointerCapture(e.pointerId); pointers[e.pointerId] = { x: e.clientX, y: e.clientY, pan: e.button === 2 || e.shiftKey };
+    try { canvas.setPointerCapture(e.pointerId); } catch (err) { /* a synthetic pointer */ }
+    pointers[e.pointerId] = { x: e.clientX, y: e.clientY, pan: e.button === 2 || e.shiftKey };
     pinch = 0; e.preventDefault();
   });
   canvas.addEventListener('pointermove', function (e) {
@@ -462,5 +467,35 @@
   if (!readHash()) { S.tick = D.runs[0].attach; setRun(0, D.runs[0].attach); }
   root.addEventListener('pointerdown', function () { live = true; }, true);
   root.addEventListener('keydown', function () { live = true; }, true);
+  if (/play=1/.test(window.location.hash)) setPlaying(true);
+  if (/selftest=1/.test(window.location.hash)) {       // developer check: drive every control once with made-up events, write what happened into the page
+    var res = {};
+    try {
+      var az0 = cam.az, d0 = cam.dist, tg0 = cam.target.slice();
+      canvas.dispatchEvent(new PointerEvent('pointerdown', { pointerId: 7, clientX: 100, clientY: 100, button: 0, bubbles: true }));
+      canvas.dispatchEvent(new PointerEvent('pointermove', { pointerId: 7, clientX: 160, clientY: 120, bubbles: true }));
+      canvas.dispatchEvent(new PointerEvent('pointerup', { pointerId: 7, bubbles: true }));
+      res.orbit = cam.az !== az0 && cam.target[0] === tg0[0];
+      canvas.dispatchEvent(new WheelEvent('wheel', { deltaY: 200, cancelable: true })); res.zoom = cam.dist > d0;
+      canvas.dispatchEvent(new PointerEvent('pointerdown', { pointerId: 8, clientX: 100, clientY: 100, button: 2, bubbles: true }));
+      canvas.dispatchEvent(new PointerEvent('pointermove', { pointerId: 8, clientX: 140, clientY: 130, bubbles: true }));
+      canvas.dispatchEvent(new PointerEvent('pointerup', { pointerId: 8, bubbles: true }));
+      res.pan = cam.target[0] !== tg0[0] || cam.target[1] !== tg0[1];
+      $('.vreset').click(); res.reset = cam.dist === HOME.dist && cam.target[0] === HOME.target[0];
+      slider.value = 100; slider.dispatchEvent(new Event('input')); res.slider = S.tick === 100;
+      document.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight' })); res.key_right = S.tick === 101;
+      document.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowLeft', shiftKey: true })); res.key_shift_left = S.tick === 91;
+      var jumps = root.querySelectorAll('.vjump'); jumps[1].click(); res.jump = S.tick === parseInt(jumps[1].getAttribute('data-tick'), 10);
+      root.querySelector('.vseg:nth-child(4)').click(); res.strip = S.tick === run().segments[3].t0;
+      root.querySelectorAll('.vrun')[1].click(); res.run_switch = S.run === 1 && parseInt(slider.max, 10) === D.runs[1].ticks - 1;
+      Array.prototype.forEach.call(root.querySelectorAll('input[data-layer]'), function (c) { c.checked = false; });
+      draw(); res.draw_all_layers_off = true;
+      Array.prototype.forEach.call(root.querySelectorAll('input[data-layer]'), function (c) { c.checked = true; });
+      setTick(D.runs[1].ticks - 1); draw(); setTick(0); draw(); res.draw_first_and_last_tick = true;
+      playBtn.click(); res.play = S.playing === true; playBtn.click(); res.pause = S.playing === false;
+      res.gl_error = gl.getError();
+    } catch (err) { res.error = String(err); }
+    root.setAttribute('data-selftest', JSON.stringify(res));
+  }
   window.requestAnimationFrame(function (now) { last = now; frame(now); });
 })();
