@@ -1,9 +1,9 @@
 {
  "schema": "daily50.trials_page/1",
- "generated": "2026-11-26 05:46 EST",
+ "generated": "2026-11-26 06:36 EST",
  "headline": {
   "tasks_total": 50,
-  "tasks_attempted": 30,
+  "tasks_attempted": 31,
   "tasks_passed": 4,
   "tasks_passed_names": [
    "t19_jar_drawer",
@@ -11,21 +11,21 @@
    "t41_power_strip",
    "t42_dish_soap"
   ],
-  "trials": 67,
+  "trials": 71,
   "trials_by_status": {
-   "FAIL": 58,
+   "FAIL": 62,
    "FLAGGED": 3,
    "PASS": 6
   },
-  "words": "success rate: 4 of 30 tasks passed (played by session agents, probe series \u2014 not a counted test series)",
+  "words": "success rate: 4 of 31 tasks passed (played by session agents, probe series \u2014 not a counted test series)",
   "practice_tasks_total": 40,
   "first_attempt": {
-   "tasks": 30,
+   "tasks": 31,
    "passed": 0,
    "names": []
   },
   "after_practice": {
-   "tasks": 30,
+   "tasks": 31,
    "passed": 4,
    "passed_at_attempt": {
     "t19_jar_drawer": 2,
@@ -212,6 +212,38 @@
       "replan": 1
      },
      "replans": 1,
+     "video": null,
+     "video_sha256": null,
+     "problems": []
+    }
+   ]
+  },
+  {
+   "task": "t04_pull_nail",
+   "in_benchmark": true,
+   "held_out": false,
+   "best_status": "FAIL",
+   "first_attempt": {
+    "trial": "113",
+    "status": "FAIL"
+   },
+   "passed_at_attempt": null,
+   "trials": [
+    {
+     "file": "trial_113.json",
+     "number": "113",
+     "status": "FAIL",
+     "written": "2026-11-26 05:56",
+     "attempt": 1,
+     "read_task_notes": false,
+     "run": "20261126T104026Z-af98478f",
+     "turns": 4,
+     "phase_counts": {
+      "look": 1,
+      "plan": 2,
+      "act": 1
+     },
+     "replans": 0,
      "video": null,
      "video_sha256": null,
      "problems": []
@@ -691,6 +723,25 @@
      "problems": [
       "the record holds no plan (plan)"
      ]
+    },
+    {
+     "file": "trial_114.json",
+     "number": "114",
+     "status": "FAIL",
+     "written": "2026-11-26 05:48",
+     "attempt": 4,
+     "read_task_notes": true,
+     "run": "20261126T102550Z-a75102af",
+     "turns": 5,
+     "phase_counts": {
+      "plan": 1,
+      "act": 2,
+      "replan": 2
+     },
+     "replans": 2,
+     "video": null,
+     "video_sha256": null,
+     "problems": []
     }
    ]
   },
@@ -1560,6 +1611,25 @@
      "video": null,
      "video_sha256": null,
      "problems": []
+    },
+    {
+     "file": "trial_115.json",
+     "number": "115",
+     "status": "FAIL",
+     "written": "2026-11-26 06:10",
+     "attempt": 6,
+     "read_task_notes": true,
+     "run": "20261126T105515Z-7922189d",
+     "turns": 3,
+     "phase_counts": {
+      "plan": 1,
+      "act": 1,
+      "replan": 1
+     },
+     "replans": 1,
+     "video": null,
+     "video_sha256": null,
+     "problems": []
     }
    ]
   },
@@ -1657,6 +1727,25 @@
       "act": 3
      },
      "replans": 5,
+     "video": null,
+     "video_sha256": null,
+     "problems": []
+    },
+    {
+     "file": "trial_115.json",
+     "number": "115",
+     "status": "FAIL",
+     "written": "2026-11-26 06:07",
+     "attempt": 2,
+     "read_task_notes": true,
+     "run": "20261126T105208Z-b951f7fa",
+     "turns": 4,
+     "phase_counts": {
+      "plan": 1,
+      "act": 2,
+      "check": 1
+     },
+     "replans": 0,
      "video": null,
      "video_sha256": null,
      "problems": []
@@ -1954,37 +2043,38 @@
   }
  ],
  "pages_sha256": {
-  "daily50_task/t01_hammer_nail.html": "73d4672c7af60795f9d6e54439824e757d1534c52f7531e2b4981f56d0be8286",
-  "daily50_task/t02_crack_walnut.html": "c37e594c380e7e485c40cad5e27e3db6257d1eb46c768ad5c78cbdff0b5da84e",
-  "daily50_task/t03_paint_lid_shut.html": "4d2fb39ad7b3bbc45824e82c9b94bc2b04b2bb4060292ba206a0704d2fc94026",
-  "daily50_task/t05_hang_hammer.html": "ef9f53219100227e5f2d35759a15b94e526db14aa52e2a520462b8be09d43733",
-  "daily50_task/t07_battery_cover.html": "332e3d37e1535e04c8422450e027da69c32ef6f90cc03f50bb4e57c3a70f7a18",
-  "daily50_task/t08_pry_paint_lid.html": "e7cdc65a8093257c82eb71481a7c0331da562dd09230bab557d8166a3ee9be43",
-  "daily50_task/t13_bulb_vanity.html": "4bf768042c740fc360bf3124ef789e94dbbf1459d03336fee8c4286844ce73a2",
-  "daily50_task/t14_bulb_remove.html": "bbd533024acb2eb4743bc0d86e61405b2e9d7210637cec08c92f42036c07a0ca",
-  "daily50_task/t15_bulb_pendant.html": "9080f8431f5549bb515384da8429605194eb5ded93f70b73be1013a692cdd9d8",
-  "daily50_task/t18_hob_knob.html": "9d613463aa5953c88012c8d8a1db527b0ba5b796ddf14f3b14a38e367bad4d23",
-  "daily50_task/t19_jar_drawer.html": "0efdf249c126f28eaa5cead1fc7f49c5e5e26df1cb5aa3fc97c7e1be793dcc63",
-  "daily50_task/t21_calendar_cube.html": "11897b55149829da9a1147402152440f09f525b0d9c5ee0d2a36bca18684cebf",
-  "daily50_task/t23_milk_microwave.html": "54a9fb197e0d5796c9d8af7184f142b87eacd9a1476f806b933964b9f27ef7db",
-  "daily50_task/t27_paperweight.html": "7e6f6c253992265c2cb5bec89cfbcf69bb29f7d12c839ad2d21ec3a7f90b0c30",
-  "daily50_task/t28_can_bin.html": "fc3ee6896c5f8eec0d7b405a264ef3b9a82702dd5cd238aababc34c88503acce",
-  "daily50_task/t32_umbrella_stand.html": "7b4387597ec4f96a12c8228867c510c261e990f07a5288fb5a2d9119a60d9bbc",
-  "daily50_task/t33_candle_holder.html": "2f883508056d1aa9006865db15c87f40ed7fddaafd6982831aee46340e9af7f1",
-  "daily50_task/t34_crush_crackers.html": "4c2f06064a7ac0d6df340f0e2302c57479a0964c4577cdab66089a1217879d54",
-  "daily50_task/t35_flashlight.html": "0ada6760bc12a802d288f4560a5129fb8dfc31ed197adfb19cde5f34df3d2976",
-  "daily50_task/t38_tv_remote.html": "5f67f175cbad947940259b3141326fe47fd446588a4690f3ba38e322d294ac91",
-  "daily50_task/t39_whiteboard_erase.html": "803d92e88fa5b5dda8782775ad6e033e67652f3ce2e77429832930bc03e55912",
-  "daily50_task/t40_scrape_crumbs.html": "511117a36b637b1f7d767453acdc9e593f3f1cde5f35b0d151c8f97125127fca",
-  "daily50_task/t41_power_strip.html": "50dfc8da1e4b822cfb2ca8786bc2514afb1609af0ebcac23bbb13b1b2c38274d",
-  "daily50_task/t42_dish_soap.html": "c1c3322e2d71c45043bcfdcb72d54e41cbcb783c7495fb1bbc753b22ab4b88ec",
-  "daily50_task/t44_crush_garlic.html": "eac1c31c927d01547fd49045dda4d336877fa795e25d0c16339156c7f04088d1",
-  "daily50_task/t46_table_leg.html": "ce6313e04af3b098a0bd89177b11c8dd8b9add78c1046dffabfa91954bd07fdd",
-  "daily50_task/t47_level_shelf.html": "1b66bd9ac58e115a8dfee6f49566707bba227484b03cfac3a818066c6d6e76ca",
-  "daily50_task/t48_wheel_chock.html": "ca2e7322e6da3bc1a29958aab7cb17e852187bcfb28c73de878eddba2b132580",
-  "daily50_task/t49_weigh_orange.html": "b718305325350d442de715f8c045dc4412e6df44458c146e1d56598b5217c365",
-  "daily50_task/t50_toy_bowling.html": "90c0b10373d681693983669cd3c6a71a948a3060c508ae90f8294c3b95340ae9",
-  "daily50_task/u01_paperweight_quarter_turn.html": "ceaedd0ff8777172476da4780e53a7e92ba0aa64030376e099ab57937d78d54c",
-  "daily50_trials.html": "3c7b08d49127a541fc3894422e05b25cbbd781b1e9a2ed3292a02eb0fec8c12f"
+  "daily50_task/t01_hammer_nail.html": "06eed183eca3d5677cdf9fa30ade1b8c40c3e339bf85d9c2ea7ccc82caab8395",
+  "daily50_task/t02_crack_walnut.html": "d93304ac46d6b4d0fb4ea3469176914aff68976625ae9f6ece26c4aca5ccae1d",
+  "daily50_task/t03_paint_lid_shut.html": "dfa0058ecb6968eadfc5909c31c89b221fa0c690870932ce11fbfbfe51634f20",
+  "daily50_task/t04_pull_nail.html": "63882d31ea974616003a58828ed4bbb7112a3c732b23d978f07cf04dfe755f9a",
+  "daily50_task/t05_hang_hammer.html": "188cdb0a95e1e46f45c0009d09e0a59f7ca9dcd689c704f88a4c19a96eda1021",
+  "daily50_task/t07_battery_cover.html": "92e675d0071724157cbe84a7d307a3bc5dafaf36578e5d0d17d492d687d7ba2d",
+  "daily50_task/t08_pry_paint_lid.html": "402e25b67c1a7437027cb85fea4f2b3d0630e172c507a8a7d4bc3e57b23f3c38",
+  "daily50_task/t13_bulb_vanity.html": "6013af969d027a3d8de70e2e3b54b56ae57c6f91f1e12f36442bef7f84ec5fd5",
+  "daily50_task/t14_bulb_remove.html": "8489ce0f2e8af82ee5afea82128637c6f3e93300226677547306f16362821a01",
+  "daily50_task/t15_bulb_pendant.html": "e71320e20715179fd8bad30a163d6a874b2869f7a12773cb9d642804c665850d",
+  "daily50_task/t18_hob_knob.html": "d427b61fd4b41caab0f339f928877fb5cfb03fea7de3ac325684a5aac3f19704",
+  "daily50_task/t19_jar_drawer.html": "0edf210dbd1aa0b57551329f7d0ef3c9d092604a0de93ec6b7a4c38914032ddd",
+  "daily50_task/t21_calendar_cube.html": "828ada4163f54803b4d865ff9d5bb109d8117c3bbb1c2d5c86e8dc62fdf9563b",
+  "daily50_task/t23_milk_microwave.html": "d312a93fb40b228216e14f8f4110fe32b7c24ce13933297a660cc1eb01243c64",
+  "daily50_task/t27_paperweight.html": "0b13749f3f31200d0e8b9f680908901da973e88173b6eff72ab53d45ebe38fa6",
+  "daily50_task/t28_can_bin.html": "5a647b1d97bd93c9ff0a15d38aebd1227251a6c14c98a948fe00240bcb3b8099",
+  "daily50_task/t32_umbrella_stand.html": "673478e0f23b286c3dc2f2ba9a68bb2c571dae3b9f50ed583b675e2c05da4165",
+  "daily50_task/t33_candle_holder.html": "95210b6c3b0d63a959395bfb4c7b9c0f7d6a0815abf481bd10fb315ef575e0d9",
+  "daily50_task/t34_crush_crackers.html": "fd9f5b46bd5866332d04fec6fe37a922652dc3a16fcb40995a6d33e325119e4f",
+  "daily50_task/t35_flashlight.html": "d5e7f27a1b826fc4a54befdc25613250cc44bb19a85fc3583132b001e75dfdf9",
+  "daily50_task/t38_tv_remote.html": "4ce965c78ae02c37abd09455200233d98580c0ca0aafa3fce9c8d07a8c7d47c6",
+  "daily50_task/t39_whiteboard_erase.html": "c4f438fafb778c21a3304fcf6f0bbd30c395d000dd1d2ca22820cbf36afdca13",
+  "daily50_task/t40_scrape_crumbs.html": "36c076c3d2172c68c48f3f6818b92fb5e9191c35642e0c9041cdc84dc1bac340",
+  "daily50_task/t41_power_strip.html": "0c29bf3aaadd4984b8d03aa3e719d20d6697530b14f61ce2ce044692adab4eff",
+  "daily50_task/t42_dish_soap.html": "2384f30666a819dcda1af9af2ecd831b808877a74b047ef1fd30ae9ce3ecfb33",
+  "daily50_task/t44_crush_garlic.html": "0fef40e91451a67a89c9d689efab41eb8edc80ffed35814afeefc2925572af17",
+  "daily50_task/t46_table_leg.html": "fc0df509206db237d1e2383619aff0793f4fe9a68ebf8073a8689a6b0379f012",
+  "daily50_task/t47_level_shelf.html": "a46c17fdb45719ad43a607f91c6cbe6b4f2581c0ede6d8db9cb4af728541a843",
+  "daily50_task/t48_wheel_chock.html": "b666fe1dd7a852a8bd62732c9473ad9b44d96d710d6f2511a47c7df4cf2607a5",
+  "daily50_task/t49_weigh_orange.html": "67b4e60559f31c335c28d2e7039444c85dc2372c27be1d7cd3805e11391ee851",
+  "daily50_task/t50_toy_bowling.html": "e8a6324c2c43c80a0f86ad3ca0e03bc20542674fac5e015afe80fb1738e86e26",
+  "daily50_task/u01_paperweight_quarter_turn.html": "4ea8f0361520d603113cec7b83370aeeb3e3e2f63fb133ec42800faf303386d8",
+  "daily50_trials.html": "a644dff159049666fb67b45c07452f9ca85e9d7aab968eeb900b7607940ce5ac"
  }
 }
