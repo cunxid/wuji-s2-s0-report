@@ -4,7 +4,7 @@
 pre{white-space:pre-wrap;word-wrap:break-word;font:13.5px/1.55 ui-monospace,Menlo,Consolas,monospace;background:#fff;border:1px solid #ddd;border-radius:8px;padding:18px}
 .na{color:#666;font-size:13px} a{color:#0b57d0}
 @media (prefers-color-scheme:dark){body{background:#121212;color:#e6e6e6}pre{background:#1b1b1b;border-color:#333}.na{color:#aaa}a{color:#8ab4f8}}</style></head><body>
-<p class="na"><a href="index.html">dashboard</a> · <a href="status.html">status</a> · <a href="daily50_trials.html">trials on the 50 tasks</a> · <a href="s2_library.html">skill library</a> · page built 2026-11-25 23:18</p>
+<p class="na"><a href="index.html">dashboard</a> · <a href="status.html">status</a> · <a href="daily50_trials.html">trials on the 50 tasks</a> · <a href="s2_library.html">skill library</a> · page built 2026-11-25 23:34</p>
 <h1>Capability card</h1>
 <p>What an S2 player reads before it plans a task: what the tracking policy can follow and when each skill works. Every line is tagged
 measured (with its count), prior, or untested. <b>No cell has reached the display bar</b> (8 tries over 3 starts and 3 objects), so nothing here is a
@@ -92,14 +92,20 @@ the skill's cap, the range in training clips, which of the two binds, what has b
   the risk; a long thing and a reversal are. On an arm, turns of 60 to 120 degrees at
   1.3 to 2.1 rad/s kept 10 to 11 of 12 to 13 objects; three quick 12 cm reversals kept 11 `[prior: old atlas,
   unaudited]`.
-- **The FINGERS do not turn a held thing on command.** Asked 44 and 89 degrees about the vertical by turning the
-  object's reference on a level, translating wrist (`transport(..., turn_by='fingers')`): the hold survived 6/6 and
-  the wrist stayed level (&lt;= 2.2 degrees), but the thing's heading at the opening was -1 to +32 degrees WHATEVER was
-  asked (the zero-turn cells drifted as much as the turning ones); the rows the policy received were verified as
-  written (bridge dump). What sets the heading is the in-grip roll at lift-off (37 to 50 degrees, 38 to 50 mm), not
-  the reference `[measured 2026-11-25, n=1 per cell, one block, one grasp, exploratory]`. To turn a held thing, turn
-  the WRIST with it: that delivered -73 of -90 once (17 off, same face) but may need another elbow posture and can
-  roll the thing onto another face; the level wrist lands nearer (22 to 63 mm against 44 to 266) `[same study]`.
+- **The fingers turn a held thing ONLY with a still wrist and no `firm` clamp — and then slowly, by about half.**
+  Two measurements, same block, same grasp `[measured 2026-11-25, n=1 per cell, exploratory]`:
+  (1) During a CARRY under `firm` on a level, translating wrist (`transport(..., turn_by='fingers')`): nothing is
+  delivered — heading at the opening -1 to +32 degrees whatever was asked (0/-44/-89; zero-turn cells drifted as
+  much); the rows the policy received were verified as written (bridge dump). The heading is set by the in-grip roll
+  at lift-off (37 to 50 degrees, 38 to 50 mm), not the reference.
+  (2) STANDING STILL in hand mode `s0` (`spin_in_hand`, first runs on this rig): the fingers do respond, lagging the
+  ramp by seconds. -90 about the vertical in 3.3 s peaked at -95 three seconds AFTER the ramp, then relaxed to -40,
+  tipping to 56; a 5.5 s ramp under-delivered (-17); 3 x -30 CHUNKED with pauses was the steadiest: -43 of -90 at the
+  end, tilt &lt;= 27 — about HALF the asked turn, held. About the thing's OWN z it followed better (-63 of -90) but
+  rolled the block onto another face in the grip. All with 55 to 65 mm in-hand slip (part commanded: the turn centre
+  was the object frame origin, 16 mm off the middle). No cell held a clean quarter turn about the vertical.
+  To DELIVER a heading, turn the WRIST with the thing: -73 of -90 once (17 off, same face), though it may need
+  another elbow posture and can roll the thing; a level wrist lands nearer (22 to 63 mm against 44 to 266) `[same]`.
 - **Tilt away from the grasp orientation.** Cap 120 degrees per call (scripted 30): defaults, not findings. Clips tilt
   81 degrees (median), 21 to 150 (most) `[prior: training clips]`. On this rig `[untested]`. Floating hand: about half
   kept at every angle from 15 to 150; pours of 105 to 135 degrees lost 4 of 4 `[prior: old atlas, unaudited]`. Any
@@ -180,10 +186,12 @@ see under the hand: `clear_view`, then look. Depth joins things that touch and m
 - **`guarded_press`**. For something fixed that pushes back; depths in rule 4. A light or free thing is not felt.
 - **`stroke`**. A 40 mm fingertip stroke ran and dragged a loose 80 g slab 10 mm `[measured n=1 rig double]`; with a
   held tool `[untested]`.
-- **`strike`**, **`pour`**, **`wrist_reorient`** with a load, **`spin_in_hand`**: never run with the policy on this
-  rig `[untested]`. Earlier arm runs of spins and pours mostly lost the grip `[prior: old atlas, unaudited]`. The
-  nearest measured thing: a spin reference about the VERTICAL on a translating wrist did not turn the block (see the
-  fingers bullet under trajectory parameters) — expect `spin_in_hand`'s turn not to be delivered either until measured.
+- **`strike`**, **`pour`**, **`wrist_reorient`** with a load: never run with the policy on this rig `[untested]`.
+  Earlier arm runs of spins and pours mostly lost the grip `[prior: old atlas, unaudited]`.
+- **`spin_in_hand`**: held 4/4, wrist still; the turn arrives seconds late, at about HALF the angle in the best cell
+  (3 x -30 chunked: -43 of -90, tilt &lt;= 27); a single fast ramp overshoots and relaxes; the thing's own axis follows
+  better (-63 of -90) but rolls the block. Chunk the angle; do not trust the end heading without looking
+  `[measured 2026-11-25, n=1 per cell, one block, exploratory; s2/outputs/harness_round/spin_fingers/]`.
 - **`orbit`**. Turned a gripped hinged lid 66 degrees in 7.9 s `[measured n=1 rig double]`; refused whole if any part
   of the arc is out of reach. With a policy grasp `[untested]`.
 - **`move_to_pose`**, **`retreat`**, **`go_home`**, **`clear_view`**. Empty-hand moves, reliable inside reach
