@@ -1,6 +1,6 @@
 {
  "schema": "daily50.trials_page/1",
- "generated": "2026-11-26 02:31 EST",
+ "generated": "2026-11-26 03:44 EST",
  "headline": {
   "tasks_total": 50,
   "tasks_attempted": 21,
@@ -10,9 +10,9 @@
    "t27_paperweight",
    "t41_power_strip"
   ],
-  "trials": 39,
+  "trials": 52,
   "trials_by_status": {
-   "FAIL": 31,
+   "FAIL": 44,
    "FLAGGED": 3,
    "PASS": 5
   },
@@ -79,6 +79,28 @@
      "problems": [
       "the record lists 3 replan(s) and has 5 turn(s) of phase replan"
      ]
+    },
+    {
+     "file": "trial_111.json",
+     "number": "111",
+     "status": "FAIL",
+     "written": "2026-11-26 03:37",
+     "attempt": 2,
+     "read_task_notes": true,
+     "run": "20261126T081141Z-fc9dc306",
+     "turns": 6,
+     "phase_counts": {
+      "look": 1,
+      "act": 2,
+      "replan": 2,
+      "check": 1
+     },
+     "replans": 2,
+     "video": null,
+     "video_sha256": null,
+     "problems": [
+      "the record holds no plan (plan)"
+     ]
     }
    ]
   },
@@ -115,6 +137,27 @@
      "problems": [
       "the record lists 2 replan(s) and has 1 turn(s) of phase replan"
      ]
+    },
+    {
+     "file": "trial_111.json",
+     "number": "111",
+     "status": "FAIL",
+     "written": "2026-11-26 02:53",
+     "attempt": 2,
+     "read_task_notes": true,
+     "run": "20261126T074119Z-f643056c",
+     "turns": 5,
+     "phase_counts": {
+      "look": 2,
+      "act": 2,
+      "replan": 1
+     },
+     "replans": 1,
+     "video": null,
+     "video_sha256": null,
+     "problems": [
+      "the record holds no plan (plan)"
+     ]
     }
    ]
   },
@@ -149,6 +192,27 @@
      "video": "t03_paint_lid_shut_trial_40.mp4",
      "video_sha256": "795728b9efdbfd1c3a1d0eaba784128f88331d50ecf696c8647f7db8242c1b29",
      "problems": []
+    },
+    {
+     "file": "trial_111.json",
+     "number": "111",
+     "status": "FAIL",
+     "written": "2026-11-26 03:07",
+     "attempt": 2,
+     "read_task_notes": true,
+     "run": "20261126T075252Z-45d63d1d",
+     "turns": 11,
+     "phase_counts": {
+      "look": 5,
+      "plan": 1,
+      "act": 2,
+      "check": 2,
+      "replan": 1
+     },
+     "replans": 1,
+     "video": null,
+     "video_sha256": null,
+     "problems": []
     }
    ]
   },
@@ -182,6 +246,27 @@
      "replans": 2,
      "video": "t05_hang_hammer_trial_40.mp4",
      "video_sha256": "e22f8df88f9378e754e12036850149a9ba12add0ad11fae45d6b7486d71fb2bb",
+     "problems": []
+    },
+    {
+     "file": "trial_111.json",
+     "number": "111",
+     "status": "FAIL",
+     "written": "2026-11-26 03:10",
+     "attempt": 2,
+     "read_task_notes": true,
+     "run": "20261126T075316Z-4d6d8ced",
+     "turns": 11,
+     "phase_counts": {
+      "look": 4,
+      "plan": 1,
+      "act": 1,
+      "check": 2,
+      "replan": 3
+     },
+     "replans": 3,
+     "video": null,
+     "video_sha256": null,
      "problems": []
     }
    ]
@@ -219,6 +304,27 @@
      "problems": [
       "record turn 23 (look) is no turn of the session's log: shown as a card at tick 2864; the 136 ticks it claims are not shown as its own"
      ]
+    },
+    {
+     "file": "trial_111.json",
+     "number": "111",
+     "status": "FAIL",
+     "written": "2026-11-26 03:19",
+     "attempt": 2,
+     "read_task_notes": true,
+     "run": "20261126T080337Z-5f2be097",
+     "turns": 9,
+     "phase_counts": {
+      "look": 2,
+      "plan": 1,
+      "act": 2,
+      "replan": 1,
+      "check": 3
+     },
+     "replans": 1,
+     "video": null,
+     "video_sha256": null,
+     "problems": []
     }
    ]
   },
@@ -255,6 +361,28 @@
      "problems": [
       "the record's status (FLAGGED) is not its judge_status (PASS)",
       "the record lists 4 replan(s) and has 2 turn(s) of phase replan"
+     ]
+    },
+    {
+     "file": "trial_111.json",
+     "number": "111",
+     "status": "FAIL",
+     "written": "2026-11-26 02:46",
+     "attempt": 2,
+     "read_task_notes": true,
+     "run": "20261126T072238Z-8ce0a825",
+     "turns": 7,
+     "phase_counts": {
+      "look": 2,
+      "act": 3,
+      "replan": 1,
+      "check": 1
+     },
+     "replans": 1,
+     "video": null,
+     "video_sha256": null,
+     "problems": [
+      "the record holds no plan (plan)"
      ]
     }
    ]
@@ -366,6 +494,28 @@
       "logged turn 3 (plan, ticks 0-0) is not in the trial record: shown with the phase its own sentence names",
       "5 record turn(s) carry another number than the session's turn log gives the same turn (joined by ticks, phase word, sentence and skill, in order)",
       "the record lists 1 replan(s) and has 0 turn(s) of phase replan"
+     ]
+    },
+    {
+     "file": "trial_111.json",
+     "number": "111",
+     "status": "FAIL",
+     "written": "2026-11-26 02:54",
+     "attempt": 2,
+     "read_task_notes": true,
+     "run": "20261126T073321Z-4954d05c",
+     "turns": 11,
+     "phase_counts": {
+      "look": 6,
+      "act": 2,
+      "replan": 1,
+      "check": 2
+     },
+     "replans": 1,
+     "video": null,
+     "video_sha256": null,
+     "problems": [
+      "the record holds no plan (plan)"
      ]
     }
    ]
@@ -581,6 +731,28 @@
      "problems": [
       "the record holds no plan (plan)"
      ]
+    },
+    {
+     "file": "trial_112.json",
+     "number": "112",
+     "status": "FAIL",
+     "written": "2026-11-26 03:36",
+     "attempt": 4,
+     "read_task_notes": true,
+     "run": "20261126T082723Z-e6e4cca3",
+     "turns": 11,
+     "phase_counts": {
+      "look": 7,
+      "plan": 1,
+      "act": 1,
+      "replan": 2
+     },
+     "replans": 2,
+     "video": null,
+     "video_sha256": null,
+     "problems": [
+      "the record holds no plan (plan)"
+     ]
     }
    ]
   },
@@ -616,6 +788,29 @@
      "problems": [
       "the record lists 1 replan(s) and has 0 turn(s) of phase replan"
      ]
+    },
+    {
+     "file": "trial_111.json",
+     "number": "111",
+     "status": "FAIL",
+     "written": "2026-11-26 03:42",
+     "attempt": 2,
+     "read_task_notes": true,
+     "run": "20261126T081740Z-565ed835",
+     "turns": 8,
+     "phase_counts": {
+      "look": 1,
+      "plan": 1,
+      "act": 2,
+      "replan": 3,
+      "check": 1
+     },
+     "replans": 3,
+     "video": null,
+     "video_sha256": null,
+     "problems": [
+      "the record holds no plan (plan)"
+     ]
     }
    ]
   },
@@ -648,6 +843,27 @@
      "replans": 0,
      "video": "t33_candle_holder_trial_0.mp4",
      "video_sha256": "70cfb0df5db5899ac02c2d3260b8025947985c571df83b9e70318dcdfec519e1",
+     "problems": []
+    },
+    {
+     "file": "trial_111.json",
+     "number": "111",
+     "status": "FAIL",
+     "written": "2026-11-26 02:49",
+     "attempt": 2,
+     "read_task_notes": true,
+     "run": "20261126T073501Z-c9e3d53d",
+     "turns": 6,
+     "phase_counts": {
+      "look": 2,
+      "plan": 1,
+      "act": 1,
+      "replan": 1,
+      "check": 1
+     },
+     "replans": 1,
+     "video": null,
+     "video_sha256": null,
      "problems": []
     }
    ]
@@ -683,6 +899,26 @@
      "video": "t34_crush_crackers_trial_40.mp4",
      "video_sha256": "9d8cc84595064e69620541efd381ce95016623b899bd1ab5a667067c97443898",
      "problems": []
+    },
+    {
+     "file": "trial_111.json",
+     "number": "111",
+     "status": "FAIL",
+     "written": "2026-11-26 02:36",
+     "attempt": 2,
+     "read_task_notes": true,
+     "run": "20261126T071759Z-66dc962b",
+     "turns": 8,
+     "phase_counts": {
+      "look": 3,
+      "plan": 1,
+      "act": 3,
+      "replan": 1
+     },
+     "replans": 1,
+     "video": null,
+     "video_sha256": null,
+     "problems": []
     }
    ]
   },
@@ -716,6 +952,27 @@
      "video_sha256": "716ef5a790bb0e0b83f9f9fa253949741b39ae55a5d895387ad5ebe7ac214091",
      "problems": [
       "the record lists 1 replan(s) and has 0 turn(s) of phase replan"
+     ]
+    },
+    {
+     "file": "trial_111.json",
+     "number": "111",
+     "status": "FAIL",
+     "written": "2026-11-26 03:01",
+     "attempt": 2,
+     "read_task_notes": true,
+     "run": "20261126T074833Z-d5022e13",
+     "turns": 5,
+     "phase_counts": {
+      "look": 1,
+      "act": 3,
+      "replan": 1
+     },
+     "replans": 1,
+     "video": null,
+     "video_sha256": null,
+     "problems": [
+      "the record holds no plan (plan)"
      ]
     }
    ]
@@ -1152,6 +1409,26 @@
      "problems": [
       "the record's status (FLAGGED) is not its judge_status (PASS)"
      ]
+    },
+    {
+     "file": "trial_111.json",
+     "number": "111",
+     "status": "FAIL",
+     "written": "2026-11-26 02:41",
+     "attempt": 2,
+     "read_task_notes": true,
+     "run": "20261126T072302Z-79dc52b9",
+     "turns": 13,
+     "phase_counts": {
+      "look": 4,
+      "plan": 1,
+      "replan": 5,
+      "act": 3
+     },
+     "replans": 5,
+     "video": null,
+     "video_sha256": null,
+     "problems": []
     }
    ]
   }
@@ -1161,12 +1438,12 @@
    "task": "u01_paperweight_quarter_turn",
    "in_benchmark": false,
    "held_out": false,
-   "best_status": "PASS",
+   "best_status": "FLAGGED",
    "first_attempt": {
     "trial": "211",
     "status": "FAIL"
    },
-   "passed_at_attempt": 2,
+   "passed_at_attempt": null,
    "trials": [
     {
      "file": "trial_211.json",
@@ -1192,8 +1469,8 @@
     {
      "file": "trial_212.json",
      "number": "212",
-     "status": "PASS",
-     "written": "2026-11-26 02:31",
+     "status": "FLAGGED",
+     "written": "2026-11-26 02:58",
      "attempt": 2,
      "read_task_notes": true,
      "run": "20261126T072112Z-dd741450",
@@ -1207,34 +1484,36 @@
      "replans": 0,
      "video": null,
      "video_sha256": null,
-     "problems": []
+     "problems": [
+      "the record's status (FLAGGED) is not its judge_status (PASS)"
+     ]
     }
    ]
   }
  ],
  "pages_sha256": {
-  "daily50_task/t01_hammer_nail.html": "f6993da0db7baed13ed36a66b4775cc34dc55c1ee86f0aa3225861fc263b20df",
-  "daily50_task/t02_crack_walnut.html": "50d1be799ef457b7ede581ea9dc0a8395ac5e6803e850dabaeaa0fe35e89d719",
-  "daily50_task/t03_paint_lid_shut.html": "efa3794356270f11d91bc250d96da339ee4607b25959e8e1f839307ef450b517",
-  "daily50_task/t05_hang_hammer.html": "ccd7b667d08371157041d442a076f6f4f5c0df634bf6b186395a4f0e6d572e9c",
-  "daily50_task/t07_battery_cover.html": "60cc3ba3d96732af6d14f4977ed98bf263655897543c64f017865a1ff1377877",
-  "daily50_task/t18_hob_knob.html": "b72e3c7788e1ce93e8b5513166a6bf963fa0881d19199cfe9ce5ab8c35866197",
-  "daily50_task/t19_jar_drawer.html": "43016c60a8ec21f84572a1b7862cb8adddc4a2c07e4b7226904b94c79fb3acbf",
-  "daily50_task/t21_calendar_cube.html": "5d52b9b17f073b05474a9903e7e2935812c3de17d83f3ed14e24630f858858f9",
-  "daily50_task/t27_paperweight.html": "d1c860802367faf6596ad9a768f0d7b3e96a5fa2fc253b26714a2c8909850842",
-  "daily50_task/t28_can_bin.html": "f2475f321c568c0117940d5e6fea47f76f4cfa27abd02023cc4c21c994c7255c",
-  "daily50_task/t32_umbrella_stand.html": "f09c89ab62df1fdacf2421d8bc207247044b553c41793e463debc7ea847fd4ba",
-  "daily50_task/t33_candle_holder.html": "30403e00bda60f0d833d49c833cca912ef63ffd4bb99d75742266324dca9f4b1",
-  "daily50_task/t34_crush_crackers.html": "9ac6d0bd5fa4a859a3e0f3b0964d5421cec3ab861af21c2210181e3c33451dd7",
-  "daily50_task/t35_flashlight.html": "810c9374a0b3de0a19c0f6d954dccb2e3812c937de168317835709ebe621abca",
-  "daily50_task/t38_tv_remote.html": "300b1912053da6a86712497d37a15ae0faa8a15e3ad513539965d5359180a6b9",
-  "daily50_task/t40_scrape_crumbs.html": "dab3310e0d4902c8e89b14cbf16ff04b2ef3899ae85fef168e8a5d3ebcde4379",
-  "daily50_task/t41_power_strip.html": "9a5a22d20bbcad2f9cdd19af23c524f1f69bda5735eb087b855e9301090d5038",
-  "daily50_task/t42_dish_soap.html": "777c07763c2dd3fd3e41b76d77b6865160cf1cfa52ae2eb6172ac541a97a43e7",
-  "daily50_task/t48_wheel_chock.html": "f70490cf71bcd20634f0defa7cc924be803ccfd65ed5564b42dcfc15a15b3676",
-  "daily50_task/t49_weigh_orange.html": "b20ee99bc36febee4d0e3c017d6f26e9686404fd2051c12037be8a4340c7eaf4",
-  "daily50_task/t50_toy_bowling.html": "aceb41a7f34cf3dccc67924617ea2bb38994d0a0826e83dc4a126527c3d8b2be",
-  "daily50_task/u01_paperweight_quarter_turn.html": "b40f7a7344eab7c59a010cc46e1db846f7e57b5a34bbfaaac3e5ea026b228cd4",
-  "daily50_trials.html": "ba28e068ac69fcdfcc6e2e6d3fc8fa06b0269ffdc14b7fda23189f03c2bfed2e"
+  "daily50_task/t01_hammer_nail.html": "5710b8dcb256cde750e48b92ba83305d7a84355c83ff77c9f99555d1feadd01a",
+  "daily50_task/t02_crack_walnut.html": "c9ec398e01f5d1bded8b810966d0c55affe4546013cc6d1e28cb44db1b461c28",
+  "daily50_task/t03_paint_lid_shut.html": "b47506d603d88a7f7a8fac3f72938c980110e17fea032e1139537954e5734b7a",
+  "daily50_task/t05_hang_hammer.html": "ae912386e89d9d2f57ec7d33219b886b5ee1ebf2dee9b2e6a59cee299a3ac4dc",
+  "daily50_task/t07_battery_cover.html": "b52f8f4b2b89300e83940aeecef9ddad6dc2e2b9525ff050357e8ac8b1cc3d79",
+  "daily50_task/t18_hob_knob.html": "4c5f0f13d1275e07c75984ce5ffc29c3ef673b4003e0842386206f8f6d720fbe",
+  "daily50_task/t19_jar_drawer.html": "413cd62294acf032e47ee46655495f0e1448255c9f3083bd77736a6e94ca4e26",
+  "daily50_task/t21_calendar_cube.html": "e5a8b711afa938dd5ddc9f908f0bb6a634743fafc8447c407f98fd7f97c80881",
+  "daily50_task/t27_paperweight.html": "32528ef02d72b02ba36f628cfcea83f382f2731efa01e158f70d4aa43bd4ef82",
+  "daily50_task/t28_can_bin.html": "d2232547c0acffb6e0ba9bfd86b3950c7d175f02310c4bf44f1760b8cf14535f",
+  "daily50_task/t32_umbrella_stand.html": "6a0ed31d0d9d92518afb932953cc25b1efc09c12c1d2565842eee0fcf3c54b58",
+  "daily50_task/t33_candle_holder.html": "935b7a82edb01ab89e9e3b00c5dba4b03156edbc4ea347336e8630cba9843c32",
+  "daily50_task/t34_crush_crackers.html": "883e2408ad7ceb9b4d5ab48914f00cc568504290c284f3636fb3d37c9790098b",
+  "daily50_task/t35_flashlight.html": "f19db0bb19989fd4ff38574b24cd30b3983ae8a503afe07c654b24f02f72dcd4",
+  "daily50_task/t38_tv_remote.html": "5cf4b9eaf3be7c21c6724df8e20f9198292ba26168316bd171bca6b454aa8b3a",
+  "daily50_task/t40_scrape_crumbs.html": "e91565bda62de4a91b3d3939de6b8ed3fa3c2bef611d06f91702ad2dc143ff8c",
+  "daily50_task/t41_power_strip.html": "d6e1a7e52a107548433f4ce916b3e14d225fc21ef7ac35c423dda13a17ec7927",
+  "daily50_task/t42_dish_soap.html": "c0ffb2996c6ee7b3d7e0863013918a6b104fc2a73a320d75f8c57d4e51bfe834",
+  "daily50_task/t48_wheel_chock.html": "3b5abb90eb71692cf94da4941df5fc9f1371272deb0978da87bddfba094d2960",
+  "daily50_task/t49_weigh_orange.html": "8f892148ed3f3d53d26cbab67aec729b435f168439103ec68bb0f6756791eb52",
+  "daily50_task/t50_toy_bowling.html": "bd533ab9156087c511cc35319556f9fc3478c0137f76293ef93f6ce69a59c231",
+  "daily50_task/u01_paperweight_quarter_turn.html": "6589515b08c475a2553948f28a362a1654d767e906087797f03adfd2e945bc26",
+  "daily50_trials.html": "b1ba4650a0e49fd772963cb20d47dd0400144a7962384d95e378a721858cd98d"
  }
 }
