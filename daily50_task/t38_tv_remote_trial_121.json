@@ -1,0 +1,87 @@
+{
+ "schema": "s2loop.reason_video/1",
+ "version": 3,
+ "built": "2026-11-26 08:46:01 EST",
+ "made_by": "s2/s2loop/reason_video.py: the head-camera film with the trial's reason loop, colour-coded by phase",
+ "task": "t38_tv_remote",
+ "status": "PASS",
+ "episode_index": 121,
+ "run": "20261126T131215Z-b7079cc3",
+ "trial": "trial_121.json",
+ "inputs": {
+  "trial_sha256": "2178f83eb24fd5b8735a07cdb15c7adc811bf9e5e3fdb3d6e614c5366e426127",
+  "turn_log_sha256": "ef7d7ffdcfb09dde371ee9f05b31fb19a6a33c0ed64ad0bed6b08d387357bc25",
+  "head_film_sha256": "0a591c50b5706df46e8e0873d309d49f8a58b6fa19d86c6aeefe25617e13e41c",
+  "head_film_built_now": true,
+  "head_film_in_run_folder": false
+ },
+ "video": {
+  "file": "t38_tv_remote_trial_121.mp4",
+  "poster": "t38_tv_remote_trial_121.jpg",
+  "bytes": 477841,
+  "frames": 804,
+  "fps": 16.666666666666668,
+  "duration_s": 48.24,
+  "size": [
+   848,
+   480
+  ],
+  "codec": "h264",
+  "film_speed": 1,
+  "tail_speed": 2,
+  "refit_to_bytes": false,
+  "max_bytes": 3000000
+ },
+ "ticks": 2000,
+ "stride": 3,
+ "looks_redrawn": false,
+ "phase_colours": {
+  "plan": "#2370cd",
+  "look": "#22b8dc",
+  "act": "#f59a0c",
+  "check": "#008a17",
+  "replan": "#ec4647"
+ },
+ "phase_counts": {
+  "plan": 1,
+  "act": 1
+ },
+ "turns": [
+  {
+   "index": 0,
+   "n": 1,
+   "log_turn": 1,
+   "phase": "plan",
+   "skill": "locate_objects + point_at + touch + check_plan",
+   "say": "measure the remote (#6), the red key and the TV, check the fingertip touch on the remote's middle; pivot the key end to the TV with one fingertip stroke, look, press the red key, hand home and open",
+   "ok": true,
+   "error": "",
+   "tick_start": 0,
+   "tick_end": 0,
+   "moved": false,
+   "in_log": true,
+   "in_record": true,
+   "video_start_s": 2.52,
+   "video_end_s": 5.52
+  },
+  {
+   "index": 1,
+   "n": 2,
+   "log_turn": 2,
+   "phase": "act",
+   "skill": "point_at x2 + locate_objects x4 + get_task_context x4 + touch x2 + commit_plan x2 + get_observation x7 + plan_motion x4 + execute_plan x3 + guarded_press",
+   "say": "fingertip on the remote's middle, one fast hand turn of about -68 degrees about it (need -55.6), look, second stroke only if over 4 degrees left, then 5 mm guarded press on the red power key at the key end, home and open (plan steps 1",
+   "ok": true,
+   "error": "",
+   "tick_start": 0,
+   "tick_end": 1858,
+   "moved": true,
+   "in_log": true,
+   "in_record": true,
+   "video_start_s": 5.52,
+   "video_end_s": 43.32
+  }
+ ],
+ "problems": [],
+ "build_seconds": 522.59
+}
