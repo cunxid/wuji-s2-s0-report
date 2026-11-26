@@ -1,0 +1,87 @@
+{
+ "schema": "s2loop.reason_video/1",
+ "version": 3,
+ "built": "2026-11-26 10:38:36 EST",
+ "made_by": "s2/s2loop/reason_video.py: the head-camera film with the trial's reason loop, colour-coded by phase",
+ "task": "t28_can_bin",
+ "status": "PASS",
+ "episode_index": 122,
+ "run": "20261126T131923Z-5de78a26",
+ "trial": "trial_122.json",
+ "inputs": {
+  "trial_sha256": "2f3d6be920dd499fe5733cbc85f07d5eb0b1f32c6203f40bf400e860735039b3",
+  "turn_log_sha256": "4cd152306309dd2ed9175793f09e893080bd454a1891d7cf5f8e9e2f2cc390f5",
+  "head_film_sha256": "935a8428aaaf0ca8ae4742001d8f2527671dd74970918009a597123a4de3e3e6",
+  "head_film_built_now": true,
+  "head_film_in_run_folder": false
+ },
+ "video": {
+  "file": "t28_can_bin_trial_122.mp4",
+  "poster": "t28_can_bin_trial_122.jpg",
+  "bytes": 412123,
+  "frames": 546,
+  "fps": 16.666666666666668,
+  "duration_s": 32.76,
+  "size": [
+   848,
+   480
+  ],
+  "codec": "h264",
+  "film_speed": 1,
+  "tail_speed": 2,
+  "refit_to_bytes": false,
+  "max_bytes": 3000000
+ },
+ "ticks": 1307,
+ "stride": 3,
+ "looks_redrawn": false,
+ "phase_colours": {
+  "plan": "#2370cd",
+  "look": "#22b8dc",
+  "act": "#f59a0c",
+  "check": "#008a17",
+  "replan": "#ec4647"
+ },
+ "phase_counts": {
+  "plan": 1,
+  "act": 1
+ },
+ "turns": [
+  {
+   "index": 0,
+   "n": 1,
+   "log_turn": 1,
+   "phase": "plan",
+   "skill": "propose_grasps x2 + carry x7 + detach x6 + attach x7 + reach x6 + check_plan x7",
+   "say": "measure can, bin lid height map, grasps (plain, synthesized), sweep check_plan of the whole pick-carry-into-flap plan; write the plan",
+   "ok": true,
+   "error": "",
+   "tick_start": 0,
+   "tick_end": 0,
+   "moved": false,
+   "in_log": true,
+   "in_record": true,
+   "video_start_s": 2.52,
+   "video_end_s": 5.52
+  },
+  {
+   "index": 1,
+   "n": 2,
+   "log_turn": 2,
+   "phase": "act",
+   "skill": "attach + carry x2 + commit_plan x2 + get_observation + estimate_in_hand + detach + reach",
+   "say": "commit 1 (attach with the synthesized grasp + 8 cm carry, ends holding), look + estimate_in_hand, if held commit 2 (carry over the rim, guarded line into the flap middle, detach, reach start), plan steps 1 to 5",
+   "ok": true,
+   "error": "",
+   "tick_start": 0,
+   "tick_end": 1007,
+   "moved": true,
+   "in_log": true,
+   "in_record": true,
+   "video_start_s": 5.52,
+   "video_end_s": 26.28
+  }
+ ],
+ "problems": [],
+ "build_seconds": 316.29
+}
