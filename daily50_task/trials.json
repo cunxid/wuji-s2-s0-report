@@ -1,9 +1,9 @@
 {
  "schema": "daily50.trials_page/1",
- "generated": "2026-11-26 04:51 EST",
+ "generated": "2026-11-26 05:46 EST",
  "headline": {
   "tasks_total": 50,
-  "tasks_attempted": 24,
+  "tasks_attempted": 30,
   "tasks_passed": 4,
   "tasks_passed_names": [
    "t19_jar_drawer",
@@ -11,21 +11,21 @@
    "t41_power_strip",
    "t42_dish_soap"
   ],
-  "trials": 59,
+  "trials": 67,
   "trials_by_status": {
-   "FAIL": 50,
+   "FAIL": 58,
    "FLAGGED": 3,
    "PASS": 6
   },
-  "words": "success rate: 4 of 24 tasks passed (played by session agents, probe series \u2014 not a counted test series)",
+  "words": "success rate: 4 of 30 tasks passed (played by session agents, probe series \u2014 not a counted test series)",
   "practice_tasks_total": 40,
   "first_attempt": {
-   "tasks": 24,
+   "tasks": 30,
    "passed": 0,
    "names": []
   },
   "after_practice": {
-   "tasks": 24,
+   "tasks": 30,
    "passed": 4,
    "passed_at_attempt": {
     "t19_jar_drawer": 2,
@@ -41,8 +41,8 @@
   }
  },
  "media": {
-  "files": 32,
-  "bytes": 31248904,
+  "files": 33,
+  "bytes": 31671792,
   "budget_bytes": 150000000
  },
  "judge_reason_shown": true,
@@ -331,6 +331,73 @@
    ]
   },
   {
+   "task": "t08_pry_paint_lid",
+   "in_benchmark": true,
+   "held_out": false,
+   "best_status": "FAIL",
+   "first_attempt": {
+    "trial": "113",
+    "status": "FAIL"
+   },
+   "passed_at_attempt": null,
+   "trials": [
+    {
+     "file": "trial_113.json",
+     "number": "113",
+     "status": "FAIL",
+     "written": "2026-11-26 05:25",
+     "attempt": 1,
+     "read_task_notes": false,
+     "run": "20261126T101115Z-a4616334",
+     "turns": 7,
+     "phase_counts": {
+      "look": 1,
+      "plan": 1,
+      "act": 1,
+      "replan": 4
+     },
+     "replans": 4,
+     "video": null,
+     "video_sha256": null,
+     "problems": []
+    }
+   ]
+  },
+  {
+   "task": "t13_bulb_vanity",
+   "in_benchmark": true,
+   "held_out": false,
+   "best_status": "FAIL",
+   "first_attempt": {
+    "trial": "113",
+    "status": "FAIL"
+   },
+   "passed_at_attempt": null,
+   "trials": [
+    {
+     "file": "trial_113.json",
+     "number": "113",
+     "status": "FAIL",
+     "written": "2026-11-26 05:08",
+     "attempt": 1,
+     "read_task_notes": false,
+     "run": "20261126T094522Z-2d2c471b",
+     "turns": 11,
+     "phase_counts": {
+      "look": 3,
+      "plan": 1,
+      "act": 3,
+      "replan": 2,
+      "check": 2
+     },
+     "replans": 2,
+     "video": null,
+     "video_sha256": null,
+     "problems": []
+    }
+   ]
+  },
+  {
    "task": "t14_bulb_remove",
    "in_benchmark": true,
    "held_out": false,
@@ -357,6 +424,56 @@
       "replan": 3
      },
      "replans": 3,
+     "video": null,
+     "video_sha256": null,
+     "problems": []
+    },
+    {
+     "file": "trial_114.json",
+     "number": "114",
+     "status": "FAIL",
+     "written": "2026-11-26 05:27",
+     "attempt": 2,
+     "read_task_notes": true,
+     "run": "20261126T100245Z-34c8e638",
+     "turns": 6,
+     "phase_counts": {
+      "plan": 2,
+      "act": 2,
+      "replan": 2
+     },
+     "replans": 2,
+     "video": null,
+     "video_sha256": null,
+     "problems": []
+    }
+   ]
+  },
+  {
+   "task": "t15_bulb_pendant",
+   "in_benchmark": true,
+   "held_out": false,
+   "best_status": "FAIL",
+   "first_attempt": {
+    "trial": "113",
+    "status": "FAIL"
+   },
+   "passed_at_attempt": null,
+   "trials": [
+    {
+     "file": "trial_113.json",
+     "number": "113",
+     "status": "FAIL",
+     "written": "2026-11-26 05:23",
+     "attempt": 1,
+     "read_task_notes": false,
+     "run": "20261126T101704Z-7f22433e",
+     "turns": 4,
+     "phase_counts": {
+      "look": 3,
+      "plan": 1
+     },
+     "replans": 0,
      "video": null,
      "video_sha256": null,
      "problems": []
@@ -578,6 +695,39 @@
    ]
   },
   {
+   "task": "t23_milk_microwave",
+   "in_benchmark": true,
+   "held_out": false,
+   "best_status": "FAIL",
+   "first_attempt": {
+    "trial": "113",
+    "status": "FAIL"
+   },
+   "passed_at_attempt": null,
+   "trials": [
+    {
+     "file": "trial_113.json",
+     "number": "113",
+     "status": "FAIL",
+     "written": "2026-11-26 04:55",
+     "attempt": 1,
+     "read_task_notes": false,
+     "run": "20261126T093834Z-ba602733",
+     "turns": 10,
+     "phase_counts": {
+      "look": 1,
+      "plan": 1,
+      "replan": 2,
+      "act": 6
+     },
+     "replans": 2,
+     "video": null,
+     "video_sha256": null,
+     "problems": []
+    }
+   ]
+  },
+  {
    "task": "t27_paperweight",
    "in_benchmark": true,
    "held_out": false,
@@ -706,8 +856,8 @@
       "look": 1
      },
      "replans": 0,
-     "video": null,
-     "video_sha256": null,
+     "video": "t27_paperweight_trial_111.mp4",
+     "video_sha256": "f1c8a82c95569303f50697d4e412e09dab7b10345eee6a45acd7546802f818f7",
      "problems": []
     }
    ]
@@ -1114,6 +1264,39 @@
    ]
   },
   {
+   "task": "t39_whiteboard_erase",
+   "in_benchmark": true,
+   "held_out": false,
+   "best_status": "FAIL",
+   "first_attempt": {
+    "trial": "113",
+    "status": "FAIL"
+   },
+   "passed_at_attempt": null,
+   "trials": [
+    {
+     "file": "trial_113.json",
+     "number": "113",
+     "status": "FAIL",
+     "written": "2026-11-26 04:56",
+     "attempt": 1,
+     "read_task_notes": false,
+     "run": "20261126T093316Z-637c7c05",
+     "turns": 7,
+     "phase_counts": {
+      "look": 1,
+      "plan": 1,
+      "act": 3,
+      "replan": 2
+     },
+     "replans": 2,
+     "video": null,
+     "video_sha256": null,
+     "problems": []
+    }
+   ]
+  },
+  {
    "task": "t40_scrape_crumbs",
    "in_benchmark": true,
    "held_out": false,
@@ -1358,6 +1541,25 @@
      "video": null,
      "video_sha256": null,
      "problems": []
+    },
+    {
+     "file": "trial_114.json",
+     "number": "114",
+     "status": "FAIL",
+     "written": "2026-11-26 05:11",
+     "attempt": 5,
+     "read_task_notes": true,
+     "run": "20261126T095737Z-e7e84a98",
+     "turns": 3,
+     "phase_counts": {
+      "plan": 1,
+      "act": 1,
+      "check": 1
+     },
+     "replans": 0,
+     "video": null,
+     "video_sha256": null,
+     "problems": []
     }
    ]
   },
@@ -1419,6 +1621,39 @@
       "plan": 1,
       "replan": 5,
       "check": 1,
+      "act": 3
+     },
+     "replans": 5,
+     "video": null,
+     "video_sha256": null,
+     "problems": []
+    }
+   ]
+  },
+  {
+   "task": "t47_level_shelf",
+   "in_benchmark": true,
+   "held_out": false,
+   "best_status": "FAIL",
+   "first_attempt": {
+    "trial": "113",
+    "status": "FAIL"
+   },
+   "passed_at_attempt": null,
+   "trials": [
+    {
+     "file": "trial_113.json",
+     "number": "113",
+     "status": "FAIL",
+     "written": "2026-11-26 05:17",
+     "attempt": 1,
+     "read_task_notes": false,
+     "run": "20261126T095607Z-27e78331",
+     "turns": 10,
+     "phase_counts": {
+      "look": 1,
+      "plan": 1,
+      "replan": 5,
       "act": 3
      },
      "replans": 5,
@@ -1695,36 +1930,61 @@
      "problems": [
       "the record's status (FLAGGED) is not its judge_status (PASS)"
      ]
+    },
+    {
+     "file": "trial_214.json",
+     "number": "214",
+     "status": "FAIL",
+     "written": "2026-11-26 05:36",
+     "attempt": 4,
+     "read_task_notes": true,
+     "run": "20261126T102239Z-c4bb5d34",
+     "turns": 3,
+     "phase_counts": {
+      "plan": 1,
+      "act": 1,
+      "check": 1
+     },
+     "replans": 0,
+     "video": null,
+     "video_sha256": null,
+     "problems": []
     }
    ]
   }
  ],
  "pages_sha256": {
-  "daily50_task/t01_hammer_nail.html": "bae3a70f2fece2538b188077ebb1deeb854870cd39968bb1f1929dfae9496af0",
-  "daily50_task/t02_crack_walnut.html": "122f903f2db8581ca94f5f3dcafef5224790654ef0f93824932d374ac35ee39b",
-  "daily50_task/t03_paint_lid_shut.html": "9c3048c602018f1c79601d7c2b0844a647337d7f8d1eee6c50fae059a3844193",
-  "daily50_task/t05_hang_hammer.html": "280d3486a604a6307d9841ba8bbc86b81e0c03e030d056e575e8a67414b77392",
-  "daily50_task/t07_battery_cover.html": "49d5b90fed824a7b061c30405f6058abb4feda25fa1220285bb47d19be912a10",
-  "daily50_task/t14_bulb_remove.html": "2bdd449a080463b0586a6842ae20bad6dd6f98c4139cc2dcbc948ad416293d88",
-  "daily50_task/t18_hob_knob.html": "ee448bb3917c607803cd29f50b9cb0401c4bb4239fdb0e91bceba15a576a2885",
-  "daily50_task/t19_jar_drawer.html": "f105733c04e35493aaa776247f9357db4ad8c0c96de71e2a445035e5885288ef",
-  "daily50_task/t21_calendar_cube.html": "3a5f3bfdf85bb94b8569d2d90a3c939e2d2d9eb184b51cf053b6f5a0748977c2",
-  "daily50_task/t27_paperweight.html": "fca05939928d3f7926f9176afb1d27da129953a7ef6d90ff8179c3d1b1706f82",
-  "daily50_task/t28_can_bin.html": "312865035e180647e8ccd8521adee99b69e5673b5ce2a15c17f88153439c5633",
-  "daily50_task/t32_umbrella_stand.html": "eab355028c0f2354a25c3a054abf670b3fcd3d4730f2df9ca5fee6d0423a7ca0",
-  "daily50_task/t33_candle_holder.html": "4a36278a9ab0c6dd00e29dbc6c1ec225411a1a53c7acf1608543220b4c93a283",
-  "daily50_task/t34_crush_crackers.html": "9f9f8dfdbd2e077341da862bfa68c1c0286216cc08cb1ca70b3dff4fb30506d1",
-  "daily50_task/t35_flashlight.html": "75f70e3d0ef416b77383e2a859b8af2e77e72424e3b838fb8c644b0591baf863",
-  "daily50_task/t38_tv_remote.html": "558d90664e7d9334b770a529c576a3e736ce103e16490cd4423942a71813ce6b",
-  "daily50_task/t40_scrape_crumbs.html": "c63e71cf00db1651319c3605774cbc4b7bbdd49b34cb2c89a5be2751f9d20139",
-  "daily50_task/t41_power_strip.html": "40a216f64e47ea492b3bdcafe4a060a8e4fd9e6c154811bf04fbc474ac678179",
-  "daily50_task/t42_dish_soap.html": "eda0d328e1996f53b3d1ef6c980b90c8145aa0aa1cb78fed4bb51d04366290b7",
-  "daily50_task/t44_crush_garlic.html": "b513581ab8fd0645121e019a50a8c341c9939752f181e0cc4c5ec49f9dff5770",
-  "daily50_task/t46_table_leg.html": "884a5d8fdba1f31f3abdba4d55da50aa12ac31b15263ad618e742eecafa1ab8b",
-  "daily50_task/t48_wheel_chock.html": "b7ea8f28171834ab732ab0a77f9aa24ea38cc58de7136d0e178f4d31ba3621a0",
-  "daily50_task/t49_weigh_orange.html": "5b11acafb84a74ab3eac2dfec9ff5108cb7a99f533a6d84b48d081cff5f57bdf",
-  "daily50_task/t50_toy_bowling.html": "a21f50f7193534d6467a86c8041a17c0d46001e9857c5dc4c306aad85444a213",
-  "daily50_task/u01_paperweight_quarter_turn.html": "0b41099b7bda81b8f636979a558e0b2b2beaa42aae630979d128cb260ba1bbef",
-  "daily50_trials.html": "353d39010435ab4105b4869d08aa75a82933efb5de87a52785261a46eb7dc9a2"
+  "daily50_task/t01_hammer_nail.html": "73d4672c7af60795f9d6e54439824e757d1534c52f7531e2b4981f56d0be8286",
+  "daily50_task/t02_crack_walnut.html": "c37e594c380e7e485c40cad5e27e3db6257d1eb46c768ad5c78cbdff0b5da84e",
+  "daily50_task/t03_paint_lid_shut.html": "4d2fb39ad7b3bbc45824e82c9b94bc2b04b2bb4060292ba206a0704d2fc94026",
+  "daily50_task/t05_hang_hammer.html": "ef9f53219100227e5f2d35759a15b94e526db14aa52e2a520462b8be09d43733",
+  "daily50_task/t07_battery_cover.html": "332e3d37e1535e04c8422450e027da69c32ef6f90cc03f50bb4e57c3a70f7a18",
+  "daily50_task/t08_pry_paint_lid.html": "e7cdc65a8093257c82eb71481a7c0331da562dd09230bab557d8166a3ee9be43",
+  "daily50_task/t13_bulb_vanity.html": "4bf768042c740fc360bf3124ef789e94dbbf1459d03336fee8c4286844ce73a2",
+  "daily50_task/t14_bulb_remove.html": "bbd533024acb2eb4743bc0d86e61405b2e9d7210637cec08c92f42036c07a0ca",
+  "daily50_task/t15_bulb_pendant.html": "9080f8431f5549bb515384da8429605194eb5ded93f70b73be1013a692cdd9d8",
+  "daily50_task/t18_hob_knob.html": "9d613463aa5953c88012c8d8a1db527b0ba5b796ddf14f3b14a38e367bad4d23",
+  "daily50_task/t19_jar_drawer.html": "0efdf249c126f28eaa5cead1fc7f49c5e5e26df1cb5aa3fc97c7e1be793dcc63",
+  "daily50_task/t21_calendar_cube.html": "11897b55149829da9a1147402152440f09f525b0d9c5ee0d2a36bca18684cebf",
+  "daily50_task/t23_milk_microwave.html": "54a9fb197e0d5796c9d8af7184f142b87eacd9a1476f806b933964b9f27ef7db",
+  "daily50_task/t27_paperweight.html": "7e6f6c253992265c2cb5bec89cfbcf69bb29f7d12c839ad2d21ec3a7f90b0c30",
+  "daily50_task/t28_can_bin.html": "fc3ee6896c5f8eec0d7b405a264ef3b9a82702dd5cd238aababc34c88503acce",
+  "daily50_task/t32_umbrella_stand.html": "7b4387597ec4f96a12c8228867c510c261e990f07a5288fb5a2d9119a60d9bbc",
+  "daily50_task/t33_candle_holder.html": "2f883508056d1aa9006865db15c87f40ed7fddaafd6982831aee46340e9af7f1",
+  "daily50_task/t34_crush_crackers.html": "4c2f06064a7ac0d6df340f0e2302c57479a0964c4577cdab66089a1217879d54",
+  "daily50_task/t35_flashlight.html": "0ada6760bc12a802d288f4560a5129fb8dfc31ed197adfb19cde5f34df3d2976",
+  "daily50_task/t38_tv_remote.html": "5f67f175cbad947940259b3141326fe47fd446588a4690f3ba38e322d294ac91",
+  "daily50_task/t39_whiteboard_erase.html": "803d92e88fa5b5dda8782775ad6e033e67652f3ce2e77429832930bc03e55912",
+  "daily50_task/t40_scrape_crumbs.html": "511117a36b637b1f7d767453acdc9e593f3f1cde5f35b0d151c8f97125127fca",
+  "daily50_task/t41_power_strip.html": "50dfc8da1e4b822cfb2ca8786bc2514afb1609af0ebcac23bbb13b1b2c38274d",
+  "daily50_task/t42_dish_soap.html": "c1c3322e2d71c45043bcfdcb72d54e41cbcb783c7495fb1bbc753b22ab4b88ec",
+  "daily50_task/t44_crush_garlic.html": "eac1c31c927d01547fd49045dda4d336877fa795e25d0c16339156c7f04088d1",
+  "daily50_task/t46_table_leg.html": "ce6313e04af3b098a0bd89177b11c8dd8b9add78c1046dffabfa91954bd07fdd",
+  "daily50_task/t47_level_shelf.html": "1b66bd9ac58e115a8dfee6f49566707bba227484b03cfac3a818066c6d6e76ca",
+  "daily50_task/t48_wheel_chock.html": "ca2e7322e6da3bc1a29958aab7cb17e852187bcfb28c73de878eddba2b132580",
+  "daily50_task/t49_weigh_orange.html": "b718305325350d442de715f8c045dc4412e6df44458c146e1d56598b5217c365",
+  "daily50_task/t50_toy_bowling.html": "90c0b10373d681693983669cd3c6a71a948a3060c508ae90f8294c3b95340ae9",
+  "daily50_task/u01_paperweight_quarter_turn.html": "ceaedd0ff8777172476da4780e53a7e92ba0aa64030376e099ab57937d78d54c",
+  "daily50_trials.html": "3c7b08d49127a541fc3894422e05b25cbbd781b1e9a2ed3292a02eb0fec8c12f"
  }
 }

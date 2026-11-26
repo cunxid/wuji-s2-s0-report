@@ -1,0 +1,105 @@
+{
+ "schema": "s2loop.reason_video/1",
+ "version": 3,
+ "built": "2026-11-26 05:01:33 EST",
+ "made_by": "s2/s2loop/reason_video.py: the head-camera film with the trial's reason loop, colour-coded by phase",
+ "task": "t27_paperweight",
+ "status": "PASS",
+ "episode_index": 111,
+ "run": "20261126T064805Z-b6e56a58",
+ "trial": "trial_111.json",
+ "inputs": {
+  "trial_sha256": "c0ade8d85b19ce0e3cb2613e95d35c9e02be709c4f76dbaa38cc29e97337a833",
+  "turn_log_sha256": "8c8b7f5f8e5408f0f9165a397e3cbda75d2d8d3b1c5773c99e55481a422b5bae",
+  "head_film_sha256": "a30c4f293526dacd253be383833d31f08107a9e91990a904e60e2422113a40b0",
+  "head_film_built_now": true,
+  "head_film_in_run_folder": false
+ },
+ "video": {
+  "file": "t27_paperweight_trial_111.mp4",
+  "poster": "t27_paperweight_trial_111.jpg",
+  "bytes": 422888,
+  "frames": 489,
+  "fps": 16.666666666666668,
+  "duration_s": 29.34,
+  "size": [
+   848,
+   480
+  ],
+  "codec": "h264",
+  "film_speed": 1,
+  "tail_speed": 2,
+  "refit_to_bytes": false,
+  "max_bytes": 3000000
+ },
+ "ticks": 1062,
+ "stride": 3,
+ "looks_redrawn": false,
+ "phase_colours": {
+  "plan": "#2370cd",
+  "look": "#22b8dc",
+  "act": "#f59a0c",
+  "check": "#008a17",
+  "replan": "#ec4647"
+ },
+ "phase_counts": {
+  "plan": 1,
+  "act": 1,
+  "look": 1
+ },
+ "turns": [
+  {
+   "index": 0,
+   "n": 1,
+   "log_turn": 1,
+   "phase": "plan",
+   "skill": "propose_grasps + reach x19 + attach x10 + carry x10 + check_plan x10 + detach x9 + get_task_context",
+   "say": "measure the curl lip and block, propose the grasp, check commit 1 and sweep the hang point over the free lip through check_plan; write the plan",
+   "ok": true,
+   "error": "",
+   "tick_start": 0,
+   "tick_end": 0,
+   "moved": false,
+   "in_log": true,
+   "in_record": true,
+   "video_start_s": 2.52,
+   "video_end_s": 5.52
+  },
+  {
+   "index": 1,
+   "n": 2,
+   "log_turn": 2,
+   "phase": "act",
+   "skill": "propose_grasps + reach x2 + attach + carry x2 + commit_plan x2 + get_observation + estimate_in_hand + detach",
+   "say": "commit 1 (reach, attach own clip, carry 8 cm up, end holding), look with estimate_in_hand, commit 2 (level carry to hang at y -0.245 over the free lip, plain goal, detach, reach away), plan steps 1 to 6",
+   "ok": true,
+   "error": "",
+   "tick_start": 0,
+   "tick_end": 762,
+   "moved": true,
+   "in_log": true,
+   "in_record": true,
+   "video_start_s": 5.52,
+   "video_end_s": 21.36
+  },
+  {
+   "index": 2,
+   "n": 3,
+   "log_turn": 3,
+   "phase": "look",
+   "skill": "look",
+   "say": "look",
+   "ok": true,
+   "error": "",
+   "tick_start": 762,
+   "tick_end": 762,
+   "moved": false,
+   "in_log": true,
+   "in_record": true,
+   "video_start_s": 21.36,
+   "video_end_s": 22.86
+  }
+ ],
+ "problems": [],
+ "build_seconds": 284.47
+}
