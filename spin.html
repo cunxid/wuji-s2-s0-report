@@ -1,0 +1,32 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Spin probe films: rotate the object's reference only, wrist still</title>
+<style>body{font:15px/1.5 system-ui,sans-serif;max-width:1100px;margin:24px auto;padding:0 16px;color:#1a1a1a;background:#fafafa}
+.na{color:#666;font-size:13px} a{color:#0b57d0} .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+figure{margin:0;background:#fff;border:1px solid #ddd;border-radius:8px;padding:12px} video{width:100%;border-radius:4px;background:#000}
+figcaption{font-size:13.5px;margin-top:8px} code{background:#eee;border-radius:4px;padding:0 4px}
+@media (prefers-color-scheme:dark){body{background:#121212;color:#e6e6e6}figure{background:#1b1b1b;border-color:#333}.na{color:#aaa}a{color:#8ab4f8}code{background:#2a2a2a}}
+@media (max-width:800px){.grid{grid-template-columns:1fr}}</style></head><body>
+<p class="na"><a href="index.html">dashboard</a> · <a href="status.html">status</a> · <a href="capability_card.html">capability card</a> · <a href="trajectory.html">generated trajectory in 3D</a> · page built 2026-11-25 23:45 EST</p>
+<h1>Rotate the object only, wrist still: the four spin-probe films</h1>
+<p>First <code>spin_in_hand</code> runs on this rig (2026-11-25 23:28–23:32). Each film: <code>acquire</code> (the policy's own grasp,
+trained clip), then a dwell where the wrist stands completely still (moved ≤ 0.7 mm / 0.1°), the hand is in pure policy mode
+<code>s0</code> (no <code>firm</code> clamp), and only the object's reference rotates on a cosine ramp. The camera is the harness's wide
+front view — the hand works at the table's far left corner. Held 4 of 4; the turn arrives seconds late and delivers about half.
+Numbers: <code>s2/outputs/harness_round/spin_fingers/RESULTS.md</code>; n = 1 per cell, one block, one grasp. The turn centre is the
+object frame origin, 16 mm off the block's middle, so part of the in-hand slip (55–65 mm) is commanded.</p>
+<div class="grid">
+<figure><video controls preload="metadata" src="spin/up_3s3.mp4"></video>
+<figcaption><b>−90° about the vertical in 3.3 s.</b> Only −10° during the ramp; the block then chases the held reference to a peak of
+<b>−95°</b> about 3 s after the ramp, overshoots, relaxes back to −40°, tipping to 56° on the way. Trace (s: deg): 3: −10, 5: −19, 6: −54, 7: −80, 9: −41.</figcaption></figure>
+<figure><video controls preload="metadata" src="spin/up_5s5.mp4"></video>
+<figcaption><b>−90° about the vertical in 5.5 s (slower).</b> Under-delivers: −17° at the end, peak −25°, tilt ≤ 26°.</figcaption></figure>
+<figure><video controls preload="metadata" src="spin/up_chunk.mp4"></video>
+<figcaption><b>3 × −30° chunked with pauses (the steadiest).</b> Near-monotonic to <b>−43° of −90</b> at the end, tilt never over 27°;
+ends at −31° with the least tipping (21°). Trace: 3: −14, 9: −21, 10: −35, 12: −44.</figcaption></figure>
+<figure><video controls preload="metadata" src="spin/z_3s3.mp4"></video>
+<figcaption><b>−90° about the object's OWN z in 3.3 s.</b> Follows its own axis best — <b>−63° of −90</b> about that axis — but for this
+lying block its own z is horizontal, so the turn rolls it onto another face in the grip (tilt to 76°, ends tipped 87°).</figcaption></figure>
+</div>
+<p class="na">Context: during a carry under the <code>firm</code> clamp the same policy delivered no turn at all
+(<a href="trajectory.html">the wrist-translates episodes in 3D</a>); these films isolate the condition in which the fingers do turn.</p>
+</body></html>
