@@ -1,0 +1,87 @@
+{
+ "schema": "s2loop.reason_video/1",
+ "version": 3,
+ "built": "2026-11-26 11:05:23 EST",
+ "made_by": "s2/s2loop/reason_video.py: the head-camera film with the trial's reason loop, colour-coded by phase",
+ "task": "t42_dish_soap",
+ "status": "PASS",
+ "episode_index": 126,
+ "run": "20261126T143439Z-fe02afa7",
+ "trial": "trial_126.json",
+ "inputs": {
+  "trial_sha256": "957d366f121accfc4dbe9595a71519d9325f363edb34785dbd011f4efc041ac6",
+  "turn_log_sha256": "8c5d8591376b61ca035a18aec13b2a1f788be897f5446f27705e481407f559fb",
+  "head_film_sha256": "5b8ed04241c8eb5c9a230364e84235e1f348fb88b8e5f47b9562e9f90bf5b946",
+  "head_film_built_now": true,
+  "head_film_in_run_folder": false
+ },
+ "video": {
+  "file": "t42_dish_soap_trial_126.mp4",
+  "poster": "t42_dish_soap_trial_126.jpg",
+  "bytes": 521283,
+  "frames": 566,
+  "fps": 16.666666666666668,
+  "duration_s": 33.96,
+  "size": [
+   848,
+   480
+  ],
+  "codec": "h264",
+  "film_speed": 1,
+  "tail_speed": 2,
+  "refit_to_bytes": false,
+  "max_bytes": 3000000
+ },
+ "ticks": 1368,
+ "stride": 3,
+ "looks_redrawn": false,
+ "phase_colours": {
+  "plan": "#2370cd",
+  "look": "#22b8dc",
+  "act": "#f59a0c",
+  "check": "#008a17",
+  "replan": "#ec4647"
+ },
+ "phase_counts": {
+  "plan": 1,
+  "act": 1
+ },
+ "turns": [
+  {
+   "index": 0,
+   "n": 1,
+   "log_turn": 1,
+   "phase": "plan",
+   "skill": "propose_grasps + attach x2 + detach x2 + carry x6 + reach x4 + check_plan x2 + get_task_context",
+   "say": "look, measure bottle and sponge, propose grasps, sweep the one-commit plan (attach firm delayed, fast carry, slow pass over the sponge, back, detach, reach) through check_plan at zero ticks",
+   "ok": true,
+   "error": "",
+   "tick_start": 0,
+   "tick_end": 0,
+   "moved": false,
+   "in_log": true,
+   "in_record": true,
+   "video_start_s": 2.52,
+   "video_end_s": 5.52
+  },
+  {
+   "index": 1,
+   "n": 2,
+   "log_turn": 2,
+   "phase": "act",
+   "skill": "commit_plan + point_at x167",
+   "say": "commit the checked plan (attach with firm delayed to arrival, fast carry to the sponge, slow pass 5.7 s, carry back, detach, reach up, reach to start pose), plan steps 1 to 5",
+   "ok": true,
+   "error": "",
+   "tick_start": 0,
+   "tick_end": 1068,
+   "moved": true,
+   "in_log": true,
+   "in_record": true,
+   "video_start_s": 5.52,
+   "video_end_s": 27.48
+  }
+ ],
+ "problems": [],
+ "build_seconds": 531.57
+}

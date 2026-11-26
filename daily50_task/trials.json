@@ -1,6 +1,6 @@
 {
  "schema": "daily50.trials_page/1",
- "generated": "2026-11-26 10:54 EST",
+ "generated": "2026-11-26 11:22 EST",
  "headline": {
   "tasks_total": 50,
   "tasks_attempted": 40,
@@ -17,9 +17,9 @@
    "t42_dish_soap",
    "t50_toy_bowling"
   ],
-  "trials": 128,
+  "trials": 131,
   "trials_by_status": {
-   "FAIL": 110,
+   "FAIL": 113,
    "FLAGGED": 5,
    "PASS": 13
   },
@@ -53,8 +53,8 @@
   }
  },
  "media": {
-  "files": 42,
-  "bytes": 36804739,
+  "files": 45,
+  "bytes": 38588951,
   "budget_bytes": 150000000
  },
  "judge_reason_shown": true,
@@ -207,6 +207,25 @@
       "replan": 2
      },
      "replans": 2,
+     "video": null,
+     "video_sha256": null,
+     "problems": []
+    },
+    {
+     "file": "trial_130.json",
+     "number": "130",
+     "status": "FAIL",
+     "written": "2026-11-26 11:12",
+     "attempt": 4,
+     "read_task_notes": true,
+     "run": "20261126T155718Z-d05efd32",
+     "turns": 5,
+     "phase_counts": {
+      "plan": 1,
+      "act": 1,
+      "replan": 3
+     },
+     "replans": 3,
      "video": null,
      "video_sha256": null,
      "problems": []
@@ -429,6 +448,26 @@
       "replan": 1
      },
      "replans": 1,
+     "video": null,
+     "video_sha256": null,
+     "problems": []
+    },
+    {
+     "file": "trial_130.json",
+     "number": "130",
+     "status": "FAIL",
+     "written": "2026-11-26 11:12",
+     "attempt": 4,
+     "read_task_notes": true,
+     "run": "20261126T155855Z-e092e3ba",
+     "turns": 8,
+     "phase_counts": {
+      "plan": 1,
+      "replan": 3,
+      "act": 3,
+      "check": 1
+     },
+     "replans": 3,
      "video": null,
      "video_sha256": null,
      "problems": []
@@ -2587,8 +2626,8 @@
       "check": 1
      },
      "replans": 0,
-     "video": null,
-     "video_sha256": null,
+     "video": "t42_dish_soap_trial_112.mp4",
+     "video_sha256": "2e121a6f0c593379e2c0f0d709f6bb297a6aa9f1379d3d32dda61cde96c64d29",
      "problems": []
     },
     {
@@ -2661,8 +2700,8 @@
       "act": 1
      },
      "replans": 0,
-     "video": null,
-     "video_sha256": null,
+     "video": "t42_dish_soap_trial_126.mp4",
+     "video_sha256": "fa73b424bd91b598436f925d680b9ba48566942ca102059575e5d65bee6e89f0",
      "problems": []
     }
    ]
@@ -2979,6 +3018,26 @@
      "video": null,
      "video_sha256": null,
      "problems": []
+    },
+    {
+     "file": "trial_130.json",
+     "number": "130",
+     "status": "FAIL",
+     "written": "2026-11-26 11:02",
+     "attempt": 5,
+     "read_task_notes": true,
+     "run": "20261126T154750Z-1324da62",
+     "turns": 8,
+     "phase_counts": {
+      "plan": 1,
+      "act": 3,
+      "check": 2,
+      "replan": 2
+     },
+     "replans": 2,
+     "video": null,
+     "video_sha256": null,
+     "problems": []
     }
    ]
   },
@@ -3163,8 +3222,8 @@
       "act": 1
      },
      "replans": 0,
-     "video": null,
-     "video_sha256": null,
+     "video": "t50_toy_bowling_trial_117.mp4",
+     "video_sha256": "de18ae028775ab6303b31a53b8aea3a54c13f58992717c66ef670596d421e467",
      "problems": []
     }
    ]
@@ -3270,47 +3329,47 @@
   }
  ],
  "pages_sha256": {
-  "daily50_task/t01_hammer_nail.html": "54836a9a873eb6316d75948ec2d0b3643c7d9f6e33635ac4fe45dde8ebd1abbf",
-  "daily50_task/t02_crack_walnut.html": "d426b8eefb6c9e9221726840e925e86d81626dc120dad7534ff4a66930b3f78e",
-  "daily50_task/t03_paint_lid_shut.html": "eb0781b869e1a543f57a29af55e312016b6924537315c10801267c3c73dcd7c4",
-  "daily50_task/t04_pull_nail.html": "a23add2d1fc27c5be9ab60a814142fb0f81cc946231299f8bb78d29639df2f7c",
-  "daily50_task/t05_hang_hammer.html": "73cbf15fd18c38d880713ef3403e824947763d2d66e79325e03b71362c608130",
-  "daily50_task/t07_battery_cover.html": "e8560cf42ff62145a6f562f0db7891709adae00d8d896d1d9179d8b242f34a9a",
-  "daily50_task/t08_pry_paint_lid.html": "f5407a48dd2c1d6c39ba0fc0b5cf9b4d497666349fb350e47915b9bfb64bf0b2",
-  "daily50_task/t10_mist_plant.html": "4e52ecfd1eafd05ab0776eb1a807909dae812ad8b4d5a055d133323071c1a088",
-  "daily50_task/t11_spray_mirror.html": "305888fe75c8bd3031c66968226933c6d53e02e336425f229e9717059af0c9f1",
-  "daily50_task/t13_bulb_vanity.html": "c04b7d4da67bee5e8b50ac13724f5ec2484731889b8926a7bc8a92d3c42c297d",
-  "daily50_task/t14_bulb_remove.html": "05214fd7cbb843c91bcb73d28a774098bd60646b4500a5841f077492c461a04d",
-  "daily50_task/t15_bulb_pendant.html": "46adc71632c7cc6d5e56792d2f141185873a8d6de3052c527456a9dd8e31b817",
-  "daily50_task/t16_block_tower.html": "62800a05fec09d15d3e568e57290a5253adae167ae7ba1832a61d44de65b63e5",
-  "daily50_task/t17_shape_sorter.html": "8a6098e94878c46c1a47bf060610a130519a532c3242134eccb413b48610eee9",
-  "daily50_task/t18_hob_knob.html": "898fb2c4d0878a37aa30cb5cd86fc638b2cf2a18762104b892fdda7159c8040e",
-  "daily50_task/t19_jar_drawer.html": "63552a54cbde0d33d82fde6359c5ef2e1614727ac55e3095036ba04e9dfa3b7a",
-  "daily50_task/t20_sink_plug.html": "f7e1bcde68e74e3712214325228d93eb6465cfa7cb746ae074ddaf0834f5495f",
-  "daily50_task/t21_calendar_cube.html": "f1742ab0bc1a6a02f26bf807d9060694d1af5e57ba336028a16eb17a91bcc78a",
-  "daily50_task/t22_seal_stamp.html": "35bf51b067444107206873a37de3ba0cf8b04457cb61ee55f72e30de337d86eb",
-  "daily50_task/t23_milk_microwave.html": "a29d86ec1d52389192c89d21f5c282812d2e27ec0485ad5e54b09b8860e4d5c0",
-  "daily50_task/t24_salt_shaker.html": "f71bb563abbbf3b95c8fff401122d7683deb949d8002c2be46d829472d8054db",
-  "daily50_task/t25_fish_food.html": "d7bc955763f944870bf158cabad96c2132d73b2921752ba829756d0d2c5bf0a0",
-  "daily50_task/t27_paperweight.html": "f0150b27cfd98aa4f90a584e007bc1a88ba427e7d4e82c345a5c064f481bb890",
-  "daily50_task/t28_can_bin.html": "e61fabde939730df467a7f1899cdc7c32b8843981929ca4522bc702c1a0916cc",
-  "daily50_task/t29_lighter_candle.html": "23dc769016bb43945d9aa2cc6054af8e29f515c755139388819c0675ca0f7e54",
-  "daily50_task/t32_umbrella_stand.html": "3a1128c965439f36d20f73587bd83db95c247c16e8e7c9bad69f3e3f7e8f13c1",
-  "daily50_task/t33_candle_holder.html": "0b257a2832741e41ec171651fa9568538071d40cc6aedc677ed63b48dc0c1791",
-  "daily50_task/t34_crush_crackers.html": "d875e94d2abb1f323de7f252ecee6e80df1ac815851f86519505fe1de3dde880",
-  "daily50_task/t35_flashlight.html": "dbcb497e066a0a9deb1204a0311d1177805cf2168582f9b77faeb21730f34394",
-  "daily50_task/t38_tv_remote.html": "723abc9a4f309c46be19b6320085907bc339c9bb0b1bee715b3574337ec167ac",
-  "daily50_task/t39_whiteboard_erase.html": "0f892b31efe8f501d728bbf1de57d89d6718759cc3610d72634b15f0fce372b2",
-  "daily50_task/t40_scrape_crumbs.html": "f856f9ef1cb4dd7fad715c671bcf9ac2783f909eb787b434ab5973e4ee5e5668",
-  "daily50_task/t41_power_strip.html": "ac115f3544af155e8b89e9462522a0809b7177909aaf51ffcd7c47f3962c540d",
-  "daily50_task/t42_dish_soap.html": "22f6552aa710b9f43b28db1a46eda2a2b8f65fd8397231f3e0ce263fcf1b354f",
-  "daily50_task/t44_crush_garlic.html": "c99e140146e7975e800245c4df6499ada8b6484dee6810cab4fb9f8376802188",
-  "daily50_task/t46_table_leg.html": "81149d6e9faee23eaea882d68b665048b172289af33217f13bfde8ccb14f7345",
-  "daily50_task/t47_level_shelf.html": "85757139231f37fd89eb4a2476ad784c35babdcbbb2afdb4354656a4d44fc2a6",
-  "daily50_task/t48_wheel_chock.html": "f546ba12b449203b6bce4fb0885cc35cbcf3259490103e7953223c0d61648ba1",
-  "daily50_task/t49_weigh_orange.html": "8f6156dd22bbf89c2886416a0fcbe9a790e437e19992fb5566293c31899f3a01",
-  "daily50_task/t50_toy_bowling.html": "68fea7d7c2cf9c518d9db56d9bbcb4d20065dd54332e18a5c8575b79f0a07d70",
-  "daily50_task/u01_paperweight_quarter_turn.html": "beb6b3d7ccc2e52cbaefd98f70988495b7f91ea9baa4a2e39ee081809f98bb95",
-  "daily50_trials.html": "f7534ac0ab9465f4782849a1c55de3419702c5752ea4953db43610e0557e422a"
+  "daily50_task/t01_hammer_nail.html": "93cd8ef7dd28655ff2eefdd1a169e3f9dd818fc35ff6455c633208b841d22978",
+  "daily50_task/t02_crack_walnut.html": "915dd0371ed25d6a14915684c72024770752e3deacc28e9cb9a8797a2051e0a0",
+  "daily50_task/t03_paint_lid_shut.html": "ac468b0acc2442c53f21ece7528a10bf4561cfae8b0cf65a1bc0a9dac00cdc47",
+  "daily50_task/t04_pull_nail.html": "f5468502a0ebcdbfc1a55f57623588c730079ee04f543ef26aab737b577fc7e3",
+  "daily50_task/t05_hang_hammer.html": "43f39df282467804c9758f7247794690e649f7c963c43d7157f4201c7c2e6640",
+  "daily50_task/t07_battery_cover.html": "27e389a301c01848bc7df8aee845ce605280d621685075c1d112b579f01f0321",
+  "daily50_task/t08_pry_paint_lid.html": "92491951e1ea90df86ff9378492dfd5af94d424ef24e17a4631dce4a8f556c7c",
+  "daily50_task/t10_mist_plant.html": "62fe02d13dcd7b43bfca4952524f9ef29423cb566b916b9131333de94ae14bb6",
+  "daily50_task/t11_spray_mirror.html": "a89c8b88800d4e5c24140c29e23bc340a3205ec6756837203eb3ba7a57579880",
+  "daily50_task/t13_bulb_vanity.html": "018647ba66866fac91c9b9b3412b4647c0206cc7ec46d38f02999c9662c5d1a7",
+  "daily50_task/t14_bulb_remove.html": "70929d7cf23a8ee2579e76ca53725a345548b66a2ebeb046bff7b656a2df336c",
+  "daily50_task/t15_bulb_pendant.html": "b4e8aa735c75350f20dcfc29bb0f2bc8d0519e5aa27febed47ac914095c4cbbe",
+  "daily50_task/t16_block_tower.html": "bc7fada0acec3c104c0403531233928b8035733fb0e899adc7d46ea80d2dfdc9",
+  "daily50_task/t17_shape_sorter.html": "185d5aa88bf006e6438690a4e844bc33b8d6efcf4d7480231fdb7dd6c32a275f",
+  "daily50_task/t18_hob_knob.html": "dfd37fba1b1b36b927c3567d6cf3a77fdaf823ed600bc00b53a2bc87926d7e1d",
+  "daily50_task/t19_jar_drawer.html": "a8be2d07730f9c427639feac80181c6cd5875fc810e8cab0952606298b3b2909",
+  "daily50_task/t20_sink_plug.html": "b430fdf61b9d2b9e7bf1b80f813509a86fd9f881df7ce5e6a0f040204f3aa073",
+  "daily50_task/t21_calendar_cube.html": "5a4ea788d5c4e72d9a40bf7146d1415a360ba0f8d5144e0c0aedd51b555fbff7",
+  "daily50_task/t22_seal_stamp.html": "fef73282e879ed7674c16c8bf5377c21df7b88d2831e7ea64609916ac290c868",
+  "daily50_task/t23_milk_microwave.html": "21e1fea58476a6a89843e45833a3465d17f71711c4c3193c708e2ab5980568ed",
+  "daily50_task/t24_salt_shaker.html": "6a1fb529e8deaffa6a7748d854d70bdd99598c0aa9aa5444d3e3771dbf70a897",
+  "daily50_task/t25_fish_food.html": "99623eff592115f5f3d40cea89549c42e44f8472127963bac9ff6c50701ae4f3",
+  "daily50_task/t27_paperweight.html": "1a683b070fc41462eeda3d00a1e53d5221d2d186b18e6e9da17162f32d2ccbe6",
+  "daily50_task/t28_can_bin.html": "07c4d0b461262ea904636dbd6ab8b64b2f1c637b8612867d907a90958c8e73af",
+  "daily50_task/t29_lighter_candle.html": "1077e947f146b67f2b328ec6f896f30819c3fb637e2bd7b8ce66981fb7572381",
+  "daily50_task/t32_umbrella_stand.html": "a2c38fd013d76169478fc9f666dfd88b95bdd2ad79f1725562e66c363a9c5587",
+  "daily50_task/t33_candle_holder.html": "f835745a5619990b886a5e7d4e9353fd52839aa0229970688d9f475f86f00d31",
+  "daily50_task/t34_crush_crackers.html": "ab05a11f88ac9270248700334270fe8e49791f0b1a5adb59b5a87053db917f40",
+  "daily50_task/t35_flashlight.html": "2d73c8d4d5b9808ed0fcc3a4b8802ae2ac927668b1906801d2caf2d2c4e70e45",
+  "daily50_task/t38_tv_remote.html": "a8aa0d28786f312a9572e31530d87acac9542321b9d69871ad28bd96b8a30bef",
+  "daily50_task/t39_whiteboard_erase.html": "6bca42947cf1c680ad02bbbceadf8266dcc732b5a8d6366c4e8be73b457331cc",
+  "daily50_task/t40_scrape_crumbs.html": "1f657b89b3fa97c392fbdb1135184730157c3fe10022ccb57e1f4c0981efd503",
+  "daily50_task/t41_power_strip.html": "8d3b76ab1acf9cae29ba93f52c269a1123e6442a6942d98981367f462a91eb9b",
+  "daily50_task/t42_dish_soap.html": "a86fcb9108b47fe6b20b7fcace37635fe8f1fb01b5d6cc2d53910c985ee4471c",
+  "daily50_task/t44_crush_garlic.html": "8a19f9a98e40ca8134ec7906512062433231d130f6e039ec9021652b4ac86ea8",
+  "daily50_task/t46_table_leg.html": "566b7270f4a6222021e97d570e7a42017df587988f40fe5f570e55cd3613e9d2",
+  "daily50_task/t47_level_shelf.html": "21c34f434f5c81570c51ba19fe90ba56863487ed8e54b3b272b7a44249bd5647",
+  "daily50_task/t48_wheel_chock.html": "14fc595bd854953619d0591324148b0382261b3a30722a103e1e38bd0e2e17d0",
+  "daily50_task/t49_weigh_orange.html": "d487ca858e1149a0c4c1a60c1bc94429380821556bb149c979bb04856ea847ec",
+  "daily50_task/t50_toy_bowling.html": "afbc86a1bfc0dd89d610cb77ac3db7e90dfb63ce6258f9d2d09210fbb34f4a0e",
+  "daily50_task/u01_paperweight_quarter_turn.html": "efb06699c6cbfeb95afb47bef9b651ab59f6db32bd6ef6b748369602141f1f93",
+  "daily50_trials.html": "5d7750b8abf4ebdce7dbeb9f798c5f6eedb62d8224eb2a71978b184c4d1f966d"
  }
 }
