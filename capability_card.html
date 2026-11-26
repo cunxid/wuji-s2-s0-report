@@ -4,7 +4,7 @@
 pre{white-space:pre-wrap;word-wrap:break-word;font:13.5px/1.55 ui-monospace,Menlo,Consolas,monospace;background:#fff;border:1px solid #ddd;border-radius:8px;padding:18px}
 .na{color:#666;font-size:13px} a{color:#0b57d0}
 @media (prefers-color-scheme:dark){body{background:#121212;color:#e6e6e6}pre{background:#1b1b1b;border-color:#333}.na{color:#aaa}a{color:#8ab4f8}}</style></head><body>
-<p class="na"><a href="index.html">dashboard</a> · <a href="status.html">status</a> · <a href="daily50_trials.html">trials on the 50 tasks</a> · <a href="s2_library.html">skill library</a> · page built 2026-11-25 16:20</p>
+<p class="na"><a href="index.html">dashboard</a> · <a href="status.html">status</a> · <a href="daily50_trials.html">trials on the 50 tasks</a> · <a href="s2_library.html">skill library</a> · page built 2026-11-25 23:18</p>
 <h1>Capability card</h1>
 <p>What an S2 player reads before it plans a task: what the tracking policy can follow and when each skill works. Every line is tagged
 measured (with its count), prior, or untested. <b>No cell has reached the display bar</b> (8 tries over 3 starts and 3 objects), so nothing here is a
@@ -13,25 +13,25 @@ confirmed "can" or "cannot" yet. It started from probe data that already existed
 
 Read this before you plan. Assembled 2026-11-25 from probe data that already existed; nothing new was run for it.
 
-Tags. `[measured n=..]`: this robot, these skills, the tracking policy (&quot;ledger&quot; = declared probe episodes judged from
-the host&#x27;s record; &quot;live&quot; = single sessions read afterwards; &quot;rig double&quot; = same arm and planner, no policy). `[prior:
-training clips]`: inside what the policy saw in training (103 recorded picks); not &quot;tracks&quot;. `[prior: old atlas,
+Tags. `[measured n=..]`: this robot, these skills, the tracking policy ("ledger" = declared probe episodes judged from
+the host's record; "live" = single sessions read afterwards; "rig double" = same arm and planner, no policy). `[prior:
+training clips]`: inside what the policy saw in training (103 recorded picks); not "tracks". `[prior: old atlas,
 unaudited]`: earlier sweeps with the same policy, graded by a height-only rule nobody has checked; a reason to try one
-thing first, never a &quot;can&quot;. `[untested]`: nothing on record. **Read every number as &quot;n too small&quot;:** no cell has been
+thing first, never a "can". `[untested]`: nothing on record. **Read every number as "n too small":** no cell has been
 tried 8 times over 3 starts and 3 objects, and nearly everything AFTER the lift comes from one block.
 
 ## 0. Eight rules that would have prevented the known failures
-1. **Grasp with a clip of the object&#x27;s own shape, and check the thumb.** Call `propose_grasps` in a step of its own
+1. **Grasp with a clip of the object's own shape, and check the thumb.** Call `propose_grasps` in a step of its own
    before `acquire`. Afterwards read `grip_opposed` and the fingertip forces. A grip without the thumb lost the object
    1.9 to 2.6 s after the lift in 6 of 6, whatever the hand was told `[measured n=6: 4 ledger, 2 live; one object]`;
-   with its own clip the same object stayed 19 to 21 s `[measured n=3 live]`. &quot;Own shape&quot; is decided from the seen
-   size, so a bar can get a cylinder&#x27;s or a tool&#x27;s clip: right after the lift 3.5 to 5 loaded fingertips went with an
+   with its own clip the same object stayed 19 to 21 s `[measured n=3 live]`. "Own shape" is decided from the seen
+   size, so a bar can get a cylinder's or a tool's clip: right after the lift 3.5 to 5 loaded fingertips went with an
    object that was kept, 1.1 to 3.3 with one that was lost `[measured n=12 ledger]`. Each offered grasp now says
    what kind of clip it is (`clip_source`, `trained`): clips the policy was trained on come first and kept their
    object 3 of 3, recorded but untrained clips 2 of 7 `[measured n=10 ledger]`; `acquire` warns when the bound clip
    is untrained. **Read `held` first:** `yes` = grip load AND seen in the hand; `no` = no grip load (an empty hand
-   is no longer answered &quot;unknown&quot;) or a loss (`dropped_during_...`); `unknown` = load but not seen: lift a little
-   and look before you carry. A hammer handle was answered &quot;held yes&quot; in mid-fall once: when `grip_opposed` is
+   is no longer answered "unknown") or a loss (`dropped_during_...`); `unknown` = load but not seen: lift a little
+   and look before you carry. A hammer handle was answered "held yes" in mid-fall once: when `grip_opposed` is
    False or the fingertips read about 1 N, wait 0.4 s and look again before the next skill `[measured n=1 live]`.
 2. **One `firm` per grasp.** `acquire` ends with its own settle and `firm`; send no hand command afterwards. A second
    `firm` lost the object 11 s after the lift, frozen finger targets 14.6 s after it, and a harder squeeze pushed a
@@ -46,36 +46,30 @@ tried 8 times over 3 starts and 3 objects, and nearly everything AFTER the lift 
    tall things: choose places with walls, a rim or room to spare, or finish with a fingertip push.
 4. **Press shallow, then look.** Start at 3 mm, clear the view, look; go 5 mm deeper only if nothing changed. Presses
    of 3 to 10 mm threw a rocker switch in 5 sessions, 3 then 8 mm did not in 1, and 1 to 2 cm shoved its base aside in
-   2 `[measured n=8 live; one kind of target]`. Never press again &quot;to make sure&quot;.
-5. **The scripted grasp does not hold a ball.** 66 to 70 mm balls: held 0 of 9 (pushed away, or rolled out within a
-   second) `[measured n=9: 4 live, 5 rig double]`. The policy has almost no ball clips (9 of 3265) `[prior: training
-   clips]`. Push a ball instead, against something that stops it, OR carry it in ONE motion without a stop: a
-   program of the atomic tools (open hand straight down over the ball, `close` kept with no `firm`, lift 8 cm and
-   carry 0.23 m in the same plan, `open` over the goal) moved a 6 cm ball in 1.9 s from its stand to its release
-   `[measured n=2 live; two balls, 6 and 7 cm; 1.9 and 2.2 s in the air, lifts of 8 and 17 cm, carries of 0.23 and
-   0.26 m]`. The closure shifts the ball about 2.5 cm toward the wrist and 1 to 2 cm up, and on opening the thumb
-   lets go last and sends the ball about 5 cm toward the little-finger side: aim the release 2 to 3 cm toward the
-   thumb side of where the ball IS in the hand, or have a rim there. Never pause with a pinched ball. End the
-   program with a free move back to the arm&#x27;s start joints: the step&#x27;s own picture is then the clean check view.
+   2 `[measured n=8 live; one kind of target]`. Never press again "to make sure".
+5. **Only the tracking policy grasps (owner's rule, 2026-11-25).** The one way to take hold of a thing is `acquire`:
+   the wrist goes down, then the thing and the wrist go up, and the policy moves the fingers. There is no scripted
+   grasp and no finger closure of your own around a thing. The policy has almost no ball clips (9 of 3265) `[prior:
+   training clips]`: push a ball, against something that stops it, or let it roll.
    **Dry runs are free:** `plan_motion` without `execute_plan` tells whether a pose or a whole multi-segment
-   program is accepted and how many rows each part takes; `solve_ik` and `propose_grasps` cost no ticks either.
-   Measure and dry-run the whole plan before the first motion.
+   program of arm motion is accepted and how many rows each part takes; `solve_ik` and `propose_grasps` cost no
+   ticks either. Measure and dry-run the whole plan before the first motion.
 6. **Standing or lying decides the policy grasp.** A clip is used only if the object rests as it does in the clip
    (seen height within 12 mm or 15 %). Of 23 refusals of a rightly chosen object, 9 were `rest_pose_mismatch` and 11
    `no_feasible_candidate` `[measured n=23 ledger]`. Most objects have clips for ONE rest pose. Change the pose first
    `[untested]`, or change skill.
 7. **Reach is the strip of table nearest the robot, about 0.30 m deep** (comfortable: 0.20 m deep, 0.45 m wide on the
-   right arm&#x27;s side); the far half is out of reach of both hands `[measured: rig geometry, computed]`. Check every
+   right arm's side); the far half is out of reach of both hands `[measured: rig geometry, computed]`. Check every
    goal with `solve_ik` first.
 8. **Keep the palm 9 cm above any surface.** The wrist flange hangs 7 cm below a level palm and is the lowest part of
    the hand `[measured: rig geometry]`. Free moves to a palm-down pose under about 9 cm are refused; a carry asked to
    hover 6 cm over its goal was refused `[measured n=1 live]`. A thing whose middle is under 8 cm high is taken from
    above.
 
-## 1. Trajectory envelope: what a skill&#x27;s reference may ask of the policy
-After the grasp the policy sees a frozen reference: only the palm&#x27;s motion, the arm&#x27;s error and physics reach it. Once
+## 1. Trajectory envelope: what a skill's reference may ask of the policy
+After the grasp the policy sees a frozen reference: only the palm's motion, the arm's error and physics reach it. Once
 a clip is bound, a row with the fingers within 3 degrees of straight up or down is refused at plan time. Each line:
-the skill&#x27;s cap, the range in training clips, which of the two binds, what has been tried.
+the skill's cap, the range in training clips, which of the two binds, what has been tried.
 - **Palm speed, holding.** Cap 0.25 m/s (scripted grasp 0.12; empty hand 0.40); an argument can only slow it. The cap
   binds: clips reach 0.18 m/s (median clip), 0.37 (95th clip) `[prior: training clips]`. Level carries at 0.25 m/s
   kept the object 5 of 5 `[measured n=5 live; one object]`. On an arm, references of 0.42 to 0.50 m/s kept 11 to 12 of
@@ -84,26 +78,47 @@ the skill&#x27;s cap, the range in training clips, which of the two binds, what 
   with under 1 cm of shift at every rung; a five-sided block kept through the top rung in 2 of 4 ladders and was
   lost at 0.40 to 0.48 m/s in the 2 others; a 200 mm bar lying was never lost but walked 3 to 8 cm in the hand; a
   200 mm bar held standing was lost at 0.25 m/s `[measured n=7 ladders, ledger; thin]`. The arm itself draws at most
-  about 0.5 m/s whatever is asked. The skills still cap at 0.25 m/s; only a program&#x27;s own `MotionLimits` (all five
+  about 0.5 m/s whatever is asked. The skills still cap at 0.25 m/s; only a program's own `MotionLimits` (all five
   values must be given) can ask for more. Compact = fast is fine; long = slow, and expect it to walk in the hand.
 - **Palm acceleration, holding.** Cap 1.5 m/s^2 (scripted 0.5; empty 2.5). The cap binds: clips 1.0 (median clip), 1.8
   (95th) `[prior: training clips]`. Never varied `[untested]`.
-- **Curvature and turn rate.** Cap 1.0 rad/s (scripted 0.5; empty 1.5). Nothing caps how tightly the palm&#x27;s path bends
+- **Curvature and turn rate.** Cap 1.0 rad/s (scripted 0.5; empty 1.5). Nothing caps how tightly the palm's path bends
   (the other caps allow a 4 cm radius). Clips turn the wrist at 1.05 rad/s (median clip), 2.8 (95th) `[prior: training
-  clips]`. No bend or turn has been tried with something held `[untested]`. On an arm, turns of 60 to 120 degrees at
+  clips]`; recorded clips bend with a median path radius of about 11 mm and reverse 3.3 times a second. First ladder
+  on this rig (policy grasps, own or own-class clips): arcs of 8 and 4 cm radius were carried with 2 to 18 mm of
+  in-hand shift at 0.12 m/s and at the fastest the planner drew (0.17 m/s on an arc); arcs of 30 and 15 cm radius
+  were refused by the planner as out of reach, not by the policy; three quick reversals: a block kept (16 mm), a
+  cube kept (9 mm), a 200 mm bar held standing LOST `[measured n=8 ladders, ledger; thin]`. So a tight bend is not
+  the risk; a long thing and a reversal are. On an arm, turns of 60 to 120 degrees at
   1.3 to 2.1 rad/s kept 10 to 11 of 12 to 13 objects; three quick 12 cm reversals kept 11 `[prior: old atlas,
   unaudited]`.
+- **The FINGERS do not turn a held thing on command.** Asked 44 and 89 degrees about the vertical by turning the
+  object's reference on a level, translating wrist (`transport(..., turn_by='fingers')`): the hold survived 6/6 and
+  the wrist stayed level (&lt;= 2.2 degrees), but the thing's heading at the opening was -1 to +32 degrees WHATEVER was
+  asked (the zero-turn cells drifted as much as the turning ones); the rows the policy received were verified as
+  written (bridge dump). What sets the heading is the in-grip roll at lift-off (37 to 50 degrees, 38 to 50 mm), not
+  the reference `[measured 2026-11-25, n=1 per cell, one block, one grasp, exploratory]`. To turn a held thing, turn
+  the WRIST with it: that delivered -73 of -90 once (17 off, same face) but may need another elbow posture and can
+  roll the thing onto another face; the level wrist lands nearer (22 to 63 mm against 44 to 266) `[same study]`.
 - **Tilt away from the grasp orientation.** Cap 120 degrees per call (scripted 30): defaults, not findings. Clips tilt
   81 degrees (median), 21 to 150 (most) `[prior: training clips]`. On this rig `[untested]`. Floating hand: about half
   kept at every angle from 15 to 150; pours of 105 to 135 degrees lost 4 of 4 `[prior: old atlas, unaudited]`. Any
   turn of a loaded hand is a risk: 30 degrees a step, and look.
 - **Lift height.** Ask 0.05 to 0.10 m. Asked 0.10 m, the object rose 0.07 to 0.13 m `[measured n=12 ledger]`. Asked
-  0.02 m, &quot;held&quot; could not be verified `[measured n=1 live]`. Clips lift 0.15 to 0.57 m: the skills lift less than
+  0.02 m, "held" could not be verified `[measured n=1 live]`. Clips lift 0.15 to 0.57 m: the skills lift less than
   training, not more `[prior: training clips]`. Above 0.10 m `[untested]`; 0.20 to 0.25 m kept 10 of 12 `[prior: old
   atlas, unaudited]`.
 - **Carry distance.** 0.29 to 0.53 m kept 5 of 5 `[measured n=5 live; one object]`. Clips carry 0.18 m (median), 0.29
   (95th) `[prior: training clips]`. Reach binds first. Floating hand: 0.1 to 0.2 m kept four in five, 0.3 to 0.4 m
   half `[prior: old atlas, unaudited]`.
+- **Going DOWN with a held thing.** A policy grasp that survived the lift and a level carry lost the block during a
+  lowering of about 10 cm in under a second (12 cm in all, wrist down at up to 0.25 m/s): it crept 2 cm in the hand
+  and left it 13 cm above the table,
+  before any command to open `[measured n=1 live, one-shot run]`; the same loss was seen in three other set-downs
+  today `[measured n=3 live; one object]`. A 2.5 cm lowering at 0.20 m/s kept it 4 of 4 `[measured n=4 live; one
+  start, not blind]`; a 3.4 cm lowering at 0.05 m/s after a carry at lift height kept it and the place held `[measured
+  n=1 live, one-shot run]`. Keep the lowering short: set the lift by the height of the place, carry level at that
+  height (hover close above the place), then lower a few centimetres.
 - **Hold time, palm still.** Outside training: no clip stands still for more than about a second `[prior: training
   clips]`. Six seconds after a 0.10 m lift: kept 7 of 13 (which: see Objects); every loss came within 2 s of the lift
   `[measured n=13 ledger; 9 objects, one start each]`. 19 to 21 s: kept 3 of 3 `[measured n=3 live; one object]`. The
@@ -118,7 +133,7 @@ the skill&#x27;s cap, the range in training clips, which of the two binds, what 
   no hammer, screwdriver, bulb or cup `[prior: training clips]`. Alone on an empty table, still held after 6 s: a
   five-sided block 54 x 57 x 70 mm on a side face, a cube 42 mm, a square bar 35 x 35 x 200 mm lying (twice), a cube
   60 mm (twice), a square bar 35 x 35 x 200 mm standing. Lost within 2 s of the lift: a three-sided bar 37 x 43 x 200
-  mm lying (twice), a five-sided block 54 x 57 x 70 mm on a side face with another shape&#x27;s default clip, an oval bar
+  mm lying (twice), a five-sided block 54 x 57 x 70 mm on a side face with another shape's default clip, an oval bar
   30 x 50 x 200 mm lying, a small hammer 23 x 117 x 205 mm, a light bulb 48 x 138 mm. Refused: a cylinder 50 x 70 mm
   upright, a cylinder 60 x 70 mm upright, a five-sided block 54 x 57 x 70 mm on its tall face (no_feasible_candidate);
   a short cylinder 60 x 42 mm flat face down (invalid_request); a three-sided prism 45 x 52 x 42 mm
@@ -134,36 +149,14 @@ see under the hand: `clear_view`, then look. Depth joins things that touch and m
   after 6 s `[measured n=19 ledger]`. With default clips only, things 180 to 320 mm long: carried 0 of 9 (knocked or
   tilted) `[measured n=9 ledger]`. One clip per session: a second object cannot be grasped by the policy. Refusals:
   `rest_pose_mismatch` -&gt; change its pose; `no_feasible_candidate` -&gt; out of reach or crowded: move it nearer, or take
-  another hand turn from `propose_grasps`; `own_shape_has_no_grasp` -&gt; scripted grasp or push. Reports `held`,
+  another hand turn from `propose_grasps`; `own_shape_has_no_grasp` -&gt; change its pose, push it, or do without holding it (there is no scripted grasp). Reports `held`,
   `grip_opposed`, fingertip forces; an empty hand is answered `held: no`; after a failed grasp or a loss `hold`, `lift`, `transport` and `set_down`
   are refused with the reason (raise an empty hand with `retreat`), and the skills that need an empty hand clear a
   stale belief themselves: confirm an `unknown` from a clean view before carrying
   `[measured n=1 live]`. The object can sit up to 9 cm to the side of the palm: expect centimetres of offset where it
   is put down `[measured n=1 live]`. A 40 x 200 mm cylinder with its own clip was grasped, carried and set down
   `[measured n=1 live]`.
-- **`grasp_scripted`** (fingers close by posture, either hand). For a thing that need not be carried far: a lid, a
-  knob, a handle, a cube. A 60 mm cube was held through a 6 cm lift and a short carry; a hinged lid was gripped and
-  turned `[measured n=3 rig double]`. Live it has lifted and carried a lying 5 cm jar to a drawer in 4 sessions and a
-  6 cm block through lift, carry and a set-down onto a raised edge (with `palm_yaw_deg=0` after the default turn was
-  refused) `[measured n=5 live; two objects]`. **It is the fallback when `propose_grasps` offers no clip of the thing&#x27;s
-  own shape, and it needs no clip, so it also works after the policy&#x27;s one clip is bound to something else.** Ask
-  `solve_ik` for the pose it will take, not for a palm centred over the thing. Fails on balls (rule 5), on things
-  wider than about 8 cm across the fingers, and where the flange has no room beside the target (turn the palm:
-  `palm_yaw_deg`). **What it holds** `[measured n=1 live per object, 14 objects, exploratory survey]`:
-  - COMPACT things 42 to 70 mm tall and 42 to 60 mm across (cubes, short cylinders, three- and five-sided blocks,
-    25 to 108 g), standing or lying: the DEFAULT call took and kept 8 of 8 for 14 to 20 s, through a lift, a 6 s
-    hold, a 0.2 m carry and a set-down. They slide 0.4 to 1.8 mm/s in the hand while the arm stands still.
-  - Things LOWER than 39 mm are refused by the default call (the wrist flange would touch the table) 4 of 4; a
-    larger `palm_gap_m` (0.04 to 0.055) lets it run but only 1 of 8 such tries held. A 23 mm thin tool lying flat,
-    a 30 mm oval bar and a 37 mm three-sided bar were never held.
-  - LONG things lying (a 35 mm bar, a bulb): the fingers must stand square across the thing (`palm_yaw_deg`), or
-    name its middle as a `Pose` with `size_m` of a short piece; so taken they held 6 s still and fell out about 2 s
-    into a carry. A 35 x 200 mm bar standing on its end was held 10 s but could not be carried (refused).
-  - THE TELL: read the thumb&#x27;s force after the grasp or a `hold`: about 0 N in both losses, over 2 N in the 9 that
-    were kept. No thumb force = do not carry; put it down or grasp again.
-  - The squeeze fades: `hold` renews it, `transport` and `set_down` do not. Carry soon after the grasp or a `hold`.
-  - Put down with `set_down(onto=...)` it ended 19 to 37 mm from the aim, lying as it lay in the hand (tilted about
-    30 degrees), 6 of 7. The closing fingers pull a free thing 2 to 5 cm toward the wrist before it is gripped.
+- **`grasp_scripted`**: NOT for S2 any more (owner's rule: grasping is the policy's). Use `acquire`.
 - **`hold`**. After an own-clip grasp, to about 20 s (see hold time). Sends no hand command and does not rescue a grip
   that slides. Reports `held`; `grasp_slip` when the hand is seen empty. **`lift`**: straight up with what is held;
   refused where a joint stands on its limit (ask for less); above 0.10 m with a load `[untested]`.
@@ -188,7 +181,9 @@ see under the hand: `clear_view`, then look. Depth joins things that touch and m
 - **`stroke`**. A 40 mm fingertip stroke ran and dragged a loose 80 g slab 10 mm `[measured n=1 rig double]`; with a
   held tool `[untested]`.
 - **`strike`**, **`pour`**, **`wrist_reorient`** with a load, **`spin_in_hand`**: never run with the policy on this
-  rig `[untested]`. Earlier arm runs of spins and pours mostly lost the grip `[prior: old atlas, unaudited]`.
+  rig `[untested]`. Earlier arm runs of spins and pours mostly lost the grip `[prior: old atlas, unaudited]`. The
+  nearest measured thing: a spin reference about the VERTICAL on a translating wrist did not turn the block (see the
+  fingers bullet under trajectory parameters) — expect `spin_in_hand`'s turn not to be delivered either until measured.
 - **`orbit`**. Turned a gripped hinged lid 66 degrees in 7.9 s `[measured n=1 rig double]`; refused whole if any part
   of the arc is out of reach. With a policy grasp `[untested]`.
 - **`move_to_pose`**, **`retreat`**, **`go_home`**, **`clear_view`**. Empty-hand moves, reliable inside reach
@@ -200,7 +195,7 @@ see under the hand: `clear_view`, then look. Depth joins things that touch and m
 2. Choose skills whose conditions hold: object free, in the reach strip, resting as its clips have it.
 3. Pick parameters inside measured lines; where only a prior exists take the cautious end. A step that rests on
    `[untested]` is a risk: keep it small, put it late, and write down what you do if it fails.
-4. A grasp refused for its rest pose means: change the object&#x27;s pose first, then ask again.
+4. A grasp refused for its rest pose means: change the object's pose first, then ask again.
 5. After two refusals for the same reason change the skill, not its arguments: an argument change went through 5 times
    in 51, a change of skill 7 times in 13 `[measured n=70 refusals]`.
 6. Count ticks first: about 200 a call, 300 to 500 a grasp, 300 for the ending `[measured n=18 episodes]`.
