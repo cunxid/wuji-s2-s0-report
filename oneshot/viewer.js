@@ -124,9 +124,7 @@
       [a, d, c, a, c, b].forEach(function (p) { sphereTris.push(p[0], p[1], p[2]); });
     }
   })();
-  var meshTris = [];
-  for (var fi = 0; fi < D.mesh.f.length; fi++) { var vi = D.mesh.f[fi] * 3; meshTris.push(D.mesh.v[vi], D.mesh.v[vi + 1], D.mesh.v[vi + 2]); }
-  var G = { cube: triBuffer(cubeTris), sphere: triBuffer(sphereTris), mesh: triBuffer(meshTris), palm: triBuffer(new Array(4 * 9).fill(0)),
+  var G = { cube: triBuffer(cubeTris), sphere: triBuffer(sphereTris), palm: triBuffer(new Array(4 * 9).fill(0)),
             dyn: lineBuffer(new Array(6 * 64).fill(0)), grid: null };
 
   // ---------------------------------------------------------------- theme
@@ -150,6 +148,16 @@
       }
       return lineBuffer(d);
     }
+    var meshTris = [];
+    for (var fi = 0; fi < run.mesh.f.length; fi++) { var vi = run.mesh.f[fi] * 3; meshTris.push(run.mesh.v[vi], run.mesh.v[vi + 1], run.mesh.v[vi + 2]); }
+    run.meshBuf = triBuffer(meshTris);
+    var tb = run.context.table, gd = [];
+    if (tb) {                      // the table's grid, 5 cm
+      var gz = tb.c[2] + tb.h[2] + 0.0006, g = C.grid, step = 0.05;
+      for (var x = tb.c[0] - tb.h[0]; x <= tb.c[0] + tb.h[0] + 1e-6; x += step) gd.push(x, tb.c[1] - tb.h[1], gz, g[0], g[1], g[2], x, tb.c[1] + tb.h[1], gz, g[0], g[1], g[2]);
+      for (var y = tb.c[1] - tb.h[1]; y <= tb.c[1] + tb.h[1] + 1e-6; y += step) gd.push(tb.c[0] - tb.h[0], y, gz, g[0], g[1], g[2], tb.c[0] + tb.h[0], y, gz, g[0], g[1], g[2]);
+    }
+    run.grid = lineBuffer(gd.length ? gd : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
     run.buf = { wc: path(run.wc, n, 0, true), oc: path(run.oc, run.open - run.attach, run.attach, true),
                 oa: path(run.oa, n, 0, false), pa: path(run.pa, n, 0, false) };
   }
@@ -158,12 +166,6 @@
     return { p: [arr[i * 7] / 1e4, arr[i * 7 + 1] / 1e4, arr[i * 7 + 2] / 1e4],
              R: rotOfQuat([arr[i * 7 + 3], arr[i * 7 + 4], arr[i * 7 + 5], arr[i * 7 + 6]]) };
   }
-  (function () {                   // the table's grid, 5 cm
-    var t = D.context.table, z = t.c[2] + t.h[2] + 0.0006, d = [], g = C.grid, step = 0.05;
-    for (var x = t.c[0] - t.h[0]; x <= t.c[0] + t.h[0] + 1e-6; x += step) d.push(x, t.c[1] - t.h[1], z, g[0], g[1], g[2], x, t.c[1] + t.h[1], z, g[0], g[1], g[2]);
-    for (var y = t.c[1] - t.h[1]; y <= t.c[1] + t.h[1] + 1e-6; y += step) d.push(t.c[0] - t.h[0], y, z, g[0], g[1], g[2], t.c[0] + t.h[0], y, z, g[0], g[1], g[2]);
-    G.grid = lineBuffer(d);
-  })();
 
   // ---------------------------------------------------------------- state
   var HOME = { target: [-0.37, -0.31, 0.99], az: 32 * Math.PI / 180, el: 30 * Math.PI / 180, dist: 0.82 };
@@ -185,6 +187,8 @@
     var r = run();
     slider.max = r.ticks - 1;
     Array.prototype.forEach.call(root.querySelectorAll('.vrun'), function (b, k) { b.classList.toggle('on', k === S.run); });
+    var o0 = [r.oa[0] / 1e4, r.oa[1] / 1e4, r.oa[2] / 1e4], far = Math.hypot(cam.target[0] - o0[0], cam.target[1] - o0[1]);
+    if (far > 0.45) cam.target = [o0[0], o0[1], o0[2] + 0.06];      // another scene: look at this run's block
     buildStrip(); buildLegend(); buildLabels();
     setTick(tick === undefined ? Math.min(S.tick, r.ticks - 1) : tick);
   }
@@ -250,7 +254,7 @@
       labelEls.push({ el: el, p: [arr[e.tick * 7] / 1e4, arr[e.tick * 7 + 1] / 1e4, arr[e.tick * 7 + 2] / 1e4], lost: !!e.lost });
     });
     if (r.aim) {
-      var a = document.createElement('span'); a.className = 'vlabel aim'; a.textContent = 'aim of the place';
+      var a = document.createElement('span'); a.className = 'vlabel aim'; a.textContent = r.aim_label || 'aim';
       labels.appendChild(a); labelEls.push({ el: a, p: r.aim, aim: true });
     }
   }
@@ -310,7 +314,7 @@
   }
   function draw() {
     resize();
-    var r = run(), t = S.tick, ctx = D.context;
+    var r = run(), t = S.tick, ctx = r.context;
     eye = [cam.target[0] + cam.dist * Math.cos(cam.el) * Math.cos(cam.az), cam.target[1] + cam.dist * Math.cos(cam.el) * Math.sin(cam.az),
            cam.target[2] + cam.dist * Math.sin(cam.el)];
     VP = mul(perspective(40 * Math.PI / 180, canvas.width / canvas.height, 0.02, 30), lookAt(eye, cam.target, [0, 0, 1]));
@@ -321,17 +325,17 @@
     var objA = pose(r.oa, t), palmA = pose(r.pa, t), wristC = pose(r.wc, t);
     useLit();
     if (on('context')) {
-      var top = ctx.table.c[2] + ctx.table.h[2];
-      box(ctx.table.c, ctx.table.h, null, C.table);
-      box([ctx.poster.c[0], ctx.poster.c[1], top + 0.0008], [ctx.poster.h[0], ctx.poster.h[1], 0.0008], null, POSTER);
-      box(ctx.book.c, ctx.book.h, rotZ(ctx.book.yaw), BOOK);
-      for (var i = 0; i < ctx.curl.n; i++) {
+      var top = ctx.table ? ctx.table.c[2] + ctx.table.h[2] : 0;
+      if (ctx.table) box(ctx.table.c, ctx.table.h, null, C.table);
+      if (ctx.poster) box([ctx.poster.c[0], ctx.poster.c[1], top + 0.0008], [ctx.poster.h[0], ctx.poster.h[1], 0.0008], null, POSTER);
+      if (ctx.book) box(ctx.book.c, ctx.book.h, rotZ(ctx.book.yaw), BOOK);
+      for (var i = 0; ctx.curl && r.curl && i < ctx.curl.n; i++) {
         var o = (t * ctx.curl.n + i) * 3, R = rotX(r.curl[o + 2] / 1e4), p = [ctx.curl.x, r.curl[o] / 1e4, r.curl[o + 1] / 1e4];
         box(apply(R, p, ctx.curl.off), ctx.curl.h, R, CURL);
       }
       if (r.aim) ball(r.aim, 0.006, [1, 1, 1]);
     }
-    drawTris(G.mesh, matOf(objA.R, objA.p), BLOCK);
+    drawTris(r.meshBuf, matOf(objA.R, objA.p), BLOCK);
     var hand = [];
     if (on('hand')) {
       var kn = r.knuckles.map(function (k) { return apply(palmA.R, palmA.p, k); }), tris = [];
@@ -352,7 +356,7 @@
 
     useLine();
     gl.enable(gl.BLEND); gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
-    if (on('context')) drawLine(G.grid, gl.LINES, 0, G.grid.count, 1, 0.35);
+    if (on('context')) drawLine(r.grid, gl.LINES, 0, r.grid.count, 1, 0.35);
     if (on('palm_act')) { drawLine(r.buf.pa, gl.LINE_STRIP, t, r.ticks - t, 1, 0.3, C.actPalm); drawLine(r.buf.pa, gl.LINE_STRIP, 0, t + 1, 1, 1, C.actPalm); }
     if (on('obj_act')) { drawLine(r.buf.oa, gl.LINE_STRIP, t, r.ticks - t, 1, 0.3, C.actObj); drawLine(r.buf.oa, gl.LINE_STRIP, 0, t + 1, 2, 1, C.actObj); }
     if (on('wrist_cmd')) { drawLine(r.buf.wc, gl.LINE_STRIP, t, r.ticks - t, 1, 0.38); drawLine(r.buf.wc, gl.LINE_STRIP, 0, t + 1, 3, 1); }
@@ -375,7 +379,7 @@
     if (on('ghost') && t >= r.attach) {      // the ghost: commanded pose from the attach on; after the command to open it stays where the reference let go
       var gp = pose(r.oc, Math.min(t, r.open - 1) - r.attach);
       useLit(); gl.depthMask(false);
-      drawTris(G.mesh, matOf(gp.R, gp.p), GHOST, t < r.open ? 0.5 : 0.28);
+      drawTris(r.meshBuf, matOf(gp.R, gp.p), GHOST, t < r.open ? 0.5 : 0.28);
       gl.depthMask(true);
     }
     gl.disable(gl.BLEND);
@@ -465,6 +469,7 @@
   // ---------------------------------------------------------------- start
   S.speed = parseFloat($('.vspeed').value) || 1;
   if (!readHash()) { S.tick = D.runs[0].attach; setRun(0, D.runs[0].attach); }
+  else if (root.scrollIntoView && !/noscroll=1/.test(window.location.hash)) root.scrollIntoView();       // opened with a linked view: show the viewer
   root.addEventListener('pointerdown', function () { live = true; }, true);
   root.addEventListener('keydown', function () { live = true; }, true);
   if (/play=1/.test(window.location.hash)) setPlaying(true);
