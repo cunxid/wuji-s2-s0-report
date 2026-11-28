@@ -47,16 +47,21 @@ never retraining the controller. Tianji arm + wuji2 20-DoF hand; evaluated on Ha
 <a href="daily50_trials.html">🎯 The 50 in-house tasks: success rate, and a subpage per task with its running log (every run of the one S0 skill, the earlier plan-first trials, films) (session agents, development series; not a counted test series)</a>
 </div>
 
-<h2 id="today">The harness today (2026-11-27)</h2>
+<h2 id="today">The harness today (2026-11-28)</h2>
 <figure class="fig-wide"><a href="harness_fig/harness_loop.svg"><img src="harness_fig/harness_loop.svg" alt="The harness today: S2, the looking agent, sees only the head camera (colour, numbered things, depth) and measures with point_at; it writes one plan of calls with keypoints. One skill program (transport, push, press; slide not passing yet) turns each call into one reference, checks it with the arm planner and with S0 in a test bench, and runs it: the arm follows the wrist rows, S0 moves the fingers. Every run is judged and every PASS is read by a refuting verifier; every trial goes back into the look instructions for S2 and into the program and its capability store."></a><figcaption>The harness today. The pictures are real: what one look got (the jar and drawer task) and the robot's head camera in finished runs (jar and drawer, power strip: both judged PASS; whiteboard: judged FAIL, its stroke is shown), drawn afterwards from the runs' records. <a href="harness_fig/harness_loop.svg">SVG</a> · <a href="harness_fig/harness_loop.png">PNG</a></figcaption></figure>
-<p><span class="kpi"><span class="big">6 of 18</span><br><span class="na">in-house tasks tried that pass with the one program, all verified</span></span>
-<span class="kpi"><span class="big">3 + 1</span><br><span class="na">skills: transport, push, press; a slide is built, not passing yet</span></span>
-<span class="kpi"><span class="big">265</span><br><span class="na">runs: 78 judged PASS, 50 FAIL, 137 refused or not judged</span></span></p>
+<p><span class="kpi"><span class="big">6 of 40</span><br><span class="na">in-house tasks tried that pass with the one program, all verified (all 40 playable tasks now tried)</span></span>
+<span class="kpi"><span class="big">3 + 3</span><br><span class="na">skills: transport, push, press; built and not passing yet: a slide, a held tool that works (attitude at every keypoint), a turn in the hand</span></span>
+<span class="kpi"><span class="big">342</span><br><span class="na">runs: 82 judged PASS, 67 FAIL, 193 refused or not judged</span></span></p>
 <p>Passing: the block tower, the candle, the orange, the jar and drawer, the triangle through the shape sorter, the power strip. The test environment is
 S0's training environment as far as it can be made so (the hand does not collide with the table, as in training). Development runs, not first attempts and
 not a counted series. <a href="skills.html"><b>Skills (interactive)</b></a>: each skill with a 3D view of real runs and a keypoint editor.
 <a href="harness.html#today"><b>Inside the harness</b></a>: the whole chain, the test environment, what it is held to.
-<a href="daily50_trials.html"><b>The 50 tasks</b></a>: success rate and a running log per task. <a href="examples.html"><b>Two examples, start to finish</b></a>: t07 and t46 run once each, with the process, its times, the keypoints and what was generated.</p>
+<a href="daily50_trials.html"><b>The 50 tasks</b></a>: success rate and a running log per task.
+<b>2026-11-28:</b> the 22 tasks not yet tried were each looked at once (a scripted look of about a minute, then a short plan) and run: 72 runs, no new counted pass.
+Three ran and failed for want of a skill (a blow, a lever, a press with a tool); the others were refused by the program's own checks (the arm planner; S0 not holding
+the thing in the randomised test bench; no recorded grasp). One judged PASS (the paint lid pried open with the screwdriver) was refuted by its verifier: a jump in the
+program's own motion had knocked the lid open; the jump is removed and the run then fails. Two skills were added from it: a turn in the hand, learned from the
+recorded clips, and a held tool that works (the thing's attitude follows every keypoint). <a href="examples.html"><b>Two examples, start to finish</b></a>: t07 and t46 run once each, with the process, its times, the keypoints and what was generated.</p>
 
 <div class="notice" style="background:#f4f7fb;border-color:#c9d6e6;border-left-color:#2b6cb0;color:#0b0b0b"><b>New on 2026-11-24 (work in progress; each page says what is and is not done).</b>
 <a href="status.html"><b>Start here: where the overnight work stands</b></a> (what was asked, point by point; what is done, what is running, what comes next, and the decisions waiting for the owner).
