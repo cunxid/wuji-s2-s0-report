@@ -1,152 +1,42 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Skills — interactive reference generators</title>
-<style>
-body{font:15px/1.55 -apple-system,"Segoe UI",sans-serif;color:#0b0b0b;background:#fcfcfb;max-width:1100px;margin:24px auto;padding:0 16px}
-h1{font-size:23px;margin-bottom:2px}.sub{color:#555;margin-top:0}
-a{color:#2056a8}code{background:#f1f0ec;padding:1px 5px;border-radius:4px;font-size:12.5px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.card{border:1px solid #e1e0d9;border-radius:10px;background:#fff;padding:12px 14px}
-.card h2{font-size:16px;margin:0 0 2px;border:none;padding:0}
-.card .d{color:#777;font-size:12.5px;margin:0 0 8px}
-.ctl{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
-.ctl label{font-size:11.5px;color:#666;display:block}
-.ctl input,.ctl select{width:74px;font:13px monospace;padding:3px 5px;border:1px solid #d7d6cf;border-radius:5px}
-canvas{width:100%;border:1px solid #eee;border-radius:6px;background:#fafaf8}
-.stats{font:11.5px monospace;color:#444;margin-top:5px}
-.note{color:#898781;font-size:12.5px;margin-top:18px}
-.nav a{display:inline-block;border:1px solid #d7d6cf;border-radius:8px;padding:6px 12px;background:#fff;text-decoration:none;font-weight:600;margin-right:8px;font-size:13.5px}
-.notice{font-size:13.5px;margin:12px 0;padding:10px 13px;background:#fff4f1;border:1px solid #f0b8a8;border-left:5px solid #d8343c;border-radius:8px;color:#4a150e}
-</style></head><body>
-<h1>Skills — interactive reference generators</h1>
-<p class="sub">Each skill is a <b>fixed wrapper</b>: parameters in → a 50&nbsp;Hz wrist(+object) reference
-out; the frozen S0 tracks it and physics decides. These panels run the <b>same analytic shapes</b>
-the wrappers compose (cosine-eased segments, slerp tilts) in your browser — type numbers, see the
-reference it would generate. Per-parameter measurements live on the
-<a href="capability.html">capability page</a>.</p>
-<div class="nav"><a href="index.html">← Main</a><a href="capability.html">📊 Capability boundary</a><a href="wuji2_tasks.html">🎬 Task gallery</a></div>
-<div class="notice"><b>Correction, 2026-11-23.</b> Three panels on this page (spin, pour, strike) used to
-quote results next to the generated reference: per-object in-hand rotation “walls”, a pour that
-“reaches 146°”, and a strike elevation band labelled “mallet-down”. An audit of every reported pass
-found that the rotation and pour figures came from scores that did not measure what they claimed,
-and that the strike was a push along the handle that left the nail where it started. The three
-panels now say what the audit found instead. The reference generators are unchanged, and so are
-the ✅ / ⚠ envelope lines, which come from tracking measurements the audit did not cover. Full
-record: <a href="audit.html">audit of reported passes</a>.</div>
-<div class="grid" id="grid"></div>
-<p class="note">Frames: table top at z≈0.92&nbsp;m, grasp anchor at (-0.32,&nbsp;-0.45). Eased position
-segments use p(t)=p₀+(p₁-p₀)·(0.5-0.5cos(πt)) at 50&nbsp;Hz — identical to the cosim composer’s
-<code>_seg</code>. Rendering is an isometric projection (right-handed, z up); the orange dot marks
-the start, the red dot the end; the side strip plots the time profile. These are references, not
-rollouts: whether S0 can track a given parameter set is exactly what the capability atlas measures.</p>
-<script>
-const ENV_EDGES={line:{n:12,vmax:0.5},lift:{n:9,vmax:0.417},zigzag:{n:11,vmax:0.2},arc:{n:9,vmax:112.5},yaw:{n:8,vmax:120.0}};
-function envCheck(kind,speed,unit){const e=ENV_EDGES[kind];if(!e)return'';
- return speed<=e.vmax?` · ✅ within the measured envelope (${e.n} objects tracked ≤${e.vmax}${unit})`
- :` · ⚠ OUTSIDE every measured envelope (fastest tracked: ${e.vmax}${unit} on the shipped rig)`;}
-const HZ=50, ANCHOR=[-0.32,-0.45,0.95], BOWL=[-0.26,-0.30,0.92];
-function ease(t){return 0.5-0.5*Math.cos(Math.PI*t);}
-function seg(pts,n,f){for(let k=0;k<n;k++)pts.push(f(k/Math.max(1,n-1)));}
-function lin(a,b,t){return a.map((v,i)=>v+(b[i]-v)*t);}
-// ---- generators (mirror the cosim composers' shapes) ----
-const GENS={
- transport:{title:'transport / carry (line)',desc:'carry the held object along a straight eased line',
-  params:{axis:['x','y','z'],len_m:0.25,T_ticks:120},
-  gen:(p)=>{const ax={x:[1,0,0],y:[0,1,0],z:[0,0,1]}[p.axis];const a=ANCHOR,b=a.map((v,i)=>v+ax[i]*+p.len_m);
-   const pts=[];seg(pts,25,t=>a);seg(pts,+p.T_ticks,t=>lin(a,b,ease(t)));seg(pts,30,t=>b);
-   const _v=1.571*+p.len_m/(+p.T_ticks/HZ);return{pts,profile:pts.map(q=>q[2]),stats:`peak speed ≈ ${_v.toFixed(2)} m/s · ${((25+ +p.T_ticks+30)/HZ).toFixed(1)} s`+envCheck('line',_v,' m/s')}}},
- arc:{title:'arc (curved carry)',desc:'carry along a circular arc about a world axis',
-  params:{axis:['z','x'],deg:90,radius_m:0.2,T_ticks:150},
-  gen:(p)=>{const c=[...ANCHOR];const r=+p.radius_m,th=+p.deg*Math.PI/180;const pts=[];
-   seg(pts,25,t=>[c[0]+r,c[1],c[2]]);
-   seg(pts,+p.T_ticks,t=>{const a=ease(t)*th;return p.axis==='z'?[c[0]+r*Math.cos(a),c[1]+r*Math.sin(a),c[2]]:[c[0]+r*Math.cos(a),c[1],c[2]+r*Math.sin(a)];});
-   const _w=1.571*+p.deg/(+p.T_ticks/HZ);return{pts,profile:pts.map((q,i)=>i),stats:`arc ${p.deg}° r=${p.radius_m} m · peak ${Math.abs(_w).toFixed(0)}°/s`+envCheck('arc',Math.abs(_w),'°/s')}}},
- lift:{title:'lift',desc:'vertical raise of the held object',params:{dz_m:0.2,T_ticks:100},
-  gen:(p)=>{const a=ANCHOR,b=[a[0],a[1],a[2]+ +p.dz_m];const pts=[];seg(pts,25,t=>a);seg(pts,+p.T_ticks,t=>lin(a,b,ease(t)));seg(pts,30,t=>b);
-   const _v=1.571*+p.dz_m/(+p.T_ticks/HZ);return{pts,profile:pts.map(q=>q[2]),stats:`peak ${_v.toFixed(2)} m/s`+envCheck('lift',_v,' m/s')}}},
- spin:{title:'spin_in_hand / flip',desc:'wrist frozen; only the OBJECT reference rotates about its own axis, for S0’s fingers to follow',
-  params:{axis:['z','x','y'],deg:-170,T_ticks:120},
-  gen:(p)=>{const pts=[];const th=+p.deg*Math.PI/180;const prof=[];
-   seg(pts,30,t=>{prof.push(0);return ANCHOR;});
-   seg(pts,+p.T_ticks,t=>{prof.push(ease(t)*+p.deg);return ANCHOR;});
-   seg(pts,60,t=>{prof.push(+p.deg);return ANCHOR;});
-   return{pts,profile:prof,angular:true,stats:`${p.deg}° about obj-${p.axis} in ${(+p.T_ticks/HZ).toFixed(1)} s · ${(Math.abs(+p.deg)/(+p.T_ticks/HZ)).toFixed(0)} °/s (audit 2026-11-23: the per-object “wall” figures shown here before are unverified, because the score behind them ignores which axis the object turned about. What holds up as a demo: the screwdriver, commanded −170° about its long axis in 120 ticks, was rolled about 130° in the fingers and went no further while the command continued; a cone was turned about 65° in the fingers without being dropped, medium confidence. Both are in-hand rotations only, not completed tasks)`}}},
- pour:{title:'pour',desc:'carry over the receptacle, tilt past POUR_DEG, return upright (in the audited −120° run on this rig the wrist reached its joint limits)',
-  params:{POUR_DEG:-120,carry_T:140,tilt_T:80},
-  gen:(p)=>{const over=[BOWL[0],BOWL[1],BOWL[2]+0.30];const pts=[];const prof=[];
-   seg(pts,25,t=>{prof.push(0);return ANCHOR;});
-   seg(pts,+p.carry_T,t=>{prof.push(0);return lin(ANCHOR,over,ease(t));});
-   seg(pts,30,t=>{prof.push(0);return over;});
-   seg(pts,+p.tilt_T,t=>{prof.push(ease(t)*+p.POUR_DEG);return over;});
-   seg(pts,60,t=>{prof.push(+p.POUR_DEG);return over;});
-   seg(pts,60,t=>{prof.push((1-ease(t))*+p.POUR_DEG);return over;});
-   return{pts,profile:prof,angular:true,stats:`tilt ${p.POUR_DEG}° · total ${((25+ +p.carry_T+30+ +p.tilt_T+120)/HZ).toFixed(1)} s (audit 2026-11-23, with a solid 60 mm cube on this rig: at −120° the tilt stalled at the wrist joint limits after about 70° of hand rotation; the 146° shown here before was the cube’s absolute orientation, roughly 80° of which was there before the tilt began. At +120° the hand tilted about 117°; the ~80° shown before was the same kind of absolute-orientation reading. Neither run is a pour)`}}},
- strike:{title:'strike (hammer → nail)',desc:'approach from above, then 5 sustained press cycles along the head direction',
-  params:{elev_deg:75,az_deg:30,L_m:0.228},
-  gen:(p)=>{const nail=[-0.10,0.10,0.959];const e=+p.elev_deg*Math.PI/180,az=+p.az_deg*Math.PI/180;
-   const h=[Math.cos(e)*Math.cos(az),Math.cos(e)*Math.sin(az),-Math.sin(e)];const L=+p.L_m;
-   const Wr=nail.map((v,i)=>v-(L+0.08)*h[i]),Wh=nail.map((v,i)=>v-(L-0.045)*h[i]);
-   const Wu=[Wr[0],Wr[1],Wr[2]+0.06],Wo=[Wr[0],Wr[1],Wr[2]+0.10];const st=[Wr[0]-0.25,Wr[1]-0.15,Wr[2]+0.12];
-   const pts=[];seg(pts,60,t=>lin(st,Wo,ease(t)));seg(pts,30,t=>lin(Wo,Wr,t));seg(pts,15,t=>Wr);
-   for(let k=0;k<5;k++){seg(pts,8,t=>lin(Wr,Wh,t));seg(pts,14,t=>Wh);seg(pts,7,t=>lin(Wh,Wu,t));seg(pts,5,t=>lin(Wu,Wr,t));}
-   return{pts,profile:pts.map(q=>q[2]),stats:`elev ${p.elev_deg}° az ${p.az_deg}° head-L ${(+p.L_m*1000)|0} mm · press stroke ${(125).toFixed(0)} mm along ĥ (audit 2026-11-23: in both audited strike runs this press pattern left the nail where it started. It is a push along the handle, not a face-down blow: in the two-handed run the hammer’s long axis was 54–65° below horizontal at the strokes. The “≥75° = mallet-down” band shown here before is withdrawn)`}}},
- place:{title:'place / drop',desc:'carry above the receptacle, open at DROP_DZ',
-  params:{DROP_DZ_m:0.04,carry_T:150},
-  gen:(p)=>{const over=[BOWL[0],BOWL[1],BOWL[2]+0.17+ +p.DROP_DZ_m];const pts=[];
-   seg(pts,25,t=>ANCHOR);seg(pts,+p.carry_T,t=>lin(ANCHOR,over,ease(t)));seg(pts,40,t=>over);
-   const away=[over[0],over[1],over[2]+0.10];seg(pts,40,t=>lin(over,away,t));
-   return{pts,profile:pts.map(q=>q[2]),stats:`drop height ${(0.17+ +p.DROP_DZ_m).toFixed(2)} m over the receptacle`}}},
- press:{title:'press (button / mouse click)',desc:'hover above the measured button, march down along the press axis',
-  params:{depth_mm:12,hover_m:0.22,march_T:160},
-  gen:(p)=>{const btn=[-0.293,-0.218,0.939];const hov=[btn[0],btn[1],btn[2]+ +p.hover_m];
-   const dn=[btn[0],btn[1],btn[2]+0.012-(+p.depth_mm/1000)];const pts=[];
-   seg(pts,40,t=>lin([hov[0]-0.2,hov[1]-0.1,hov[2]+0.05],hov,ease(t)));seg(pts,+p.march_T,t=>lin(hov,dn,ease(t)));
-   for(let k=0;k<3;k++){seg(pts,12,t=>dn);seg(pts,10,t=>lin(dn,[dn[0],dn[1],dn[2]+0.02],t));seg(pts,10,t=>lin([dn[0],dn[1],dn[2]+0.02],dn,t));}
-   return{pts,profile:pts.map(q=>q[2]),stats:`press depth ${p.depth_mm} mm · 3 click cycles`}}},
-};
-// ---- renderer: isometric projection + profile strip ----
-function draw(cv,res){const ctx=cv.getContext('2d');const W=cv.width=cv.clientWidth*2,H=cv.height=300;
- ctx.clearRect(0,0,W,H);const pts=res.pts;
- let mn=[1e9,1e9,1e9],mx=[-1e9,-1e9,-1e9];
- for(const q of pts)for(let i=0;i<3;i++){mn[i]=Math.min(mn[i],q[i]);mx[i]=Math.max(mx[i],q[i]);}
- for(let i=0;i<3;i++){const pad=Math.max(0.06,(mx[i]-mn[i])*0.2);mn[i]-=pad;mx[i]+=pad;}
- const c=[(mn[0]+mx[0])/2,(mn[1]+mx[1])/2,(mn[2]+mx[2])/2];
- const sc=Math.min(W*0.55,H*1.6)/Math.max(mx[0]-mn[0],mx[1]-mn[1],mx[2]-mn[2]);
- const P=q=>{const x=q[0]-c[0],y=q[1]-c[1],z=q[2]-c[2];
-  return[W*0.36+(x-y)*0.866*sc,H*0.55-((x+y)*0.5*0.5+z)*sc];};
- // table plane hint
- ctx.strokeStyle='#ddd';ctx.lineWidth=1;ctx.beginPath();
- const z0=0.92;[[mn[0],mn[1]],[mx[0],mn[1]],[mx[0],mx[1]],[mn[0],mx[1]],[mn[0],mn[1]]].forEach((xy,i)=>{
-  const p=P([xy[0],xy[1],z0]);i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]);});ctx.stroke();
- // path
- ctx.strokeStyle='#2056a8';ctx.lineWidth=2.4;ctx.beginPath();
- pts.forEach((q,i)=>{const p=P(q);i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]);});ctx.stroke();
- const s=P(pts[0]),e=P(pts[pts.length-1]);
- ctx.fillStyle='#e8842a';ctx.beginPath();ctx.arc(s[0],s[1],6,0,7);ctx.fill();
- ctx.fillStyle='#d8343c';ctx.beginPath();ctx.arc(e[0],e[1],6,0,7);ctx.fill();
- // profile strip (right 28%)
- const px0=W*0.72,pw=W*0.26,ph=H*0.72,py0=H*0.14;const prof=res.profile;
- let pmn=Math.min(...prof),pmx=Math.max(...prof);if(pmx-pmn<1e-9){pmx=pmn+1;}
- ctx.strokeStyle='#eee';ctx.strokeRect(px0,py0,pw,ph);
- ctx.strokeStyle=res.angular?'#1baf7a':'#888';ctx.lineWidth=2;ctx.beginPath();
- prof.forEach((v,i)=>{const x=px0+pw*i/(prof.length-1),y=py0+ph*(1-(v-pmn)/(pmx-pmn));i?ctx.lineTo(x,y):ctx.moveTo(x,y);});ctx.stroke();
- ctx.fillStyle='#999';ctx.font='20px monospace';
- ctx.fillText(res.angular?'angle°(t)':'z(t)',px0+6,py0+24);
- ctx.fillText(`${(pts.length/HZ).toFixed(1)}s @50Hz`,px0+6,py0+ph-8);}
-// ---- build cards ----
-const grid=document.getElementById('grid');
-for(const[key,g]of Object.entries(GENS)){
- const card=document.createElement('div');card.className='card';card.id=key;
- let ctl='';
- for(const[pn,pv]of Object.entries(g.params)){
-  if(Array.isArray(pv))ctl+=`<span><label>${pn}</label><select data-p="${pn}">${pv.map(v=>`<option>${v}</option>`).join('')}</select></span>`;
-  else ctl+=`<span><label>${pn}</label><input data-p="${pn}" value="${pv}"></span>`;}
- card.innerHTML=`<h2>${g.title}</h2><p class="d">${g.desc}</p><div class="ctl">${ctl}
-  <span><label>&nbsp;</label><button>generate</button></span></div><canvas></canvas><div class="stats"></div>`;
- grid.appendChild(card);
- const cv=card.querySelector('canvas'),st=card.querySelector('.stats');
- const run=()=>{const p={};card.querySelectorAll('[data-p]').forEach(el=>p[el.dataset.p]=el.value);
-  try{const res=g.gen(p);draw(cv,res);st.textContent=res.stats;}catch(e){st.textContent='generator error: '+e;}};
- card.querySelector('button').onclick=run;
- card.querySelectorAll('[data-p]').forEach(el=>el.addEventListener('change',run));
- run();}
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Skills (interactive): what the harness can do today</title><style>
+body{font:15px/1.55 system-ui,sans-serif;max-width:1320px;margin:24px auto;padding:0 16px;color:var(--text-primary);background:var(--page)}
+.viz-root{color-scheme:light;--page:#fafafa;--surface-1:#ffffff;--text-primary:#191919;--text-secondary:#666666;--line:#dddddd;--series-1:#257de0;--table:#eceef1;--box:#eef3fb}
+@media (prefers-color-scheme:dark){.viz-root{color-scheme:dark;--page:#121212;--surface-1:#191919;--text-primary:#efefef;--text-secondary:#9c9c9c;--line:#333333;--series-1:#338ced;--table:#24272b;--box:#1d2633}}
+h1{font-size:26px;margin:8px 0 4px}h2{font-size:20px;margin:34px 0 6px;padding-top:10px;border-top:1px solid var(--line)}h3{font-size:14px;margin:12px 0 2px}
+a{color:var(--series-1)}.na{color:var(--text-secondary);font-size:13px}.one{font-size:16px;margin:2px 0 8px}
+.box{background:var(--box);border-left:4px solid var(--series-1);padding:10px 14px;border-radius:6px;margin:10px 0}
+.tiles{display:flex;gap:12px;flex-wrap:wrap;margin:10px 0}.tile{flex:1 1 180px;background:var(--surface-1);border:1px solid var(--line);border-radius:8px;padding:10px 14px}
+.tile .num{font-size:26px;font-weight:700;line-height:1.2}
+.toc{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.toc a,.tabs button{font:inherit;font-size:13px;padding:3px 10px;border:1px solid var(--line);border-radius:14px;background:var(--surface-1);color:var(--text-primary);text-decoration:none;cursor:pointer}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0}.tabs button[aria-pressed=true]{background:var(--series-1);border-color:var(--series-1);color:#fff}
+.grid{display:grid;grid-template-columns:minmax(300px,5fr) minmax(420px,7fr);gap:18px;align-items:start}@media (max-width:980px){.grid{grid-template-columns:1fr}}
+ul{margin:2px 0 6px;padding-left:20px}li{margin:2px 0}
+.status{background:var(--surface-1);border:1px solid var(--line);border-radius:8px;padding:8px 12px;margin:8px 0}
+iframe.traj{width:100%;height:505px;border:1px solid var(--line);border-radius:8px;display:block;background:var(--surface-1)}
+.cap{font-size:13px;color:var(--text-secondary);margin:4px 0 0;min-height:38px}
+</style></head><body class='viz-root'>
+<p class='na'><a href='index.html'>dashboard</a> · <a href='daily50_trials.html'>the 50 tasks: success rate and a running log per task</a> · <a href='daily50.html'>the 50 tasks (gallery)</a> · built 2026-11-27 20:52 EST by <code>python s2/s2loop/skills_page.py</code></p>
+<h1>Skills (interactive): what the harness can do today</h1>
+<div class='box'><b>The chain.</b> S2, a looking agent that sees only the robot's head camera, writes a plan: one or more calls, each a few keypoints of a thing. One skill program (version 3) turns every call into one reference that the frozen tracking policy S0 follows: the arm follows the wrist rows, S0 moves the fingers on every row. Before anything moves the program checks the reference for free: the arm planner, then S0 itself in a test bench. Grasping is always S0's own; no finger command is scripted.</div>
+<div class='tiles'><div class='tile'><div class='num'>6 of 16</div><div class='na'>daily50 tasks tried that pass with this one program, each read by a refuting verifier</div></div><div class='tile'><div class='num'>3 + 1</div><div class='na'>skills: transport, push, press; a slide is built and does not pass yet</div></div><div class='tile'><div class='num'>2</div><div class='na'>routes inside transport, chosen from S2's plan: a thing that rolls; a tight opening (rehearsal on a twin scene)</div></div><div class='tile'><div class='num'>234</div><div class='na'>measured entries in the capability store behind the numbers on this page</div></div></div>
+<p class='na'><b>Test environment of every run shown</b> (the owner, 2026-11-26): the hand's physics as in S0's training; the hand does not collide with the table or anything fixed to it, as in training (there the hand passes through the ground and hooks under low things); the arm as stiff as training's wrist. Passing tasks: t16_block_tower, t33_candle_holder, t49_weigh_orange, t17_shape_sorter, t19_jar_drawer, t41_power_strip. Each task's own page has its running log.</p>
+<div class='toc'><a href='#transport'>Transport</a><a href='#rolls'>Transport of a thing that rolls (a route inside transport)</a><a href='#tight'>Transport into a tight opening, after a rehearsal on a twin scene (a route inside transport)</a><a href='#push'>Push</a><a href='#press'>Press</a><a href='#slide'>Slide</a></div>
+<p class='na'><b>How to read a 3D view.</b> Left: the reference the skill handed to S0 (the thing's track and the wrist's track, coloured by phase; the numbers are S2's keypoints). Right: what the arm and S0 did, from the session's record, with the hand's links drawn. Drag to turn, wheel to zoom, shift-drag to pan; the slider and <i>play</i> move both views together.</p>
+<h2 id='transport'>Transport: grasp, carry, set down</h2><p class='one'>The first and main skill. S2 gives where the thing&#x27;s middle should be along its way; the skill does everything else.</p><div class='grid'><div><h3>What S2 gives</h3><ul><li>5 or 6 keypoints of the thing&#x27;s MIDDLE from where it is to where it must rest, each anchored to something measured in the head view</li><li>the thing&#x27;s shape word, which end is up (an axis) and a heading where they matter</li><li>the place: the support&#x27;s height, how sure, what stands near, and whether the thing is set down or let go into an opening</li></ul><h3>What the skill does</h3><ul><li>takes a grasp the harness&#x27;s proposer offers (a recorded human clip), bound unchanged; the wrist is on the clip&#x27;s own frames at the grasp</li><li>writes ONE reference for S0: the thing&#x27;s pose and a clip frame for every row, one curve, one time law; the arm follows the wrist rows; S0 moves the fingers on every row</li><li>checks it for free before anything moves: the arm planner, then S0 itself in a test bench with training&#x27;s randomisation (held to the release in 7 of 8, set down, let go at rest)</li><li>lets go by a measured form: the wrist still while the thing&#x27;s reference sinks, or the grasp played backwards</li><li>if the plan as written is refused: tries the nearest feasible plan (let-go raised, landing short or sideways) and says what it changed</li></ul><h3>Measured</h3><ul><li>speed is not the limit: a carried cube and rod held 160 of 160 up to 0.8 m/s and 4 m/s2 (bench)</li><li>the grasp tolerates the palm less than 5 mm above the clip&#x27;s height (45 of 45); 20 mm and more: 2 of 25</li><li>S0 never lets go if the reference just freezes (0 of 32); the grasp played backwards: placed 184 of 184 (cube)</li><li>the wrist turns a held thing at up to about 60 degrees a second; more than 60 degrees of a turn is done in the hand (the owner&#x27;s rule)</li><li>set-down accuracy in verified runs: block 0.6 to 1.3 mm from the keypoint, candle 0.1 mm, orange 19.6 mm</li></ul><div class='status'><b>Where it stands.</b> Verified passes: block tower (clean), candle, orange, sink plug (solid table only). Used as the first call of the drawer and triangle tasks.</div></div><div><div class='tabs' data-frame='frame-transport' data-cap='cap-transport'><button type='button' aria-pressed='true' data-src='skills_3d/view.html#run=transport_t16&amp;row=519&amp;az=60&amp;el=30&amp;d=0.84' data-cap='t16, judged PASS: the 42 mm block taken from above and set on the tower. Measured from the record: the palm stayed within 1.1 mm of its reference; the thing was 2.7 mm from its reference at the release row. Run t16_block_tower_f14, 520 rows.'>block onto the tower</button><button type='button' aria-pressed='false' data-src='skills_3d/view.html#run=transport_t33&amp;row=710&amp;az=60&amp;el=30&amp;d=1.20' data-cap='t33, judged PASS: a lying candle stood upright; the wrist carries under 60 degrees of the turn, the rest happens in the hand. Measured from the record: the palm stayed within 1.7 mm of its reference; the thing was 19.6 mm from its reference at the release row. Run t33_candle_holder_f8, 711 rows.'>candle stood in the candlestick</button></div><iframe class='traj' id='frame-transport' src='skills_3d/view.html#run=transport_t16&amp;row=519&amp;az=60&amp;el=30&amp;d=0.84' loading='lazy' title='3D view: Transport: grasp, carry, set down'></iframe><p class='cap' id='cap-transport'>t16, judged PASS: the 42 mm block taken from above and set on the tower. Measured from the record: the palm stayed within 1.1 mm of its reference; the thing was 2.7 mm from its reference at the release row. Run t16_block_tower_f14, 520 rows.</p></div></div>
+<h2 id='rolls'>Transport of a thing that rolls (a route inside transport)</h2><p class='one'>Chosen by rule when S2&#x27;s shape word is &#x27;ball&#x27;. A ball that is let go while it still moves rolls away, so the release is different.</p><div class='grid'><div><h3>What S2 gives</h3><ul><li>the same as a transport; the shape word &#x27;ball&#x27; selects the route</li></ul><h3>What the skill does</h3><ul><li>starts the session in the command mode in which S0 is SHOWN the reference fingers (mode full)</li><li>releases with the wrist still while the reference fingers open; its bench check has a mechanism term: the last finger is off BEFORE the wrist rises</li></ul><h3>Measured</h3><ul><li>in the other command mode S0 never opens on a ball while the wrist stands (bench, 0 of 8); in mode full with the fingers shown opening it does (mechanism term 8 of 8 in the run&#x27;s own check)</li><li>the orange ends on the pan 19.6 mm from the keypoint, let go at 0.03 m/s: real, not clean</li></ul><div class='status'><b>Where it stands.</b> Verified pass: the orange on the scale (3 of 3 runs).</div></div><div><div class='tabs' data-frame='frame-rolls' data-cap='cap-rolls'><button type='button' aria-pressed='true' data-src='skills_3d/view.html#run=rolls_t49&amp;row=675&amp;az=60&amp;el=30&amp;d=1.00' data-cap='t49, judged PASS: the orange carried to the scale&#x27;s pan and let go with the wrist still. Measured from the record: the palm stayed within 0.6 mm of its reference; the thing was 14.2 mm from its reference at the release row. Run t49_weigh_orange_f8, 676 rows.'>orange onto the scale</button></div><iframe class='traj' id='frame-rolls' src='skills_3d/view.html#run=rolls_t49&amp;row=675&amp;az=60&amp;el=30&amp;d=1.00' loading='lazy' title='3D view: Transport of a thing that rolls (a route inside transport)'></iframe><p class='cap' id='cap-rolls'>t49, judged PASS: the orange carried to the scale&#x27;s pan and let go with the wrist still. Measured from the record: the palm stayed within 0.6 mm of its reference; the thing was 14.2 mm from its reference at the release row. Run t49_weigh_orange_f8, 676 rows.</p></div></div>
+<h2 id='tight'>Transport into a tight opening, after a rehearsal on a twin scene (a route inside transport)</h2><p class='one'>Chosen by rule when S2&#x27;s place is an opening the thing goes through with less than 5 mm of room a side. Where a thing sits in the fingers is off by centimetres and cannot be predicted from another scene, so the skill measures it first.</p><div class='grid'><div><h3>What S2 gives</h3><ul><li>the same as a transport, with the place marked &#x27;through&#x27; and the opening&#x27;s room a side as a number</li></ul><h3>What the skill does</h3><ul><li>builds a twin scene from its own head view (a bare table, a library block at the seen pose, S2&#x27;s opening as a lid)</li><li>rehearses the same grasp and carry on the twin, up to four times; a script writes the measured offset of the thing in the hand, a release correction and S0&#x27;s own finger posture into a file</li><li>when a rehearsal goes through the twin&#x27;s opening, runs the real task once with that file</li></ul><h3>Measured</h3><ul><li>the twin&#x27;s block is 0.5 mm from the true pose; the offset measured on the twin and in the task differ by 1.9 mm and 1.0 degree</li><li>the block was 0.3 to 0.5 mm from its aim before the release in the two verified runs</li><li>thin: rehearsals went through 1 of 5 on the solid table and 1 of 3 in the new environment before the task run</li></ul><div class='status'><b>Where it stands.</b> Verified pass: the triangle block through the shape sorter (2 mm of room a side), on the solid table and in the new environment (3 of 3 runs there).</div></div><div><div class='tabs' data-frame='frame-tight' data-cap='cap-tight'><button type='button' aria-pressed='true' data-src='skills_3d/view.html#run=tight_r1&amp;row=688&amp;az=60&amp;el=30&amp;d=0.86' data-cap='First rehearsal on the twin scene, with the bench&#x27;s guess of where the block sits in the hand: it ends wedged in the opening at about 33 degrees. Measured from the record: the palm stayed within 0.9 mm of its reference; the thing was 29.1 mm from its reference at the release row. Run t17_shape_sorter_f6_r1, 689 rows.'>rehearsal 1 on the twin: wedged</button><button type='button' aria-pressed='false' data-src='skills_3d/view.html#run=tight_r3&amp;row=598&amp;az=60&amp;el=30&amp;d=0.86' data-cap='Third rehearsal, with the offset and release correction measured in the second: the block goes through. Measured from the record: the palm stayed within 0.9 mm of its reference; the thing was 30.3 mm from its reference at the release row. Run t17_shape_sorter_f6_r3, 599 rows.'>rehearsal 3 on the twin: through</button><button type='button' aria-pressed='false' data-src='skills_3d/view.html#run=tight_t17&amp;row=598&amp;az=60&amp;el=30&amp;d=0.86' data-cap='t17, judged PASS: the task run with the rehearsal&#x27;s file. Measured from the record: the palm stayed within 0.9 mm of its reference; the thing was 30.5 mm from its reference at the release row. Run t17_shape_sorter_f6, 599 rows.'>the task, once</button></div><iframe class='traj' id='frame-tight' src='skills_3d/view.html#run=tight_r1&amp;row=688&amp;az=60&amp;el=30&amp;d=0.86' loading='lazy' title='3D view: Transport into a tight opening, after a rehearsal on a twin scene (a route inside transport)'></iframe><p class='cap' id='cap-tight'>First rehearsal on the twin scene, with the bench&#x27;s guess of where the block sits in the hand: it ends wedged in the opening at about 33 degrees. Measured from the record: the palm stayed within 0.9 mm of its reference; the thing was 29.1 mm from its reference at the release row. Run t17_shape_sorter_f6_r1, 689 rows.</p></div></div>
+<h2 id='push'>Push: move a thing or a front face along a line, without grasping</h2><p class='one'>The second skill, added when transport alone could not finish a task (the owner: &quot;if the only transportation is not enough ... introduce more skills&quot;).</p><div class='grid'><div><h3>What S2 gives</h3><ul><li>the point the hand is to meet (a drawer front, a knob), where that point must end, the line, the travel and how sure it is</li><li>whether the end is a stop; what stands beside and beyond it</li></ul><h3>What the skill does</h3><ul><li>runs after a transport in the same session with the clip that transport bound, or alone (then it binds a grasp the proposer offers for the pushed thing and never executes it): the hand keeps that clip&#x27;s open posture, S0&#x27;s fingers on every row</li><li>comes down behind the point and moves along the line; one reference, one plan with the pushed thing as the declared contact; then looks again</li></ul><h3>Measured</h3><ul><li>a drawer on rails: 135 mm at 0.04 m/s, 13.6 N while moving, 19 N at the stop (pushed by the base link of the little finger, not the fingertips)</li><li>a loose bar on a slope follows only at 0.01 m/s and about half the commanded way: too slow for one session&#x27;s tick budget</li><li>it cannot stop on first contact: it runs its line to the end</li></ul><div class='status'><b>Where it stands.</b> Verified pass: the jar into the drawer (transport), then the drawer pushed shut (3 of 3 runs). Not solved with it: the chock pushed against the drum.</div></div><div><div class='tabs' data-frame='frame-push' data-cap='cap-push'><button type='button' aria-pressed='true' data-src='skills_3d/view.html#run=push_t19_c1&amp;row=725&amp;az=60&amp;el=30&amp;d=0.94' data-cap='t19, call 1 (transport): the jar carried and let go into the open drawer. Measured from the record: the palm stayed within 1.0 mm of its reference; the thing was 11.6 mm from its reference at the release row. Run t19_jar_drawer_f14, 726 rows.'>call 1: the jar into the drawer</button><button type='button' aria-pressed='false' data-src='skills_3d/view.html#run=push_t19_c2&amp;row=322&amp;az=60&amp;el=30&amp;d=0.89' data-cap='t19, call 2 (push), judged PASS: the open hand comes behind the drawer front and pushes it 135 mm shut. Left: S0 needs a thing reference on every row, so the bound clip&#x27;s thing (the jar&#x27;s shape) is kept in front of the hand and moved along the line. Right: the real jar, riding in the drawer. The drawer itself is not drawn. Measured from the record: the palm stayed within 1.5 mm of its reference; the thing was 1.8 mm from its reference at the release row. Run t19_jar_drawer_f14, 323 rows.'>call 2: the drawer pushed shut</button></div><iframe class='traj' id='frame-push' src='skills_3d/view.html#run=push_t19_c1&amp;row=725&amp;az=60&amp;el=30&amp;d=0.94' loading='lazy' title='3D view: Push: move a thing or a front face along a line, without grasping'></iframe><p class='cap' id='cap-push'>t19, call 1 (transport): the jar carried and let go into the open drawer. Measured from the record: the palm stayed within 1.0 mm of its reference; the thing was 11.6 mm from its reference at the release row. Run t19_jar_drawer_f14, 726 rows.</p></div></div>
+<h2 id='press'>Press: a push whose line goes down</h2><p class='one'>One fingertip comes over a point, goes down by the travel and comes back up. For a switch or a button.</p><div class='grid'><div><h3>What S2 gives</h3><ul><li>the point to press, the direction (down), the travel in mm and how sure, what is within 15 mm, what kind of end it is (a click, a stop)</li></ul><h3>What the skill does</h3><ul><li>rehearses the fingertip&#x27;s aim in the bench until S0&#x27;s fingertip reads within 3 mm of the point, then presses once and looks again</li><li>can be the only call of a plan</li></ul><h3>Measured</h3><ul><li>it meets the thing about 10 mm from the point asked and may slide about 14 mm on a smooth face</li><li>a rocker switch latched at 4 N; the press gives at most about 11 to 15 N: it did not move a tilted paint-tin lid at all</li><li>a target smaller than the fingertip (an 8 mm key) is a guess</li></ul><div class='status'><b>Where it stands.</b> Verified pass: the power strip&#x27;s switch (marginal: it latched 0.8 mm past the switch&#x27;s painted face). Failed: the paint lid (needs a blow), the TV remote&#x27;s 8 mm key.</div></div><div><div class='tabs' data-frame='frame-press' data-cap='cap-press'><button type='button' aria-pressed='true' data-src='skills_3d/view.html#run=press_t41&amp;row=149&amp;az=60&amp;el=30&amp;d=0.75' data-cap='t41, judged PASS: one fingertip comes over the switch, goes down by the travel and comes back up; the thing&#x27;s reference does not move. The thing drawn is the power strip. Measured from the record: the palm stayed within 0.9 mm of its reference; the thing was 2.7 mm from its reference at the release row. Run t41_power_strip_f14, 150 rows.'>the power strip&#x27;s switch</button></div><iframe class='traj' id='frame-press' src='skills_3d/view.html#run=press_t41&amp;row=149&amp;az=60&amp;el=30&amp;d=0.75' loading='lazy' title='3D view: Press: a push whose line goes down'></iframe><p class='cap' id='cap-press'>t41, judged PASS: one fingertip comes over the switch, goes down by the travel and comes back up; the thing&#x27;s reference does not move. The thing drawn is the power strip. Measured from the record: the palm stayed within 0.9 mm of its reference; the thing was 2.7 mm from its reference at the release row. Run t41_power_strip_f14, 150 rows.</p></div></div>
+<h2 id='slide'>Slide: a transport whose thing stays on a surface (built, not passing yet)</h2><p class='one'>For wiping or scraping. Chosen by rule when S2&#x27;s plan says the thing keeps touching a named surface.</p><div class='grid'><div><h3>What S2 gives</h3><ul><li>a transport whose keypoints all lie on the surface, with &#x27;keep touching&#x27;, the surface, and how high the thing&#x27;s middle rides over it</li></ul><h3>What the skill does</h3><ul><li>grasps as usual, then moves the thing along the surface with its underside flat on the plane the skill fits to what it sees; the stroke&#x27;s speed comes from a bench table</li></ul><h3>Measured</h3><ul><li>on a board propped at 12 degrees the eraser lay flat on all 163 ticks of the stroke and followed 169.5 of 168.7 mm at 0.10 m/s</li><li>S0 kept a dragged bar to the release in 13, 15, 15, 13, 13 of 16 at 0.03, 0.06, 0.10, 0.15, 0.20 m/s</li><li>NOT SOLVED: the let-go. With the wrist still S0 takes its last finger off only after the wrist begins to rise (0 of 8); with the grasp played backwards the hand takes the thing back (placed 0 of 8)</li></ul><div class='status'><b>Where it stands.</b> No pass. The whiteboard run below was judged FAIL: the stroke is right, then the leaving hand lifted the eraser 66 mm. The skill now refuses such a run before anything moves.</div></div><div><div class='tabs' data-frame='frame-slide' data-cap='cap-slide'><button type='button' aria-pressed='true' data-src='skills_3d/view.html#run=slide_t39&amp;row=421&amp;az=60&amp;el=30&amp;d=0.77' data-cap='t39, judged FAIL: watch the right view at the end: the stroke is on the board, then the eraser is lifted with the leaving hand and falls back. Measured from the record: the palm stayed within 15.9 mm of its reference; the thing was 24.7 mm from its reference at the release row. Run t39_whiteboard_erase_f12, 422 rows.'>eraser up the whiteboard (judged FAIL)</button></div><iframe class='traj' id='frame-slide' src='skills_3d/view.html#run=slide_t39&amp;row=421&amp;az=60&amp;el=30&amp;d=0.77' loading='lazy' title='3D view: Slide: a transport whose thing stays on a surface (built, not passing yet)'></iframe><p class='cap' id='cap-slide'>t39, judged FAIL: watch the right view at the end: the stroke is on the board, then the eraser is lifted with the leaving hand and falls back. Measured from the record: the palm stayed within 15.9 mm of its reference; the thing was 24.7 mm from its reference at the release row. Run t39_whiteboard_erase_f12, 422 rows.</p></div></div>
+<h2>What no skill does yet</h2><ul><li>Let a slid thing go where it lies (the whiteboard).</li><li>Lay a low flat thing down within 10 mm (the TV remote: held in about 70 percent of bench tries, slips about 25 mm in the palm).</li><li>Pick a low thing with sloped sides from a SOLID table (the wheel chock: 0 of 2128 in a bench with a solid ground; possible only because the test environment lets the hand pass through the table, as training did).</li><li>Reach into space the head camera cannot see: the arm planner treats it as occupied (the microwave).</li><li>A blow, a screw, a squeeze, a turn of a held thing of 90 degrees or more.</li></ul><p class='na'>Sources: the running log and the per-skill notes under <code>s2/outputs/harness_round/s0skill</code> (<code>LOG.md</code>, <code>loop/PUSH_SKILL.md</code>, <code>loop/SLIDE_SKILL.md</code>, <code>loop/S2_LOOK_PROTOCOL_V4.md</code>, <code>v3/RESULTS.md</code>, <code>atlas/</code>); the 3D views are drawn from each run's stored reference and its session record.</p><script>
+document.querySelectorAll('.tabs').forEach(function (tabs) {
+  var frame = document.getElementById(tabs.dataset.frame), cap = document.getElementById(tabs.dataset.cap);
+  tabs.querySelectorAll('button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      tabs.querySelectorAll('button').forEach(function (o) { o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
+      frame.src = b.dataset.src; cap.textContent = b.dataset.cap;
+    });
+  });
+});
 </script></body></html>
