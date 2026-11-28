@@ -17,6 +17,69 @@ and the <b>motion-planning gates</b> around every skill call. The numbers were t
 restated.</p>
 <div class="nav"><a href="index.html">← Main</a><a href="skills.html">🛠 Skills</a><a href="capability.html">📊 Capability</a><a href="timing.html">⏱ Timing</a><a href="audit.html">Audit</a></div>
 
+<h2 id="today">The harness today (2026-11-27)</h2>
+<p>This section is the harness as it runs now on the fifty in-house tasks. Everything under
+<a href="#gen1">First generation</a> further down describes the harness of 22 and 23 November and is kept for the record.
+Each skill, with a 3D view of real runs and a keypoint editor: <a href="skills.html"><b>Skills (interactive)</b></a>.
+Every task's runs: <a href="daily50_trials.html"><b>the 50 tasks, with a running log per task</b></a>.</p>
+<div class="flow">HEAD CAMERA (colour and depth) and the robot's joint readings.   Nothing else: no simulator state, no rule of the task, no verdict.
+  │
+  ▼  S2 LOOK    one fresh looking agent per look, 4 to 10 minutes, under written instructions (protocol 4)
+PLAN            one JSON: the instruction, why, what was measured, what was assumed, and one or more CALLS
+  │               transport   5 or 6 keypoints of the thing's MIDDLE, its shape word, which end is up, the place
+  │               push        the point the hand meets, where that point must end, whether the end is a stop
+  │               press       a push whose line goes down: the point and the travel
+  ▼  ONE SKILL PROGRAM (version 3)    no flags; the route inside it is chosen from the plan by rule
+REFERENCE       for each call ONE piece: the thing's pose and a frame of a recorded human grasp for every row, 50 rows a second
+  │               the grasp is one the proposer offers, bound unchanged; no finger command is scripted
+  │               free checks before anything moves:   1. the arm planner (reachable, collision-free against the depth view)
+  │                                                    2. S0 itself in a test bench with training's randomisation
+  │               refused?  the nearest feasible plan is tried and named in the result; otherwise the run ends with the reason
+  ▼  SESSION      1500 rows at most
+ARM follows the wrist rows  ·  S0 (the frozen tracking policy) moves the 20 finger joints on every row  ·  physics decides
+  ▼
+JUDGE           the task's own judge, after the session is closed: one status word  →  every PASS is read by a refuting verifier
+  └─ every trial, passing or not, goes back into the look instructions (the keypoints) and into the program (the interpolation)</div>
+
+<table>
+<tr><th>part</th><th>what it gets</th><th>what it gives</th><th>measured about it</th></tr>
+<tr><td><b>S2 look</b></td><td>the head camera's picture, the same with numbered objects, the 3D measurements it asks for, the instruction; after a run only the bare outcome</td>
+<td>the plan: calls with keypoints. It never says how to grasp, how fast, or which fingers</td>
+<td>protocol 4: about 60 rules, each with the trial it came from, and 14 amendments; written from about 150 trials on 11 tasks</td></tr>
+<tr><td><b>Skill program</b></td><td>the plan and the depth view</td><td>one reference per call; or a refusal with its reason before anything moves</td>
+<td>skills: transport, push, press; a slide is built and does not pass yet. Two routes inside transport: a thing that rolls; a tight opening (a twin scene built from its own view, up to four rehearsals, then the task once)</td></tr>
+<tr><td><b>Test bench</b></td><td>a reference</td><td>whether S0 keeps the thing to the release (7 of 8 with training's randomisation), sets it down, lets go at rest</td>
+<td>it is S0's own training environment: S0's own verification roll-outs rerun bit-identical in it (30 of 30 arrays)</td></tr>
+<tr><td><b>S0</b></td><td>per row: the thing's reference, the wrist, 64 surface points near the hand (in a session they are of the recorded grasp's object: see below), its own joints</td><td>20 finger targets</td>
+<td>frozen. What it can and cannot track is kept as 234 measured entries; the program takes its numbers (speeds, the release recipe, the wrist-turn rule) from that store</td></tr>
+<tr><td><b>Judge and verifier</b></td><td>the closed session's record</td><td>PASS or FAIL; for a PASS a second, refuting reading</td><td>S2 and the program never see the task's rule</td></tr>
+</table>
+
+<p><b>The test environment</b> (the owner's order of 2026-11-26: the same as S0's training environment):</p>
+<ul>
+<li>the hand's physics as in training: its contact friction (0.7), finger torque, joint ranges and masses;</li>
+<li>the hand does not collide with the table or with anything fixed to it. In training the hand passes through the ground, and S0 learned to
+hook its fingertips 9 to 25 mm under a low thing. With a solid ground a lying triangular bar that S0 picks 16 of 16 times is picked 0 of 16 times;</li>
+<li>the arm is as stiff at the palm as training's wrist (15 N/mm; it was 3 N/mm);</li>
+<li>still not as in training: an arm in place of six wrist servos, a real scene around the thing, no randomisation, and S0 is shown the surface of the
+recorded grasp's object where training showed it the held thing's own (in the bench a can was kept 8 of 8 times when shown its own surface and 2 of 8
+when shown the other; a switch for this is built and not tested).</li>
+</ul>
+
+<p><b>What it is held to.</b> S2 sees the head camera and the joint readings only, and gets the judged word only. No grasp is scripted: the fingers are
+S0's on every row. A reference is one piece (never grasp, lift and carry chained); one recorded grasp per session; a turn of more than 60 degrees is done
+in the hand. No number read off a task's own attempts is in the program, and a free check's criterion is fixed before its run. Ten of the fifty tasks are
+held out and were never played.</p>
+
+<p><b>Where it stands</b> (2026-11-27 20:38, nothing running). 16 of the 50 tasks were tried. <b>6 pass with the one program</b>, each read by a refuting
+verifier: the block tower, the candle, the orange, the jar and drawer (a transport, then a push), the triangle through the shape sorter (twin rehearsal),
+the power strip (one press). The program's last freeze (the fourteenth, 18:22) passed the block tower, the drawer and the power strip again; the candle,
+the orange and the triangle last passed on the eighth freeze of the same day, and what changed since then is the slide. 10 tasks fail or are refused
+before anything moves, each with a measured reason on its page. In all 263 runs: 78 judged PASS, 50 judged FAIL, 135 refused by the program or not
+judged. These are development runs, not first attempts and not a counted series.</p>
+
+<h2 id="gen1">First generation (22 and 23 November 2026), kept for the record</h2>
+
 <div class="notice"><b>Correction, 2026-11-23 — this page cited runs as successes that were not.</b> Every row the project had reported as a pass was audited against its raw run data. <b>Result: none of the 50 evaluation tasks was completed, no "official predicate" pass is supported, and none of the 10 in-hand tasks was completed as described.</b> Four behaviours hold up as demos: a substitute box picked up and released into the bucket, a left mouse click, an in-hand roll of the screwdriver, and an in-hand turn of a cone. On this page: the cup-on-plate "27.7&nbsp;mm official pass" and the peg "official pass" are withdrawn; of the bucket, bowl and pour "passes" cited for the box, the bucket run stands only as a demo, the pour is a FAIL, and the bowl placement was not audited and is unverified; the gate calibration ("13/13 winners pass", "predicts 4 of 10 failures") is withdrawn, because the runs it treated as winners are now failures or demos; the "rescued" strike and the "guaranteed PASS" for the mouse task are withdrawn; and in-hand rotation angles are marked unverified, because the score behind them ignores which axis the object turned about. How each mechanism works, the wall-clock timings and the tracking-probe measurements were not part of the audit and are kept, with one correction: the mid-episode replans and the precontact offset read simulator state, not perception (the audit noted this for the bucket run; the code shows it for the others). Full table and evidence: <a href="audit.html"><b>audit of reported passes</b></a>.</div>
 
 <h2>The data flow</h2>

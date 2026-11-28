@@ -36,7 +36,7 @@ never retraining the controller. Tianji arm + wuji2 20-DoF hand; evaluated on Ha
 <a href="capability.html">📊 Capability boundary</a>
 <a href="wuji2_tasks.html">🎬 HandsOn task gallery (50)</a>
 <a href="timing.html">⏱ Agent-in-the-loop timing (60)</a>
-<a href="status.html">📍 Where the overnight work stands (start here)</a>
+<a href="status.html">📍 Where the overnight work stood on 2026-11-26</a>
 <a href="efe.html">🧪 Embodied First Exam port (51 tasks)</a>
 <a href="skills_v2.html">🤖 Skills through the depth planner: recorded runs (built from the run folders)</a>
 <a href="skills_cosim.html">🤖 Skills through the depth planner, in the co-simulation (first runs)</a>
@@ -44,6 +44,28 @@ never retraining the controller. Tianji arm + wuji2 20-DoF hand; evaluated on Ha
 <a href="daily50.html">🏠 daily50: fifty real-life tasks, photoreal (in progress)</a>
 <a href="daily50_trials.html">🎯 The 50 in-house tasks: success rate, and a subpage per task with its running log (every run of the one S0 skill, the earlier plan-first trials, films) (session agents, development series; not a counted test series)</a>
 </div>
+
+<h2 id="today">The harness today (2026-11-27)</h2>
+<div class="pipe">
+<div class="stage"><b>① Look</b><span class="d">S2 sees the head camera only (colour and depth). No simulator state, no rule, no verdict.</span></div>
+<div class="arr">→</div>
+<div class="stage"><b>② Plan</b><span class="d">One or more calls: transport, push, press. Each is a few keypoints of the thing; never how to grasp.</span></div>
+<div class="arr">→</div>
+<div class="stage"><b>③ One skill program</b><span class="d">Turns each call into ONE reference, checked for free by the arm planner and by S0 in a test bench.</span></div>
+<div class="arr">→</div>
+<div class="stage"><b>④ Track</b><span class="d">The arm follows the wrist rows; frozen S0 moves the 20 finger joints on every row.</span></div>
+<div class="arr">→</div>
+<div class="stage"><b>⑤ Judge</b><span class="d">The task's own judge gives one word; every PASS is read by a refuting verifier.</span></div>
+</div>
+<div class="loop">↑_____ every trial, passing or not, goes back into the look instructions (keypoints) and the program (interpolation) _____↑</div>
+<p><span class="kpi"><span class="big">6 of 16</span><br><span class="na">in-house tasks tried that pass with the one program, all verified</span></span>
+<span class="kpi"><span class="big">3 + 1</span><br><span class="na">skills: transport, push, press; a slide is built, not passing yet</span></span>
+<span class="kpi"><span class="big">263</span><br><span class="na">runs: 78 judged PASS, 50 FAIL, 135 refused or not judged</span></span></p>
+<p>Passing: the block tower, the candle, the orange, the jar and drawer, the triangle through the shape sorter, the power strip. The test environment is
+S0's training environment as far as it can be made so (the hand does not collide with the table, as in training). Development runs, not first attempts and
+not a counted series. <a href="skills.html"><b>Skills (interactive)</b></a>: each skill with a 3D view of real runs and a keypoint editor.
+<a href="harness.html#today"><b>Inside the harness</b></a>: the whole chain, the test environment, what it is held to.
+<a href="daily50_trials.html"><b>The 50 tasks</b></a>: success rate and a running log per task.</p>
 
 <div class="notice" style="background:#f4f7fb;border-color:#c9d6e6;border-left-color:#2b6cb0;color:#0b0b0b"><b>New on 2026-11-24 (work in progress; each page says what is and is not done).</b>
 <a href="status.html"><b>Start here: where the overnight work stands</b></a> (what was asked, point by point; what is done, what is running, what comes next, and the decisions waiting for the owner).
@@ -53,7 +75,7 @@ never retraining the controller. Tianji arm + wuji2 20-DoF hand; evaluated on Ha
 
 <div class="notice"><b>Correction, 2026-11-23 — the pass counts previously shown here were wrong.</b> Every row reported as a pass was audited (run logs, per-tick traces, video frames, scoring code; each verdict checked twice). <b>Result: none of the 50 evaluation tasks was completed, and none of the 10 in-hand tasks was completed as described.</b> Four behaviours hold up as demos: a substitute box picked up and released into the bucket, a left mouse click, an in-hand roll of the screwdriver, and an in-hand turn of a cone. The earlier figures (15/50, 9 "official" passes, 7/10 in-hand) came from scoring that did not measure what it claimed, and from runs where the result was produced by an uncontrolled motion (a dropped cup pushed to its target, a mouse knocked by an arm following a junk reference, a nail-depth reading from the wrong phase). Full table and evidence: <a href="audit.html"><b>audit of reported passes</b></a>.</div>
 <div class="notice"><b>What &ldquo;50 evaluation tasks&rdquo; means (added 2026-11-23).</b> The 50 rows are the scene files HandsOn ships for the Wuji&nbsp;2 hand, run in this project's own MuJoCo co-simulation and scored by this project's code. That is not the benchmark's evaluation. The benchmark's catalogue has 66 tasks (Core-50 and Transfer-16), run in Isaac Sim with the Wuji&nbsp;1 hand and judged by the benchmark's own checker. Of our 50 rows, 26 are catalogue tasks (24 Core, 2 Transfer); 24 are older scene files that have no official success test or step budget; and for 13 rows the prepared scene contains no movable object at all (the task's objects exist only as assets composed inside Isaac Sim), so nothing in those runs could be manipulated. No number on this site is a HandsOn benchmark score.</div>
-<h2>The pipeline</h2>
+<h2>The pipeline of the first generation (2026-11-23), kept for the record</h2>
 <div class="pipe">
 <div class="stage"><b>① Perceive</b><span class="d">RGB-D only (SAM&nbsp;/ mesh-ICP&nbsp;/ depth). No simulator state.</span></div>
 <div class="arr">→</div>

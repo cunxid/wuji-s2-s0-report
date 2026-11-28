@@ -241,15 +241,25 @@
       ln(res.tc, gl.LINE_STRIP, 0, d.rows, 1, 0.8); ln(res.wc, gl.LINE_STRIP, 0, d.rows, 1, 0.8);
       ln(res.tc, gl.LINE_STRIP, 0, rr + 1, 3, 1); ln(res.wc, gl.LINE_STRIP, 0, rr + 1, 3, 1);
       ln(res.tcTicks, gl.LINES, 0, res.tcTicks.count, 2, 0.95); ln(res.wcTicks, gl.LINES, 0, res.wcTicks.count, 1, 0.9);
+      if (overlay) {
+        if (!this.ov || this.ov.stamp !== overlay.stamp) {
+          if (this.ov) this.ov.bufs.forEach(function (b) { gl.deleteBuffer(b.buf); });
+          this.ov = { stamp: overlay.stamp, bufs: overlay.lines.map(function (pts) {
+            var o = []; pts.forEach(function (q) { o.push(q[0], q[1], q[2], C.mark[0], C.mark[1], C.mark[2]); }); return self.lines(o); }) };
+        }
+        this.ov.bufs.forEach(function (b) { ln(b, gl.LINE_STRIP, 0, b.count, 3, 1); });
+      }
       useLit(); gl.depthMask(false);                                     // onion skins: the thing and the hand at the keypoints
       d.keypoints.forEach(function (k) {
         var a = pose(d.tc, k.row), b = pose(d.wc, k.row);
         tri(res.mesh, matOf(a.R, a.p), BLOCK, 0.22); hand(b, d.qf, C.hand, 0.18, true);
       });
       gl.depthMask(true);
+      if (overlay) overlay.keys.forEach(function (k) { tri(self.sphere, matOf(I3, k.p, [0.0075, 0.0075, 0.0075]), C.mark); });
     }
     gl.disable(gl.BLEND);
-    this.labelEls.forEach(function (l) {
+    this.labelEls.forEach(function (l0, li) {
+      var l = { el: l0.el, p: (!act && overlay && overlay.at[li]) || l0.p };          // an edited keypoint takes its number with it
       var x = VP[0] * l.p[0] + VP[4] * l.p[1] + VP[8] * l.p[2] + VP[12], y = VP[1] * l.p[0] + VP[5] * l.p[1] + VP[9] * l.p[2] + VP[13], ww = VP[3] * l.p[0] + VP[7] * l.p[1] + VP[11] * l.p[2] + VP[15];
       if (ww <= 0) { l.el.style.display = 'none'; return; }
       l.el.style.display = 'block';
@@ -262,6 +272,17 @@
   var cam = JSON.parse(JSON.stringify(HOME));
   var S = { choice: null, left: null, right: null, modes: ['ref', 'act'], row: 0, playing: false, speed: 1 };
   var dirty = true, live = false;
+  // a curve drawn over the reference view (the keypoint editor of the page that embeds this view posts it):
+  // { type: 'traj-overlay', lines: [[[x, y, z], ...], ...], keys: [{ p: [x, y, z], i: index of the keypoint it replaces, or -1 }] }; no lines: none
+  var overlay = null;
+  window.addEventListener('message', function (ev) {
+    var m = ev.data;
+    if (!m || m.type !== 'traj-overlay') return;
+    var at = {};
+    (m.keys || []).forEach(function (k) { if (k.i >= 0) at[k.i] = k.p; });
+    overlay = { lines: m.lines || [], keys: m.lines && m.lines.length ? (m.keys || []) : [], at: m.lines && m.lines.length ? at : {}, stamp: (overlay ? overlay.stamp : 0) + 1 };
+    dirty = true;
+  });
   var wraps = root.querySelectorAll('.tview'), views = [new View(wraps[0], 0), new View(wraps[1], 1)];
   var slider = $('.vslider'), readout = $('.vread'), strip = $('.vstrip'), playBtn = $('.vplay'), sel = $('.vsel');
   var names = root.querySelectorAll('.tname'), subs = root.querySelectorAll('.tsub');
