@@ -21,6 +21,7 @@ table{border-collapse:collapse;width:100%;font-size:13px;margin:8px 0}td,th{bord
 .kpi{display:inline-block;border:1px solid #e1e0d9;border-radius:8px;padding:9px 15px;margin:4px 9px 4px 0}.big{font-size:19px;font-weight:700}
 .notice{font-size:13.5px;margin:12px 0;padding:10px 13px;background:#fff4f1;border:1px solid #f0b8a8;border-left:5px solid #d8343c;border-radius:8px;color:#4a150e}
 .demo{color:#b7791f;font-weight:700}
+.fig-wide{margin:16px 0 10px;width:min(1400px,96vw);position:relative;left:50%;transform:translateX(-50%)}.fig-wide img{width:100%;height:auto;display:block;border:1px solid #e1e0d9;border-radius:14px;background:#fff}.fig-wide figcaption{color:#898781;font-size:12.5px;margin:6px 4px 0;text-align:center}
 </style></head><body>
 
 <h1>Agentic Dexterity</h1>
@@ -46,18 +47,7 @@ never retraining the controller. Tianji arm + wuji2 20-DoF hand; evaluated on Ha
 </div>
 
 <h2 id="today">The harness today (2026-11-27)</h2>
-<div class="pipe">
-<div class="stage"><b>① Look</b><span class="d">S2 sees the head camera only (colour and depth). No simulator state, no rule, no verdict.</span></div>
-<div class="arr">→</div>
-<div class="stage"><b>② Plan</b><span class="d">One or more calls: transport, push, press. Each is a few keypoints of the thing; never how to grasp.</span></div>
-<div class="arr">→</div>
-<div class="stage"><b>③ One skill program</b><span class="d">Turns each call into ONE reference, checked for free by the arm planner and by S0 in a test bench.</span></div>
-<div class="arr">→</div>
-<div class="stage"><b>④ Track</b><span class="d">The arm follows the wrist rows; frozen S0 moves the 20 finger joints on every row.</span></div>
-<div class="arr">→</div>
-<div class="stage"><b>⑤ Judge</b><span class="d">The task's own judge gives one word; every PASS is read by a refuting verifier.</span></div>
-</div>
-<div class="loop">↑_____ every trial, passing or not, goes back into the look instructions (keypoints) and the program (interpolation) _____↑</div>
+<figure class="fig-wide"><a href="harness_fig/harness_loop.svg"><img src="harness_fig/harness_loop.svg" alt="The harness today: S2, the looking agent, sees only the head camera (colour, numbered things, depth) and measures with point_at; it writes one plan of calls with keypoints. One skill program (transport, push, press; slide not passing yet) turns each call into one reference, checks it with the arm planner and with S0 in a test bench, and runs it: the arm follows the wrist rows, S0 moves the fingers. Every run is judged and every PASS is read by a refuting verifier; every trial goes back into the look instructions for S2 and into the program and its capability store."></a><figcaption>The harness today. The pictures are real: what one look got (the jar and drawer task) and the robot's head camera in finished runs (jar and drawer, power strip: both judged PASS; whiteboard: judged FAIL, its stroke is shown), drawn afterwards from the runs' records. <a href="harness_fig/harness_loop.svg">SVG</a> · <a href="harness_fig/harness_loop.png">PNG</a></figcaption></figure>
 <p><span class="kpi"><span class="big">6 of 16</span><br><span class="na">in-house tasks tried that pass with the one program, all verified</span></span>
 <span class="kpi"><span class="big">3 + 1</span><br><span class="na">skills: transport, push, press; a slide is built, not passing yet</span></span>
 <span class="kpi"><span class="big">263</span><br><span class="na">runs: 78 judged PASS, 50 FAIL, 135 refused or not judged</span></span></p>

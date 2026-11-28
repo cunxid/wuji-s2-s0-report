@@ -9,6 +9,7 @@ table{border-collapse:collapse;width:100%;font-size:13px}td,th{border:1px solid 
 .na{color:#898781;font-size:12.5px}.nav a{display:inline-block;border:1px solid #d7d6cf;border-radius:8px;padding:6px 12px;background:#fff;text-decoration:none;font-weight:600;margin-right:8px;font-size:13.5px}
 .notice{font-size:13.5px;margin:12px 0;padding:10px 13px;background:#fff4f1;border:1px solid #f0b8a8;border-left:5px solid #d8343c;border-radius:8px;color:#4a150e}
 .fail{color:#d8343c;font-weight:700}.demo{color:#b7791f;font-weight:700}
+.fig-wide{margin:16px 0 10px;width:min(1400px,96vw);position:relative;left:50%;transform:translateX(-50%)}.fig-wide img{width:100%;height:auto;display:block;border:1px solid #e1e0d9;border-radius:14px;background:#fff}.fig-wide figcaption{color:#898781;font-size:12.5px;margin:6px 4px 0;text-align:center}
 </style></head><body>
 <h1>Inside the harness</h1>
 <p>How the agent layer consumes the <b>capability atlas</b>, the <b>RGB-D perception stack</b>,
@@ -22,6 +23,7 @@ restated.</p>
 <a href="#gen1">First generation</a> further down describes the harness of 22 and 23 November and is kept for the record.
 Each skill, with a 3D view of real runs and a keypoint editor: <a href="skills.html"><b>Skills (interactive)</b></a>.
 Every task's runs: <a href="daily50_trials.html"><b>the 50 tasks, with a running log per task</b></a>.</p>
+<figure class="fig-wide"><a href="harness_fig/harness_loop.svg"><img src="harness_fig/harness_loop.svg" alt="The harness today: S2, the looking agent, sees only the head camera (colour, numbered things, depth) and measures with point_at; it writes one plan of calls with keypoints. One skill program (transport, push, press; slide not passing yet) turns each call into one reference, checks it with the arm planner and with S0 in a test bench, and runs it: the arm follows the wrist rows, S0 moves the fingers. Every run is judged and every PASS is read by a refuting verifier; every trial goes back into the look instructions for S2 and into the program and its capability store."></a><figcaption>The harness today. The pictures are real: what one look got (the jar and drawer task) and the robot's head camera in finished runs (jar and drawer, power strip: both judged PASS; whiteboard: judged FAIL, its stroke is shown), drawn afterwards from the runs' records. <a href="harness_fig/harness_loop.svg">SVG</a> · <a href="harness_fig/harness_loop.png">PNG</a></figcaption></figure>
 <div class="flow">HEAD CAMERA (colour and depth) and the robot's joint readings.   Nothing else: no simulator state, no rule of the task, no verdict.
   │
   ▼  S2 LOOK    one fresh looking agent per look, 4 to 10 minutes, under written instructions (protocol 4)
