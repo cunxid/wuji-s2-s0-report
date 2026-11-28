@@ -78,8 +78,8 @@
   var links = T.hand.links;
   links.forEach(function (l) { l.R = rotOfQuat(l.quat); });
   var dark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-  var C = dark ? { bg: [0.105, 0.105, 0.1], table: [0.33, 0.3, 0.27], grid: [0.5, 0.48, 0.45], hand: [0.62, 0.62, 0.6], mark: [0.95, 0.95, 0.93] }
-               : { bg: [0.955, 0.953, 0.945], table: [0.86, 0.81, 0.74], grid: [0.62, 0.58, 0.52], hand: [0.2, 0.2, 0.22], mark: [0.08, 0.08, 0.08] };
+  var C = dark ? { bg: [0.105, 0.105, 0.1], table: [0.33, 0.3, 0.27], grid: [0.5, 0.48, 0.45], hand: [0.62, 0.62, 0.6], mark: [0.95, 0.95, 0.93], box: [0.42, 0.41, 0.4] }
+               : { bg: [0.955, 0.953, 0.945], table: [0.86, 0.81, 0.74], grid: [0.62, 0.58, 0.52], hand: [0.2, 0.2, 0.22], mark: [0.08, 0.08, 0.08], box: [0.74, 0.73, 0.71] };
   var BLOCK = [0.37, 0.77, 0.81];
   function prepareData(d) {
     d.phaseOf = new Array(d.rows); d.segOf = new Uint16Array(d.rows);
@@ -228,19 +228,19 @@
     useLit();
     if (d.table) tri(this.cube, matOf(I3, d.table.c, d.table.h), C.table);
     if (thing) tri(res.mesh, matOf(thing.R, thing.p), BLOCK);
-    if (wrist) hand(wrist, q, C.hand, undefined, !act);   // the reference holds a wrist pose only: no fingers are drawn for it
+    if (wrist && !d.no_wrist) hand(wrist, q, C.hand, undefined, !act);   // the reference holds a wrist pose only: no fingers are drawn for it
     d.keypoints.forEach(function (k) { tri(self.sphere, matOf(I3, k.p, [0.005, 0.005, 0.005]), C.mark); });
     useLine(); gl.enable(gl.BLEND); gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
     ln(res.grid, gl.LINES, 0, res.grid.count, 1, 0.35);
     if (act) {
-      ln(res.tc, gl.LINE_STRIP, 0, d.rows, 1, 0.3); ln(res.wc, gl.LINE_STRIP, 0, d.rows, 1, 0.3);            // the generated tracks, faint
+      ln(res.tc, gl.LINE_STRIP, 0, d.rows, 1, 0.3); if (!d.no_wrist) ln(res.wc, gl.LINE_STRIP, 0, d.rows, 1, 0.3);            // the generated tracks, faint
       ln(res.ta, gl.LINE_STRIP, 0, d.rows_recorded, 1, 0.8); ln(res.pa, gl.LINE_STRIP, 0, d.rows_recorded, 1, 0.8);
       ln(res.ta, gl.LINE_STRIP, 0, ra + 1, 3, 1); ln(res.pa, gl.LINE_STRIP, 0, ra + 1, 3, 1);
       ln(res.taTicks, gl.LINES, 0, res.taTicks.count, 1, 0.9);
     } else {
-      ln(res.tc, gl.LINE_STRIP, 0, d.rows, 1, 0.8); ln(res.wc, gl.LINE_STRIP, 0, d.rows, 1, 0.8);
-      ln(res.tc, gl.LINE_STRIP, 0, rr + 1, 3, 1); ln(res.wc, gl.LINE_STRIP, 0, rr + 1, 3, 1);
-      ln(res.tcTicks, gl.LINES, 0, res.tcTicks.count, 2, 0.95); ln(res.wcTicks, gl.LINES, 0, res.wcTicks.count, 1, 0.9);
+      ln(res.tc, gl.LINE_STRIP, 0, d.rows, 1, 0.8); ln(res.tc, gl.LINE_STRIP, 0, rr + 1, 3, 1);
+      if (!d.no_wrist) { ln(res.wc, gl.LINE_STRIP, 0, d.rows, 1, 0.8); ln(res.wc, gl.LINE_STRIP, 0, rr + 1, 3, 1); ln(res.wcTicks, gl.LINES, 0, res.wcTicks.count, 1, 0.9); }
+      ln(res.tcTicks, gl.LINES, 0, res.tcTicks.count, 2, 0.95);
       if (overlay) {
         if (!this.ov || this.ov.stamp !== overlay.stamp) {
           if (this.ov) this.ov.bufs.forEach(function (b) { gl.deleteBuffer(b.buf); });
@@ -252,10 +252,15 @@
       useLit(); gl.depthMask(false);                                     // onion skins: the thing and the hand at the keypoints
       d.keypoints.forEach(function (k) {
         var a = pose(d.tc, k.row), b = pose(d.wc, k.row);
-        tri(res.mesh, matOf(a.R, a.p), BLOCK, 0.22); hand(b, d.qf, C.hand, 0.18, true);
+        tri(res.mesh, matOf(a.R, a.p), BLOCK, 0.22); if (!d.no_wrist) hand(b, d.qf, C.hand, 0.18, true);
       });
       gl.depthMask(true);
       if (overlay) overlay.keys.forEach(function (k) { tri(self.sphere, matOf(I3, k.p, [0.0075, 0.0075, 0.0075]), C.mark); });
+    }
+    if (d.boxes && d.boxes.length) {                                     // what else was seen standing there, as see-through boxes
+      useLit(); gl.depthMask(false);
+      d.boxes.forEach(function (b) { tri(self.cube, matOf(I3, b.c, b.h), C.box, 0.3); });
+      gl.depthMask(true);
     }
     gl.disable(gl.BLEND);
     this.labelEls.forEach(function (l0, li) {
@@ -306,8 +311,8 @@
     function ready() {
       if (++done < todo || S.choice !== choice) return;
       var d = loaded[S.left], a = runInfo(S.left), b = runInfo(S.right);
-      names[0].textContent = pair ? 'Generated reference: ' + a.title : 'Generated reference (what the skill hands to S0)';
-      names[1].textContent = pair ? 'Generated reference: ' + b.title : 'What the arm and S0 did on the same rows';
+      names[0].textContent = pair ? 'Generated reference: ' + a.title : (a.left_title || 'Generated reference (what the skill hands to S0)');
+      names[1].textContent = pair ? 'Generated reference: ' + b.title : (a.right_title || 'What the arm and S0 did on the same rows');
       slider.max = maxRows() - 1;
       views[0].setLabels(S.left, true); views[1].setLabels(S.right, !!pair);
       var k = d.keypoints.length ? d.keypoints[Math.floor(d.keypoints.length / 2)].p : [d.tc[0] / 1e4, d.tc[1] / 1e4, d.tc[2] / 1e4];
@@ -344,6 +349,8 @@
   }
   function describe(id, row) {
     var d = loaded[id], r = Math.min(row, d.rows - 1), s = d.phaseOf[r];
+    if (d.no_time) return '<b>point ' + r + '</b> of ' + (d.rows - 1) + ' along the way (points 2 mm apart: not time steps) &nbsp;·&nbsp; <span class="vchip" style="background:' +
+      (T.phases[s.phase] || '#888') + '"></span><b>' + esc(s.phase) + '</b>';
     return '<b>row ' + r + '</b> of ' + (d.rows - 1) + ' (tick ' + (d.row0_tick + r) + ') &nbsp;·&nbsp; ' + (r * d.dt).toFixed(2) + ' s &nbsp;·&nbsp; <span class="vchip" style="background:' +
       (T.phases[s.phase] || '#888') + '"></span><b>' + esc(s.phase) + '</b> (rows ' + s.r0 + ' to ' + s.r1 + ') &nbsp;·&nbsp; commanded: thing <b>' + d.thing.v[r].toFixed(3) + ' m/s</b>, wrist <b>' +
       d.wrist.v[r].toFixed(3) + ' m/s</b>, turn rate of the thing <b>' + d.thing.w[r].toFixed(0) + ' deg/s</b> (wrist ' + d.wrist.w[r].toFixed(0) + ')';
@@ -353,7 +360,8 @@
     var cmp = S.left !== S.right, d = loaded[S.left];
     readout.innerHTML = '<div class="vr1">' + (cmp ? 'left: ' : '') + describe(S.left, S.row) + '</div>' + (cmp ? '<div class="vr1">right: ' + describe(S.right, S.row) + '</div>' : '');
     var info = runInfo(S.left);
-    subs[0].innerHTML = (cmp ? '' : esc(info.title) + '. ') + 'Dark body: the palm at the commanded wrist pose. No fingers are drawn: the reference holds none (S0 moves them).' +
+    subs[0].innerHTML = !cmp && info.left_note ? esc(info.left_note) :
+      (cmp ? '' : esc(info.title) + '. ') + 'Dark body: the palm at the commanded wrist pose. No fingers are drawn: the reference holds none (S0 moves them).' +
       (d.interpolation ? ' Interpolation: ' + esc(d.interpolation) + '.' : '') + ' Keypoints: ' + d.keypoints.length + '.';
     if (cmp) {
       var e = loaded[S.right];
@@ -366,7 +374,7 @@
         subs[1].innerHTML = 'Commanded against actual thing at this row: <b>' + (Math.hypot(a.p[0] - b.p[0], a.p[1] - b.p[1], a.p[2] - b.p[2]) * 1000).toFixed(0) + ' mm</b>, <b>' +
           angleBetween(a.R, b.R).toFixed(0) + ' deg</b>. Wrist: ' + (Math.hypot(c.p[0] - p.p[0], c.p[1] - p.p[1], c.p[2] - p.p[2]) * 1000).toFixed(1) + ' mm, ' + angleBetween(c.R, p.R).toFixed(1) +
           ' deg. Fingers: the recorded joint angles. Faint lines: the generated tracks.';
-      } else subs[1].innerHTML = 'The record ends before this row (' + d.rows_recorded + ' of ' + d.rows + ' rows were executed).';
+      } else subs[1].innerHTML = info.right_note_none ? esc(info.right_note_none) : 'The record ends before this row (' + d.rows_recorded + ' of ' + d.rows + ' rows were executed).';
     }
   }
 
